@@ -1,0 +1,50 @@
+*{
+	margin: 0;
+	padding: 0;
+	 webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+	 
+
+}
+
+#camera{
+	position: relative;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    background: #222;
+    -webkit-perspective: 700px;
+    -moz-perspective: 700px;
+    -ms-perspective: 700px;
+    perspective: 800px;
+    
+    background: url(http://1-background.com/images/clouds/sea-of-clouds-seamless-repeating-tile.jpg);
+}
+
+
+.level{
+   position: absolute;
+    left: 50%;
+    top: 0%;
+}
+
+.object{
+	position: absolute;
+	//top: 300px;
+	height: 400px;
+	width: 4000px;
+	background-image: url(https://media.freestocktextures.com/cache/e9/52/e952eced5348711e8a305c740399abef.jpg);
+	transform: rotateY(30deg) ;
+	
+}
+
+.floor{
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	background-image: url(https://media.freestocktextures.com/cache/e9/52/e952eced5348711e8a305c740399abef.jpg);
+	transform: rotateX(90deg);
+}
