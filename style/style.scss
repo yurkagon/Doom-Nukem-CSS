@@ -47,6 +47,7 @@ $floorSize: 2;
 	height: 1000px;
 	top: -100px;
 	position: absolute;
+	background-color: green;
 	background-image: url(https://i.pinimg.com/originals/85/c0/50/85c050d708a7052f4ff3f4bbbfcf56a0.jpg);
 	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
 }

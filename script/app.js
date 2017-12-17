@@ -90,6 +90,7 @@ function Update(){
 	    	console.log(translate3d + 'fsd' + rotate3d)
 }
 
+//weapon animation while moving
 setInterval(()=>{
 	if(toForward || toBack || toLeft || toRight){
 		$('.testWeapon').animate({
@@ -100,7 +101,10 @@ setInterval(()=>{
 			bottom: 0
 		},500);
 	} else{
-		$('.testWeapon').clearQueue();
+		$('.testWeapon').clearQueue().css({
+			right: '200px',
+			bottom: 0
+		});
 	}
 	
 },10);
