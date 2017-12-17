@@ -90,42 +90,57 @@ function Update(){
 	    	console.log(translate3d + 'fsd' + rotate3d)
 }
 
+setInterval(()=>{
+	if(toForward || toBack || toLeft || toRight){
+		$('.testWeapon').animate({
+			right: '150px',
+		bottom: '-80px'
+		},500).animate({
+			right: '200px',
+			bottom: 0
+		},500);
+	} else{
+		$('.testWeapon').clearQueue();
+	}
+	
+},10);
 
-//mouse look
-var _mouseX = 0, _mouseY = 0;
-$(document).bind('mousemove', function(e) {
-    
-    mouseX = event.pageX;
-    mouseY = event.pageY;
-    
-    if (mouseX > _mouseX){
-    	rotation.y -= 3
 
-    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-    	position.x = Math.sin(angle) * 700 ;
-    	position.z = 700 - Math.cos(angle) * 700 ;
+	//mouse look
+	var _mouseX = 0, _mouseY = 0;
+	$(document).bind('mousemove', function(e) {
+	    
+	    mouseX = event.pageX;
+	    mouseY = event.pageY;
+	    
+	    if (mouseX > _mouseX){
+	    	rotation.y -= 3
 
-    	Update();
+	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
+	    	position.x = Math.sin(angle) * 700 ;
+	    	position.z = 700 - Math.cos(angle) * 700 ;
 
-    } 
-     if (mouseX < _mouseX){
-    	rotation.y += 3
+	    	Update();
 
-    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-    	position.x = Math.sin(angle) * 700 ;
-    	position.z = 700 - Math.cos(angle) * 700 ;
+	    } 
+	     if (mouseX < _mouseX){
+	    	rotation.y += 3
 
-    	Update();
-    }
-       
-    
-   
-            
-    _mouseX = mouseX;
-    _mouseY = mouseY;
-    
-   // rotation = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
-});
+	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
+	    	position.x = Math.sin(angle) * 700 ;
+	    	position.z = 700 - Math.cos(angle) * 700 ;
+
+	    	Update();
+	    }
+	       
+	    
+	   
+	            
+	    _mouseX = mouseX;
+	    _mouseY = mouseY;
+	    
+	   // rotation = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
+	});
 
 });
 
