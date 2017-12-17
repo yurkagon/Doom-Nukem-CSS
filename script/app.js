@@ -54,26 +54,12 @@ $(document).ready(() =>{
 
 	    var fov = 700;
 	    if (rotLeft){
-	    	rotation.y += 1.5;
-
-	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-	    	var x = Math.sin(angle) * fov ;
-    		var z = fov - Math.cos(angle) * fov ;
-    		
-
-			position.x = Math.sin(angle) * fov ;
-    		position.z = fov - Math.cos(angle) * fov;
-    		//position.x -= position.x - x ;
-    		//position.z -= position.z - z ;
+	    	rotate(1.5);
 
     		Update();
 	    }
 	    if (rotRight){
-	    	rotation.y -= 1.5;
-
-	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-    		position.x = Math.sin(angle) * fov ;
-    		position.z = fov - Math.cos(angle) * fov;
+	    	rotate(-1.5);
     		
     		Update();
 	    }
@@ -120,21 +106,13 @@ setInterval(()=>{
 	    mouseY = event.pageY;
 	    
 	    if (mouseX > _mouseX){
-	    	rotation.y -= 3
-
-	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-	    	position.x = Math.sin(angle) * 700 ;
-	    	position.z = 700 - Math.cos(angle) * 700 ;
+	    	rotate(-3);
 
 	    	Update();
 
 	    } 
 	     if (mouseX < _mouseX){
-	    	rotation.y += 3
-
-	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
-	    	position.x = Math.sin(angle) * 700 ;
-	    	position.z = 700 - Math.cos(angle) * 700 ;
+	    	rotate(3);
 
 	    	Update();
 	    }
@@ -147,6 +125,14 @@ setInterval(()=>{
 	    
 	   // rotation = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
 	});
+
+	function rotate(degree){
+		rotation.y += degree;
+
+	    var angle = ((rotation.y%360)/360)*(2*Math.PI);
+	    position.x = Math.sin(angle) * 700 ;
+	    position.z = 700 - Math.cos(angle) * 700 ;
+	}
 
 });
 
