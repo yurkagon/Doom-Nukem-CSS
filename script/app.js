@@ -59,8 +59,12 @@ $(document).ready(() =>{
 	    	var angle = ((rotation.y%360)/360)*(2*Math.PI);
 	    	var x = Math.sin(angle) * fov ;
     		var z = fov - Math.cos(angle) * fov ;
-    		position.x -= position.x - x ;
-    		position.z -= position.z - z ;
+    		
+
+			position.x = Math.sin(angle) * fov ;
+    		position.z = fov - Math.cos(angle) * fov;
+    		//position.x -= position.x - x ;
+    		//position.z -= position.z - z ;
 
     		Update();
 	    }
@@ -88,7 +92,7 @@ function Update(){
 
 
 //mouse look
-/*var _mouseX = 0, _mouseY = 0;
+var _mouseX = 0, _mouseY = 0;
 $(document).bind('mousemove', function(e) {
     
     mouseX = event.pageX;
@@ -122,6 +126,6 @@ $(document).bind('mousemove', function(e) {
     
    // rotation = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
 });
-*/
+
 });
 
