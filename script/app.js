@@ -103,7 +103,7 @@ setInterval(()=>{
 		},500).animate({
 			right: '200px',
 			bottom: 0
-		},100);
+		},200);
 	} else{
 		
 			$('.testWeapon').stop();
