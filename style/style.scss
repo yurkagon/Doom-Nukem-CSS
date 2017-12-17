@@ -8,6 +8,9 @@
 	 
 
 }
+h2{
+	opacity: 0.5;
+}
 
 #camera{
 	position: relative;
@@ -22,6 +25,8 @@
     perspective: 800px;
     
     background: url(http://1-background.com/images/clouds/sea-of-clouds-seamless-repeating-tile.jpg);
+   // background-position: -500px -500px;
+    background-size: 50%;
 }
 
 

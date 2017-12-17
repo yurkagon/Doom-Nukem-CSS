@@ -6,6 +6,9 @@
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d; }
 
+h2 {
+  opacity: 0.5; }
+
 #camera {
   position: relative;
   float: left;
@@ -17,7 +20,8 @@
   -moz-perspective: 700px;
   -ms-perspective: 700px;
   perspective: 800px;
-  background: url(http://1-background.com/images/clouds/sea-of-clouds-seamless-repeating-tile.jpg); }
+  background: url(http://1-background.com/images/clouds/sea-of-clouds-seamless-repeating-tile.jpg);
+  background-size: 50%; }
 
 .level {
   position: absolute;

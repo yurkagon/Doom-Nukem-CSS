@@ -29,7 +29,7 @@ $(document).ready(() =>{
 		if (e.keyCode == 69) rotRight = false;
 	});	
 
-
+	//movement
 	var translate3d = '';
 	var rotate3d = '';
 	setInterval(function () {
@@ -87,7 +87,11 @@ function Update(){
 	    	translate3d = 'translate3d('+position.x+'px,'+position.y+'px,'+position.z+'px)';
 	    	level.css('transform',translate3d + ' ' + rotate3d);
 
-	    	console.log(translate3d + 'fsd' + rotate3d)
+	    	//console.log(translate3d + 'fsd' + rotate3d)
+	    	updateBackground();
+}
+function updateBackground(){
+	camera.css('background-position', 12*rotation.y +"px 0");
 }
 
 //weapon animation while moving
@@ -99,14 +103,12 @@ setInterval(()=>{
 		},500).animate({
 			right: '200px',
 			bottom: 0
-		},500);
+		},100);
 	} else{
-		$('.testWeapon').clearQueue().css({
-			right: '200px',
-			bottom: 0
-		});
-	}
-	
+		
+			$('.testWeapon').stop();
+		
+	}	
 },10);
 
 
