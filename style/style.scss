@@ -6,6 +6,7 @@
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
 	 
+	 
 
 }
 h2{
@@ -27,6 +28,8 @@ h2{
     background: url(http://1-background.com/images/clouds/sea-of-clouds-seamless-repeating-tile.jpg);
    // background-position: -500px -500px;
     background-size: 50%;
+    
+
 }
 
 
@@ -60,7 +63,7 @@ $floorSize: 100;
 	height: 10000px;
 	top: 500px;
 	position: absolute;
-	background-color: blue;
+	background-color: green;
 	//background-image: url(https://i.pinimg.com/originals/85/c0/50/85c050d708a7052f4ff3f4bbbfcf56a0.jpg);
 	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
 }
