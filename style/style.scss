@@ -45,15 +45,23 @@ h2{
 	transform: rotateY(90deg) ;
 	
 }
+.glass{
+	@extend .object;
+	height: 400px;
+	width: 1200px;
+	transform: rotateY(180deg); 
+	background: url(http://pluspng.com/img-png/transparent-glass-png-glass-png-1500.png);
+	background-size: cover;
+}
 
-$floorSize: 2;
+$floorSize: 100;
 .floor{
-	width: 1000px;
-	height: 1000px;
-	top: -100px;
+	width: 10000px;
+	height: 10000px;
+	top: 500px;
 	position: absolute;
-	background-color: green;
-	background-image: url(https://i.pinimg.com/originals/85/c0/50/85c050d708a7052f4ff3f4bbbfcf56a0.jpg);
+	background-color: blue;
+	//background-image: url(https://i.pinimg.com/originals/85/c0/50/85c050d708a7052f4ff3f4bbbfcf56a0.jpg);
 	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
 }
 

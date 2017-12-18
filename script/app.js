@@ -123,13 +123,15 @@ setInterval(()=>{
 	    _mouseX = mouseX;
 	    _mouseY = mouseY;
 	    
-	   // rotation = 'rotateX('+rx+'deg) rotateY('+ry+'deg)';
+	   
 	});
 
 	function rotate(degree){
 		rotation.y += degree;
 
 	    var angle = ((rotation.y%360)/360)*(2*Math.PI);
+
+	    //level.css('transform-origin', position.x + "px " + -position.y + "px "+ position.z + "px");
 	    position.x = Math.sin(angle) * 700 ;
 	    position.z = 700 - Math.cos(angle) * 700 ;
 	}
