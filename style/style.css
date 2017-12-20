@@ -1,66 +1,3 @@
-html, body {
-  cursor: none; }
-
-* {
-  margin: 0;
-  padding: 0;
-  webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d; }
-
-h2 {
-  opacity: 0.5; }
-
-#camera {
-  position: relative;
-  float: left;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-  background: #222;
-  -webkit-perspective: 700px;
-  -moz-perspective: 700px;
-  -ms-perspective: 700px;
-  perspective: 800px;
-  background: url(http://www.textures.com/system/gallery/photos/Landscapes/Skies%20Partial/16294/Skies0239_600.jpg) 0 -15px;
-  background-size: 60%; }
-
-.level {
-  position: absolute;
-  left: 50%;
-  top: 0%; }
-
-.object, .glass {
-  position: absolute;
-  height: 400px;
-  width: 4000px;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(https://media.freestocktextures.com/cache/e9/52/e952eced5348711e8a305c740399abef.jpg);
-  transform: rotateY(90deg); }
-
-.glass {
-  height: 400px;
-  width: 1200px;
-  transform: rotateY(180deg);
-  background: url(http://pluspng.com/img-png/transparent-glass-png-glass-png-1500.png);
-  background-size: cover; }
-
-.floor {
-  width: 10000px;
-  height: 10000px;
-  top: 500px;
-  position: absolute;
-  background-color: green;
-  transform: rotateX(90deg) scale3d(100, 100, 1); }
-
-.testWeapon {
-  position: fixed;
-  bottom: 0;
-  right: 200px;
-  height: 256px;
-  width: 640px;
-  z-index: 5; }
-
 .face {
   box-shadow: inset 0 0 0 1px black; }
 
@@ -1754,5 +1691,68 @@ h2 {
 
 .cub-18 .tp {
   background-color: #8b2626; }
+
+html, body {
+  cursor: none; }
+
+* {
+  margin: 0;
+  padding: 0;
+  webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+h2 {
+  opacity: 0.5; }
+
+#camera {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  background: #222;
+  -webkit-perspective: 700px;
+  -moz-perspective: 700px;
+  -ms-perspective: 700px;
+  perspective: 800px;
+  background: url(http://www.textures.com/system/gallery/photos/Landscapes/Skies%20Partial/16294/Skies0239_600.jpg) 0 -15px;
+  background-size: 60%; }
+
+.level {
+  position: absolute;
+  left: 50%;
+  top: 0%; }
+
+.object, .glass {
+  position: absolute;
+  height: 400px;
+  width: 4000px;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(https://media.freestocktextures.com/cache/e9/52/e952eced5348711e8a305c740399abef.jpg);
+  transform: rotateY(90deg); }
+
+.glass {
+  height: 400px;
+  width: 1200px;
+  transform: rotateY(180deg);
+  background: url(http://pluspng.com/img-png/transparent-glass-png-glass-png-1500.png);
+  background-size: cover; }
+
+.floor {
+  width: 10000px;
+  height: 10000px;
+  top: 500px;
+  position: absolute;
+  background-color: green;
+  transform: rotateX(90deg) scale3d(100, 100, 1); }
+
+.testWeapon {
+  position: fixed;
+  bottom: 0;
+  right: 200px;
+  height: 256px;
+  width: 640px;
+  z-index: 5; }
 
 /*# sourceMappingURL=style.css.map */

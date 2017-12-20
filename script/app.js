@@ -135,5 +135,9 @@ $(document).ready(() =>{
 		}	
 	},10);
 
+
+	//location
+
+	level.append(plane);
 });
 
