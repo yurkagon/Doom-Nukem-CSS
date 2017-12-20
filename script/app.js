@@ -101,10 +101,8 @@ $(document).ready(() =>{
 		if (rotation.y < 0) rotation.y += 358;
 		if (rotation.y > 360) rotation.y -= 358;
 
-		 var angle = ((rotation.y%360)/360)*(2*Math.PI);
+		var angle = ((rotation.y%360)/360)*(2*Math.PI);
 	    
-	  
-	   
  		origin.x = -Math.sin(angle) * FOV;
  		origin.z = -(FOV - Math.cos(angle) * FOV);
 	}
