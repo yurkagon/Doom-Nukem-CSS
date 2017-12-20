@@ -137,7 +137,6 @@ $(document).ready(() =>{
 
 
 	//location
-
 	level.append(plane);
 });
 
