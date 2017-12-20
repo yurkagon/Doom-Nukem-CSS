@@ -1,8 +1,8 @@
 $(document).ready(() =>{
 
 	var position = {x: 0,y: 0,z: 0}; //position coords of "level"
-	//var origin = {x: 0,y: 0,z: 0};
 	var rotation = {x : 0,y: 0,z: 0};//rotation coords of "level"
+	var origin = {x: 0,y: 0,z: 0};
 	var playerMoveSpeed = 10;
 
 	//camera is a static DIV. All 3d operations are inside
@@ -15,6 +15,7 @@ $(document).ready(() =>{
 
 	var rotationSpeed = 1.5;
 	var mouseSensitivity = 2;
+	var FOV = 800;
 
 	//control
 	var toForward, toBack, toLeft, toRight;
@@ -99,12 +100,19 @@ $(document).ready(() =>{
 		rotation.y -= degree;
 		if (rotation.y < 0) rotation.y += 358;
 		if (rotation.y > 360) rotation.y -= 358;
+
+		 var angle = ((rotation.y%360)/360)*(2*Math.PI);
+	    
+	  
+	   
+ 		origin.x = -Math.sin(angle) * FOV;
+ 		origin.z = -(FOV - Math.cos(angle) * FOV);
 	}
 	
 	//update frame
 	function Update(){
 	    var rotate3d = "rotateY(" + rotation.y + "deg)";
-	    var translate3d = "translate3d(" + position.x + "px,0," + position.z + "px)";
+	    var translate3d = "translate3d(" + (position.x+origin.x) + "px,0," + (position.z+origin.z) + "px)";
 
 	    level.css('transform',rotate3d + translate3d);
 
