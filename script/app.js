@@ -3,6 +3,7 @@ $(document).ready(() =>{
 	var position = {x: 0,y: 0,z: 0}; //position coords of "level"
 	//var origin = {x: 0,y: 0,z: 0};
 	var rotation = {x : 0,y: 0,z: 0};//rotation coords of "level"
+	var playerMoveSpeed = 10;
 
 	//camera is a static DIV. All 3d operations are inside
 	var camera = $('#camera');
@@ -12,8 +13,8 @@ $(document).ready(() =>{
 	*/
 	var level = $('.level');
 
-
-	var mouseSensitivity = 3;
+	var rotationSpeed = 1.5;
+	var mouseSensitivity = 2;
 
 	//control
 	var toForward, toBack, toLeft, toRight;
@@ -42,41 +43,35 @@ $(document).ready(() =>{
 	//game loop
 	//movement
 	setInterval(function () {
-		 //forward
 	    if (toForward) {
-	    	position.z+=10;
-	    	//origin.z += 10;
-	    	Update();
-	    }
-	    //back
-	    if (toBack) {
-	    	position.z-=10;
-	    	//origin.z -= 10;
+			position.x -= Math.sin(rotation.y * Math.PI / 180) * playerMoveSpeed;
+			position.z += Math.cos(rotation.y * Math.PI / 180) * playerMoveSpeed;
 			Update();
-	    }
-	    //go left
-	    if (toLeft) {
-	    	position.x+=10;
-	    	//origin.x += 10;
+		}
+		if (toBack) {
+			position.x += Math.sin(rotation.y * Math.PI / 180) * playerMoveSpeed;
+			position.z -= Math.cos(rotation.y * Math.PI / 180) * playerMoveSpeed;
+			Update();
+		}
+		 if (toLeft) {
+	    	position.x -= Math.sin((rotation.y-90) * Math.PI / 180) * playerMoveSpeed;
+			position.z += Math.cos((rotation.y-90) * Math.PI / 180) * playerMoveSpeed;
+	    	
 	    	Update();
 	    }
-	     //go right
 	    if (toRight) {
-	    	position.x-=10;
-	    	//origin.x -= 10;
+	    	position.x -= Math.sin((rotation.y+90) * Math.PI / 180) * playerMoveSpeed;
+			position.z += Math.cos((rotation.y+90) * Math.PI / 180) * playerMoveSpeed;
 	    	Update();
 	    }
-
-	    //rotate left by keys
-	    if (rotLeft){
-	    	rotate(1.5);
-    		Update();
-	    }
-	    //rotate right by keys
-	    if (rotRight){
-	    	rotate(-1.5);
-    		Update();
-	    }
+		if (rotLeft) {
+			rotate(+rotationSpeed);
+			Update();
+		}
+		if (rotRight){
+			rotate(-rotationSpeed);
+			Update();
+		}
 	     
 	},10);
 
@@ -88,45 +83,33 @@ $(document).ready(() =>{
 	    mouseY = event.pageY;
 	    
 	    if (mouseX > _mouseX){
-	    	rotate(-mouseSensitivity);
+	    	rotate(-mouseSensitivity*rotationSpeed);
 	    	Update();
 	    } 
 	     if (mouseX < _mouseX){
-	    	rotate(mouseSensitivity);
+	    	rotate(mouseSensitivity*rotationSpeed);
 	    	Update();
 	    }     
 	    _mouseX = mouseX;
 	    _mouseY = mouseY;
 	});
 
-	//rotation  ---> (HEERE I NEED FIXES AND IVE GOT TO MAKE IT MOVES AND ROTATES CORRECT) <----
+	
 	function rotate(degree){
-		rotation.y += degree;
-		//level.css('transform-origin', origin.x + 'px 0 '+ origin.z + "px");
-	    var angle = ((rotation.y%360)/360)*(2*Math.PI);
-	    
-	    
-	    //position.x = Math.sin(angle) * 700 ;
-	   
-
-	    //fov = Math.sqrt(Math.pow(position.x,2)+Math.pow(position.z,2));
-	    fov = 700;
-
-	    
- 		position.x = Math.sin(angle) * fov;
- 		position.z = (fov - Math.cos(angle) * fov);
-	    //position.z = Math.cos(rotation.y * 0.0174532925);
-	    
+		rotation.y -= degree;
+		if (rotation.y < 0) rotation.y += 358;
+		if (rotation.y > 360) rotation.y -= 358;
 	}
+	
 	//update frame
 	function Update(){
-	    var rotate3d = 'rotateY('+ (-rotation.y)+'deg)';
-	    var translate3d = 'translate3d('+position.x+'px,'+position.y+'px,'+position.z+'px)';
+	    var rotate3d = "rotateY(" + rotation.y + "deg)";
+	    var translate3d = "translate3d(" + position.x + "px,0," + position.z + "px)";
 
-	    level.css('transform',translate3d + ' ' + rotate3d);
+	    level.css('transform',rotate3d + translate3d);
 
-		//updateBackground
-	    camera.css('background-position', 15*rotation.y +"px -15px");
+		//updateSkybox
+	    camera.css('background-position', -15*rotation.y +"px -15px");
 	}
 
 
