@@ -55,7 +55,7 @@ $size: 1;
 	height: 400px;
 	width: 4000px;
 	background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.8)), url(img/wall.jpg);
-	transform: rotateY(90deg) ;
+	transform: rotateY(90deg) translate3d(0,100px,0);
 	
 }
 .glass{
@@ -69,8 +69,8 @@ $size: 1;
 
 $floorSize: 100;
 .floor{
-	width: 10000px;
-	height: 10000px;
+	width: 1000px;
+	height: 1000px;
 	top: 500px;
 	position: absolute;
 	background-color: green;
