@@ -88,7 +88,6 @@ $(document).ready(() =>{
 			rotate(-rotationSpeed);
 			Update();
 		}
-	     
 	},10);
 
 	//mouse look
@@ -132,6 +131,11 @@ $(document).ready(() =>{
 
 		//updateSkybox
 	    camera.css('background-position', -15*rotation.y +"px -5px");
+
+	    //fps counter
+		var thisFrameTime = (thisLoop=new Date) - lastLoop;
+		frameTime+= (thisFrameTime - frameTime) / filterStrength;
+		lastLoop = thisLoop;
 	}
 
 
@@ -163,5 +167,14 @@ $(document).ready(() =>{
 		}
 		modelsVisible = !modelsVisible;
 	}
+
+
+	//fps counter
+	var filterStrength = 20;
+	var frameTime = 0, lastLoop = new Date, thisLoop;
+	var fpsOut = $('#fpsOut');
+	setInterval(function(){
+	  fpsOut.html((1000/frameTime).toFixed(1) + " fps");
+	},1000);
 });
 
