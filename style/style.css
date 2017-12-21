@@ -1692,8 +1692,10 @@
 .cub-18 .tp {
   background-color: #8b2626; }
 
-html, body {
-  cursor: none; }
+body {
+  overflow: hidden;
+  background: url(img/background.jpg);
+  background-size: cover; }
 
 * {
   margin: 0;
@@ -1707,18 +1709,21 @@ h2 {
   opacity: 0.5; }
 
 #camera {
+  width: 1300px;
+  height: 700px;
+  cursor: none;
+  margin: auto;
   position: relative;
-  float: left;
   overflow: hidden;
-  width: 100%;
-  height: 100vh;
-  background: #222;
+  background: url(img/skybox.jpg) 0 -5px;
+  background-size: 60%;
   -webkit-perspective: 700px;
   -moz-perspective: 700px;
   -ms-perspective: 700px;
-  perspective: 800px;
-  background: url(http://www.textures.com/system/gallery/photos/Landscapes/Skies%20Partial/16294/Skies0239_600.jpg) 0 -15px;
-  background-size: 60%; }
+  perspective: 800px; }
+  @media (min-device-width: 1400px) {
+    #camera {
+      margin: 200px auto; } }
 
 .level {
   position: absolute;
@@ -1729,14 +1734,14 @@ h2 {
   position: absolute;
   height: 400px;
   width: 4000px;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(https://media.freestocktextures.com/cache/e9/52/e952eced5348711e8a305c740399abef.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(img/wall.jpg);
   transform: rotateY(90deg); }
 
 .glass {
   height: 400px;
   width: 1200px;
   transform: rotateY(180deg);
-  background: url(http://pluspng.com/img-png/transparent-glass-png-glass-png-1500.png);
+  background: url(img/glass.png);
   background-size: cover; }
 
 .floor {

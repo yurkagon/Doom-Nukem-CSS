@@ -15,7 +15,12 @@ $(document).ready(() =>{
 
 	var rotationSpeed = 1.5;
 	var mouseSensitivity = 2;
-	var FOV = 800;
+	const FOV = 800;
+
+
+	var mainThemeMusic = new Audio('sounds/main_theme.mp3');
+	mainThemeMusic.loop = true;
+	mainThemeMusic.play();
 
 	//control
 	var toForward, toBack, toLeft, toRight;
@@ -93,6 +98,7 @@ $(document).ready(() =>{
 	    }     
 	    _mouseX = mouseX;
 	    _mouseY = mouseY;
+	    //lconsole.log(e);
 	});
 
 	
@@ -115,7 +121,7 @@ $(document).ready(() =>{
 	    level.css('transform',rotate3d + translate3d);
 
 		//updateSkybox
-	    camera.css('background-position', -15*rotation.y +"px -15px");
+	    camera.css('background-position', -15*rotation.y +"px -5px");
 	}
 
 
