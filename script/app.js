@@ -23,6 +23,10 @@ $(document).ready(() =>{
 	mainThemeMusic.volume = 0.3;
 	mainThemeMusic.play();
 
+	//3d models
+	var modelsVisible = false;
+	toggleModels();
+
 	//control
 	var toForward, toBack, toLeft, toRight;
 	toUp=toDown=toLeft=toRight = false;
@@ -35,6 +39,8 @@ $(document).ready(() =>{
 
 		if (e.keyCode == 81) rotLeft = true;
 		if (e.keyCode == 69) rotRight = true;
+
+		
 	});
 	$('body').keyup(function (e) {
 		if (e.keyCode == 37 || e.keyCode == 65 ) toLeft = false;
@@ -44,6 +50,9 @@ $(document).ready(() =>{
 
 		if (e.keyCode == 81) rotLeft = false;
 		if (e.keyCode == 69) rotRight = false;
+
+		if (e.keyCode == 13) toggleModels();
+		console.log(e)
 	});
 
 
@@ -144,6 +153,15 @@ $(document).ready(() =>{
 
 
 	//location
-	level.append(plane);
+	function toggleModels(){
+		if(!modelsVisible){
+			//plane
+			level.append($('<div/>').addClass("model").html(plane));
+		}
+		else if(modelsVisible){
+			$(".model").remove();
+		}
+		modelsVisible = !modelsVisible;
+	}
 });
 
