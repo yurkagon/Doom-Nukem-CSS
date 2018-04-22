@@ -40,4 +40,15 @@ class Player {
 		position.x -= Math.sin((rotation.y+90) * Math.PI / 180) * PLAYER_MOVE_SPEED;
 		position.z += Math.cos((rotation.y+90) * Math.PI / 180) * PLAYER_MOVE_SPEED;
 	}
+	rotate(degree){
+		const { rotation, origin } = this;
+		rotation.y -= degree;
+		if (rotation.y < 0) rotation.y += 358;
+		if (rotation.y > 360) rotation.y -= 358;
+
+		const angle = ((rotation.y%360)/360)*(2*Math.PI);
+	    
+		origin.x = -Math.sin(angle) * FOV;
+		origin.z = -(FOV - Math.cos(angle) * FOV);
+	}
 }
