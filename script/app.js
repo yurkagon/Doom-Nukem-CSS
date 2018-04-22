@@ -1,11 +1,12 @@
 $(document).ready(() =>{
 	const player = new Player();
-  const item = new Item('shotgun', 0, 1000);
+	const items = itemSpawner();
 	// level is a child of camera and it is a parent for all 3d objects.
 	// If player moves, we will change the position of "level" (and all child 3d objects)
 	const level = $('.level');
-
 	mainThemeMusic.play();
+
+
 
 	
 	//game loop
@@ -19,7 +20,11 @@ $(document).ready(() =>{
 		if (toForward || toBack || toLeft || toRight) player.stepsEffect();
 
 		updateFrame();
-		item.Update(player.rotation.y)
+		items.forEach(item => {
+			console.log(Distance(player.getPosition(), item.getPosition()));
+			//console.log(player.getPosition(), item.getPosition())
+			item.Update(player.rotation.y);
+		});
 	}
 	setInterval(Update, 10);
 
@@ -65,3 +70,12 @@ $(document).ready(() =>{
 	},10);
 });
 
+function itemSpawner() {
+	const items = [];
+	items.push(new Item('shotgun', 1000, 10000));
+	// items.push(new Item('shotgun', 250, 600));
+	// items.push(new Item('shotgun', 250, 900));
+	// items.push(new Item('shotgun', 250, 1200));
+
+	return items;
+}

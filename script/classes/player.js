@@ -1,6 +1,5 @@
 class Player {
 	constructor() {
-
 		this.position = {
 			x: 0,
 			z: 0,
@@ -58,5 +57,12 @@ class Player {
 	    
 		origin.x = -Math.sin(angle) * FOV;
 		origin.z = -(FOV - Math.cos(angle) * FOV);
+	}
+
+	getPosition() {
+		return {
+			x: -this.position.x - 128,
+			z: -this.position.z + 700,
+		}
 	}
 }
