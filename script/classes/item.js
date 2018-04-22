@@ -10,7 +10,9 @@ class Item {
 		$('.items').append(this.selfCont);
 		this.selfCont.append(this.self);
 
-		this.position = {x, z}
+		this.position = {x, z};
+
+		this._picked = false;
 	}
 
 	Update(degree, plPos) {
@@ -24,15 +26,20 @@ class Item {
 
 		const distance = Distance(plPos, this.getPosition());
 
-		if(distance < 150) this.pickItem();
+		if (distance < 150) this.pickItem();
 	}
 	getPosition() {
 		return this.position;
 	}
+	get picked() {
+		return this._picked;
+	}
 	
 	pickItem() {
+		this._picked = true;
 		this.self.remove();
 		this.selfCont.remove();
+		takeWeapon.load();
 		takeWeapon.play();
 	}
 }
