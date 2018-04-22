@@ -1,0 +1,4 @@
+const ROTATION_SPEED = 1.5;
+const MOUSE_SENSITIVITY = 2;
+
+const FOV = 800;

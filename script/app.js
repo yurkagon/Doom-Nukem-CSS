@@ -1,8 +1,8 @@
 $(document).ready(() =>{
 
-	var position = {x: 0,y: 0,z: 0}; //position coords of "level"
-	var rotation = {x : 0,y: 0,z: 0};//rotation coords of "level"
-	var origin = {x: 0,y: 0,z: 0};
+	var position = {x: 0,y: 0, z: 0}; //position coords of "level"
+	var rotation = {x : 0,y: 0};//rotation coords of "level"
+	var origin = {x: 0,y: 0};
 	var playerMoveSpeed = 10;
 
 	//camera is a static DIV. All 3d operations are inside
@@ -13,14 +13,6 @@ $(document).ready(() =>{
 	*/
 	var level = $('.level');
 
-	var rotationSpeed = 1.5;
-	var mouseSensitivity = 2;
-	const FOV = 800;
-
-
-	var mainThemeMusic = new Audio('sounds/main_theme.mp3');
-	mainThemeMusic.loop = true;
-	mainThemeMusic.volume = 0.3;
 	mainThemeMusic.play();
 
 	//game loop
@@ -48,11 +40,11 @@ $(document).ready(() =>{
 	    	Update();
 	    }
 		if (rotLeft) {
-			rotate(+rotationSpeed);
+			rotate(+ROTATION_SPEED);
 			Update();
 		}
 		if (rotRight){
-			rotate(-rotationSpeed);
+			rotate(-ROTATION_SPEED);
 			Update();
 		}
 	},10);
@@ -65,11 +57,11 @@ $(document).ready(() =>{
 	    mouseY = event.pageY;
 	    
 	    if (mouseX > _mouseX){
-	    	rotate(-mouseSensitivity*rotationSpeed);
+	    	rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
 	    	Update();
 	    } 
 	     if (mouseX < _mouseX){
-	    	rotate(mouseSensitivity*rotationSpeed);
+	    	rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
 	    	Update();
 	    }     
 	    _mouseX = mouseX;
