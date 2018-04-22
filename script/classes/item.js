@@ -13,7 +13,7 @@ class Item {
 		this.position = {x, z}
 	}
 
-	Update(degree) {
+	Update(degree, plPos) {
 		const { position } = this;
 
 		this.translate3d = `translate3d(${position.x}px, 350px, ${position.z}px)`;
@@ -21,9 +21,18 @@ class Item {
 
 		this.selfCont.css('transform', this.translate3d)
 		this.self.css('transform',this.rotate3d);
+
+		const distance = Distance(plPos, this.getPosition());
+
+		if(distance < 150) this.pickItem();
 	}
 	getPosition() {
 		return this.position;
 	}
 	
+	pickItem() {
+		this.self.remove();
+		this.selfCont.remove();
+		takeWeapon.play();
+	}
 }

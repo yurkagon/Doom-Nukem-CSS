@@ -1,4 +1,4 @@
-$(document).ready(() =>{
+$(document).ready(() => {
 	const player = new Player();
 	const items = itemSpawner();
 	// level is a child of camera and it is a parent for all 3d objects.
@@ -23,7 +23,7 @@ $(document).ready(() =>{
 		items.forEach(item => {
 			console.log(Distance(player.getPosition(), item.getPosition()));
 			//console.log(player.getPosition(), item.getPosition())
-			item.Update(player.rotation.y);
+			item.Update(player.rotation.y, player.getPosition());
 		});
 	}
 	setInterval(Update, 10);
@@ -42,7 +42,7 @@ $(document).ready(() =>{
 		_mouseY = mouseY;
 	});
 
-	function updateFrame(){
+	function updateFrame() {
 		const { rotation, position, origin } = player;
 		const rotate3d = `rotateY(${rotation.y}deg)`;
 		const translate3d = `translate3d(${position.x + origin.x}px, ${position.y}px, ${position.z + origin.z}px)`;
@@ -72,7 +72,7 @@ $(document).ready(() =>{
 
 function itemSpawner() {
 	const items = [];
-	items.push(new Item('shotgun', 1000, 10000));
+	items.push(new Item('shotgun', 1000, 1000));
 	// items.push(new Item('shotgun', 250, 600));
 	// items.push(new Item('shotgun', 250, 900));
 	// items.push(new Item('shotgun', 250, 1200));
