@@ -26,6 +26,7 @@ $size: 1;
     height: $cameraH*$size;
     cursor: none;
 	margin:  auto;
+	margin-top: 8vh;
 	position: relative;
     overflow: hidden;
   	background: url(img/skybox.jpg) 0 -5px;
@@ -35,11 +36,6 @@ $size: 1;
     -moz-perspective: 700px;
     -ms-perspective: 700px;
     perspective: 800px;
-    
-    
-    @media(min-device-width: 1400px){
-   	 	margin: 200px auto;
-   	}
 }
 
 
