@@ -23,39 +23,6 @@ $(document).ready(() =>{
 	mainThemeMusic.volume = 0.3;
 	mainThemeMusic.play();
 
-	//3d models
-	var modelsVisible = false;
-	toggleModels();
-
-	//control
-	var toForward, toBack, toLeft, toRight;
-	toUp=toDown=toLeft=toRight = false;
-	var rotLeft = false, rotRight = false;
-	$('body').keydown(function (e) {
-		if (e.keyCode == 37 || e.keyCode == 65 ) toLeft = true;
-		if (e.keyCode == 39 || e.keyCode == 68 ) toRight = true;
-		if (e.keyCode == 38 || e.keyCode == 87 ) toForward = true;
-		if (e.keyCode == 40 || e.keyCode == 83 ) toBack = true; 
-
-		if (e.keyCode == 81) rotLeft = true;
-		if (e.keyCode == 69) rotRight = true;
-
-		
-	});
-	$('body').keyup(function (e) {
-		if (e.keyCode == 37 || e.keyCode == 65 ) toLeft = false;
-		if (e.keyCode == 39 || e.keyCode == 68 ) toRight = false;
-		if (e.keyCode == 38 || e.keyCode == 87 ) toForward = false;
-		if (e.keyCode == 40 || e.keyCode == 83 ) toBack = false; 
-
-		if (e.keyCode == 81) rotLeft = false;
-		if (e.keyCode == 69) rotRight = false;
-
-		if (e.keyCode == 13) toggleModels();
-		console.log(e)
-	});
-
-
 	//game loop
 	//movement
 	setInterval(function () {
@@ -156,17 +123,7 @@ $(document).ready(() =>{
 	},10);
 
 
-	//location
-	function toggleModels(){
-		if(!modelsVisible){
-			//plane
-			level.append($('<div/>').addClass("model").html(plane));
-		}
-		else if(modelsVisible){
-			$(".model").remove();
-		}
-		modelsVisible = !modelsVisible;
-	}
+
 
 
 	//fps counter
