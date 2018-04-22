@@ -2,3 +2,4 @@ const ROTATION_SPEED = 1.5;
 const MOUSE_SENSITIVITY = 2;
 
 const FOV = 800;
+const PLAYER_MOVE_SPEED = 10;
