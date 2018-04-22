@@ -16,6 +16,7 @@ $(document).ready(() =>{
 		if (toRight) 	player.moveRight();
 		if (rotLeft) player.rotate(+ROTATION_SPEED);
 		if (rotRight) player.rotate(-ROTATION_SPEED);
+		if (toForward || toBack || toLeft || toRight) player.stepsEffect();
 
 		updateFrame();
 	}
@@ -38,7 +39,7 @@ $(document).ready(() =>{
 	function updateFrame(){
 		const { rotation, position, origin } = player;
 		const rotate3d = `rotateY(${rotation.y}deg)`;
-		const translate3d = `translate3d(${position.x + origin.x}px, 0, ${position.z + origin.z}px)`;
+		const translate3d = `translate3d(${position.x + origin.x}px, ${position.y}px, ${position.z + origin.z}px)`;
 
 		level.css('transform',rotate3d + translate3d);
 
