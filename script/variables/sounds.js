@@ -3,3 +3,5 @@ mainThemeMusic.loop = true;
 mainThemeMusic.volume = 0.3;
 
 const takeWeapon =  new Audio('sounds/pickWeapon.wav');
+
+const startPhrase = new Audio('sounds/start.wav')

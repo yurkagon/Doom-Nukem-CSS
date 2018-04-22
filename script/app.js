@@ -5,6 +5,7 @@ $(document).ready(() => {
 	// If player moves, we will change the position of "level" (and all child 3d objects)
 	const level = $('.level');
 	mainThemeMusic.play();
+	setTimeout(() => startPhrase.play(), 1000);
 
 
 
@@ -21,8 +22,6 @@ $(document).ready(() => {
 
 		updateFrame();
 		items.forEach(item => {
-			console.log(Distance(player.getPosition(), item.getPosition()));
-			//console.log(player.getPosition(), item.getPosition())
 			item.Update(player.rotation.y, player.getPosition());
 		});
 		items = items.filter(item => !item.picked);
@@ -73,7 +72,7 @@ $(document).ready(() => {
 
 function itemSpawner() {
 	const items = [];
-	items.push(new Item('shotgun', 1000, 1000));
+	items.push(new Item('medkit', 1000, 1000));
 	items.push(new Item('shotgun', 250, 600));
 	items.push(new Item('shotgun', 250, 900));
 	items.push(new Item('shotgun', 250, 1200));

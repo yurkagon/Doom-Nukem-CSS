@@ -2182,7 +2182,12 @@ h2 {
 }
 
 .item.shotgun {
-  background: url(img/weapons/shotgun.png);
+  background: url(img/items/shotgun.png);
+  background-size: cover;
+}
+
+.item.medkit {
+  background: url(img/items/medkit.png);
   background-size: cover;
 }
 

@@ -1,3 +1,4 @@
+
 class Item {
 	constructor(type, x, z) {
 		this.selfCont = $('<div/>').addClass("sprite-cont");
@@ -11,6 +12,7 @@ class Item {
 		this.selfCont.append(this.self);
 
 		this.position = {x, z};
+		this._type = type;
 
 		this._picked = false;
 	}
@@ -39,7 +41,15 @@ class Item {
 		this._picked = true;
 		this.self.remove();
 		this.selfCont.remove();
-		takeWeapon.load();
-		takeWeapon.play();
+		itemActions(this._type);
+	}
+}
+
+function itemActions(type) {
+	switch(type) {
+		case 'shotgun':
+			takeWeapon.load();
+			takeWeapon.play();
+			break;
 	}
 }
