@@ -44,7 +44,15 @@ $size: 1;
     left: 50%;
     top: 0%;
 }
-
+.item {
+	height: 125px;
+	width: 250px;
+	position: absolute;
+	&.shotgun {
+		background: url(img/weapons/shotgun.png);
+		background-size: cover;
+	}
+}
 .object{
 	position: absolute;
 	//top: 300px;

@@ -2175,6 +2175,17 @@ h2 {
   top: 0%;
 }
 
+.item {
+  height: 125px;
+  width: 250px;
+  position: absolute;
+}
+
+.item.shotgun {
+  background: url(img/weapons/shotgun.png);
+  background-size: cover;
+}
+
 .object, .glass {
   position: absolute;
   height: 400px;

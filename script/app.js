@@ -1,6 +1,6 @@
 $(document).ready(() =>{
 	const player = new Player();
-
+  const item = new Item('shotgun', 0, 1000);
 	// level is a child of camera and it is a parent for all 3d objects.
 	// If player moves, we will change the position of "level" (and all child 3d objects)
 	const level = $('.level');
@@ -19,6 +19,7 @@ $(document).ready(() =>{
 		if (toForward || toBack || toLeft || toRight) player.stepsEffect();
 
 		updateFrame();
+		item.Update(player.rotation.y)
 	}
 	setInterval(Update, 10);
 

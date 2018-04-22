@@ -2,7 +2,7 @@ var [toForward, toBack, toLeft, toRight] = [false, false, false, false];
 var [rotLeft, rotRight] = [false, false];
 
 //3d models
-var modelsVisible = false;
+var modelsVisible = true;
 
 $('body').ready(function() {
     toggleModels();
