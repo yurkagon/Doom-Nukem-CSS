@@ -1,6 +1,6 @@
 $(document).ready(() => {
 	const player = new Player();
-	let items = itemSpawner();
+	let items = spriteSpawner();
 	// level is a child of camera and it is a parent for all 3d objects.
 	// If player moves, we will change the position of "level" (and all child 3d objects)
 	const level = $('.level');
@@ -70,9 +70,9 @@ $(document).ready(() => {
 	},10);
 });
 
-function itemSpawner() {
+function spriteSpawner() {
 	const items = [];
-	items.push(new Item('medkit', 1000, 1000));
+	items.push(new Sprite('medkit', 1000, 1000));
 	items.push(new Item('shotgun', 250, 600));
 	items.push(new Item('shotgun', 250, 900));
 	items.push(new Item('shotgun', 250, 1200));
