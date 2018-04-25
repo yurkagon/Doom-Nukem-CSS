@@ -29,5 +29,9 @@ function itemActions(type) {
 			takeWeapon.load();
 			takeWeapon.play();
 			break;
+		case 'medkit':
+			itemPickUp.play();
+			setTimeout(() => medkitVoice.play(), 100);
+			break;
 	}
 }

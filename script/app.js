@@ -72,7 +72,7 @@ $(document).ready(() => {
 
 function spriteSpawner() {
 	const items = [];
-	items.push(new Sprite('medkit', 1000, 1000));
+	items.push(new Item('medkit', 1000, 1000));
 	items.push(new Item('shotgun', 250, 600));
 	items.push(new Item('shotgun', 250, 900));
 	items.push(new Item('shotgun', 250, 1200));
