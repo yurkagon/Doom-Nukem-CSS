@@ -47,20 +47,6 @@ $(document).ready(() => {
   Start();
 	setInterval(Update, 10); // 100 frames per second
 
-	//mouse look
-	var _mouseX = 0, _mouseY = 0; //previous mouse position
-	$(document).bind('mousemove', function(e) {
-		mouseX = event.pageX;
-		mouseY = event.pageY;
-
-		if (mouseX > _mouseX) player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
-    else if (mouseX < _mouseX) player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
-
-		_mouseX = mouseX;
-		_mouseY = mouseY;
-	});
-
-
 	//weapon animation while moving
 	setInterval(()=>{
 		if(toForward || toBack || toLeft || toRight){

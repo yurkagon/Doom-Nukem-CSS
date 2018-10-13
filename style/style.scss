@@ -9,7 +9,6 @@ body{
 *{
 	margin: 0;
 	padding: 0;
-	webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -77,16 +76,20 @@ $size: 1;
 
 $floorSize: 100;
 .floor{
+	$striped-color1: green;
+	$striped-color2: rgb(5, 99, 5);
 	width: 1000px;
 	height: 1000px;
-	top: 500px;
 	position: absolute;
-	background-color: green;
-	//background-image: url(https://i.pinimg.com/originals/85/c0/50/85c050d708a7052f4ff3f4bbbfcf56a0.jpg);
 	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
+	background-image: repeating-linear-gradient(
+		-45deg,
+		$striped-color1,
+		$striped-color1 1px,
+		$striped-color2 1px,
+		$striped-color2 2px
+	) !important;
 }
-
-//linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)) 
 
 
 .testWeapon{
