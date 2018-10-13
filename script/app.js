@@ -1,57 +1,64 @@
+var player;
+var items;
+var level;
+
+function Start() {
+  player = new Player();
+  items = spriteSpawner();
+  level = $('.level');
+
+  StartMusic();
+}
+function StartMusic() {
+	setTimeout(() => {
+    mainThemeMusic.play();
+    startPhrase.play();
+  }, 1000);
+}
+
+// game loop
+function Update() {
+  if (toForward) player.moveForward();
+  if (toBack) player.moveBack();
+  if (toLeft)	player.moveLeft();
+  if (toRight) 	player.moveRight();
+  if (rotLeft) player.rotate(+ROTATION_SPEED);
+  if (rotRight) player.rotate(-ROTATION_SPEED);
+  if (toForward || toBack || toLeft || toRight) player.stepsEffect();
+  items.forEach(item => {
+    item.Update(player.rotation.y, player.getPosition());
+  });
+  items = items.filter(item => !item.picked);
+
+  updateFrame();
+}
+function updateFrame() {
+  const { rotation, position, origin } = player;
+  const rotate3d = `rotateY(${rotation.y}deg)`;
+  const translate3d = `translate3d(${position.x + origin.x}px, ${position.y}px, ${position.z + origin.z}px)`;
+
+  level.css('transform',rotate3d + translate3d);
+
+  // updateSkybox
+  player.camera.css('background-position', -15*player.rotation.y +"px -5px");
+}
+
 $(document).ready(() => {
-	const player = new Player();
-	let items = spriteSpawner();
-	// level is a child of camera and it is a parent for all 3d objects.
-	// If player moves, we will change the position of "level" (and all child 3d objects)
-	const level = $('.level');
-	mainThemeMusic.play();
-	setTimeout(() => startPhrase.play(), 1000);
-
-
-
-	
-	//game loop
-	function Update() {
-		if (toForward) player.moveForward();
-		if (toBack) player.moveBack();
-		if (toLeft)	player.moveLeft();
-		if (toRight) 	player.moveRight();
-		if (rotLeft) player.rotate(+ROTATION_SPEED);
-		if (rotRight) player.rotate(-ROTATION_SPEED);
-		if (toForward || toBack || toLeft || toRight) player.stepsEffect();
-
-		updateFrame();
-		items.forEach(item => {
-			item.Update(player.rotation.y, player.getPosition());
-		});
-		items = items.filter(item => !item.picked);
-	}
-	setInterval(Update, 10);
+  Start();
+	setInterval(Update, 10); // 100 frames per second
 
 	//mouse look
 	var _mouseX = 0, _mouseY = 0; //previous mouse position
 	$(document).bind('mousemove', function(e) {
 		mouseX = event.pageX;
 		mouseY = event.pageY;
-		
+
 		if (mouseX > _mouseX) player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
-		else if (mouseX < _mouseX) player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
-			
-		updateFrame(); 
+    else if (mouseX < _mouseX) player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
+
 		_mouseX = mouseX;
 		_mouseY = mouseY;
 	});
-
-	function updateFrame() {
-		const { rotation, position, origin } = player;
-		const rotate3d = `rotateY(${rotation.y}deg)`;
-		const translate3d = `translate3d(${position.x + origin.x}px, ${position.y}px, ${position.z + origin.z}px)`;
-
-		level.css('transform',rotate3d + translate3d);
-
-		//updateSkybox
-	  player.camera.css('background-position', -15*player.rotation.y +"px -5px");
-	}
 
 
 	//weapon animation while moving
@@ -66,7 +73,7 @@ $(document).ready(() => {
 			},200);
 		} else{
 			$('.testWeapon').stop();
-		}	
+		}
 	},10);
 });
 
