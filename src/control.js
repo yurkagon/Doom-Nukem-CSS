@@ -5,11 +5,7 @@ export let [toForward, toBack, toLeft, toRight] = [false, false, false, false];
 export let [rotLeft, rotRight] = [false, false];
 export let [_mouseX, _mouseY] = [0, 0]; // previous mouse position
 
-//3d models
-let modelsVisible = true;
-
 $('body').ready(function() {
-  toggleModels();
 
   $('body').keydown(function (e) {
 		if (e.keyCode == 37 || e.keyCode == 65 ) toLeft = true;
@@ -28,8 +24,6 @@ $('body').ready(function() {
 
 		if (e.keyCode == 81) rotLeft = false;
 		if (e.keyCode == 69) rotRight = false;
-
-		if (e.keyCode == 13) toggleModels();
   });
 	// mouse look
   $(document).bind('mousemove', function(e) {
@@ -42,17 +36,4 @@ $('body').ready(function() {
     _mouseX = mouseX;
     _mouseY = mouseY;
   });
-
-
-
-	function toggleModels(){
-		if(!modelsVisible){
-			// plane
-			$('.level').append($('<div/>').addClass("model").html(plane));
-		}
-		else if(modelsVisible){
-			$(".model").remove();
-		}
-		modelsVisible = !modelsVisible;
-	}
 });
