@@ -12,8 +12,8 @@ class Sprite {
 		$('.sprites').append(this.selfCont);
 		this.selfCont.append(this.self);
 
-        this.position = {x, z};
-        this._type = type;
+    this.position = {x, z};
+    this._type = type;
 	}
 
 	Update(degree) {
