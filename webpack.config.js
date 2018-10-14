@@ -1,7 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const SassPlugin = require('sass-webpack-plugin');
 
 const buildFolder = 'build';
 
@@ -16,12 +15,27 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './public', to: './' }
     ]),
-    new SassPlugin('./style/index.scss', {
-      sourceMap: false,
-      sass: { outputStyle: 'compressed' },
-      autoprefixer: false
-    }),
   ],
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: [
+        {
+          loader: "style-loader"
+        },
+        {
+          loader: "css-loader?-url"
+        },
+        {
+          loader: "sass-loader",
+          options: {
+            sourceMap: true,
+            sourceMapContents: false
+          }
+        }
+      ]
+    }]
+  },
   devServer: {
     contentBase: path.join(__dirname, buildFolder),
     compress: true,

@@ -1,4 +1,5 @@
 import $ from "jquery";
+import '../style/index.scss';
 import Player from './classes/Player';
 import Item from './classes/Item';
 
