@@ -3,9 +3,10 @@ import { Distance } from '../helpers';
 import { takeWeapon, itemPickUp, medkitVoice } from '../variables/sounds';
 
 class Item extends Sprite {
+  _picked = false
+
 	constructor(type, x, z) {
 		super(type, x, z);
-		this._picked = false;
 	}
 
 	Update(degree, plPos) {
