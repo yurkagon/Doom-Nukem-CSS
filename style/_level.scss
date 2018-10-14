@@ -1,0 +1,78 @@
+body{
+	overflow: hidden;
+	background: url(img/background.jpg);
+	background-size: cover;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	image-rendering: pixelated;
+}
+h2{
+	opacity: 0.5;
+}
+
+$cameraW: 1300px;
+$cameraH: 700px;
+$size: 1;
+#camera{
+	width: $cameraW*$size;
+    height: $cameraH*$size;
+    cursor: none;
+	margin:  auto;
+	margin-top: 8vh;
+	position: relative;
+    overflow: hidden;
+  	background: url(img/skybox.jpg) 0 -5px;
+    background-size: 60%;
+    
+    -webkit-perspective: 700px;
+    -moz-perspective: 700px;
+    -ms-perspective: 700px;
+    perspective: 800px;
+}
+
+
+.level{
+   position: absolute;
+    left: 50%;
+    top: 0%;
+}
+
+.object{
+	position: absolute;
+	height: 400px;
+	width: 4000px;
+	background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.8)), url(img/wall.jpg);
+	transform: rotateY(90deg) translate3d(0,100px,0);
+	
+}
+.glass{
+	@extend .object;
+	height: 400px;
+	width: 1200px;
+	transform: rotateY(180deg); 
+	background: url(img/glass.png);
+	background-size: cover;
+}
+
+$floorSize: 100;
+.floor{
+	$striped-color1: green;
+	$striped-color2: rgb(5, 99, 5);
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
+	background-image: repeating-linear-gradient(
+		-45deg,
+		$striped-color1,
+		$striped-color1 1px,
+		$striped-color2 1px,
+		$striped-color2 2px
+	) !important;
+}
