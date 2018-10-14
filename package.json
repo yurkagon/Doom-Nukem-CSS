@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.3",
+    "sass-webpack-plugin": "^1.0.3",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
