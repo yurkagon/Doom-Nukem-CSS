@@ -1,4 +1,5 @@
-import $ from "jquery";
+import $ from 'jquery';
+import { FOV, PLAYER_MOVE_SPEED } from '../variables/constants';
 
 class Player {
 	constructor() {

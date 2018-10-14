@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 class Sprite {
 	constructor(type, x, z) {
 		this.selfCont = $('<div/>').addClass("sprite-cont");
@@ -27,3 +29,5 @@ class Sprite {
 		return this.position;
 	}
 }
+
+export default Sprite;
