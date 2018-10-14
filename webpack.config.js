@@ -28,10 +28,6 @@ module.exports = {
         },
         {
           loader: "sass-loader",
-          options: {
-            sourceMap: true,
-            sourceMapContents: false
-          }
         }
       ]
     }]
