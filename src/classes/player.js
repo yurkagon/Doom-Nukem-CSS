@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { FOV, PLAYER_MOVE_SPEED } from '../variables/constants';
+
 class Player {
 	constructor() {
 		this.position = {
@@ -5,7 +8,7 @@ class Player {
 			z: 0,
 			y: 0,
 		};
-		
+
 		this.rotation = {
 			x: 0,
 			y: 0,
@@ -54,7 +57,7 @@ class Player {
 		if (rotation.y > 360) rotation.y -= 358;
 
 		const angle = ((rotation.y % 360) / 360) * 2 * Math.PI;
-	    
+
 		origin.x = -Math.sin(angle) * FOV;
 		origin.z = -(FOV - Math.cos(angle) * FOV);
 	}
@@ -66,3 +69,5 @@ class Player {
 		}
 	}
 }
+
+export default Player;

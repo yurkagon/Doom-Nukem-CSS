@@ -1,14 +1,33 @@
-var player;
-var items;
-var level;
+import $ from "jquery";
+import '../style/index.scss';
+import Player from './classes/Player';
+import Item from './classes/Item';
+
+import { mainThemeMusic, startPhrase } from './variables/sounds';
+
+import { ROTATION_SPEED } from './variables/constants';
+
+import {
+  toBack,
+  toForward,
+  toLeft,
+  toRight,
+  rotLeft,
+  rotRight,
+} from './control';
+
+let player;
+let items;
+let level;
 
 function Start() {
   player = new Player();
+  window.player = player;
   items = spriteSpawner();
   level = $('.level');
-
   StartMusic();
 }
+
 function StartMusic() {
 	setTimeout(() => {
     mainThemeMusic.play();

@@ -1,3 +1,7 @@
+import Sprite from './Sprite';
+import { Distance } from '../helpers';
+import { takeWeapon, itemPickUp, medkitVoice } from '../variables/sounds';
+
 class Item extends Sprite {
 	constructor(type, x, z) {
 		super(type, x, z);
@@ -14,7 +18,7 @@ class Item extends Sprite {
 	get picked() {
 		return this._picked;
 	}
-	
+
 	pickItem() {
 		this._picked = true;
 		this.self.remove();
@@ -35,3 +39,5 @@ function itemActions(type) {
 			break;
 	}
 }
+
+export default Item;

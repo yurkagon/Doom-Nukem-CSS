@@ -1,9 +1,12 @@
-var [toForward, toBack, toLeft, toRight] = [false, false, false, false];
-var [rotLeft, rotRight] = [false, false];
-var _mouseX = 0, _mouseY = 0; // previous mouse position
+import $ from 'jquery';
+import { MOUSE_SENSITIVITY, ROTATION_SPEED } from './variables/constants';
+
+export let [toForward, toBack, toLeft, toRight] = [false, false, false, false];
+export let [rotLeft, rotRight] = [false, false];
+export let [_mouseX, _mouseY] = [0, 0]; // previous mouse position
 
 //3d models
-var modelsVisible = true;
+let modelsVisible = true;
 
 $('body').ready(function() {
   toggleModels();
@@ -30,11 +33,11 @@ $('body').ready(function() {
   });
 	// mouse look
   $(document).bind('mousemove', function(e) {
-    mouseX = event.pageX;
-    mouseY = event.pageY;
+    const mouseX = event.pageX;
+    const mouseY = event.pageY;
 
-    if (mouseX > _mouseX) player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
-    else if (mouseX < _mouseX) player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
+    if (mouseX > _mouseX) window.player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
+    else if (mouseX < _mouseX) window.player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
 
     _mouseX = mouseX;
     _mouseY = mouseY;
@@ -44,7 +47,7 @@ $('body').ready(function() {
 
 	function toggleModels(){
 		if(!modelsVisible){
-			//plane
+			// plane
 			$('.level').append($('<div/>').addClass("model").html(plane));
 		}
 		else if(modelsVisible){
