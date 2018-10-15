@@ -90,7 +90,6 @@ class Enemy extends Sprite {
         this.position.z = z + Math.sin(angle) * this.speed;
     }
     super.Update(degree);
-    console.log(this.moveDiff)
   }
 }
 
