@@ -44,6 +44,13 @@
           80% { background-position: -3132px; }
         }
       }
+      &.atack {
+        animation: atack 1.1s steps(1) infinite;
+        @keyframes atack {
+          0% { background-position: -3412px; }
+          50% { background-position: -3720px; }
+        }
+      }
     }
   }
 }
