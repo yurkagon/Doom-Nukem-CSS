@@ -19,6 +19,8 @@ class Enemy extends Sprite {
   }
   currenState = null;
   timer = null;
+  distance = null;
+  speed = 8;
 
 	constructor(type, x, z, y = 200) {
     super(type, x, y, z, 'enemy');
@@ -35,7 +37,8 @@ class Enemy extends Sprite {
       states
     } = Enemy;
 
-    const distance = Distance(this.getPosition(), window.player.getPosition());
+    this.distance = Distance(this.getPosition(), window.player.getPosition());
+    const { distance } = this;
 
     switch(this.currenState) {
       case states.DEFAULT:
@@ -58,13 +61,33 @@ class Enemy extends Sprite {
         }
       default:
         return;
-
     }
   }
   setState(state) {
     this.self.removeClass(this.currenState);
     this.self.addClass(state);
     this.currenState = state;
+  }
+  Update(degree) {
+    const {
+      states
+    } = Enemy;
+
+    switch(this.currenState) {
+      case states.WALK:
+        const playerPos = window.player.getPosition();
+        const enemyPos = this.getPosition();
+
+        const dx = playerPos.x - enemyPos.x;
+        const dz = playerPos.z - enemyPos.z;
+        const angle = Math.atan2(dz, dx);
+
+        const { x, z } = this.position;
+
+        this.position.x = x + Math.cos(angle) * this.speed;
+        this.position.z = z + Math.sin(angle) * this.speed;
+    }
+    super.Update(degree);
   }
 }
 

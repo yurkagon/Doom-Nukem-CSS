@@ -98,4 +98,8 @@ function spriteSpawner() {
 
 const enemySpawner = () => [
   new Enemy('guard', 250, 600),
+  new Enemy('guard', 1000, 1000),
+  new Enemy('guard', -1000, -1000),
+  new Enemy('guard', -1250, -10100),
+  new Enemy('guard', 500, -1000)
 ];
