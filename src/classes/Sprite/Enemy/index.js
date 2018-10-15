@@ -4,12 +4,14 @@ class Enemy extends Sprite {
   states = {
     DEFAULT: 'default',
     DEAD: 'dead',
-    WALK: 'walk'
+    WALK: 'walk',
+    DEAD: 'dead',
   }
   currenState = null;
-	constructor(type, x, z, y=200) {
+
+	constructor(type, x, z, y = 200) {
     super(type, x, y, z, 'enemy');
-    this.setState(this.states.WALK);
+    this.setState(this.states.DEFAULT);
   }
   setState(state) {
     this.self.removeClass(this.currenState);
