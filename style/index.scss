@@ -17,10 +17,22 @@
   &.enemy {
     &.guard {
       height: 300px;
-      width: 150px;
+      width: 256px;
       background: url(img/enemy/guard.png) left center;
       background-size: 4000px;
-      background-position-x: -80px;
+      background-position-x: -26px;
+      &.default {
+        background-position-x: -26px;
+      }
+      &.walk {
+        animation: walk 1.1s steps(1) infinite;
+        @keyframes walk {
+          0% { background-position: -330px; }
+          33.33% { background-position: -635px; }
+          66.66% { background-position: -940px; }
+          100% { background-position: -1245px; }
+       }
+      }
     }
   }
 }
