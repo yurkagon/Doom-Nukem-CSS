@@ -1,7 +1,5 @@
 import Sprite from '../index';
-import { Distance } from '../../../helpers';
-
-const LOGIC_INTERVAL = 500;
+import { Distance, generateCoordDiff } from '../../../helpers';
 
 
 class Enemy extends Sprite {
@@ -10,6 +8,7 @@ class Enemy extends Sprite {
   static MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
   static ATACK_DISTANCE = 1000;
 
+
   static states = {
     DEFAULT: 'default',
     DEAD: 'dead',
@@ -17,10 +16,12 @@ class Enemy extends Sprite {
     DEAD: 'dead',
     ATACK: 'atack'
   }
+
   currenState = null;
   timer = null;
   distance = null;
   speed = 8;
+  moveDiff = null;
 
 	constructor(type, x, z, y = 200) {
     super(type, x, y, z, 'enemy');
@@ -28,6 +29,7 @@ class Enemy extends Sprite {
 
     this.setState(Enemy.states.DEFAULT);
     this.timer = setInterval(this.logicUpdate, Enemy.LOGIC_INTERVAL);
+    this.moveDiff = generateCoordDiff(500);
   }
   logicUpdate() {
     const {
@@ -78,8 +80,8 @@ class Enemy extends Sprite {
         const playerPos = window.player.getPosition();
         const enemyPos = this.getPosition();
 
-        const dx = playerPos.x - enemyPos.x;
-        const dz = playerPos.z - enemyPos.z;
+        const dx = (playerPos.x + this.moveDiff.x)- enemyPos.x;
+        const dz = (playerPos.z - this.moveDiff.z) - enemyPos.z;
         const angle = Math.atan2(dz, dx);
 
         const { x, z } = this.position;
@@ -88,6 +90,7 @@ class Enemy extends Sprite {
         this.position.z = z + Math.sin(angle) * this.speed;
     }
     super.Update(degree);
+    console.log(this.moveDiff)
   }
 }
 

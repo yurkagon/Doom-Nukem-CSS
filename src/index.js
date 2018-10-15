@@ -27,6 +27,11 @@ function Start() {
   gameObjects = [
     ...spriteSpawner(),
     ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
   ]
   level = $('.level');
   StartMusic();
