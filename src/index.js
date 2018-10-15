@@ -1,7 +1,8 @@
 import $ from "jquery";
 import '../style/index.scss';
 import Player from './classes/Player';
-import Item from './classes/Item';
+import Item from './classes/Sprite/Item';
+import Enemy from './classes/Sprite/Enemy';
 
 import { mainThemeMusic, startPhrase } from './variables/sounds';
 
@@ -17,13 +18,21 @@ import {
 } from './control';
 
 let player;
-let items;
+let gameObjects;
 let level;
 
 function Start() {
   player = new Player();
   window.player = player;
-  items = spriteSpawner();
+  gameObjects = [
+    ...spriteSpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+    ...enemySpawner(),
+  ]
   level = $('.level');
   StartMusic();
 }
@@ -44,10 +53,10 @@ function Update() {
   if (rotLeft) player.rotate(+ROTATION_SPEED);
   if (rotRight) player.rotate(-ROTATION_SPEED);
   if (toForward || toBack || toLeft || toRight) player.stepsEffect();
-  items.forEach(item => {
-    item.Update(player.rotation.y, player.getPosition());
+  gameObjects.forEach(el => {
+    el.Update(player.rotation.y, player.getPosition());
   });
-  items = items.filter(item => !item.picked);
+  gameObjects = gameObjects.filter(({ isRemoved }) => !isRemoved);
 
   updateFrame();
 }
@@ -91,3 +100,11 @@ function spriteSpawner() {
 
 	return items;
 }
+
+const enemySpawner = () => [
+  new Enemy('guard', 250, 600),
+  new Enemy('guard', 1000, 1000),
+  new Enemy('guard', -1000, -1000),
+  new Enemy('guard', -1250, -10100),
+  new Enemy('guard', 500, -1000)
+];

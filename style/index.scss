@@ -1,91 +1,58 @@
-body{
-	overflow: hidden;
-	background: url(img/background.jpg);
-	background-size: cover;
-}
+@import "level";
 
-*{
-	margin: 0;
-	padding: 0;
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-h2{
-	opacity: 0.5;
-}
-
-$cameraW: 1300px;
-$cameraH: 700px;
-$size: 1;
-#camera{
-	width: $cameraW*$size;
-    height: $cameraH*$size;
-    cursor: none;
-	margin:  auto;
-	margin-top: 8vh;
-	position: relative;
-    overflow: hidden;
-  	background: url(img/skybox.jpg) 0 -5px;
-    background-size: 60%;
-    
-    -webkit-perspective: 700px;
-    -moz-perspective: 700px;
-    -ms-perspective: 700px;
-    perspective: 800px;
-}
-
-
-.level{
-   position: absolute;
-    left: 50%;
-    top: 0%;
-}
-.item {
-	height: 125px;
-	width: 250px;
+.sprite {
 	position: absolute;
-	&.shotgun {
-		background: url(img/items/shotgun.png);
-		background-size: cover;
-	}
-	&.medkit {
-		background: url(img/items/medkit.png);
-		background-size: cover;
-	}
-}
-.object{
-	position: absolute;
-	height: 400px;
-	width: 4000px;
-	background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.8)), url(img/wall.jpg);
-	transform: rotateY(90deg) translate3d(0,100px,0);
-	
-}
-.glass{
-	@extend .object;
-	height: 400px;
-	width: 1200px;
-	transform: rotateY(180deg); 
-	background: url(img/glass.png);
-	background-size: cover;
-}
-
-$floorSize: 100;
-.floor{
-	$striped-color1: green;
-	$striped-color2: rgb(5, 99, 5);
-	width: 1000px;
-	height: 1000px;
-	position: absolute;
-	transform: rotateX(90deg) scale3d($floorSize,$floorSize,1);
-	background-image: repeating-linear-gradient(
-		-45deg,
-		$striped-color1,
-		$striped-color1 1px,
-		$striped-color2 1px,
-		$striped-color2 2px
-	) !important;
+	&.item {
+    height: 150px;
+    width: 250px;
+		&.shotgun {
+			background: url(img/items/shotgun.png);
+			background-size: cover;
+		}
+		&.medkit {
+			background: url(img/items/medkit.png);
+			background-size: cover;
+		}
+  }
+  &.enemy {
+    &.guard {
+      height: 300px;
+      width: 256px;
+      background: url(img/enemy/guard.png) left center;
+      background-size: 4000px;
+      background-position-x: -26px;
+      &.default {
+        background-position-x: -26px;
+      }
+      &.walk {
+        animation: walk 1.1s steps(1) infinite;
+        @keyframes walk {
+          0% { background-position: -330px; }
+          25% { background-position: -635px; }
+          50% { background-position: -940px; }
+          75% { background-position: -1245px; }
+        }
+      }
+      &.dead {
+        background-position: -3132px;
+        animation: dead 1s steps(1);
+        @keyframes dead {
+          0% { background-position: -1558px; }
+          20% { background-position: -1880px; }
+          40% { background-position: -2210px; }
+          60% { background-position: -2522px; }
+          80% { background-position: -3132px; }
+        }
+      }
+      &.atack {
+        animation: atack 1.1s steps(1) infinite;
+        @keyframes atack {
+          0% { background-position: -3412px; }
+          50% { background-position: -3720px; }
+        }
+      }
+    }
+  }
 }
 
 

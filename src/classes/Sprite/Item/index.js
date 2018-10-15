@@ -1,12 +1,10 @@
-import Sprite from './Sprite';
-import { Distance } from '../helpers';
-import { takeWeapon, itemPickUp, medkitVoice } from '../variables/sounds';
+import Sprite from '../index';
+import { Distance } from '../../../helpers';
+import { takeWeapon, itemPickUp, medkitVoice } from '../../../variables/sounds';
 
 class Item extends Sprite {
-  _picked = false
-
 	constructor(type, x, z) {
-		super(type, x, z);
+		super(type, x, 350, z, 'item');
 	}
 
 	Update(degree, plPos) {
@@ -16,15 +14,12 @@ class Item extends Sprite {
 
 		if (distance < 150) this.pickItem();
 	}
-	get picked() {
-		return this._picked;
-	}
 
 	pickItem() {
-		this._picked = true;
 		this.self.remove();
 		this.selfCont.remove();
-		itemActions(this._type);
+    itemActions(this._type);
+    this.isRemoved = true;
 	}
 }
 
