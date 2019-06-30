@@ -1,6 +1,6 @@
 import $ from "jquery";
 import '../style/index.scss';
-import Player from './classes/Player';
+import Player from './classes/Player/Player';
 import Item from './classes/Sprite/Item';
 import Enemy from './classes/Sprite/Enemy';
 
@@ -21,9 +21,9 @@ let player;
 let gameObjects;
 let level;
 
+player = Player.getInstance();
+
 function Start() {
-  player = new Player();
-  window.player = player;
   gameObjects = [
     ...spriteSpawner(),
     ...enemySpawner(),
@@ -54,7 +54,7 @@ function Update() {
   if (rotRight) player.rotate(-ROTATION_SPEED);
   if (toForward || toBack || toLeft || toRight) player.stepsEffect();
   gameObjects.forEach(el => {
-    el.update(player);
+    el.update();
   });
   gameObjects = gameObjects.filter(({ isRemoved }) => !isRemoved);
 

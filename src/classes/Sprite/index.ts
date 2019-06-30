@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 import GameObject from '../GameObject/index';
-import Player from '../player';
+import Player from '../Player/Player';
 
 import { generetaTranslate3d } from '../../helpers';
 
@@ -10,10 +10,13 @@ class Sprite extends GameObject {
 
   protected readonly selfContainer: JQuery = $('<div/>').addClass('sprite-cont');
   protected readonly self: JQuery = $('<div/>');
+  translate3d
+  rotate3d
+  _type
 
 	constructor(type, x, y, z, classType = '') {
     super({x, y, z});
-    console.log({ type, classType })
+
 		this.self.addClass(`sprite ${classType} ${type}`);
 
 		this.translate3d = generetaTranslate3d({ x, y, z });
@@ -28,10 +31,12 @@ class Sprite extends GameObject {
   }
 
   start() {
-    console.log('5')
+
   }
 
-	update(player: Player) {
+	update() {
+    const player = Player.getInstance();
+
 		this.translate3d = generetaTranslate3d(this.getPosition());
 		this.rotate3d = `rotate3d(0, 1, 0, ${-player.rotation.y}deg)`;
 

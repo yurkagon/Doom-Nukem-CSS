@@ -1,5 +1,5 @@
 import Sprite from '../index';
-import Player from '../../player';
+import Player from '../../Player/Player';
 import { Distance, generateCoordDiff } from '../../../helpers';
 
 
@@ -14,7 +14,6 @@ class Enemy extends Sprite {
     DEFAULT: 'default',
     DEAD: 'dead',
     WALK: 'walk',
-    DEAD: 'dead',
     ATACK: 'atack'
   }
 
@@ -40,7 +39,9 @@ class Enemy extends Sprite {
       states
     } = Enemy;
 
-    this.distance = Distance(this.getPosition(), window.player.getPosition());
+    const player = Player.getInstance();
+
+    this.distance = Distance(this.getPosition(), player.getPosition());
     const { distance } = this;
 
     switch(this.currenState) {
@@ -71,10 +72,12 @@ class Enemy extends Sprite {
     this.self.addClass(state);
     this.currenState = state;
   }
-  update(player: Player) {
+  update() {
     const {
       states
     } = Enemy;
+
+    const player = Player.getInstance();
 
     switch(this.currenState) {
       case states.WALK:
@@ -90,7 +93,7 @@ class Enemy extends Sprite {
         this.position.x = x + Math.cos(angle) * this.speed;
         this.position.z = z + Math.sin(angle) * this.speed;
     }
-    super.update(player);
+    super.update();
   }
 }
 

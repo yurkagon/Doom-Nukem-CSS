@@ -1,19 +1,16 @@
-import $ from 'jquery';
-import { FOV, PLAYER_MOVE_SPEED } from '../variables/constants';
+import GameObject from '../GameObject/index';
 
-class Player {
-  public position = {
-    x: 0,
-    z: 0,
-    y: 0,
-  };
+import $ from 'jquery';
+import { FOV, PLAYER_MOVE_SPEED } from '../../variables/constants';
+
+abstract class PlayerCamera extends GameObject {
   public rotation = {
     x: 0,
     y: 0,
   };
   public origin = {
     x: 0,
-    y: 0,
+    z: 0,
   }
   public _stepState = true;
   public _camera = $('#camera')
@@ -68,4 +65,4 @@ class Player {
 	}
 }
 
-export default Player;
+export default PlayerCamera;

@@ -1,5 +1,5 @@
 import Sprite from '../index';
-import Player from '../../player';
+import Player from '../../Player/Player';
 import { Distance } from '../../../helpers';
 import { takeWeapon, itemPickUp, medkitVoice } from '../../../variables/sounds';
 
@@ -8,8 +8,9 @@ class Item extends Sprite {
 		super(type, x, 350, z, 'item');
 	}
 
-	update(player: Player) {
-    super.update(player);
+	update() {
+    super.update();
+    const player = Player.getInstance();
 
 		const distance = Distance(player.getPosition(), this.getPosition());
 

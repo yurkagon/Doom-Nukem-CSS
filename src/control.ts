@@ -1,9 +1,12 @@
 import $ from 'jquery';
+import Player from './classes/Player/Player';
 import { MOUSE_SENSITIVITY, ROTATION_SPEED } from './variables/constants';
 
 export let [toForward, toBack, toLeft, toRight] = [false, false, false, false];
 export let [rotLeft, rotRight] = [false, false];
 export let [_mouseX, _mouseY] = [0, 0]; // previous mouse position
+
+const player = Player.getInstance();
 
 $('body').ready(function() {
 
@@ -26,12 +29,12 @@ $('body').ready(function() {
 		if (e.keyCode == 69) rotRight = false;
   });
 	// mouse look
-  $(document).bind('mousemove', function(e) {
+  $(document).bind('mousemove', function(event) {
     const mouseX = event.pageX;
     const mouseY = event.pageY;
 
-    if (mouseX > _mouseX) window.player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
-    else if (mouseX < _mouseX) window.player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
+    if (mouseX > _mouseX) player.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
+    else if (mouseX < _mouseX) player.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
 
     _mouseX = mouseX;
     _mouseY = mouseY;

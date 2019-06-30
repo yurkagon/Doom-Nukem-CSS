@@ -1,5 +1,5 @@
 interface iPosition {
   x: number;
-  y: number;
-  z: number;
+  y?: number;
+  z?: number;
 }
