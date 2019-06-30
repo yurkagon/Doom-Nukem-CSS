@@ -1,4 +1,5 @@
 import Sprite from '../index';
+import Player from '../../player';
 import { Distance, generateCoordDiff } from '../../../helpers';
 
 
@@ -70,14 +71,14 @@ class Enemy extends Sprite {
     this.self.addClass(state);
     this.currenState = state;
   }
-  Update(degree) {
+  update(player: Player) {
     const {
       states
     } = Enemy;
 
     switch(this.currenState) {
       case states.WALK:
-        const playerPos = window.player.getPosition();
+        const playerPos = player.getPosition();
         const enemyPos = this.getPosition();
 
         const dx = (playerPos.x + this.moveDiff.x)- enemyPos.x;
@@ -89,7 +90,7 @@ class Enemy extends Sprite {
         this.position.x = x + Math.cos(angle) * this.speed;
         this.position.z = z + Math.sin(angle) * this.speed;
     }
-    super.Update(degree);
+    super.update(player);
   }
 }
 

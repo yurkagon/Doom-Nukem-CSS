@@ -1,4 +1,5 @@
 import Sprite from '../index';
+import Player from '../../player';
 import { Distance } from '../../../helpers';
 import { takeWeapon, itemPickUp, medkitVoice } from '../../../variables/sounds';
 
@@ -7,10 +8,10 @@ class Item extends Sprite {
 		super(type, x, 350, z, 'item');
 	}
 
-	Update(degree, plPos) {
-		super.Update(degree);
+	update(player: Player) {
+    super.update(player);
 
-		const distance = Distance(plPos, this.getPosition());
+		const distance = Distance(player.getPosition(), this.getPosition());
 
 		if (distance < 150) this.pickItem();
 	}

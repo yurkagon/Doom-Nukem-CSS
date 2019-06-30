@@ -54,7 +54,7 @@ function Update() {
   if (rotRight) player.rotate(-ROTATION_SPEED);
   if (toForward || toBack || toLeft || toRight) player.stepsEffect();
   gameObjects.forEach(el => {
-    el.Update(player.rotation.y, player.getPosition());
+    el.update(player);
   });
   gameObjects = gameObjects.filter(({ isRemoved }) => !isRemoved);
 
