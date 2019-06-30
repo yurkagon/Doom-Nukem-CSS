@@ -2,21 +2,21 @@ import $ from 'jquery';
 import { FOV, PLAYER_MOVE_SPEED } from '../variables/constants';
 
 class Player {
-  position = {
+  public position = {
     x: 0,
     z: 0,
     y: 0,
   };
-  rotation = {
+  public rotation = {
     x: 0,
     y: 0,
   };
-  origin = {
+  public origin = {
     x: 0,
     y: 0,
   }
-  _stepState = true;
-  _camera = $('#camera')
+  public _stepState = true;
+  public _camera = $('#camera')
 
 	get camera() {
 		// camera is a static DIV. All 3d operations are inside
