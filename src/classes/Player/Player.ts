@@ -20,11 +20,11 @@ class Player extends PlayerController {
   };
 
   start() {
-
+    super.start();
   }
 
   update() {
-
+    super.update();
   }
 }
 

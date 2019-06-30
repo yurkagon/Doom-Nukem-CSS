@@ -12,8 +12,8 @@ abstract class PlayerCamera extends GameObject {
     x: 0,
     z: 0,
   }
-  public _stepState = true;
-  public _camera = $('#camera')
+  private _stepState = true;
+  private _camera = $('#camera')
 
 	get camera() {
 		// camera is a static DIV. All 3d operations are inside

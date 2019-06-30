@@ -6,32 +6,19 @@ import Enemy from './classes/Sprite/Enemy';
 
 import { mainThemeMusic, startPhrase } from './variables/sounds';
 
-import { ROTATION_SPEED } from './variables/constants';
-
-import {
-  toBack,
-  toForward,
-  toLeft,
-  toRight,
-  rotLeft,
-  rotRight,
-} from './control';
-
-let player;
-let gameObjects;
+const player = Player.getInstance();
+let gameObjects = [];
 let level;
-
-player = Player.getInstance();
 
 function Start() {
   gameObjects = [
     ...spriteSpawner(),
     ...enemySpawner(),
-    ...enemySpawner(),
-    ...enemySpawner(),
-    ...enemySpawner(),
-    ...enemySpawner(),
-    ...enemySpawner(),
+    // ...enemySpawner(),
+    // ...enemySpawner(),
+    // ...enemySpawner(),
+    // ...enemySpawner(),
+    // ...enemySpawner(),
   ]
   level = $('.level');
   StartMusic();
@@ -46,13 +33,7 @@ function StartMusic() {
 
 // game loop
 function Update() {
-  if (toForward) player.moveForward();
-  if (toBack) player.moveBack();
-  if (toLeft)	player.moveLeft();
-  if (toRight) 	player.moveRight();
-  if (rotLeft) player.rotate(+ROTATION_SPEED);
-  if (rotRight) player.rotate(-ROTATION_SPEED);
-  if (toForward || toBack || toLeft || toRight) player.stepsEffect();
+  player.update();
   gameObjects.forEach(el => {
     el.update();
   });
@@ -75,10 +56,11 @@ $(document).ready(() => {
   Start();
 	setInterval(Update, 10); // 100 frames per second
 
-	//weapon animation while moving
+  //weapon animation while moving
+  const weapon = $('.testWeapon');
 	setInterval(()=>{
-		if(toForward || toBack || toLeft || toRight){
-			$('.testWeapon').animate({
+		if(player.isMoving()){
+			weapon.animate({
 				right: '150px',
 				bottom: '-80px'
 			},500).animate({
@@ -86,7 +68,7 @@ $(document).ready(() => {
 				bottom: 0
 			},200);
 		} else{
-			$('.testWeapon').stop();
+			weapon.stop();
 		}
 	},10);
 });
