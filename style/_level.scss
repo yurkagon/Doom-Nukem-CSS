@@ -16,8 +16,8 @@ h2{
 	opacity: 0.5;
 }
 
-$cameraW: 1300px;
-$cameraH: 700px;
+$cameraW: 90vw;
+$cameraH: 90vh;
 $size: 1;
 #camera{
 	width: $cameraW*$size;
@@ -29,7 +29,7 @@ $size: 1;
     overflow: hidden;
   	background: url(img/skybox.jpg) 0 -5px;
     background-size: 60%;
-    
+
     -webkit-perspective: 700px;
     -moz-perspective: 700px;
     -ms-perspective: 700px;
@@ -49,13 +49,13 @@ $size: 1;
 	width: 4000px;
 	background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.8)), url(img/wall.jpg);
 	transform: rotateY(90deg) translate3d(0,100px,0);
-	
+
 }
 .glass{
 	@extend .object;
 	height: 400px;
 	width: 1200px;
-	transform: rotateY(180deg); 
+	transform: rotateY(180deg);
 	background: url(img/glass.png);
 	background-size: cover;
 }

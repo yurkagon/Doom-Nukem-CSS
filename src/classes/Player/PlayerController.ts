@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import PlayerCamera from './PlayerCamera';
+import { iPosition } from '../../types';
 
 abstract class PlayerController extends PlayerCamera {
 
