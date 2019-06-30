@@ -17,7 +17,7 @@ class Item extends Sprite {
 
 	pickItem() {
 		this.self.remove();
-		this.selfCont.remove();
+		this.selfContainer.remove();
     itemActions(this._type);
     this.isRemoved = true;
 	}
