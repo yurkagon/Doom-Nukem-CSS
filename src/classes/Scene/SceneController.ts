@@ -65,9 +65,6 @@ abstract class SceneController {
     });
 
     this.level.css('transform', rotate3d + translate3d);
-
-    // updateSkybox
-    this.player.camera.css('background-position', -15 * rotation.y +"px -5px");
   }
 }
 

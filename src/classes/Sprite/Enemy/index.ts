@@ -60,12 +60,13 @@ class Enemy extends Sprite {
         }
         break;
       case states.ATACK:
-        if(distance >= ATACK_DISTANCE) {
-          this.setState(states.WALK);
-        }
-      default:
-        return;
+        // if(distance >= ATACK_DISTANCE) {
+        //   this.setState(states.WALK);
+        // }
+        this.setState(states.WALK);
     }
+
+    this.moveDiff = generateCoordDiff(500);
   }
   setState(state) {
     this.self.removeClass(this.currenState);
