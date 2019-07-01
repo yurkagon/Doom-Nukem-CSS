@@ -4,26 +4,30 @@ import GameObject from '../GameObject/index';
 import Player from '../Player/Player';
 
 import { generetaTranslate3d } from '../../helpers';
+import { iPosition, iSpriteConfig } from "../../types";
 
 class Sprite extends GameObject {
   isRemoved = false;
 
+  protected readonly spritesElement: JQuery = $('.sprites');
   protected readonly selfContainer: JQuery = $('<div/>').addClass('sprite-cont');
   protected readonly self: JQuery = $('<div/>');
+
   translate3d
   rotate3d
   _type
 
-	constructor(type, x, y, z, classType = '') {
-    super({x, y, z});
+	constructor(config: iSpriteConfig) {
+    super(config.position);
+    const { type, position, classType = '' } = config;
 
 		this.self.addClass(`sprite ${classType} ${type}`);
 
-		this.translate3d = generetaTranslate3d({ x, y, z });
+		this.translate3d = generetaTranslate3d(position);
 		this.rotate3d = '';
 		this.self.css('transform', this.translate3d);
 
-		$('.sprites').append(this.selfContainer);
+		this.spritesElement.append(this.selfContainer);
 		this.selfContainer.append(this.self);
 
 

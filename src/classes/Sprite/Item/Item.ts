@@ -1,11 +1,18 @@
 import Sprite from '../index';
 import Player from '../../Player/Player';
 import { Distance } from '../../../helpers';
-import { takeWeapon, itemPickUp, medkitVoice } from '../../../variables/sounds';
 
 class Item extends Sprite {
-	constructor(type, x, z) {
-		super(type, x, 350, z, 'item');
+	constructor(config) {
+    const { type, position } = config;
+    super({
+      type,
+      position: {
+        ...position,
+        y: 350
+      },
+      classType: 'item'
+    });
 	}
 
 	update() {
@@ -20,21 +27,7 @@ class Item extends Sprite {
 	pickItem() {
 		this.self.remove();
 		this.selfContainer.remove();
-    itemActions(this._type);
     this.isRemoved = true;
-	}
-}
-
-function itemActions(type) {
-	switch(type) {
-		case 'shotgun':
-			takeWeapon.load();
-			takeWeapon.play();
-			break;
-		case 'medkit':
-			itemPickUp.play();
-			setTimeout(() => medkitVoice.play(), 100);
-			break;
 	}
 }
 

@@ -11,3 +11,9 @@ interface iSceneConfig {
   start?(): void;
   update?(): void;
 }
+
+interface iSpriteConfig {
+  type: string;
+  classType: string
+  position?: iPosition;
+}

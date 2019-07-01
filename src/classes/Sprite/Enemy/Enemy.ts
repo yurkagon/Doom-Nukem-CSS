@@ -4,11 +4,10 @@ import { Distance, generateCoordDiff } from '../../../helpers';
 
 
 class Enemy extends Sprite {
-  static LOGIC_INTERVAL = 500;
-  static VISION_DISTANCE = 2500;
-  static MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
-  static ATACK_DISTANCE = 1000;
-
+  static readonly LOGIC_INTERVAL = 500;
+  static readonly VISION_DISTANCE = 2500;
+  static readonly MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
+  static readonly ATACK_DISTANCE = 1000;
 
   static states = {
     DEFAULT: 'default',
@@ -23,8 +22,16 @@ class Enemy extends Sprite {
   speed = 8;
   moveDiff = null;
 
-	constructor(type, x, z, y = 200) {
-    super(type, x, y, z, 'enemy');
+	constructor(config) {
+    super({
+      ...config,
+      position: {
+        ...config.position,
+        y: 200
+      },
+      classType: 'enemy'
+    });
+
     this.logicUpdate = this.logicUpdate.bind(this);
 
     this.setState(Enemy.states.DEFAULT);
