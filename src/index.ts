@@ -53,16 +53,16 @@ scene.init({
     }, 1000);
   },
   update() {
-		if(player.isMoving()){
-			weapon.animate({
-				right: '150px',
-				bottom: '-80px'
-			},500).animate({
-				right: '200px',
-				bottom: 0
-			},200);
-		} else{
-			weapon.stop();
-		}
+		// if(player.isMoving()){
+		// 	weapon.animate({
+		// 		right: '150px',
+		// 		bottom: '-80px'
+		// 	},500).animate({
+		// 		right: '200px',
+		// 		bottom: 0
+		// 	},200);
+		// } else{
+		// 	weapon.stop();
+		// }
   }
 });

@@ -18,7 +18,7 @@ abstract class SceneController {
     this.update = this.update.bind(this);
   }
 
-  public attachGameObject(gameObject: GameObject): void {
+  public subscrubeGameObject(gameObject: GameObject): void {
     this.gameObjets.push(gameObject);
   }
 

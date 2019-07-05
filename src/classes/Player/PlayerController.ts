@@ -8,6 +8,8 @@ abstract class PlayerController extends PlayerCamera {
   static readonly MOUSE_SENSITIVITY = 1.5;
   static readonly ROTATION_SPEED = 2;
 
+  private _stepState = true;
+
   private moveState = {
     toForward: false,
     toBack: false,
@@ -48,6 +50,13 @@ abstract class PlayerController extends PlayerCamera {
 
     if (toForward || toBack || toLeft || toRight) this.stepsEffect();
   }
+
+  stepsEffect() {
+		const { position, _stepState } = this;
+		const value = 0.8;
+		position.y += _stepState ? value : -value;
+		if( Math.abs(position.y) > 12) this._stepState  = !_stepState;
+	}
 
   private attachKeyDown(): void {
     $('body').keydown((e: JQuery.KeyDownEvent) => {

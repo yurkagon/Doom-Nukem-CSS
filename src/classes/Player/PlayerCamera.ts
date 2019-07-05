@@ -12,7 +12,7 @@ abstract class PlayerCamera extends GameObject {
     x: 0,
     z: 0,
   }
-  private _stepState = true;
+
   private _camera = $('#camera')
 
 	get camera() {
@@ -38,18 +38,13 @@ abstract class PlayerCamera extends GameObject {
 		const { position, rotation } = this;
 		position.x -= Math.sin((rotation.y+90) * Math.PI / 180) * PLAYER_MOVE_SPEED;
 		position.z += Math.cos((rotation.y+90) * Math.PI / 180) * PLAYER_MOVE_SPEED;
-	}
-	stepsEffect() {
-		const { position, _stepState } = this;
-		const value = 0.8;
-		position.y += _stepState ? value : -value;
-		if( Math.abs(position.y) > 12) this._stepState  = !_stepState;
-	}
+  }
+
 	rotate(degree) {
 		const { rotation, origin } = this;
 		rotation.y -= degree;
-		if (rotation.y < 0) rotation.y += 358;
-		if (rotation.y > 360) rotation.y -= 358;
+		if (rotation.y < 0) rotation.y = 360 + rotation.y;
+		if (rotation.y > 360) rotation.y = rotation.y - 360;
 
 		const angle = ((rotation.y % 360) / 360) * 2 * Math.PI;
 

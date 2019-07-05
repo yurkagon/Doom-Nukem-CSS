@@ -10,11 +10,11 @@ abstract class GameObject {
 
   public position: iPosition;
 
-  constructor(position: iPosition = GameObject.defaultPosition) {
+  constructor(position: iPosition = {...GameObject.defaultPosition}) {
     this.position = position;
 
     const scene = Scene.getInstance();
-    scene.attachGameObject(this);
+    scene.subscrubeGameObject(this);
 
     if (this.start) {
       this.start();
