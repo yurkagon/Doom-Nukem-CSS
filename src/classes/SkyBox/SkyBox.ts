@@ -2,7 +2,6 @@ import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 
 class SkyBox extends GameObject {
-
   private player: Player;
 
   start() {
@@ -12,7 +11,7 @@ class SkyBox extends GameObject {
   update() {
     const { camera, rotation } = this.player;
 
-    camera.css('background-position', -15 * rotation.y +"px -5px");
+    camera.css("background-position", -15 * rotation.y + "px -5px");
   }
 }
 

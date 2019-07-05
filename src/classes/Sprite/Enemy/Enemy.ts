@@ -1,7 +1,6 @@
-import Sprite from '../index';
-import Player from '../../Player/Player';
-import { Distance, generateCoordDiff } from '../../../helpers';
-
+import Sprite from "../index";
+import Player from "../../Player/Player";
+import { Distance, generateCoordDiff } from "../../../helpers";
 
 class Enemy extends Sprite {
   static readonly LOGIC_INTERVAL = 500;
@@ -10,11 +9,11 @@ class Enemy extends Sprite {
   static readonly ATACK_DISTANCE = 1000;
 
   static states = {
-    DEFAULT: 'default',
-    DEAD: 'dead',
-    WALK: 'walk',
-    ATACK: 'atack'
-  }
+    DEFAULT: "default",
+    DEAD: "dead",
+    WALK: "walk",
+    ATACK: "atack"
+  };
 
   currenState = null;
   timer = null;
@@ -22,14 +21,14 @@ class Enemy extends Sprite {
   speed = 8;
   moveDiff = null;
 
-	constructor(config) {
+  constructor(config) {
     super({
       ...config,
       position: {
         ...config.position,
         y: 200
       },
-      classType: 'enemy'
+      classType: "enemy"
     });
 
     this.logicUpdate = this.logicUpdate.bind(this);
@@ -51,18 +50,18 @@ class Enemy extends Sprite {
     this.distance = Distance(this.getPosition(), player.getPosition());
     const { distance } = this;
 
-    switch(this.currenState) {
+    switch (this.currenState) {
       case states.DEFAULT:
-        if(distance <= ATACK_DISTANCE) {
+        if (distance <= ATACK_DISTANCE) {
           this.setState(states.ATACK);
-        } else if(distance <= VISION_DISTANCE) {
+        } else if (distance <= VISION_DISTANCE) {
           this.setState(states.WALK);
         }
         break;
       case states.WALK:
-        if(distance <= ATACK_DISTANCE) {
+        if (distance <= ATACK_DISTANCE) {
           this.setState(states.ATACK);
-        } else if(distance >= MAX_WALKING_TO_PLAYER_DISTANCE) {
+        } else if (distance >= MAX_WALKING_TO_PLAYER_DISTANCE) {
           this.setState(states.DEFAULT);
         }
         break;
@@ -81,19 +80,17 @@ class Enemy extends Sprite {
     this.currenState = state;
   }
   update() {
-    const {
-      states
-    } = Enemy;
+    const { states } = Enemy;
 
     const player = Player.getInstance();
 
-    switch(this.currenState) {
+    switch (this.currenState) {
       case states.WALK:
         const playerPos = player.getPosition();
         const enemyPos = this.getPosition();
 
-        const dx = (playerPos.x + this.moveDiff.x)- enemyPos.x;
-        const dz = (playerPos.z - this.moveDiff.z) - enemyPos.z;
+        const dx = playerPos.x + this.moveDiff.x - enemyPos.x;
+        const dz = playerPos.z - this.moveDiff.z - enemyPos.z;
         const angle = Math.atan2(dz, dx);
 
         const { x, z } = this.position;

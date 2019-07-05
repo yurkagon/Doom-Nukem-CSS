@@ -1,5 +1,4 @@
-import PlayerController from './PlayerController';
-
+import PlayerController from "./PlayerController";
 
 class Player extends PlayerController {
   private static instance: Player;
@@ -13,11 +12,10 @@ class Player extends PlayerController {
     }
   }
 
-
   private constructor() {
     super();
-    console.log('Player has been created');
-  };
+    console.log("Player has been created");
+  }
 
   start() {
     super.start();

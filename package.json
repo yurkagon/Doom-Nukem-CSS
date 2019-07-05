@@ -12,7 +12,7 @@
     "watch": "webpack --watch",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "pretty": "prettier **/*.{ts,scss,css,html,json} --write"
+    "pretty": "prettier --write '**/*.{ts,scss,css,html,json}'"
   },
   "dependencies": {
     "jquery": "^3.3.1"

@@ -1,9 +1,9 @@
-import Sprite from '../index';
-import Player from '../../Player/Player';
-import { Distance } from '../../../helpers';
+import Sprite from "../index";
+import Player from "../../Player/Player";
+import { Distance } from "../../../helpers";
 
 class Item extends Sprite {
-	constructor(config) {
+  constructor(config) {
     const { type, position } = config;
     super({
       type,
@@ -11,24 +11,24 @@ class Item extends Sprite {
         ...position,
         y: 350
       },
-      classType: 'item'
+      classType: "item"
     });
-	}
+  }
 
-	update() {
+  update() {
     super.update();
     const player = Player.getInstance();
 
-		const distance = Distance(player.getPosition(), this.getPosition());
+    const distance = Distance(player.getPosition(), this.getPosition());
 
-		if (distance < 150) this.pickItem();
-	}
+    if (distance < 150) this.pickItem();
+  }
 
-	pickItem() {
-		this.self.remove();
-		this.selfContainer.remove();
+  pickItem() {
+    this.self.remove();
+    this.selfContainer.remove();
     this.isRemoved = true;
-	}
+  }
 }
 
 export default Item;

@@ -1,10 +1,9 @@
-import $ from 'jquery';
+import $ from "jquery";
 
-import PlayerCamera from './PlayerCamera';
-import { iPosition } from '../../types';
+import PlayerCamera from "./PlayerCamera";
+import { iPosition } from "../../types";
 
 abstract class PlayerController extends PlayerCamera {
-
   static readonly MOUSE_SENSITIVITY = 1.5;
   static readonly ROTATION_SPEED = 2;
 
@@ -42,7 +41,7 @@ abstract class PlayerController extends PlayerCamera {
 
     if (toForward) this.moveForward();
     if (toBack) this.moveBack();
-    if (toLeft)	this.moveLeft();
+    if (toLeft) this.moveLeft();
     if (toRight) this.moveRight();
 
     if (rotateLeft) this.rotate(PlayerController.ROTATION_SPEED);
@@ -52,14 +51,14 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   stepsEffect() {
-		const { position, _stepState } = this;
-		const value = 0.8;
-		position.y += _stepState ? value : -value;
-		if( Math.abs(position.y) > 12) this._stepState  = !_stepState;
-	}
+    const { position, _stepState } = this;
+    const value = 0.8;
+    position.y += _stepState ? value : -value;
+    if (Math.abs(position.y) > 12) this._stepState = !_stepState;
+  }
 
   private attachKeyDown(): void {
-    $('body').keydown((e: JQuery.KeyDownEvent) => {
+    $("body").keydown((e: JQuery.KeyDownEvent) => {
       const { keyCode } = e;
 
       if (keyCode == 37 || keyCode == 65) this.moveState.toLeft = true;
@@ -73,7 +72,7 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   private attachKeyUp(): void {
-    $('body').keyup((e: JQuery.KeyUpEvent) => {
+    $("body").keyup((e: JQuery.KeyUpEvent) => {
       const { keyCode } = e;
 
       if (keyCode == 37 || keyCode == 65) this.moveState.toLeft = false;
@@ -87,7 +86,7 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   private attachMouseMove(): void {
-    $(document).bind('mousemove', (event) => {
+    $(document).bind("mousemove", event => {
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = PlayerController;
 
       const mousePosition: iPosition = {
@@ -96,10 +95,9 @@ abstract class PlayerController extends PlayerCamera {
       };
 
       if (mousePosition.x > this.prevMousePostion.x) {
-        this.rotate(-MOUSE_SENSITIVITY*ROTATION_SPEED);
-      }
-      else if (mousePosition.x < this.prevMousePostion.x) {
-        this.rotate(MOUSE_SENSITIVITY*ROTATION_SPEED);
+        this.rotate(-MOUSE_SENSITIVITY * ROTATION_SPEED);
+      } else if (mousePosition.x < this.prevMousePostion.x) {
+        this.rotate(MOUSE_SENSITIVITY * ROTATION_SPEED);
       }
 
       this.prevMousePostion = mousePosition;
@@ -107,12 +105,7 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   public isMoving(): boolean {
-    const {
-      toForward,
-      toBack,
-      toLeft,
-      toRight,
-    } = this.moveState;
+    const { toForward, toBack, toLeft, toRight } = this.moveState;
 
     return toForward || toBack || toLeft || toRight;
   }

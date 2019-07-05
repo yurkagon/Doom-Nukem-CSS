@@ -1,15 +1,15 @@
-import $ from 'jquery';
+import $ from "jquery";
 import GameObject from "../GameObject/index";
-import Player from '../Player/Player';
+import Player from "../Player/Player";
 import { iSceneConfig } from "../../types";
-import { generetaTranslate3d } from '../../helpers';
+import { generetaTranslate3d } from "../../helpers";
 
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
   private player: Player;
   private gameObjets: Array<GameObject> = [];
-  private readonly level: JQuery = $('.level');
+  private readonly level: JQuery = $(".level");
 
   private sceneStart: () => void;
   private sceneUpdate: () => void;
@@ -22,7 +22,7 @@ abstract class SceneController {
     this.gameObjets.push(gameObject);
   }
 
-  public init(config: iSceneConfig) :void {
+  public init(config: iSceneConfig): void {
     this.player = config.player;
     this.sceneStart = config.start;
     this.sceneUpdate = config.update;
@@ -40,11 +40,11 @@ abstract class SceneController {
       clearTimeout(timerId);
 
       this.runUpdating();
-    }, SceneController.RENDER_SPEED)
+    }, SceneController.RENDER_SPEED);
   }
 
-  private update() :void {
-    for(let gameObject of this.gameObjets) {
+  private update(): void {
+    for (let gameObject of this.gameObjets) {
       gameObject.update();
     }
 
@@ -54,7 +54,7 @@ abstract class SceneController {
     this.updateFrame();
   }
 
-  private updateFrame() :void {
+  private updateFrame(): void {
     const { rotation, position, origin } = this.player;
 
     const rotate3d = `rotateY(${rotation.y}deg)`;
@@ -64,7 +64,7 @@ abstract class SceneController {
       z: position.z + origin.z
     });
 
-    this.level.css('transform', rotate3d + translate3d);
+    this.level.css("transform", rotate3d + translate3d);
   }
 }
 

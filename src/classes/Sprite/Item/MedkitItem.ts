@@ -1,15 +1,15 @@
 import Item from "./Item";
-import { itemPickUp, medkitVoice } from '../../../variables/sounds';
+import { itemPickUp, medkitVoice } from "../../../variables/sounds";
 import { iPosition } from "../../../types";
 
 class MedkitItem extends Item {
-	constructor(position: iPosition) {
+  constructor(position: iPosition) {
     super({
-      type: 'medkit',
+      type: "medkit",
       position: {
         ...position,
         y: 350
-      },
+      }
     });
   }
 

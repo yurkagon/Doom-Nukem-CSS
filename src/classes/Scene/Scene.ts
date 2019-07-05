@@ -1,4 +1,4 @@
-import SceneController from './SceneController';
+import SceneController from "./SceneController";
 
 class Scene extends SceneController {
   private static instance: Scene;

@@ -1,5 +1,5 @@
-import Scene from '../Scene/Scene';
-import { iPosition } from '../../types';
+import Scene from "../Scene/Scene";
+import { iPosition } from "../../types";
 
 abstract class GameObject {
   static readonly defaultPosition: iPosition = {
@@ -10,7 +10,7 @@ abstract class GameObject {
 
   public position: iPosition;
 
-  constructor(position: iPosition = {...GameObject.defaultPosition}) {
+  constructor(position: iPosition = { ...GameObject.defaultPosition }) {
     this.position = position;
 
     const scene = Scene.getInstance();
@@ -20,12 +20,12 @@ abstract class GameObject {
       this.start();
     }
   }
-  abstract start(): void
-  abstract update(): void
+  abstract start(): void;
+  abstract update(): void;
 
   getPosition() {
-		return this.position;
-	}
+    return this.position;
+  }
 }
 
 export default GameObject;
