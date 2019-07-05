@@ -14,6 +14,6 @@ interface iSceneConfig {
 
 interface iSpriteConfig {
   type: string;
-  classType: string
+  classType: string;
   position?: iPosition;
 }

@@ -7,11 +7,12 @@
   "author": "yurkagon <owngameplay@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "webpack-dev-server --open --mode=development",
     "build": "webpack --config webpack.config.js --mode=production",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open --mode=development",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "pretty": "prettier **/*.{ts,scss,css,html,json} --write"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -24,6 +25,7 @@
     "css-loader": "^1.0.0",
     "gh-pages": "^2.0.1",
     "node-sass": "^4.9.3",
+    "prettier": "1.18.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
