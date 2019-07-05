@@ -30,21 +30,15 @@ scene.init({
       z: 900
     });
 
-    new Enemy({
-      type: "guard",
-      position: {
-        x: 1000,
-        z: 1000
-      }
-    }),
-      // new Sprite('guard', 1000, 1000),
-      // new Sprite('guard', -1000, -1000),
-      // new Sprite('guard', -1250, -10100),
-      // new Sprite('guard', 500, -1000)
-      // new Sprite('guard', 250, 600),
-      // new Sprite('guard', 1000, 1000),
-      // new Sprite('guard', -1000, -1000),
-      // new Sprite('guard', -1250, -10100),
+    for(let i = 0; i < 30; i++) {
+      new Enemy({
+        type: "guard",
+        position: {
+          x: 1000,
+          z: 1000
+        }
+      })
+    }
 
       setTimeout(() => {
         mainThemeMusic.play();
@@ -52,16 +46,16 @@ scene.init({
       }, 1000);
   },
   update() {
-    // if(player.isMoving()){
-    // 	weapon.animate({
-    // 		right: '150px',
-    // 		bottom: '-80px'
-    // 	},500).animate({
-    // 		right: '200px',
-    // 		bottom: 0
-    // 	},200);
-    // } else{
-    // 	weapon.stop();
-    // }
+    if(player.isMoving()){
+    	weapon.animate({
+    		right: '150px',
+    		bottom: '-80px'
+    	},500).animate({
+    		right: '200px',
+    		bottom: 0
+    	},200);
+    } else{
+    	weapon.stop();
+    }
   }
 });

@@ -56,19 +56,16 @@ $size: 1;
   background-size: cover;
 }
 
-$floorSize: 100;
+
 .floor {
-  $striped-color1: green;
-  $striped-color2: rgb(5, 99, 5);
-  width: 1000px;
-  height: 1000px;
+  $floorSize: 100;
+
+  width: 300px;
+  height: 300px;
   position: absolute;
-  transform: rotateX(90deg) scale3d($floorSize, $floorSize, 1);
-  background-image: repeating-linear-gradient(
-    -45deg,
-    $striped-color1,
-    $striped-color1 1px,
-    $striped-color2 1px,
-    $striped-color2 2px
-  ) !important;
+  transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize) translateZ(-3.5px);
+
+  background-size: 10px;
+  background-repeat:repeat;
+  background-image: url(https://www.textures.com/system/gallery/photos/Nature/Grass/50182/Grass0130_1_270.jpg);
 }
