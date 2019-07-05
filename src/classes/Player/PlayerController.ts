@@ -39,18 +39,30 @@ abstract class PlayerController extends PlayerCamera {
       rotateRight
     } = this.moveState;
 
-    if (toForward) this.moveForward();
-    if (toBack) this.moveBack();
-    if (toLeft) this.moveLeft();
-    if (toRight) this.moveRight();
+    if (this.isMoving()) {
+      const moves: Array<iPosition> = [];
+
+      if (toForward) moves.push(this.goForward());
+      if (toBack) moves.push(this.goBack());
+      if (toLeft) moves.push(this.goLeft());
+      if (toRight) moves.push(this.goRight());
+
+      const vectorToMove = moves.reduce(
+        (value: iPosition, acc: iPosition): iPosition => ({
+          x: value.x + acc.x,
+          z: value.z + acc.z
+        })
+      );
+
+      this.moveBy(vectorToMove);
+      this.stepsEffect();
+    }
 
     if (rotateLeft) this.rotate(PlayerController.ROTATION_SPEED);
     if (rotateRight) this.rotate(-PlayerController.ROTATION_SPEED);
-
-    if (toForward || toBack || toLeft || toRight) this.stepsEffect();
   }
 
-  stepsEffect() {
+  private stepsEffect() {
     const { position, _stepState } = this;
     const value = 0.8;
     position.y += _stepState ? value : -value;

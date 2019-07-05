@@ -56,16 +56,16 @@ $size: 1;
   background-size: cover;
 }
 
-
 .floor {
   $floorSize: 100;
 
   width: 300px;
   height: 300px;
   position: absolute;
-  transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize) translateZ(-3.5px);
+  transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize)
+    translateZ(-3.5px);
 
   background-size: 10px;
-  background-repeat:repeat;
+  background-repeat: repeat;
   background-image: url(https://www.textures.com/system/gallery/photos/Nature/Grass/50182/Grass0130_1_270.jpg);
 }
