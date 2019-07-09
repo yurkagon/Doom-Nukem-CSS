@@ -30,32 +30,40 @@ scene.init({
       z: 900
     });
 
-    for(let i = 0; i < 30; i++) {
+    for (let i = 0; i < 20; i++) {
       new Enemy({
         type: "guard",
         position: {
           x: 1000,
           z: 1000
         }
-      })
+      });
     }
 
-      setTimeout(() => {
-        mainThemeMusic.play();
-        startPhrase.play();
-      }, 1000);
+    setTimeout(() => {
+      mainThemeMusic.play();
+      startPhrase.play();
+    }, 1000);
   },
   update() {
-    if(player.isMoving()){
-    	weapon.animate({
-    		right: '150px',
-    		bottom: '-80px'
-    	},500).animate({
-    		right: '200px',
-    		bottom: 0
-    	},200);
-    } else{
-    	weapon.stop();
+    if (player.isMoving()) {
+      weapon
+        .animate(
+          {
+            right: "150px",
+            bottom: "-80px"
+          },
+          500
+        )
+        .animate(
+          {
+            right: "200px",
+            bottom: 0
+          },
+          200
+        );
+    } else {
+      weapon.stop();
     }
   }
 });

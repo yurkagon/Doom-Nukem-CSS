@@ -4,47 +4,43 @@ import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 
 import { generetaTranslate3d } from "../../helpers";
-import { iPosition, iSpriteConfig } from "../../types";
+import { iSpriteConfig } from "../../types";
 
 class Sprite extends GameObject {
-  isRemoved = false;
+  private static readonly spritesElement: JQuery = $(".sprites");
 
-  protected readonly spritesElement: JQuery = $(".sprites");
-  protected readonly selfContainer: JQuery = $("<div/>").addClass(
-    "sprite-cont"
-  );
   protected readonly self: JQuery = $("<div/>");
-
-  translate3d;
-  rotate3d;
-  _type;
+  private readonly selfContainer: JQuery = $("<div/>").addClass("sprite-cont");
 
   constructor(config: iSpriteConfig) {
     super(config.position);
     const { type, position, classType = "" } = config;
 
     this.self.addClass(`sprite ${classType} ${type}`);
-
-    this.translate3d = generetaTranslate3d(position);
-    this.rotate3d = "";
-    this.self.css("transform", this.translate3d);
-
-    this.spritesElement.append(this.selfContainer);
+    this.self.css("transform", generetaTranslate3d(position));
     this.selfContainer.append(this.self);
-
-    this._type = type;
+    Sprite.spritesElement.append(this.selfContainer);
   }
 
-  start() {}
+  start() {
+    console.log("Sprite is created");
+  }
 
   update() {
     const player = Player.getInstance();
 
-    this.translate3d = generetaTranslate3d(this.getPosition());
-    this.rotate3d = `rotate3d(0, 1, 0, ${-player.rotation.y}deg)`;
+    const translate3d = generetaTranslate3d(this.getPosition());
+    const rotate3d = `rotate3d(0, 1, 0, ${-player.rotation.y}deg)`;
 
-    this.selfContainer.css("transform", this.translate3d);
-    this.self.css("transform", this.rotate3d);
+    this.selfContainer.css("transform", translate3d);
+    this.self.css("transform", rotate3d);
+  }
+
+  destroy() {
+    this.self.remove();
+    this.selfContainer.remove();
+
+    super.destroy();
   }
 }
 

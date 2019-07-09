@@ -14,7 +14,7 @@ class ShotgunItem extends Item {
   }
 
   pickItem() {
-    takeWeapon.load();
+    console.log("Pick shotgun");
     takeWeapon.play();
 
     super.pickItem();

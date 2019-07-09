@@ -7,9 +7,6 @@ body {
 * {
   margin: 0;
   padding: 0;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   image-rendering: pixelated;
 }
 h2 {
@@ -37,6 +34,8 @@ $size: 1;
   position: absolute;
   left: 50%;
   top: 0%;
+
+  transform-style: preserve-3d;
 }
 
 .object {
@@ -46,6 +45,8 @@ $size: 1;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
     url(img/wall.jpg);
   transform: rotateY(90deg) translate3d(0, 100px, 0);
+
+  transform-style: preserve-3d;
 }
 .glass {
   @extend .object;
@@ -54,8 +55,9 @@ $size: 1;
   transform: rotateY(180deg);
   background: url(img/glass.png);
   background-size: cover;
-}
 
+  transform-style: preserve-3d;
+}
 
 .floor {
   $floorSize: 100;
@@ -63,9 +65,12 @@ $size: 1;
   width: 300px;
   height: 300px;
   position: absolute;
-  transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize) translateZ(-3.5px);
+  transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize)
+    translateZ(-3.5px);
 
   background-size: 10px;
-  background-repeat:repeat;
+  background-repeat: repeat;
   background-image: url(https://www.textures.com/system/gallery/photos/Nature/Grass/50182/Grass0130_1_270.jpg);
+
+  transform-style: preserve-3d;
 }

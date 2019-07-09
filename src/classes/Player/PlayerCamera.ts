@@ -2,6 +2,7 @@ import GameObject from "../GameObject/index";
 
 import $ from "jquery";
 import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
+import { iPosition } from "../../types";
 
 abstract class PlayerCamera extends GameObject {
   public rotation = {
@@ -19,29 +20,42 @@ abstract class PlayerCamera extends GameObject {
     // camera is a static DIV. All 3d operations are inside
     return this._camera;
   }
-  moveForward() {
-    const { position, rotation } = this;
-    position.x -= Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED;
-    position.z += Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED;
+  protected goForward(): iPosition {
+    const { rotation } = this;
+
+    return {
+      x: -Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED,
+      z: Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
+    };
   }
-  moveBack() {
-    const { position, rotation } = this;
-    position.x += Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED;
-    position.z -= Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED;
+  protected goBack(): iPosition {
+    const { rotation } = this;
+
+    return {
+      x: Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED,
+      z: -Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
+    };
   }
-  moveLeft() {
-    const { position, rotation } = this;
-    position.x -=
-      Math.sin(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED;
-    position.z +=
-      Math.cos(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED;
+  protected goLeft(): iPosition {
+    const { rotation } = this;
+
+    return {
+      x: -Math.sin(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED,
+      z: Math.cos(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
+    };
   }
-  moveRight() {
-    const { position, rotation } = this;
-    position.x -=
-      Math.sin(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED;
-    position.z +=
-      Math.cos(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED;
+  protected goRight(): iPosition {
+    const { rotation } = this;
+
+    return {
+      x: -Math.sin(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED,
+      z: Math.cos(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
+    };
+  }
+
+  public moveBy(vectorToMove: iPosition): void {
+    this.position.x += vectorToMove.x;
+    this.position.z += vectorToMove.z;
   }
 
   rotate(degree) {

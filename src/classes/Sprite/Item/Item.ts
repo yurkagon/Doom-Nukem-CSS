@@ -3,6 +3,8 @@ import Player from "../../Player/Player";
 import { Distance } from "../../../helpers";
 
 class Item extends Sprite {
+  private static readonly DISTANCE_TO_PICK = 150;
+
   constructor(config) {
     const { type, position } = config;
     super({
@@ -21,13 +23,11 @@ class Item extends Sprite {
 
     const distance = Distance(player.getPosition(), this.getPosition());
 
-    if (distance < 150) this.pickItem();
+    if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
   }
 
   pickItem() {
-    this.self.remove();
-    this.selfContainer.remove();
-    this.isRemoved = true;
+    this.destroy();
   }
 }
 
