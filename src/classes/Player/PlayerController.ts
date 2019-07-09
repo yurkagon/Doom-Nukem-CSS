@@ -106,11 +106,9 @@ abstract class PlayerController extends PlayerCamera {
         y: event.pageY
       };
 
-      if (mousePosition.x > this.prevMousePostion.x) {
-        this.rotate(-MOUSE_SENSITIVITY * ROTATION_SPEED);
-      } else if (mousePosition.x < this.prevMousePostion.x) {
-        this.rotate(MOUSE_SENSITIVITY * ROTATION_SPEED);
-      }
+      const delta = this.prevMousePostion.x - mousePosition.x;
+      const toRotate = (delta * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
+      this.rotate(toRotate);
 
       this.prevMousePostion = mousePosition;
     });
@@ -118,6 +116,13 @@ abstract class PlayerController extends PlayerCamera {
 
   public isMoving(): boolean {
     const { toForward, toBack, toLeft, toRight } = this.moveState;
+
+    const forwardAndBackTogether = toForward && toBack;
+    const leftAndRightTogether = toLeft && toRight;
+
+    if (forwardAndBackTogether || leftAndRightTogether) {
+      return false;
+    }
 
     return toForward || toBack || toLeft || toRight;
   }
