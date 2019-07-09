@@ -21,6 +21,11 @@ abstract class SceneController {
   public subscrubeGameObject(gameObject: GameObject): void {
     this.gameObjets.push(gameObject);
   }
+  public unSubscrubeGameObject(gameObject: GameObject): void {
+    const index = this.gameObjets.indexOf(gameObject);
+
+    this.gameObjets.splice(index, 1);
+  }
 
   public init(config: iSceneConfig): void {
     this.player = config.player;

@@ -14,6 +14,7 @@ class MedkitItem extends Item {
   }
 
   pickItem() {
+    console.log("Pick medkit");
     itemPickUp.play();
     setTimeout(() => medkitVoice.play(), 100);
 

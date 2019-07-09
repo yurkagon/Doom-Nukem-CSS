@@ -23,6 +23,11 @@ abstract class GameObject {
   abstract start(): void;
   abstract update(): void;
 
+  destroy() {
+    const scene = Scene.getInstance();
+    scene.unSubscrubeGameObject(this);
+  }
+
   getPosition() {
     return this.position;
   }
