@@ -10,6 +10,7 @@ import { mainThemeMusic, startPhrase } from "./variables/sounds";
 import SkyBox from "./classes/SkyBox/SkyBox";
 import MedkitItem from "./classes/Sprite/Item/MedkitItem";
 import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
+import House from "./classes/Model/House";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -30,7 +31,17 @@ scene.init({
       z: 900
     });
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
+      new House({
+        position: {
+          x: 110 * i * 10,
+          y: 493,
+          z: 3000
+        }
+      });
+    }
+
+    for (let i = 0; i < 10; i++) {
       new Enemy({
         type: "guard",
         position: {

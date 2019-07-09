@@ -1,0 +1,1289 @@
+.house {
+  transform-style: preserve-3d;
+
+  .scene,
+  .shape,
+  .face,
+  .face-wrapper,
+  .cr {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  .scene {
+    width: 80em;
+    height: 80em;
+    top: 50%;
+    left: 50%;
+    margin: -40em 0 0 -40em;
+  }
+  .shape {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-origin: 50%;
+  }
+  .face,
+  .face-wrapper {
+    overflow: hidden;
+    transform-origin: 0 0;
+    backface-visibility: hidden;
+    /* hidden by default, prevent blinking and other weird rendering glitchs */
+  }
+  .face {
+    background-size: 100% 100% !important;
+    background-position: center;
+  }
+  .face-wrapper .face {
+    left: 100%;
+    width: 100%;
+    height: 100%;
+  }
+  .photon-shader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .side {
+    left: 50%;
+  }
+  .cr,
+  .cr .side {
+    height: 100%;
+  }
+  [class*="cuboid"] .ft,
+  [class*="cuboid"] .bk {
+    width: 100%;
+    height: 100%;
+  }
+  [class*="cuboid"] .bk {
+    left: 100%;
+  }
+  [class*="cuboid"] .rt {
+    transform: rotateY(-90deg) translateX(-50%);
+  }
+  [class*="cuboid"] .lt {
+    transform: rotateY(90deg) translateX(-50%);
+  }
+  [class*="cuboid"] .tp {
+    transform: rotateX(90deg) translateY(-50%);
+  }
+  [class*="cuboid"] .bm {
+    transform: rotateX(-90deg) translateY(-50%);
+  }
+  [class*="cuboid"] .lt {
+    left: 100%;
+  }
+  [class*="cuboid"] .bm {
+    top: 100%;
+  }
+  /* .leg_0L styles */
+  .leg_0L {
+    transform: translate3D(0em, -3em, 0em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_0L .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_0L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_0L .rt,
+  .leg_0L .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_0L .tp,
+  .leg_0L .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_0L .face {
+    background-color: #ffffff;
+  }
+  .leg_0L .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_0L .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_0L .tp {
+    background-color: #000000;
+  }
+  .leg_0L .bm {
+    background-color: #000000;
+  }
+  .leg_0L .lt {
+    background-color: #797979;
+  }
+  .leg_0L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .leg_0R styles */
+  .leg_0R {
+    transform: translate3D(12em, -3em, 0em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_0R .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_0R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_0R .rt,
+  .leg_0R .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_0R .tp,
+  .leg_0R .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_0R .face {
+    background-color: #ffffff;
+  }
+  .leg_0R .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_0R .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_0R .tp {
+    background-color: #000000;
+  }
+  .leg_0R .bm {
+    background-color: #000000;
+  }
+  .leg_0R .lt {
+    background-color: #c0c0c0;
+  }
+  .leg_0R .rt {
+    background-color: #797979;
+  }
+  /* .leg_1L styles */
+  .leg_1L {
+    transform: translate3D(0em, -3em, 5em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_1L .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_1L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_1L .rt,
+  .leg_1L .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_1L .tp,
+  .leg_1L .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_1L .face {
+    background-color: #ffffff;
+  }
+  .leg_1L .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_1L .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_1L .tp {
+    background-color: #000000;
+  }
+  .leg_1L .bm {
+    background-color: #000000;
+  }
+  .leg_1L .lt {
+    background-color: #797979;
+  }
+  .leg_1L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .leg_1R styles */
+  .leg_1R {
+    transform: translate3D(12em, -3em, 5em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_1R .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_1R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_1R .rt,
+  .leg_1R .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_1R .tp,
+  .leg_1R .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_1R .face {
+    background-color: #ffffff;
+  }
+  .leg_1R .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_1R .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_1R .tp {
+    background-color: #000000;
+  }
+  .leg_1R .bm {
+    background-color: #000000;
+  }
+  .leg_1R .lt {
+    background-color: #c0c0c0;
+  }
+  .leg_1R .rt {
+    background-color: #797979;
+  }
+  /* .leg_2L styles */
+  .leg_2L {
+    transform: translate3D(0em, -3em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_2L .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_2L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_2L .rt,
+  .leg_2L .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_2L .tp,
+  .leg_2L .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_2L .face {
+    background-color: #ffffff;
+  }
+  .leg_2L .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_2L .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_2L .tp {
+    background-color: #000000;
+  }
+  .leg_2L .bm {
+    background-color: #000000;
+  }
+  .leg_2L .lt {
+    background-color: #797979;
+  }
+  .leg_2L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .leg_2R styles */
+  .leg_2R {
+    transform: translate3D(12em, -3em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_2R .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_2R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_2R .rt,
+  .leg_2R .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_2R .tp,
+  .leg_2R .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_2R .face {
+    background-color: #ffffff;
+  }
+  .leg_2R .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_2R .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_2R .tp {
+    background-color: #000000;
+  }
+  .leg_2R .bm {
+    background-color: #000000;
+  }
+  .leg_2R .lt {
+    background-color: #c0c0c0;
+  }
+  .leg_2R .rt {
+    background-color: #797979;
+  }
+  /* .leg_3L styles */
+  .leg_3L {
+    transform: translate3D(0em, -3em, 15em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_3L .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_3L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_3L .rt,
+  .leg_3L .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_3L .tp,
+  .leg_3L .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_3L .face {
+    background-color: #ffffff;
+  }
+  .leg_3L .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_3L .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_3L .tp {
+    background-color: #000000;
+  }
+  .leg_3L .bm {
+    background-color: #000000;
+  }
+  .leg_3L .lt {
+    background-color: #797979;
+  }
+  .leg_3L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .leg_3R styles */
+  .leg_3R {
+    transform: translate3D(12em, -3em, 15em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_3R .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_3R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_3R .rt,
+  .leg_3R .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_3R .tp,
+  .leg_3R .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_3R .face {
+    background-color: #ffffff;
+  }
+  .leg_3R .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_3R .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_3R .tp {
+    background-color: #000000;
+  }
+  .leg_3R .bm {
+    background-color: #000000;
+  }
+  .leg_3R .lt {
+    background-color: #c0c0c0;
+  }
+  .leg_3R .rt {
+    background-color: #797979;
+  }
+  /* .leg_4L styles */
+  .leg_4L {
+    transform: translate3D(0em, -3em, 20em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_4L .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_4L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_4L .rt,
+  .leg_4L .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_4L .tp,
+  .leg_4L .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_4L .face {
+    background-color: #ffffff;
+  }
+  .leg_4L .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_4L .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_4L .tp {
+    background-color: #000000;
+  }
+  .leg_4L .bm {
+    background-color: #000000;
+  }
+  .leg_4L .lt {
+    background-color: #797979;
+  }
+  .leg_4L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .leg_4R styles */
+  .leg_4R {
+    transform: translate3D(12em, -3em, 20em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 6em;
+    margin: -3em 0 0 -0.1em;
+  }
+  .leg_4R .ft {
+    transform: translateZ(0.1em);
+  }
+  .leg_4R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .leg_4R .rt,
+  .leg_4R .lt {
+    width: 0.2em;
+    height: 6em;
+  }
+  .leg_4R .tp,
+  .leg_4R .bm {
+    width: 0.2em;
+    height: 0.2em;
+  }
+  .leg_4R .face {
+    background-color: #ffffff;
+  }
+  .leg_4R .ft {
+    background-color: #d6d6d6;
+  }
+  .leg_4R .bk {
+    background-color: #d6d6d6;
+  }
+  .leg_4R .tp {
+    background-color: #000000;
+  }
+  .leg_4R .bm {
+    background-color: #000000;
+  }
+  .leg_4R .lt {
+    background-color: #c0c0c0;
+  }
+  .leg_4R .rt {
+    background-color: #797979;
+  }
+  /* .skid_L styles */
+  .skid_L {
+    transform: translate3D(0em, 0em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.1em;
+  }
+  .skid_L .ft {
+    transform: translateZ(10em);
+  }
+  .skid_L .bk {
+    transform: translateZ(-10em) rotateY(180deg);
+  }
+  .skid_L .rt,
+  .skid_L .lt {
+    width: 20em;
+    height: 0.2em;
+  }
+  .skid_L .tp,
+  .skid_L .bm {
+    width: 0.2em;
+    height: 20em;
+  }
+  .skid_L .face {
+    background-color: #ffffff;
+  }
+  .skid_L .ft {
+    background-color: #d6d6d6;
+  }
+  .skid_L .bk {
+    background-color: #d6d6d6;
+  }
+  .skid_L .tp {
+    background-color: #d6d6d6;
+  }
+  .skid_L .bm {
+    background-color: #000000;
+  }
+  .skid_L .lt {
+    background-color: #797979;
+  }
+  .skid_L .rt {
+    background-color: #c0c0c0;
+  }
+  /* .skid_R styles */
+  .skid_R {
+    transform: translate3D(12em, 0em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0.2em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.1em;
+  }
+  .skid_R .ft {
+    transform: translateZ(10em);
+  }
+  .skid_R .bk {
+    transform: translateZ(-10em) rotateY(180deg);
+  }
+  .skid_R .rt,
+  .skid_R .lt {
+    width: 20em;
+    height: 0.2em;
+  }
+  .skid_R .tp,
+  .skid_R .bm {
+    width: 0.2em;
+    height: 20em;
+  }
+  .skid_R .face {
+    background-color: #ffffff;
+  }
+  .skid_R .ft {
+    background-color: #d6d6d6;
+  }
+  .skid_R .bk {
+    background-color: #d6d6d6;
+  }
+  .skid_R .tp {
+    background-color: #d6d6d6;
+  }
+  .skid_R .bm {
+    background-color: #000000;
+  }
+  .skid_R .lt {
+    background-color: #c0c0c0;
+  }
+  .skid_R .rt {
+    background-color: #797979;
+  }
+  /* .brace_0L styles */
+  .brace_0L {
+    transform: translate3D(0.25em, -6.333em, 0em) rotateX(0deg) rotateY(0deg)
+      rotateZ(36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_0L .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_0L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_0L .rt,
+  .brace_0L .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_0L .tp,
+  .brace_0L .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_0L .face {
+    background-color: #797979;
+  }
+  /* .roof_L styles */
+  .roof_L {
+    transform: translate3D(3.207219251336899em, -7.330882352941177em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(-14.036deg);
+    opacity: 1;
+    width: 5.8em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -2.9em;
+  }
+  .roof_L .ft {
+    transform: translateZ(10.5em);
+  }
+  .roof_L .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roof_L .rt,
+  .roof_L .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roof_L .tp,
+  .roof_L .bm {
+    width: 5.8em;
+    height: 21em;
+  }
+  .roof_L .face {
+    background-color: #ffffff;
+  }
+  .roof_L .ft {
+    background-color: #009051;
+  }
+  .roof_L .bk {
+    background-color: #009051;
+  }
+  .roof_L .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roof_L .bm {
+    background-color: #565656;
+  }
+  /* .roof_L-1 styles */
+  .roof_L-1 {
+    transform: translate3D(8.770721925133689em, -7.330882352941177em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(14.036deg);
+    opacity: 1;
+    width: 5.8em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -2.9em;
+  }
+  .roof_L-1 .ft {
+    transform: translateZ(10.5em);
+  }
+  .roof_L-1 .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roof_L-1 .rt,
+  .roof_L-1 .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roof_L-1 .tp,
+  .roof_L-1 .bm {
+    width: 5.8em;
+    height: 21em;
+  }
+  .roof_L-1 .face {
+    background-color: #ffffff;
+  }
+  .roof_L-1 .ft {
+    background-color: #009051;
+  }
+  .roof_L-1 .bk {
+    background-color: #009051;
+  }
+  .roof_L-1 .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roof_L-1 .bm {
+    background-color: #565656;
+  }
+  /* .brace_2L styles */
+  .brace_2L {
+    transform: translate3D(0.251em, -6.3331em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_2L .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_2L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_2L .rt,
+  .brace_2L .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_2L .tp,
+  .brace_2L .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_2L .face {
+    background-color: #797979;
+  }
+  /* .brace_1L styles */
+  .brace_1L {
+    transform: translate3D(0.2511em, -6.33311em, 5em) rotateX(0deg)
+      rotateY(0deg) rotateZ(36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_1L .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_1L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_1L .rt,
+  .brace_1L .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_1L .tp,
+  .brace_1L .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_1L .face {
+    background-color: #797979;
+  }
+  /* .brace_3L styles */
+  .brace_3L {
+    transform: translate3D(0.25111em, -6.333111em, 15em) rotateX(0deg)
+      rotateY(0deg) rotateZ(36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_3L .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_3L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_3L .rt,
+  .brace_3L .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_3L .tp,
+  .brace_3L .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_3L .face {
+    background-color: #797979;
+  }
+  /* .brace_4L styles */
+  .brace_4L {
+    transform: translate3D(0.251111em, -6.3em, 20em) rotateX(0deg) rotateY(0deg)
+      rotateZ(36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_4L .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_4L .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_4L .rt,
+  .brace_4L .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_4L .tp,
+  .brace_4L .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_4L .face {
+    background-color: #797979;
+  }
+  .brace_4L .bm {
+    background-color: #797979;
+  }
+  /* .brace_0R styles */
+  .brace_0R {
+    transform: translate3D(11.75em, -6.3331em, 0em) rotateX(0deg) rotateY(0deg)
+      rotateZ(-36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_0R .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_0R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_0R .rt,
+  .brace_0R .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_0R .tp,
+  .brace_0R .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_0R .face {
+    background-color: #797979;
+  }
+  /* .brace_1R styles */
+  .brace_1R {
+    transform: translate3D(11.751em, -6.33311em, 5em) rotateX(0deg)
+      rotateY(0deg) rotateZ(-36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_1R .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_1R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_1R .rt,
+  .brace_1R .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_1R .tp,
+  .brace_1R .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_1R .face {
+    background-color: #797979;
+  }
+  /* .brace_2R styles */
+  .brace_2R {
+    transform: translate3D(11.7511em, -6.333111em, 10em) rotateX(0deg)
+      rotateY(0deg) rotateZ(-36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_2R .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_2R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_2R .rt,
+  .brace_2R .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_2R .tp,
+  .brace_2R .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_2R .face {
+    background-color: #797979;
+  }
+  /* .brace_3R styles */
+  .brace_3R {
+    transform: translate3D(11.75111em, -6.3331111em, 15em) rotateX(0deg)
+      rotateY(0deg) rotateZ(-36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_3R .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_3R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_3R .rt,
+  .brace_3R .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_3R .tp,
+  .brace_3R .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_3R .face {
+    background-color: #797979;
+  }
+  /* .brace_4R styles */
+  .brace_4R {
+    transform: translate3D(11.751111em, -6.33311111em, 20em) rotateX(0deg)
+      rotateY(0deg) rotateZ(-36.87deg);
+    opacity: 1;
+    width: 0.1em;
+    height: 0.833em;
+    margin: -0.4165em 0 0 -0.05em;
+  }
+  .brace_4R .ft {
+    transform: translateZ(0.1em);
+  }
+  .brace_4R .bk {
+    transform: translateZ(-0.1em) rotateY(180deg);
+  }
+  .brace_4R .rt,
+  .brace_4R .lt {
+    width: 0.2em;
+    height: 0.833em;
+  }
+  .brace_4R .tp,
+  .brace_4R .bm {
+    width: 0.1em;
+    height: 0.2em;
+  }
+  .brace_4R .face {
+    background-color: #797979;
+  }
+  /* .back styles */
+  .back {
+    transform: translate3D(6em, -4.25em, -0.1em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 12.4em;
+    height: 8.5em;
+    margin: -4.25em 0 0 -6.2em;
+  }
+  .back .ft {
+    transform: translateZ(0em);
+  }
+  .back .bk {
+    transform: translateZ(0em) rotateY(180deg);
+  }
+  .back .rt,
+  .back .lt {
+    width: 0em;
+    height: 8.5em;
+  }
+  .back .tp,
+  .back .bm {
+    width: 12.4em;
+    height: 0em;
+  }
+  .back .face {
+    background-color: #ffffff;
+  }
+  .back .ft {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Front.png);
+  }
+  .back .bk {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Front.png);
+  }
+  /* .front styles */
+  .front {
+    transform: translate3D(6em, -4.25em, 20.1em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 12.4em;
+    height: 8.5em;
+    margin: -4.25em 0 0 -6.2em;
+  }
+  .front .ft {
+    transform: translateZ(0em);
+  }
+  .front .bk {
+    transform: translateZ(0em) rotateY(180deg);
+  }
+  .front .rt,
+  .front .lt {
+    width: 0em;
+    height: 8.5em;
+  }
+  .front .tp,
+  .front .bm {
+    width: 12.4em;
+    height: 0em;
+  }
+  .front .face {
+    background-color: #ffffff;
+  }
+  .front .ft {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Front.png);
+  }
+  .front .bk {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Front.png);
+  }
+  /* .roofCurve_R_1 styles */
+  .roofCurve_R_1 {
+    transform: translate3D(11.719999999999999em, -6.530882352941176em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(39deg);
+    opacity: 1;
+    width: 0.5em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.25em;
+  }
+  .roofCurve_R_1 .ft {
+    transform: translateZ(10.5em);
+  }
+  .roofCurve_R_1 .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roofCurve_R_1 .rt,
+  .roofCurve_R_1 .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roofCurve_R_1 .tp,
+  .roofCurve_R_1 .bm {
+    width: 0.5em;
+    height: 21em;
+  }
+  .roofCurve_R_1 .face {
+    background-color: #ffffff;
+  }
+  .roofCurve_R_1 .ft {
+    background-color: #009051;
+  }
+  .roofCurve_R_1 .bk {
+    background-color: #009051;
+  }
+  .roofCurve_R_1 .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roofCurve_R_1 .bm {
+    background-color: #565656;
+  }
+  /* .roofCurve_R-2 styles */
+  .roofCurve_R-2 {
+    transform: translate3D(11.969999999999999em, -6.155882352941174em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(64deg);
+    opacity: 1;
+    width: 0.5em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.25em;
+  }
+  .roofCurve_R-2 .ft {
+    transform: translateZ(10.5em);
+  }
+  .roofCurve_R-2 .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roofCurve_R-2 .rt,
+  .roofCurve_R-2 .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roofCurve_R-2 .tp,
+  .roofCurve_R-2 .bm {
+    width: 0.5em;
+    height: 21em;
+  }
+  .roofCurve_R-2 .face {
+    background-color: #ffffff;
+  }
+  .roofCurve_R-2 .ft {
+    background-color: #009051;
+  }
+  .roofCurve_R-2 .bk {
+    background-color: #009051;
+  }
+  .roofCurve_R-2 .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roofCurve_R-2 .bm {
+    background-color: #565656;
+  }
+  .roofCurve_R-2 .lt {
+    background-color: #565656;
+  }
+  /* .right styles */
+  .right {
+    transform: translate3D(12.2em, -3em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0em;
+    height: 6em;
+    margin: -3em 0 0 0em;
+  }
+  .right .ft {
+    transform: translateZ(10.105em);
+  }
+  .right .bk {
+    transform: translateZ(-10.105em) rotateY(180deg);
+  }
+  .right .rt,
+  .right .lt {
+    width: 20.21em;
+    height: 6em;
+  }
+  .right .tp,
+  .right .bm {
+    width: 0em;
+    height: 20.21em;
+  }
+  .right .face {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Side.png)
+      #ffffff;
+  }
+  /* .left styles */
+  .left {
+    transform: translate3D(-0.2em, -3em, 10em) rotateX(0deg) rotateY(0deg)
+      rotateZ(0deg);
+    opacity: 1;
+    width: 0em;
+    height: 6em;
+    margin: -3em 0 0 0em;
+  }
+  .left .ft {
+    transform: translateZ(10.105em);
+  }
+  .left .bk {
+    transform: translateZ(-10.105em) rotateY(180deg);
+  }
+  .left .rt,
+  .left .lt {
+    width: 20.21em;
+    height: 6em;
+  }
+  .left .tp,
+  .left .bm {
+    width: 0em;
+    height: 20.21em;
+  }
+  .left .face {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/Side.png)
+      #ffffff;
+  }
+  /* .roofCurve_L_1 styles */
+  .roofCurve_L_1 {
+    transform: translate3D(0.27388591800356576em, -6.530882352941177em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(-39deg);
+    opacity: 1;
+    width: 0.5em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.25em;
+  }
+  .roofCurve_L_1 .ft {
+    transform: translateZ(10.5em);
+  }
+  .roofCurve_L_1 .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roofCurve_L_1 .rt,
+  .roofCurve_L_1 .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roofCurve_L_1 .tp,
+  .roofCurve_L_1 .bm {
+    width: 0.5em;
+    height: 21em;
+  }
+  .roofCurve_L_1 .face {
+    background-color: #ffffff;
+  }
+  .roofCurve_L_1 .ft {
+    background-color: #009051;
+  }
+  .roofCurve_L_1 .bk {
+    background-color: #009051;
+  }
+  .roofCurve_L_1 .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roofCurve_L_1 .bm {
+    background-color: #565656;
+  }
+  /* .roofCurve_L-2 styles */
+  .roofCurve_L-2 {
+    transform: translate3D(0.04055258467023249em, -6.1642156862745106em, 10em)
+      rotateX(0deg) rotateY(0deg) rotateZ(-64deg);
+    opacity: 1;
+    width: 0.5em;
+    height: 0.2em;
+    margin: -0.1em 0 0 -0.25em;
+  }
+  .roofCurve_L-2 .ft {
+    transform: translateZ(10.5em);
+  }
+  .roofCurve_L-2 .bk {
+    transform: translateZ(-10.5em) rotateY(180deg);
+  }
+  .roofCurve_L-2 .rt,
+  .roofCurve_L-2 .lt {
+    width: 21em;
+    height: 0.2em;
+  }
+  .roofCurve_L-2 .tp,
+  .roofCurve_L-2 .bm {
+    width: 0.5em;
+    height: 21em;
+  }
+  .roofCurve_L-2 .face {
+    background-color: #ffffff;
+  }
+  .roofCurve_L-2 .ft {
+    background-color: #009051;
+  }
+  .roofCurve_L-2 .bk {
+    background-color: #009051;
+  }
+  .roofCurve_L-2 .tp {
+    background: url(http://www.tomasrdesign.com/thforrester/textures/sidingTexture.jpg);
+  }
+  .roofCurve_L-2 .bm {
+    background-color: #565656;
+  }
+  .roofCurve_L-2 .rt {
+    background-color: #565656;
+  }
+}
