@@ -1,5 +1,8 @@
 @import "level";
 
+.sprite-cont {
+  transform-style: preserve-3d;
+}
 .sprite {
   position: absolute;
   &.item {
@@ -78,11 +81,15 @@
 }
 
 .testWeapon {
-  position: fixed;
+  backface-visibility: hidden;
+  position: absolute;
   bottom: 0;
   right: 200px;
   height: 2 * 128px;
   width: 2 * 320px;
   z-index: 5;
+
+  background-size: cover;
+  background-image: url(img/weapon.png);
 }
 ///////
