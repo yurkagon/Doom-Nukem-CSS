@@ -34,9 +34,29 @@ scene.init({
     for (let i = 0; i < 10; i++) {
       new House({
         position: {
-          x: 110 * i * 10,
+          x: 110 * i * 10 - 5000,
           y: 493,
           z: 3000
+        }
+      });
+    }
+
+    for (let i = 0; i < 10; i++) {
+      new House({
+        position: {
+          x: 110 * i * 10 - 5000,
+          y: 493,
+          z: -3000
+        }
+      });
+    }
+
+    for (let i = 0; i < 10; i++) {
+      new House({
+        position: {
+          x: 110 * i * 10 - 5000,
+          y: 493,
+          z: 8000
         }
       });
     }
@@ -45,8 +65,8 @@ scene.init({
       new Enemy({
         type: "guard",
         position: {
-          x: 1000,
-          z: 1000
+          x: 1000 + i * 100,
+          z: 1000 + i * 100
         }
       });
     }

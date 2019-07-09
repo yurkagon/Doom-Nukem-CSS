@@ -2,10 +2,14 @@ import GameObject from "../GameObject";
 import $ from "jquery";
 import { IModelConfig } from "./types";
 import { iPosition } from "../../types";
+import Player from "../Player/Player";
+import { Distance } from "../../helpers";
 
 abstract class Model extends GameObject {
   private static readonly DEFAULT_ROTATION: iPosition = { x: 0, y: 0, z: 0 };
   private static readonly DEFAULT_SCALE: iPosition = { x: 1, y: 1, z: 1 };
+
+  private static readonly VISIBILITY_DISTANCE = 4000;
 
   private static readonly level: JQuery = $(".level");
   private self: JQuery = $("<div/>");
@@ -13,6 +17,8 @@ abstract class Model extends GameObject {
   private name: string;
   private rotation: iPosition;
   private scale: iPosition;
+
+  private isVisible: boolean;
 
   constructor(config: IModelConfig) {
     super(config.position);
@@ -29,9 +35,28 @@ abstract class Model extends GameObject {
     this.updateTransform();
   }
 
-  start() {}
+  start() {
+    this.isVisible = true;
+  }
 
-  update() {}
+  update() {
+    if (new Date().getTime() % 1000 < 10) return;
+
+    const player = Player.getInstance();
+
+    const distance = Distance(player.getPosition(), this.getPosition());
+
+    if (this.isVisible && distance > Model.VISIBILITY_DISTANCE) {
+      this.setVisibility(false);
+    } else if (!this.isVisible && distance < Model.VISIBILITY_DISTANCE) {
+      this.setVisibility(true);
+    }
+  }
+
+  public setVisibility(status: boolean): void {
+    this.self.css("display", status ? "block" : "none");
+    this.isVisible = status;
+  }
 
   private updateTransform() {
     const { position, rotation, scale } = this;
