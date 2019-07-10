@@ -66,8 +66,6 @@ abstract class Model extends GameObject {
 
     const transform = `${translate3d} ${scale3d}`;
 
-    console.log(transform);
-
     this.self.css("transform", transform);
   }
 }

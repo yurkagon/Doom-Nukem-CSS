@@ -39,13 +39,15 @@ abstract class SceneController {
   }
 
   private runUpdating() {
-    const timerId = setTimeout(() => {
-      this.update();
+    // const timerId = setTimeout(() => {
+    //   this.update();
 
-      clearTimeout(timerId);
+    //   clearTimeout(timerId);
 
-      this.runUpdating();
-    }, SceneController.RENDER_SPEED);
+    //   this.runUpdating();
+    // }, SceneController.RENDER_SPEED);
+
+    setInterval(this.update, SceneController.RENDER_SPEED);
   }
 
   private update(): void {

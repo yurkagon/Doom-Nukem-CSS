@@ -75,8 +75,8 @@ class Enemy extends Sprite {
     this.moveDiff = generateCoordDiff(500);
   }
   setState(state) {
-    this.self.removeClass(this.currenState);
-    this.self.addClass(state);
+    this.spriteElement.removeClass(this.currenState);
+    this.spriteElement.addClass(state);
     this.currenState = state;
   }
   update() {
