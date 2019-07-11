@@ -20,7 +20,7 @@ class Item extends Sprite {
   update() {
     super.update();
 
-    if (this.isVisible) {
+    if (this.isActive) {
       const player = Player.getInstance();
 
       const distance = Distance(player.getPosition(), this.getPosition());
