@@ -7,14 +7,19 @@ abstract class GameObjectLOD extends GameObject {
   protected VISIBILITY_DISTANCE = 4000;
   protected self: JQuery = $("<div/>");
 
-  protected isVisible: boolean;
+  protected isVisible: boolean = true;
+
+  private static readonly SKIP_RENDER = 50;
+  private renderCount = GameObjectLOD.SKIP_RENDER;
 
   start() {
     this.isVisible = true;
   }
 
   update() {
-    if (new Date().getTime() % 1000 < 10) return;
+    this.renderCount++;
+    if (GameObjectLOD.SKIP_RENDER >= this.renderCount) return;
+    this.renderCount = 0;
 
     const player = Player.getInstance();
 
