@@ -3,14 +3,14 @@ import Player from "../../Player/Player";
 import { Distance } from "../../../helpers";
 
 class Item extends Sprite {
+  VISIBILITY_DISTANCE = 6000;
   private static readonly DISTANCE_TO_PICK = 150;
 
   constructor(config) {
-    const { type, position } = config;
     super({
-      type,
+      type: config.type,
       position: {
-        ...position,
+        ...config.position,
         y: 350
       },
       classType: "item"
@@ -19,11 +19,14 @@ class Item extends Sprite {
 
   update() {
     super.update();
-    const player = Player.getInstance();
 
-    const distance = Distance(player.getPosition(), this.getPosition());
+    if (this.isVisible) {
+      const player = Player.getInstance();
 
-    if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
+      const distance = Distance(player.getPosition(), this.getPosition());
+
+      if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
+    }
   }
 
   pickItem() {

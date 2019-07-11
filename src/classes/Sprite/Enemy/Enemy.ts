@@ -38,6 +38,8 @@ class Enemy extends Sprite {
     this.moveDiff = generateCoordDiff(500);
   }
   logicUpdate() {
+    if (!this.isVisible) return;
+
     const {
       VISION_DISTANCE,
       MAX_WALKING_TO_PLAYER_DISTANCE,
@@ -75,28 +77,30 @@ class Enemy extends Sprite {
     this.moveDiff = generateCoordDiff(500);
   }
   setState(state) {
-    this.self.removeClass(this.currenState);
-    this.self.addClass(state);
+    this.spriteElement.removeClass(this.currenState);
+    this.spriteElement.addClass(state);
     this.currenState = state;
   }
   update() {
-    const { states } = Enemy;
+    if (this.isVisible) {
+      const { states } = Enemy;
 
-    const player = Player.getInstance();
+      const player = Player.getInstance();
 
-    switch (this.currenState) {
-      case states.WALK:
-        const playerPos = player.getPosition();
-        const enemyPos = this.getPosition();
+      switch (this.currenState) {
+        case states.WALK:
+          const playerPos = player.getPosition();
+          const enemyPos = this.getPosition();
 
-        const dx = playerPos.x + this.moveDiff.x - enemyPos.x;
-        const dz = playerPos.z - this.moveDiff.z - enemyPos.z;
-        const angle = Math.atan2(dz, dx);
+          const dx = playerPos.x + this.moveDiff.x - enemyPos.x;
+          const dz = playerPos.z - this.moveDiff.z - enemyPos.z;
+          const angle = Math.atan2(dz, dx);
 
-        const { x, z } = this.position;
+          const { x, z } = this.position;
 
-        this.position.x = x + Math.cos(angle) * this.speed;
-        this.position.z = z + Math.sin(angle) * this.speed;
+          this.position.x = x + Math.cos(angle) * this.speed;
+          this.position.z = z + Math.sin(angle) * this.speed;
+      }
     }
     super.update();
   }
