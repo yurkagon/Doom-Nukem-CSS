@@ -31,30 +31,30 @@ scene.init({
       z: 1000
     });
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       new House({
         position: {
-          x: 110 * i * 10 - 5000,
+          x: 110 * i * 20 - 5000,
           y: 493,
           z: 3000
         }
       });
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       new House({
         position: {
-          x: 110 * i * 10 - 5000,
+          x: 110 * i * 20 - 5000,
           y: 493,
           z: -3000
         }
       });
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       new House({
         position: {
-          x: 110 * i * 10 - 5000,
+          x: 110 * i * 20 - 5000,
           y: 493,
           z: 8000
         }

@@ -4,6 +4,8 @@ import $ from "jquery";
 import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { iPosition } from "../../types";
 
+import { isAngleBetween, normalize } from "../../helpers/angle";
+
 abstract class PlayerCamera extends GameObject {
   public rotation = {
     x: 0,
@@ -56,6 +58,22 @@ abstract class PlayerCamera extends GameObject {
   public moveBy(vectorToMove: iPosition): void {
     this.position.x += vectorToMove.x;
     this.position.z += vectorToMove.z;
+  }
+
+  public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {
+    const playerPos = this.getPosition();
+    const gameObjectPos = gameObject.getPosition();
+
+    const dx = playerPos.x - gameObjectPos.x;
+    const dz = gameObjectPos.z - playerPos.z;
+
+    const angle = normalize((Math.atan2(dz, dx) * 180) / Math.PI);
+    const playerViewAngle = normalize(-this.rotation.y - 90);
+
+    const playerViewLeft = playerViewAngle - fov / 2;
+    const playerViewRight = playerViewAngle + fov / 2;
+
+    return isAngleBetween(angle, playerViewLeft, playerViewRight);
   }
 
   rotate(degree) {

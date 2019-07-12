@@ -3,19 +3,22 @@ import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 import { Distance } from "../../helpers";
 
-import { isAngleBetween } from '../../helpers/angle';
+import { isAngleBetween, normalize } from "../../helpers/angle";
 
 const angles = require("angles");
 
 abstract class GameObjectLOD extends GameObject {
-  protected fov = 100;
-  protected VISIBILITY_DISTANCE = 4000;
   protected self: JQuery = $("<div/>");
+
+  protected fov = 90;
+  protected VISIBILITY_DISTANCE = 4000;
+  private MIN_VISIBILITY_DISTANCE = 1000;
+  protected VISION_CHECKING = true;
 
   protected isActive: boolean = true;
   protected isVisible: boolean = true;
 
-  private static readonly SKIP_RENDER = 100;
+  private static readonly SKIP_RENDER = 10;
   private renderCount = GameObjectLOD.SKIP_RENDER;
 
   start() {
@@ -31,45 +34,43 @@ abstract class GameObjectLOD extends GameObject {
     const player = Player.getInstance();
     const distance = Distance(player.getPosition(), this.getPosition());
 
-    const isTooLongDistance = distance > this.VISIBILITY_DISTANCE;
-    const isCurrentlyVisible = !isTooLongDistance && this.isVisibleByPlayer();
+    const isClose = distance < this.MIN_VISIBILITY_DISTANCE;
+    const shouldBeActive = distance < this.VISIBILITY_DISTANCE;
 
-    // if (isTooLongDistance) {
-    //   this.setActiveStatus(false);
-    // } else {
-    //   this.setActiveStatus(true);
-    // }
+    const shouldBeVisible =
+      ( isClose ||
+      shouldBeActive) && this.isVisibleByPlayer();
 
-    this.setVisibleStatus(isCurrentlyVisible);
+    this.setStatus(shouldBeActive, shouldBeVisible);
   }
 
   private isVisibleByPlayer(): boolean {
+    if (!this.VISION_CHECKING) return true;
+
     const player = Player.getInstance();
 
-    const playerPos = player.getPosition();
-    const thisPos = this.getPosition();
-
-    const dx = playerPos.x - thisPos.x;
-    const dz = thisPos.z - playerPos.z;
-
-    const angle = angles.normalize((Math.atan2(dz, dx) * 180) / Math.PI);
-    const playerViewAngle = angles.normalize(-player.rotation.y - 90);
-
-    const playerViewLeft = playerViewAngle - this.fov / 2;
-    const playerViewRight = playerViewAngle + this.fov / 2;
-
-    return isAngleBetween(angle, playerViewLeft, playerViewRight);
+    return player.isObjectVisibleFromFov(this, this.fov);
   }
 
-  private setActiveStatus(status: boolean): void {
-    this.isActive = status;
-    this.setVisibleStatus(status);
+  private setStatus(shouldActive, shouldVisible): void {
+    if (shouldActive && !this.isActive) {
+      this.isActive = true;
+    } else if (!shouldActive && this.isActive) {
+      this.isActive = false;
+    }
+    if (shouldVisible && !this.isVisible) {
+      this.isVisible = true;
+      this.self.css("display", "block");
+    } else if (!shouldVisible && this.isVisible) {
+      this.isVisible = false;
+      this.self.css("display", "none");
+    }
   }
 
-  private setVisibleStatus(status: boolean): void {
-    this.self.css("display", status ? "block" : "none");
-    this.isVisible = status;
-  }
+  // private setVisibleStatus(status: boolean): void {
+  //   this.self.css("display", status ? "block" : "none");
+  //   this.isVisible = status;
+  // }
 }
 
 export default GameObjectLOD;
