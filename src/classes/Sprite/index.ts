@@ -28,7 +28,7 @@ class Sprite extends GameObjectLOD {
   }
 
   update() {
-    if (this.isVisible) {
+    if (this.isActive) {
       const player = Player.getInstance();
 
       const translate3d = generetaTranslate3d(this.getPosition());

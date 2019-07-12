@@ -38,7 +38,7 @@ class Enemy extends Sprite {
     this.moveDiff = generateCoordDiff(500);
   }
   logicUpdate() {
-    if (!this.isVisible) return;
+    if (!this.isActive) return;
 
     const {
       VISION_DISTANCE,
@@ -82,7 +82,7 @@ class Enemy extends Sprite {
     this.currenState = state;
   }
   update() {
-    if (this.isVisible) {
+    if (this.isActive) {
       const { states } = Enemy;
 
       const player = Player.getInstance();

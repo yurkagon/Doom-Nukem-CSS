@@ -3,16 +3,26 @@ import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 import { Distance } from "../../helpers";
 
+import { isAngleBetween, normalize } from "../../helpers/angle";
+
+const angles = require("angles");
+
 abstract class GameObjectLOD extends GameObject {
-  protected VISIBILITY_DISTANCE = 4000;
   protected self: JQuery = $("<div/>");
 
+  protected fov = 90;
+  protected VISIBILITY_DISTANCE = 4000;
+  private MIN_VISIBILITY_DISTANCE = 1000;
+  protected VISION_CHECKING = true;
+
+  protected isActive: boolean = true;
   protected isVisible: boolean = true;
 
-  private static readonly SKIP_RENDER = 50;
+  private static readonly SKIP_RENDER = 10;
   private renderCount = GameObjectLOD.SKIP_RENDER;
 
   start() {
+    this.isActive = true;
     this.isVisible = true;
   }
 
@@ -22,20 +32,44 @@ abstract class GameObjectLOD extends GameObject {
     this.renderCount = 0;
 
     const player = Player.getInstance();
-
     const distance = Distance(player.getPosition(), this.getPosition());
 
-    if (this.isVisible && distance > this.VISIBILITY_DISTANCE) {
-      this.setVisibility(false);
-    } else if (!this.isVisible && distance < this.VISIBILITY_DISTANCE) {
-      this.setVisibility(true);
+    const isClose = distance < this.MIN_VISIBILITY_DISTANCE;
+    const shouldBeActive = distance < this.VISIBILITY_DISTANCE;
+
+    const shouldBeVisible =
+      (isClose || shouldBeActive) && this.isVisibleByPlayer();
+
+    this.setStatus(shouldBeActive, shouldBeVisible);
+  }
+
+  private isVisibleByPlayer(): boolean {
+    if (!this.VISION_CHECKING) return true;
+
+    const player = Player.getInstance();
+
+    return player.isObjectVisibleFromFov(this, this.fov);
+  }
+
+  private setStatus(shouldActive, shouldVisible): void {
+    if (shouldActive && !this.isActive) {
+      this.isActive = true;
+    } else if (!shouldActive && this.isActive) {
+      this.isActive = false;
+    }
+    if (shouldVisible && !this.isVisible) {
+      this.isVisible = true;
+      this.self.css("visibility", "inherit");
+    } else if (!shouldVisible && this.isVisible) {
+      this.isVisible = false;
+      this.self.css("visibility", "hidden");
     }
   }
 
-  private setVisibility(status: boolean): void {
-    this.self.css("display", status ? "block" : "none");
-    this.isVisible = status;
-  }
+  // private setVisibleStatus(status: boolean): void {
+  //   this.self.css("display", status ? "block" : "none");
+  //   this.isVisible = status;
+  // }
 }
 
 export default GameObjectLOD;

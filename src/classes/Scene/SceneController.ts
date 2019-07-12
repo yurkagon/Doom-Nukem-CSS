@@ -8,7 +8,7 @@ abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
   private player: Player;
-  private gameObjets: Array<GameObject> = [];
+  public gameObjets: Array<GameObject> = [];
   private readonly level: JQuery = $(".level");
 
   private sceneStart: () => void;

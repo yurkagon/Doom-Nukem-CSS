@@ -6,6 +6,8 @@ import Model from "../index";
 class House extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
 
+  VISION_CHECKING = false;
+
   constructor(transform?: ITransform) {
     super({
       name: "house",
