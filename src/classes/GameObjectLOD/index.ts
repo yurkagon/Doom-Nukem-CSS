@@ -38,8 +38,7 @@ abstract class GameObjectLOD extends GameObject {
     const shouldBeActive = distance < this.VISIBILITY_DISTANCE;
 
     const shouldBeVisible =
-      ( isClose ||
-      shouldBeActive) && this.isVisibleByPlayer();
+      (isClose || shouldBeActive) && this.isVisibleByPlayer();
 
     this.setStatus(shouldBeActive, shouldBeVisible);
   }
@@ -60,10 +59,10 @@ abstract class GameObjectLOD extends GameObject {
     }
     if (shouldVisible && !this.isVisible) {
       this.isVisible = true;
-      this.self.css("display", "block");
+      this.self.css("visibility", "inherit");
     } else if (!shouldVisible && this.isVisible) {
       this.isVisible = false;
-      this.self.css("display", "none");
+      this.self.css("visibility", "hidden");
     }
   }
 

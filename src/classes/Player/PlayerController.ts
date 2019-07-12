@@ -2,6 +2,8 @@ import $ from "jquery";
 
 import PlayerCamera from "./PlayerCamera";
 import { iPosition } from "../../types";
+import Scene from '../Scene/Scene';
+import Enemy from "../Sprite/Enemy/Enemy";
 
 abstract class PlayerController extends PlayerCamera {
   static readonly MOUSE_SENSITIVITY = 1.5;
@@ -27,6 +29,8 @@ abstract class PlayerController extends PlayerCamera {
     this.attachMouseMove();
     this.attachKeyDown();
     this.attachKeyUp();
+
+    this.attachShot();
   }
 
   update() {
@@ -80,6 +84,21 @@ abstract class PlayerController extends PlayerCamera {
 
       if (keyCode == 81) this.moveState.rotateLeft = true;
       if (keyCode == 69) this.moveState.rotateRight = true;
+    });
+  }
+
+  private attachShot(): void {
+    $("body").click(() => {
+      for(let gameObject of Scene.getInstance().gameObjets) {
+        if(gameObject instanceof Enemy) {
+          if (gameObject.currenState !== Enemy.states.DEAD) {
+            if(this.isObjectVisibleFromFov(gameObject, 5)) {
+              gameObject.setState(Enemy.states.DEAD);
+              break;
+            }
+          }
+        }
+      };
     });
   }
 
