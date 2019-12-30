@@ -30,7 +30,14 @@ const weapon = $(".testWeapon");
       "img/icon.png",
       "img/wall.jpg",
       "img/weapon.png",
-      "sounds/start.wav"
+      "img/splash.png",
+      "img/enemy/guard.png",
+      "img/items/medkit.png",
+      "img/items/shotgun.png",
+      "img/grass.jpg",
+      "img/models/house/sidingTexture.jpg",
+      "img/models/house/Front.png",
+      "img/models/house/Side.png"
     ],
     sounds: [
       "sounds/start.wav",
@@ -46,6 +53,16 @@ const weapon = $(".testWeapon");
   AppLoader.hide();
 
   console.log("loaded");
+
+  for (let i = 0; i < 5; i++) {
+    new House({
+      position: {
+        x: 110 * i * 20 - 5000,
+        y: 493,
+        z: 3000
+      }
+    });
+  }
 
   scene.init({
     player,
