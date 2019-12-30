@@ -58,6 +58,7 @@ abstract class SceneController {
 
         continue;
       }
+
       gameObject.update();
     }
 
