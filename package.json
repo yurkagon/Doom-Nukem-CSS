@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --mode=development",
-    "build": "webpack --config webpack.config.js --mode=production",
+    "build": "webpack --config webpack.config.js --mode=development",
     "watch": "webpack --watch",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
