@@ -6,7 +6,8 @@
     "target": "es5",
     "allowJs": true,
     "sourceMap": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react"
   },
   "exclude": ["node_modules", "build"]
 }

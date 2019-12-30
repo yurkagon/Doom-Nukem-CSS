@@ -53,4 +53,4 @@ class AppLoader {
   }
 }
 
-export default new AppLoader();
+export default AppLoader;

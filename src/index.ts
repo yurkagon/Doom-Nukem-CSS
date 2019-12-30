@@ -13,7 +13,8 @@ import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
 import House from "./classes/Model/House";
 
 import ResourceLoader from "./ResourceLoader";
-import AppLoader from "./AppLoader";
+import AppLoader from "./ui/AppLoader";
+import UI from "./ui";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -21,7 +22,8 @@ const scene = Scene.getInstance();
 const weapon = $(".testWeapon");
 
 (async () => {
-  AppLoader.show();
+  UI.init();
+  // AppLoader.show();
   await ResourceLoader.load({
     images: [
       "img/skybox.jpg",
@@ -47,13 +49,13 @@ const weapon = $(".testWeapon");
       "sounds/items/pickWeapon.wav"
     ],
     onUpdate: (name, progress) => {
-      AppLoader.set(+progress, name);
+      // AppLoader.set(+progress, name);
     }
   });
-  await AppLoader.waitUntilStartIsPressed();
+  // await AppLoader.waitUntilStartIsPressed();
 
   setLevel();
-  AppLoader.hide();
+  // AppLoader.hide();
 
   scene.init({
     player,

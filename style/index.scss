@@ -1,6 +1,40 @@
 @import "level";
 @import "../src/classes/Model/style";
 
+$cameraW: 1300px;
+$cameraH: 700px;
+$size: 1;
+
+#root {
+  width: $cameraW * $size;
+  height: $cameraH * $size;
+  position: relative;
+}
+
+#camera {
+  cursor: none;
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  overflow: hidden;
+  background: url(img/skybox.jpg) 0 -5px;
+  background-size: 60%;
+
+  perspective: 800px;
+}
+
+#ui {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/////////////////
+
 .sprite-cont {
   transform-style: preserve-3d;
 }
@@ -94,3 +128,16 @@
   background-image: url(img/weapon.png);
 }
 ///////
+
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  overflow: hidden;
+  background: url(img/background.jpg);
+  background-size: cover;
+}
