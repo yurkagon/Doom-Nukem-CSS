@@ -14,7 +14,7 @@ abstract class GameObject {
     this.position = position;
 
     const scene = Scene.getInstance();
-    scene.subscrubeGameObject(this);
+    scene.subscribeGameObject(this);
 
     if (this.start) {
       this.start();
@@ -25,7 +25,7 @@ abstract class GameObject {
 
   destroy() {
     const scene = Scene.getInstance();
-    scene.unSubscrubeGameObject(this);
+    scene.unSubscribeGameObject(this);
   }
 
   getPosition() {

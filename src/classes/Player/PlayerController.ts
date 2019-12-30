@@ -90,7 +90,7 @@ abstract class PlayerController extends PlayerCamera {
 
   private attachShot(): void {
     $("body").click(() => {
-      for (let gameObject of Scene.getInstance().gameObjets) {
+      for (let gameObject of Scene.getInstance().gameObjects) {
         if (gameObject instanceof Enemy) {
           if (gameObject.currenState !== Enemy.states.DEAD) {
             // const distance = Distance(this.getPosition(), gameObject.getPosition());
