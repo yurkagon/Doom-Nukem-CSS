@@ -50,9 +50,8 @@ const weapon = $(".testWeapon");
       AppLoader.set(+progress, name);
     }
   });
-  // AppLoader.hide();
-
-  console.log("loaded");
+  await AppLoader.waitUntilStartIsPressed();
+  AppLoader.hide();
 
   new ShotgunItem({
     x: 1000,

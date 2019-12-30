@@ -69,4 +69,19 @@
 
     color: white;
   }
+
+  .start-button {
+    font-size: 40px;
+    border-radius: 50px;
+
+    width: 200px;
+    background-color: white;
+
+    text-align: center;
+
+    &.active {
+      background-color: green;
+      color: white;
+    }
+  }
 }
