@@ -20,8 +20,8 @@ $size: 1;
   width: $cameraW * $size;
   height: $cameraH * $size;
   cursor: none;
-  margin: auto;
-  margin-top: 8vh;
+  // margin: auto;
+  // margin-top: 8vh;
   position: relative;
   overflow: hidden;
   background: url(img/skybox.jpg) 0 -5px;
@@ -70,7 +70,7 @@ $size: 1;
 
   background-size: 10px;
   background-repeat: repeat;
-  background-image: url(https://www.textures.com/system/gallery/photos/Nature/Grass/50182/Grass0130_1_270.jpg);
+  background-image: url(img/grass.jpg);
 
   transform-style: preserve-3d;
 }
