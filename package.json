@@ -1,9 +1,9 @@
 {
-  "name": "css_2.5d",
-  "version": "1.0.0",
+  "name": "doom-nukem-css",
+  "version": "2.0.0",
   "private": true,
-  "homepage": "http://yurkagon.github.io/Painful_try_to_make_3D_FPS_Controller",
-  "repository": "https://github.com/yurkagon/Painful_try_to_make_3D_FPS_Controller",
+  "homepage": "https://yurkagon.github.io/Doom-Nukem-CSS/",
+  "repository": "https://github.com/yurkagon/Doom-Nukem-CSS",
   "author": "yurkagon <owngameplay@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -16,26 +16,26 @@
   },
   "dependencies": {
     "angles": "^0.2.4",
-    "jquery": "^3.3.1"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.30",
-    "@types/node": "^12.6.2",
-    "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.3",
-    "css-loader": "^1.0.0",
-    "gh-pages": "^2.0.1",
-    "husky": "^3.0.0",
-    "node-sass": "^4.9.3",
-    "prettier": "1.18.2",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.2",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "@types/jquery": "^3.3.31",
+    "@types/node": "^13.1.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.0",
+    "gh-pages": "^2.1.1",
+    "husky": "^3.1.0",
+    "node-sass": "^4.13.0",
+    "prettier": "1.19.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   },
   "husky": {
     "hooks": {
