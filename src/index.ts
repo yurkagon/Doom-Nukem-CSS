@@ -36,7 +36,11 @@ const weapon = $(".testWeapon");
       "sounds/voice/medkit.wav",
       "sounds/items/itemPickUp.wav",
       "sounds/items/pickWeapon.wav"
-    ]
+    ],
+    onUpdate: (name, progress) => {
+      // console.clear();
+      console.log(progress, name);
+    }
   });
 
   console.log("loaded");

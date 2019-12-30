@@ -7,13 +7,25 @@ class ResourceLoader {
 
   public static async load({
     images = [],
-    sounds = []
+    sounds = [],
+    onUpdate
   }: {
     images: string[];
     sounds: string[];
+    onUpdate?: (name: string, progress: number) => void;
   }) {
-    await this.audioLoader.load(sounds);
-    await this.imageLoader.load(images);
+    const resourceLength = images.length + sounds.length;
+    let currentLoadedCount = 0;
+
+    const handler = name => {
+      currentLoadedCount++;
+      if (onUpdate) {
+        const percentage = (currentLoadedCount / resourceLength) * 100;
+        onUpdate(name, percentage);
+      }
+    };
+    await this.audioLoader.load(sounds, handler);
+    await this.imageLoader.load(images, handler);
   }
 }
 

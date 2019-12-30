@@ -1,21 +1,23 @@
 import UrlLoader from "./UrlLoader";
 
 class AudioLoader extends UrlLoader {
-  public handleUrl(url: string) {
+  public handleUrl(url: string, callback?: (name: string) => void) {
     return new Promise(resolve => {
       const audio = new Audio();
 
       audio.src = this.getExactPath(url);
 
-      const callback = () => {
-        audio.removeEventListener("canplaythrough", callback);
+      const onEnd = () => {
+        audio.removeEventListener("canplaythrough", onEnd);
+
+        callback && callback(url);
 
         resolve();
       };
 
-      audio.addEventListener("canplaythrough", callback);
+      audio.addEventListener("canplaythrough", onEnd);
 
-      audio.onerror = callback;
+      audio.onerror = onEnd;
     });
   }
 }
