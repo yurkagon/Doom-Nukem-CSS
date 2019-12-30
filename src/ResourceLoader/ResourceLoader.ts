@@ -12,7 +12,7 @@ class ResourceLoader {
   }: {
     images: string[];
     sounds: string[];
-    onUpdate?: (name: string, progress: number) => void;
+    onUpdate?: (name: string, progress: string) => void;
   }) {
     const resourceLength = images.length + sounds.length;
     let currentLoadedCount = 0;
@@ -21,7 +21,7 @@ class ResourceLoader {
       currentLoadedCount++;
       if (onUpdate) {
         const percentage = (currentLoadedCount / resourceLength) * 100;
-        onUpdate(name, percentage);
+        onUpdate(name, percentage.toFixed(2));
       }
     };
     await this.audioLoader.load(sounds, handler);

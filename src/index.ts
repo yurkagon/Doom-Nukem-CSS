@@ -13,6 +13,7 @@ import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
 import House from "./classes/Model/House";
 
 import ResourceLoader from "./ResourceLoader";
+import AppLoader from "./AppLoader";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -20,7 +21,8 @@ const scene = Scene.getInstance();
 const weapon = $(".testWeapon");
 
 (async () => {
-  ResourceLoader.load({
+  AppLoader.show();
+  await ResourceLoader.load({
     images: [
       "img/skybox.jpg",
       "img/background.jpg",
@@ -38,10 +40,10 @@ const weapon = $(".testWeapon");
       "sounds/items/pickWeapon.wav"
     ],
     onUpdate: (name, progress) => {
-      // console.clear();
-      console.log(progress, name);
+      AppLoader.set(+progress, name);
     }
   });
+  AppLoader.hide();
 
   console.log("loaded");
 

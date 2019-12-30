@@ -1,0 +1,70 @@
+#root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.loading-screen {
+  background-image: url(img/splash.png);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .loading-title {
+    color: white;
+    text-align: center;
+
+    font-size: 70px;
+
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .line-container {
+    position: relative;
+    width: 60%;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50px;
+
+    background: brown;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    .line {
+      height: 100%;
+      width: 60%;
+
+      background: yellow;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .percent {
+      font-size: 40px;
+      font-weight: bold;
+    }
+  }
+
+  .text {
+    font-size: 40px;
+
+    color: white;
+  }
+}
