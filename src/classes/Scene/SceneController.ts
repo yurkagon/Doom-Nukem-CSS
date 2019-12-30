@@ -52,6 +52,12 @@ abstract class SceneController {
 
   private update(): void {
     for (let gameObject of this.gameObjects) {
+      if (!gameObject.isStarted) {
+        gameObject.start();
+        gameObject.isStarted = true;
+
+        continue;
+      }
       gameObject.update();
     }
 
