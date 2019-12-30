@@ -13,19 +13,27 @@ abstract class Model extends GameObjectLOD {
   private rotation: iPosition;
   private scale: iPosition;
 
+  private config: IModelConfig;
+
   constructor(config: IModelConfig) {
     super(config.position);
+
+    this.config = config;
 
     this.name = config.name;
     this.rotation = config.rotation || Object.create(Model.DEFAULT_ROTATION);
     this.scale = config.scale || Object.create(Model.DEFAULT_SCALE);
+  }
 
+  public start() {
     this.self.addClass(this.name);
-    this.self.append(config.data);
+    this.self.append(this.config.data);
 
     Model.level.append(this.self);
 
     this.updateTransform();
+
+    super.start();
   }
 
   private updateTransform() {
