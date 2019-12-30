@@ -3,7 +3,7 @@
     "module": "ESNext",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
-    "target": "ESNext",
+    "target": "es5",
     "allowJs": true,
     "sourceMap": true,
     "moduleResolution": "node"
