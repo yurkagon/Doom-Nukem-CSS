@@ -50,21 +50,15 @@ const weapon = $(".testWeapon");
       AppLoader.set(+progress, name);
     }
   });
+  await AppLoader.waitUntilStartIsPressed();
+
+  setLevel();
   AppLoader.hide();
-
-  console.log("loaded");
-
-  new ShotgunItem({
-    x: 1000,
-    z: 1000
-  });
 
   scene.init({
     player,
     start() {
       new SkyBox();
-
-      setLevel();
 
       setTimeout(() => {
         mainThemeMusic.play();
@@ -96,6 +90,10 @@ const weapon = $(".testWeapon");
 })();
 
 const setLevel = () => {
+  new ShotgunItem({
+    x: 1000,
+    z: 1000
+  });
   for (let i = 0; i < 5; i++)
     new House({
       position: {

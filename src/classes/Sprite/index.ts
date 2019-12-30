@@ -13,18 +13,23 @@ class Sprite extends GameObjectLOD {
   protected readonly spriteElement: JQuery = $("<div/>");
   readonly self: JQuery = $("<div/>").addClass("sprite-cont");
 
+  private config: iSpriteConfig;
+
   constructor(config: iSpriteConfig) {
     super(config.position);
-    const { type, position, classType = "" } = config;
+
+    this.config = config;
+  }
+
+  start() {
+    const { type, position, classType = "" } = this.config;
 
     this.spriteElement.addClass(`sprite ${classType} ${type}`);
     this.spriteElement.css("transform", generetaTranslate3d(position));
     this.self.append(this.spriteElement);
     Sprite.spriteElementList.append(this.self);
-  }
 
-  start() {
-    console.log("Sprite is created");
+    super.start();
   }
 
   update() {

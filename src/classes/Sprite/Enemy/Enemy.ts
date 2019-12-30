@@ -32,12 +32,17 @@ class Enemy extends Sprite {
     });
 
     this.logicUpdate = this.logicUpdate.bind(this);
+  }
 
+  public start() {
+    this.moveDiff = generateCoordDiff(500);
     this.setState(Enemy.states.DEFAULT);
     this.timer = setInterval(this.logicUpdate, Enemy.LOGIC_INTERVAL);
-    this.moveDiff = generateCoordDiff(500);
+
+    super.start();
   }
-  logicUpdate() {
+
+  private logicUpdate() {
     if (!this.isActive) return;
 
     const {
@@ -76,12 +81,14 @@ class Enemy extends Sprite {
 
     this.moveDiff = generateCoordDiff(500);
   }
-  setState(state) {
+
+  private setState(state) {
     this.spriteElement.removeClass(this.currenState);
     this.spriteElement.addClass(state);
     this.currenState = state;
   }
-  update() {
+
+  public update() {
     if (this.isActive) {
       const { states } = Enemy;
 

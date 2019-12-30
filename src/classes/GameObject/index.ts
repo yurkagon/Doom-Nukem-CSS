@@ -10,22 +10,20 @@ abstract class GameObject {
 
   public position: iPosition;
 
+  public isStarted = false;
+
   constructor(position: iPosition = { ...GameObject.defaultPosition }) {
     this.position = position;
 
     const scene = Scene.getInstance();
-    scene.subscrubeGameObject(this);
-
-    if (this.start) {
-      this.start();
-    }
+    scene.subscribeGameObject(this);
   }
   abstract start(): void;
   abstract update(): void;
 
   destroy() {
     const scene = Scene.getInstance();
-    scene.unSubscrubeGameObject(this);
+    scene.unSubscribeGameObject(this);
   }
 
   getPosition() {

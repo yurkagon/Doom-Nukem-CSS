@@ -8,7 +8,7 @@ abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
   private player: Player;
-  public gameObjets: Array<GameObject> = [];
+  public gameObjects: Array<GameObject> = [];
   private readonly level: JQuery = $(".level");
 
   private sceneStart: () => void;
@@ -18,13 +18,13 @@ abstract class SceneController {
     this.update = this.update.bind(this);
   }
 
-  public subscrubeGameObject(gameObject: GameObject): void {
-    this.gameObjets.push(gameObject);
+  public subscribeGameObject(gameObject: GameObject): void {
+    this.gameObjects.push(gameObject);
   }
-  public unSubscrubeGameObject(gameObject: GameObject): void {
-    const index = this.gameObjets.indexOf(gameObject);
+  public unSubscribeGameObject(gameObject: GameObject): void {
+    const index = this.gameObjects.indexOf(gameObject);
 
-    this.gameObjets.splice(index, 1);
+    this.gameObjects.splice(index, 1);
   }
 
   public init(config: iSceneConfig): void {
@@ -51,7 +51,14 @@ abstract class SceneController {
   }
 
   private update(): void {
-    for (let gameObject of this.gameObjets) {
+    for (let gameObject of this.gameObjects) {
+      if (!gameObject.isStarted) {
+        gameObject.start();
+        gameObject.isStarted = true;
+
+        continue;
+      }
+
       gameObject.update();
     }
 
