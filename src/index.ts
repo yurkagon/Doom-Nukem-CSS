@@ -54,20 +54,17 @@ const weapon = $(".testWeapon");
 
   console.log("loaded");
 
-  for (let i = 0; i < 5; i++) {
-    new House({
-      position: {
-        x: 110 * i * 20 - 5000,
-        y: 493,
-        z: 3000
-      }
-    });
-  }
+  new ShotgunItem({
+    x: 1000,
+    z: 1000
+  });
 
   scene.init({
     player,
     start() {
       new SkyBox();
+
+      setLevel();
 
       setTimeout(() => {
         mainThemeMusic.play();
@@ -97,3 +94,23 @@ const weapon = $(".testWeapon");
     }
   });
 })();
+
+const setLevel = () => {
+  for (let i = 0; i < 5; i++)
+    new House({
+      position: {
+        x: 110 * i * 20 - 5000,
+        y: 493,
+        z: -3000
+      }
+    });
+
+  for (let i = 0; i < 30; i++)
+    new Enemy({
+      type: "guard",
+      position: {
+        x: 1000 + i * 100,
+        z: 1000 + i * 100
+      }
+    });
+};
