@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "angles": "^0.2.4",
-    "jquery": "^3.3.1"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.31",
