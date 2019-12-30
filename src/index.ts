@@ -50,7 +50,7 @@ const weapon = $(".testWeapon");
       AppLoader.set(+progress, name);
     }
   });
-  AppLoader.hide();
+  // AppLoader.hide();
 
   console.log("loaded");
 
