@@ -1,9 +1,9 @@
 {
-  "name": "css_2.5d",
-  "version": "1.0.0",
+  "name": "doom-nukem-css",
+  "version": "2.0.0",
   "private": true,
-  "homepage": "http://yurkagon.github.io/Painful_try_to_make_3D_FPS_Controller",
-  "repository": "https://github.com/yurkagon/Painful_try_to_make_3D_FPS_Controller",
+  "homepage": "https://yurkagon.github.io/Doom-Nukem-CSS/",
+  "repository": "https://github.com/yurkagon/Doom-Nukem-CSS",
   "author": "yurkagon <owngameplay@gmail.com>",
   "license": "MIT",
   "scripts": {
