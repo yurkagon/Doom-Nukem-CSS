@@ -12,89 +12,65 @@ import MedkitItem from "./classes/Sprite/Item/MedkitItem";
 import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
 import House from "./classes/Model/House";
 
+import ResourceLoader from "./ResourceLoader";
+
 const player = Player.getInstance();
 const scene = Scene.getInstance();
 
 const weapon = $(".testWeapon");
 
-scene.init({
-  player,
-  start() {
-    new SkyBox();
+(async () => {
+  ResourceLoader.load({
+    images: [
+      "img/skybox.jpg",
+      "img/background.jpg",
+      "img/glass.png",
+      "img/icon.png",
+      "img/wall.jpg",
+      "img/weapon.png",
+      "sounds/start.wav"
+    ],
+    sounds: [
+      "sounds/start.wav",
+      "sounds/main_theme.mp3",
+      "sounds/voice/medkit.wav",
+      "sounds/items/itemPickUp.wav",
+      "sounds/items/pickWeapon.wav"
+    ]
+  });
 
-    // new MedkitItem({
-    //   x: 250,
-    //   z: 600
-    // });
-    new ShotgunItem({
-      x: 1000,
-      z: 1000
-    });
+  console.log("loaded");
 
-    for (let i = 0; i < 5; i++) {
-      new House({
-        position: {
-          x: 110 * i * 20 - 5000,
-          y: 493,
-          z: 3000
-        }
-      });
+  scene.init({
+    player,
+    start() {
+      new SkyBox();
+
+      setTimeout(() => {
+        mainThemeMusic.play();
+        startPhrase.play();
+      }, 1000);
+    },
+    update() {
+      if (player.isMoving()) {
+        weapon
+          .animate(
+            {
+              right: "150px",
+              bottom: "-80px"
+            },
+            500
+          )
+          .animate(
+            {
+              right: "200px",
+              bottom: 0
+            },
+            200
+          );
+      } else {
+        weapon.stop();
+      }
     }
-
-    for (let i = 0; i < 5; i++) {
-      new House({
-        position: {
-          x: 110 * i * 20 - 5000,
-          y: 493,
-          z: -3000
-        }
-      });
-    }
-
-    for (let i = 0; i < 5; i++) {
-      new House({
-        position: {
-          x: 110 * i * 20 - 5000,
-          y: 493,
-          z: 8000
-        }
-      });
-    }
-
-    for (let i = 0; i < 100; i++) {
-      new Enemy({
-        type: "guard",
-        position: {
-          x: 1000 + i * 100,
-          z: 1000 + i * 100
-        }
-      });
-    }
-
-    setTimeout(() => {
-      mainThemeMusic.play();
-      startPhrase.play();
-    }, 1000);
-  },
-  update() {
-    if (player.isMoving()) {
-      weapon
-        .animate(
-          {
-            right: "150px",
-            bottom: "-80px"
-          },
-          500
-        )
-        .animate(
-          {
-            right: "200px",
-            bottom: 0
-          },
-          200
-        );
-    } else {
-      weapon.stop();
-    }
-  }
-});
+  });
+})();
