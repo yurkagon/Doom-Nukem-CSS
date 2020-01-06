@@ -7,7 +7,9 @@
     "allowJs": true,
     "sourceMap": true,
     "moduleResolution": "node",
-    "jsx": "react"
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": ["node_modules", "build"]
 }

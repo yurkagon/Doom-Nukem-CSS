@@ -5,10 +5,10 @@ import $ from "jquery";
 import UserInterface from "./UserInterface";
 
 class UI {
-  private static root = $("#ui");
+  private static readonly root = $("#ui").get(0);
 
   public static init() {
-    ReactDOM.render(<UserInterface />, this.root[0]);
+    ReactDOM.render(<UserInterface />, this.root);
   }
 }
 
