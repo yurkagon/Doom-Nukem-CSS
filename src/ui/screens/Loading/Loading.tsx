@@ -10,7 +10,7 @@ import "./style.scss";
 @observer
 class Loading extends Component {
   render() {
-    const { percent, currentLoadedItem } = State.loadingState;
+    const { percent, currentLoadedItem, buttonFunction } = State.loadingState;
 
     return (
       <Screen className="loading-screen">
@@ -20,6 +20,9 @@ class Loading extends Component {
           <div className="percent">${percent}%</div>
         </div>
         <div className="text">{currentLoadedItem}</div>
+        <button onClick={buttonFunction} className="start-button">
+          Let's rock!
+        </button>
       </Screen>
     );
   }
