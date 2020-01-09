@@ -7,10 +7,11 @@ import State, { Screen } from "./State";
 @observer
 class UserInterface extends Component {
   public render() {
-    switch (State.screen) {
-      case Screen.loading:
-        return <Loading />;
+    if (State.loadingState.isLoading) {
+      return <Loading />;
+    }
 
+    switch (State.screen) {
       default:
         return null;
     }
