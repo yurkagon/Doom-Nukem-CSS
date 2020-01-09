@@ -9,7 +9,8 @@ import Enemy from "./classes/Sprite/Enemy/Enemy";
 import { mainThemeMusic, startPhrase } from "./variables/sounds";
 import SkyBox from "./classes/SkyBox/SkyBox";
 import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
-import House from "./classes/Model/House";
+
+import House from "./prefabs/models/House";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();

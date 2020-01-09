@@ -1,7 +1,9 @@
-import { ITransform } from "../types";
+import Model from "../../../classes/Model";
+import { ITransform } from "../../../classes/Model/types";
 
 import data from "./data";
-import Model from "../index";
+
+import "./style.scss";
 
 class House extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
