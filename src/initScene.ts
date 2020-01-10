@@ -17,8 +17,19 @@ const scene = Scene.getInstance();
 
 const weapon = $(".testWeapon");
 
+import Wall from "./classes/Wall";
+
 export default async () => {
   setLevel();
+
+  new Wall(
+    {
+      x: 0,
+      z: 0,
+      y: 100
+    },
+    90
+  );
 
   scene.init({
     player,
@@ -55,25 +66,24 @@ export default async () => {
 };
 
 const setLevel = () => {
-  new ShotgunItem({
-    x: 1000,
-    z: 1000
-  });
-  for (let i = 0; i < 5; i++)
-    new House({
-      position: {
-        x: 110 * i * 20 - 5000,
-        y: 493,
-        z: -3000
-      }
-    });
-
-  for (let i = 0; i < 30; i++)
-    new Enemy({
-      type: "guard",
-      position: {
-        x: 1000 + i * 100,
-        z: 1000 + i * 100
-      }
-    });
+  // new ShotgunItem({
+  //   x: 1000,
+  //   z: 1000
+  // });
+  // for (let i = 0; i < 5; i++)
+  //   new House({
+  //     position: {
+  //       x: 110 * i * 20 - 5000,
+  //       y: 493,
+  //       z: -3000
+  //     }
+  //   });
+  // for (let i = 0; i < 30; i++)
+  //   new Enemy({
+  //     type: "guard",
+  //     position: {
+  //       x: 1000 + i * 100,
+  //       z: 1000 + i * 100
+  //     }
+  //   });
 };
