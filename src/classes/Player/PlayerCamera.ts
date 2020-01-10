@@ -5,6 +5,7 @@ import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { iPosition } from "../../types";
 
 import { isAngleBetween, normalize } from "../../helpers/angle";
+import CollisionDetector from "../CollisionDetector";
 
 abstract class PlayerCamera extends GameObject {
   public rotation = {
@@ -56,8 +57,22 @@ abstract class PlayerCamera extends GameObject {
   }
 
   public moveBy(vectorToMove: iPosition): void {
-    this.position.x += vectorToMove.x;
-    this.position.z += vectorToMove.z;
+    // this.position.x += vectorToMove.x;
+    // this.position.z += vectorToMove.z;
+
+    const currentPosition = this.position;
+    const targetPosition = {
+      x: currentPosition.x + vectorToMove.x,
+      z: currentPosition.z + vectorToMove.z
+    };
+
+    const resultPosition = CollisionDetector.checkCollision(
+      targetPosition,
+      currentPosition
+    );
+
+    this.position.x = resultPosition.x;
+    this.position.z = resultPosition.z;
   }
 
   public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {

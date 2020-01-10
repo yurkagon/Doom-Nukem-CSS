@@ -45,14 +45,7 @@ class Wall extends GameObjectLOD {
 
   start() {
     Wall.container.append(this.element);
-    console.log(this);
     super.start();
-  }
-
-  update() {
-    // this.element.css("width", `${this.a}px`);
-    // this.a += 1;
-    console.log(Distance(Player.getInstance().getPosition(), this.firstPoint));
   }
 }
 
