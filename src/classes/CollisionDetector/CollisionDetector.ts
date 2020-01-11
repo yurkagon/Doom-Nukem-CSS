@@ -38,8 +38,8 @@ class CollisionDetector {
   ];
 
   public checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
-    const normalizedPosition = this.normalizePosition(targetPosition);
-    const space = this.getSymbolByNormalizedPosition(normalizedPosition);
+    const mapPosition = this.getMapPosition(targetPosition);
+    const space = this.getSymbol(mapPosition);
 
     if (space === "#") {
       return currentPosition;
@@ -48,21 +48,25 @@ class CollisionDetector {
     return targetPosition;
   }
 
-  private normalizePosition(position: iPosition) {
+  private getMapPosition(position: iPosition): iPosition {
+    const normalizedPosition = this.normalizePosition(position);
+
+    return {
+      x: 30 - Math.ceil(normalizedPosition.x - 1),
+      z: 30 - Math.ceil(normalizedPosition.z - 1)
+    };
+  }
+
+  private normalizePosition(position: iPosition): iPosition {
     return {
       x: (position.x + 15000) / 1000,
       z: (position.z + 15000) / 1000
     };
   }
 
-  private getSymbolByNormalizedPosition(position: iPosition) {
-    const x = Math.ceil(position.x - 1);
-    const z = Math.ceil(position.z - 1);
-
-    console.log({ x, z });
-
+  private getSymbol(position: iPosition) {
     try {
-      return this.collisionMap[30 - z][30 - x];
+      return this.collisionMap[position.z][position.x];
     } catch {
       return "#";
     }
