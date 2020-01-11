@@ -5,10 +5,11 @@ import GameObjectLOD from "../GameObjectLOD";
 import "./style.scss";
 import { generetaTranslate3d, Distance } from "../../helpers";
 import Player from "../Player/Player";
+import GameObject from "../GameObject";
 
 const angles = require("angles");
 
-class Wall extends GameObjectLOD {
+class Wall extends GameObject {
   private static readonly container = $(".level");
   private readonly element: JQuery = $("<div/>").addClass("wall");
 
