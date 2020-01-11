@@ -1,11 +1,11 @@
 import { iPosition } from "../../types";
+import { Distance } from "../../helpers";
 
 var angles = require("angles");
 angles.SCALE = 2 * Math.PI;
 console.log(angles);
-// angles.DIRECTIONS = ["N", "E", "S", "W"];
 
-type ICell = " " | "#";
+import { ICell, ICollisionType } from "./types";
 
 class CollisionDetector {
   // prettier-ignore
@@ -43,8 +43,9 @@ class CollisionDetector {
   ];
 
   public checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
-    const mapPosition = this.getMapPosition(targetPosition);
-    const space = this.getSymbol(mapPosition);
+    const mapTargetPosition = this.getMapPosition(targetPosition);
+    const mapCurrentPosition = this.getMapPosition(currentPosition);
+    const space = this.getSymbol(mapTargetPosition);
 
     if (space === "#") {
       const vector = {
@@ -52,48 +53,94 @@ class CollisionDetector {
         z: targetPosition.z - currentPosition.z
       };
 
-      // x: x + Math.cos(angle) * this.speed,
-      // z: z + Math.sin(angle) * this.speed
+      const collisionType = this.getCollisionType(
+        mapCurrentPosition,
+        mapTargetPosition
+      );
 
-      // 180 - 3.14
+      const targetDistance = Distance(targetPosition, currentPosition);
 
       const angle = toDeg(Math.atan2(vector.x, vector.z));
-      console.log(toDeg(angle));
 
       let newPosition = { ...currentPosition };
 
-      // 90 -> 180
-      if (90 <= angle && angle <= 180) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(Math.PI) * 20,
-          z: currentPosition.z + Math.sin(Math.PI) * 20
-        };
-      }
-      if (-90 >= angle && angle >= -180) {
-        newPosition = {
-          x: currentPosition.x - Math.cos(Math.PI) * 20,
-          z: currentPosition.z + Math.sin(Math.PI) * 20
-        };
-      }
+      if (collisionType === ICollisionType.horizontal) {
+        const angleToMove = -Math.PI;
+        const speed =
+          targetDistance -
+          (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
-      if (-90 <= angle && angle <= 0) {
-        newPosition = {
-          x: currentPosition.x - Math.cos(Math.PI) * 20,
-          z: currentPosition.z + Math.sin(Math.PI) * 20
-        };
-      }
+        if (90 <= angle && angle <= 180) {
+          return (newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * speed,
+            z: currentPosition.z + Math.sin(angleToMove) * speed
+          });
+        }
+        if (-90 >= angle && angle >= -180) {
+          return (newPosition = {
+            x: currentPosition.x - Math.cos(angleToMove) * speed,
+            z: currentPosition.z + Math.sin(angleToMove) * speed
+          });
+        }
 
-      // if (0 <= angle && 90 <= angle) {
-      //   newPosition = {
-      //     x: currentPosition.x + Math.cos(Math.PI) * 20,
-      //     z: currentPosition.z + Math.sin(Math.PI) * 20
-      //   };
-      // }
+        if (-90 <= angle && angle <= 0) {
+          return (newPosition = {
+            x: currentPosition.x - Math.cos(angleToMove) * speed,
+            z: currentPosition.z + Math.sin(angleToMove) * speed
+          });
+        }
+
+        if (0 <= angle && 90 >= angle) {
+          return (newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * speed,
+            z: currentPosition.z - Math.sin(angleToMove) * speed
+          });
+        }
+      } else if (collisionType === ICollisionType.vertical) {
+        const angleToMove = Math.PI;
+        const speed =
+          targetDistance -
+          (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
+
+        if (-90 >= angle && angle >= -180) {
+          return (newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * speed,
+            z: currentPosition.z + Math.sin(angleToMove) * speed
+          });
+        }
+        if (90 <= angle && angle <= 180) {
+          return (newPosition = {
+            x: currentPosition.x - Math.cos(angleToMove) * speed,
+            z: currentPosition.z - Math.sin(angleToMove) * speed
+          });
+        }
+        if (90 >= angle && angle >= 0) {
+          return (newPosition = {
+            x: currentPosition.x - Math.cos(angleToMove) * speed,
+            z: currentPosition.z + Math.sin(angleToMove) * speed
+          });
+        }
+        if (-90 <= angle && angle <= 0) {
+          return (newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * speed,
+            z: currentPosition.z - Math.sin(angleToMove) * speed
+          });
+        }
+      }
 
       return newPosition;
     }
 
     return targetPosition;
+  }
+
+  private getCollisionType(
+    position: iPosition,
+    targetPosition: iPosition
+  ): ICollisionType {
+    if (position.z === targetPosition.z) {
+      return ICollisionType.horizontal;
+    } else return ICollisionType.vertical;
   }
 
   public setCollision(position: iPosition) {
