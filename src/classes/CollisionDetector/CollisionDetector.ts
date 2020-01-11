@@ -19,75 +19,72 @@ class CollisionDetector {
         z: targetPosition.z - currentPosition.z
       };
 
+      const targetDistance = Distance(targetPosition, currentPosition);
+      const angle = Angle.toDeg(Math.atan2(vector.x, vector.z));
+
       const collisionType = this.getCollisionType(
         mapCurrentPosition,
         mapTargetPosition
       );
 
-      const targetDistance = Distance(targetPosition, currentPosition);
-
-      const angle = Angle.toDeg(Math.atan2(vector.x, vector.z));
-
       if (collisionType === ICollisionType.horizontal) {
-        const angleToMove = Math.PI;
-        const speed =
-          targetDistance -
+        const angleToMove = -Math.PI / 2;
+        const collisionDistance =
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
         if (90 <= angle && angle <= 180) {
           return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
+          };
+        }
+        if (0 <= angle && 90 >= angle) {
+          return {
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
         if (-90 >= angle && angle >= -180) {
           return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
+            x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
 
         if (-90 <= angle && angle <= 0) {
           return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-
-        if (0 <= angle && 90 >= angle) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
       } else if (collisionType === ICollisionType.vertical) {
         const angleToMove = Math.PI;
-        const speed =
+        const collisionDistance =
           targetDistance -
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
         if (-90 >= angle && angle >= -180) {
           return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
         if (90 <= angle && angle <= 180) {
           return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
+            x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
         if (90 >= angle && angle >= 0) {
           return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
+            x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
         if (-90 <= angle && angle <= 0) {
           return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
       }
