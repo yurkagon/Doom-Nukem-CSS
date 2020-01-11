@@ -24,20 +24,11 @@ export default async () => {
 
   new House({
     position: {
-      x: 110 * 2 * 20 - 5000,
-      y: 493,
-      z: -3000
+      x: 1000,
+      z: -3000,
+      y: 493
     }
   });
-
-  new Wall(
-    {
-      x: 0,
-      z: 0,
-      y: 100
-    },
-    90
-  );
 
   scene.init({
     player,

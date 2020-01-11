@@ -34,8 +34,6 @@ abstract class Model extends GameObjectLOD {
 
     this.updateTransform();
 
-    // CollisionDetector.setCollision(this.position);
-
     super.start();
   }
 
