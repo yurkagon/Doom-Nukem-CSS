@@ -22,14 +22,6 @@ import Wall from "./classes/Wall";
 export default async () => {
   setLevel();
 
-  new House({
-    position: {
-      x: 1000,
-      z: -3000,
-      y: 493
-    }
-  });
-
   scene.init({
     player,
     start() {
@@ -69,14 +61,14 @@ const setLevel = () => {
   //   x: 1000,
   //   z: 1000
   // });
-  // for (let i = 0; i < 5; i++)
-  //   new House({
-  //     position: {
-  //       x: 110 * i * 20 - 5000,
-  //       y: 493,
-  //       z: -3000
-  //     }
-  //   });
+  for (let i = 0; i < 5; i++)
+    new House({
+      position: {
+        x: 1000 * i * 2,
+        y: 493,
+        z: -3000
+      }
+    });
   // for (let i = 0; i < 30; i++)
   //   new Enemy({
   //     type: "guard",

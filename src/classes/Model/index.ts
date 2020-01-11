@@ -14,6 +14,12 @@ abstract class Model extends GameObjectLOD {
   private rotation: iPosition;
   private scale: iPosition;
 
+  protected positionCorrector: iPosition = {
+    x: 0,
+    y: 0,
+    z: 0
+  };
+
   private config: IModelConfig;
 
   constructor(config: IModelConfig) {
@@ -38,9 +44,11 @@ abstract class Model extends GameObjectLOD {
   }
 
   private updateTransform() {
-    const { position, rotation, scale } = this;
+    const { position, rotation, scale, positionCorrector } = this;
 
-    const translate3d = `translate3d(${position.x}px, ${position.y}px, ${position.z}px)`;
+    const translate3d = `translate3d(${position.x +
+      positionCorrector.x}px, ${position.y +
+      positionCorrector.y}px, ${position.z + positionCorrector.z}px)`;
     const scale3d = `scale3d(${scale.x}, ${scale.y}, ${scale.z})`;
 
     const transform = `${translate3d} ${scale3d}`;
