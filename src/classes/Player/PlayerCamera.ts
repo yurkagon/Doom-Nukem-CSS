@@ -4,7 +4,7 @@ import $ from "jquery";
 import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { iPosition } from "../../types";
 
-import { isAngleBetween, normalize } from "../../helpers/angle";
+import Angle from "../../helpers/angle";
 import CollisionDetector from "../CollisionDetector";
 
 abstract class PlayerCamera extends GameObject {
@@ -81,13 +81,13 @@ abstract class PlayerCamera extends GameObject {
     const dx = playerPos.x - gameObjectPos.x;
     const dz = gameObjectPos.z - playerPos.z;
 
-    const angle = normalize((Math.atan2(dz, dx) * 180) / Math.PI);
-    const playerViewAngle = normalize(-this.rotation.y - 90);
+    const angle = Angle.normalize((Math.atan2(dz, dx) * 180) / Math.PI);
+    const playerViewAngle = Angle.normalize(-this.rotation.y - 90);
 
     const playerViewLeft = playerViewAngle - fov / 2;
     const playerViewRight = playerViewAngle + fov / 2;
 
-    return isAngleBetween(angle, playerViewLeft, playerViewRight);
+    return Angle.isAngleBetween(angle, playerViewLeft, playerViewRight);
   }
 
   rotate(degree) {

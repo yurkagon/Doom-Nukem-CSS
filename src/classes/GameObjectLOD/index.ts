@@ -3,8 +3,6 @@ import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 import { Distance } from "../../helpers";
 
-import { isAngleBetween, normalize } from "../../helpers/angle";
-
 const angles = require("angles");
 
 abstract class GameObjectLOD extends GameObject {
