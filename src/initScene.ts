@@ -17,7 +17,7 @@ const scene = Scene.getInstance();
 
 const weapon = $(".testWeapon");
 
-import Wall from "./classes/Wall";
+// import Wall from "./classes/Wall";
 
 export default async () => {
   setLevel();
@@ -57,10 +57,10 @@ export default async () => {
 };
 
 const setLevel = () => {
-  new ShotgunItem({
-    x: 1000,
-    z: 1000
-  });
+  // new ShotgunItem({
+  //   x: 1000,
+  //   z: 1000
+  // });
   for (let i = 0; i < 5; i++)
     new House({
       position: {
@@ -69,7 +69,7 @@ const setLevel = () => {
         z: -3000
       }
     });
-  for (let i = 0; i < 30; i++)
+  for (let i = 0; i < 40; i++)
     new Enemy({
       type: "guard",
       position: {

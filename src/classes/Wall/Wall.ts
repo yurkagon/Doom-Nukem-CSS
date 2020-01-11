@@ -3,8 +3,9 @@ import { iPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD";
 
 import "./style.scss";
-import { generetaTranslate3d, Distance } from "../../helpers";
+import { generetaTranslate3d } from "../../helpers";
 import Player from "../Player/Player";
+import GameObject from "../GameObject";
 
 const angles = require("angles");
 
