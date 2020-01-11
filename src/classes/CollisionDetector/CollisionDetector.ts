@@ -62,39 +62,37 @@ class CollisionDetector {
 
       const angle = toDeg(Math.atan2(vector.x, vector.z));
 
-      let newPosition = { ...currentPosition };
-
       if (collisionType === ICollisionType.horizontal) {
-        const angleToMove = -Math.PI;
+        const angleToMove = Math.PI;
         const speed =
           targetDistance -
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
         if (90 <= angle && angle <= 180) {
-          return (newPosition = {
+          return {
             x: currentPosition.x + Math.cos(angleToMove) * speed,
             z: currentPosition.z + Math.sin(angleToMove) * speed
-          });
+          };
         }
         if (-90 >= angle && angle >= -180) {
-          return (newPosition = {
+          return {
             x: currentPosition.x - Math.cos(angleToMove) * speed,
             z: currentPosition.z + Math.sin(angleToMove) * speed
-          });
+          };
         }
 
         if (-90 <= angle && angle <= 0) {
-          return (newPosition = {
+          return {
             x: currentPosition.x - Math.cos(angleToMove) * speed,
             z: currentPosition.z + Math.sin(angleToMove) * speed
-          });
+          };
         }
 
         if (0 <= angle && 90 >= angle) {
-          return (newPosition = {
+          return {
             x: currentPosition.x + Math.cos(angleToMove) * speed,
             z: currentPosition.z - Math.sin(angleToMove) * speed
-          });
+          };
         }
       } else if (collisionType === ICollisionType.vertical) {
         const angleToMove = Math.PI;
@@ -103,32 +101,32 @@ class CollisionDetector {
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
         if (-90 >= angle && angle >= -180) {
-          return (newPosition = {
+          return {
             x: currentPosition.x + Math.cos(angleToMove) * speed,
             z: currentPosition.z + Math.sin(angleToMove) * speed
-          });
+          };
         }
         if (90 <= angle && angle <= 180) {
-          return (newPosition = {
+          return {
             x: currentPosition.x - Math.cos(angleToMove) * speed,
             z: currentPosition.z - Math.sin(angleToMove) * speed
-          });
+          };
         }
         if (90 >= angle && angle >= 0) {
-          return (newPosition = {
+          return {
             x: currentPosition.x - Math.cos(angleToMove) * speed,
             z: currentPosition.z + Math.sin(angleToMove) * speed
-          });
+          };
         }
         if (-90 <= angle && angle <= 0) {
-          return (newPosition = {
+          return {
             x: currentPosition.x + Math.cos(angleToMove) * speed,
             z: currentPosition.z - Math.sin(angleToMove) * speed
-          });
+          };
         }
       }
 
-      return newPosition;
+      return targetPosition;
     }
 
     return targetPosition;
@@ -140,7 +138,9 @@ class CollisionDetector {
   ): ICollisionType {
     if (position.z === targetPosition.z) {
       return ICollisionType.horizontal;
-    } else return ICollisionType.vertical;
+    } else {
+      return ICollisionType.vertical;
+    }
   }
 
   public setCollision(position: iPosition) {
