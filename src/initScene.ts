@@ -22,6 +22,14 @@ import Wall from "./classes/Wall";
 export default async () => {
   setLevel();
 
+  new House({
+    position: {
+      x: 110 * 2 * 20 - 5000,
+      y: 493,
+      z: -3000
+    }
+  });
+
   new Wall(
     {
       x: 0,

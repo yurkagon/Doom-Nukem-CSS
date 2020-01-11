@@ -2,6 +2,7 @@ import $ from "jquery";
 import { IModelConfig } from "./types";
 import { iPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD/index";
+import CollisionDetector from "../CollisionDetector";
 
 abstract class Model extends GameObjectLOD {
   private static readonly DEFAULT_ROTATION: iPosition = { x: 0, y: 0, z: 0 };
@@ -32,6 +33,8 @@ abstract class Model extends GameObjectLOD {
     Model.level.append(this.self);
 
     this.updateTransform();
+
+    // CollisionDetector.setCollision(this.position);
 
     super.start();
   }

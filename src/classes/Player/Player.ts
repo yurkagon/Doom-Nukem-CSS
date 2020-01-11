@@ -22,7 +22,6 @@ class Player extends PlayerController {
   }
 
   update() {
-    // console.log(this.position.x);
     super.update();
   }
 }

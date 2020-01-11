@@ -1,8 +1,10 @@
 import { iPosition } from "../../types";
 
+type ICell = " " | "#";
+
 class CollisionDetector {
   // prettier-ignore
-  private collisionMap = [
+  private collisionMap:  ICell[][] = [
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
@@ -18,7 +20,7 @@ class CollisionDetector {
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
+    ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
@@ -35,23 +37,35 @@ class CollisionDetector {
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
   ];
 
-  checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
+  public checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
     const normalizedPosition = this.normalizePosition(targetPosition);
+    const space = this.getSymbolByNormalizedPosition(normalizedPosition);
 
-    const x = Math.ceil(normalizedPosition.x - 1);
-    const z = Math.ceil(normalizedPosition.z - 1);
+    if (space === "#") {
+      return currentPosition;
+    }
 
-    const space = this.collisionMap[x][z];
-
-    if (space === "#") return currentPosition;
-    else return targetPosition;
+    return targetPosition;
   }
 
-  normalizePosition(position: iPosition) {
+  private normalizePosition(position: iPosition) {
     return {
       x: (position.x + 15000) / 1000,
       z: (position.z + 15000) / 1000
     };
+  }
+
+  private getSymbolByNormalizedPosition(position: iPosition) {
+    const x = Math.ceil(position.x - 1);
+    const z = Math.ceil(position.z - 1);
+
+    console.log({ x, z });
+
+    try {
+      return this.collisionMap[30 - z][30 - x];
+    } catch {
+      return "#";
+    }
   }
 }
 
