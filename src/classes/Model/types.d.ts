@@ -1,15 +1,15 @@
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 
 interface ITransform {
-  position: iPosition;
-  rotation?: iPosition;
-  scale?: iPosition;
+  position: IPosition;
+  rotation?: IPosition;
+  scale?: IPosition;
 }
 
 interface IModelConfig {
   name: string;
   data: string;
-  position?: iPosition;
-  rotation?: iPosition;
-  scale?: iPosition;
+  position?: IPosition;
+  rotation?: IPosition;
+  scale?: IPosition;
 }

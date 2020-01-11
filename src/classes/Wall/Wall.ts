@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD";
 import { generateTranslate3d } from "../../helpers";
 
@@ -9,7 +9,7 @@ class Wall extends GameObjectLOD {
   private static readonly container = $(".level");
   private readonly element: JQuery = $("<div/>").addClass("wall");
 
-  constructor(position?: iPosition, rotation: number = 0) {
+  constructor(position?: IPosition, rotation: number = 0) {
     super(position);
 
     this.element.css(

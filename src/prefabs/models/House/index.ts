@@ -5,16 +5,15 @@ import data from "./data";
 
 import "./style.scss";
 import CollisionDetector from "../../../classes/CollisionDetector";
-import { iPosition } from "../../../types";
+import { IPosition } from "../../../types";
 
 class House extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
 
   VISION_CHECKING = false;
 
-  protected positionCorrector: iPosition = {
+  protected positionCorrector: IPosition = {
     x: 250,
-
     z: 170,
     y: 0
   };

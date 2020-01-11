@@ -1,6 +1,6 @@
 import Player from "./classes/Player/Player";
 
-interface iPosition {
+interface IPosition {
   x: number;
   y?: number;
   z?: number;
@@ -15,5 +15,5 @@ interface iSceneConfig {
 interface iSpriteConfig {
   type: string;
   classType: string;
-  position?: iPosition;
+  position?: IPosition;
 }

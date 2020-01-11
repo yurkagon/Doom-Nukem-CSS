@@ -1,6 +1,6 @@
 import { Distance } from "../../helpers";
 
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 
 import { ICell, ICollisionType } from "./types";
 import Angle from "../../helpers/angle";
@@ -8,7 +8,7 @@ import Angle from "../../helpers/angle";
 class CollisionDetector {
   private collisionMap: ICell[][] = require("./collisionMap").default;
 
-  public checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
+  public checkCollision(targetPosition: IPosition, currentPosition: IPosition) {
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
@@ -99,8 +99,8 @@ class CollisionDetector {
   }
 
   private getCollisionType(
-    position: iPosition,
-    targetPosition: iPosition
+    position: IPosition,
+    targetPosition: IPosition
   ): ICollisionType {
     if (position.z === targetPosition.z) {
       return ICollisionType.horizontal;
@@ -109,7 +109,7 @@ class CollisionDetector {
     }
   }
 
-  public setCollision(position: iPosition) {
+  public setCollision(position: IPosition) {
     const mapPosition = this.getMapPosition(position);
 
     try {
@@ -117,7 +117,7 @@ class CollisionDetector {
     } catch {}
   }
 
-  private getMapPosition(position: iPosition): iPosition {
+  private getMapPosition(position: IPosition): IPosition {
     const normalizedPosition = this.normalizePosition(position);
 
     return {
@@ -126,14 +126,14 @@ class CollisionDetector {
     };
   }
 
-  private normalizePosition(position: iPosition): iPosition {
+  private normalizePosition(position: IPosition): IPosition {
     return {
       x: (position.x + 15000) / 1000,
       z: (position.z + 15000) / 1000
     };
   }
 
-  private getSymbol(position: iPosition) {
+  private getSymbol(position: IPosition) {
     try {
       return this.collisionMap[position.z][position.x];
     } catch {

@@ -1,20 +1,20 @@
 import $ from "jquery";
 import { IModelConfig } from "./types";
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD/index";
 import CollisionDetector from "../CollisionDetector";
 
 abstract class Model extends GameObjectLOD {
-  private static readonly DEFAULT_ROTATION: iPosition = { x: 0, y: 0, z: 0 };
-  private static readonly DEFAULT_SCALE: iPosition = { x: 1, y: 1, z: 1 };
+  private static readonly DEFAULT_ROTATION: IPosition = { x: 0, y: 0, z: 0 };
+  private static readonly DEFAULT_SCALE: IPosition = { x: 1, y: 1, z: 1 };
 
   private static readonly level: JQuery = $(".level");
 
   private name: string;
-  private rotation: iPosition;
-  private scale: iPosition;
+  private rotation: IPosition;
+  private scale: IPosition;
 
-  protected positionCorrector: iPosition = {
+  protected positionCorrector: IPosition = {
     x: 0,
     y: 0,
     z: 0

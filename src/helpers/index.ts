@@ -1,6 +1,6 @@
-import { iPosition } from "../types";
+import { IPosition } from "../types";
 
-export const Distance = (p1: iPosition, p2: iPosition): number => {
+export const Distance = (p1: IPosition, p2: IPosition): number => {
   return Math.sqrt((p2.x - p1.x) ** 2 + (p2.z - p1.z) ** 2);
 };
 
@@ -9,7 +9,7 @@ export const generateCoordDiff = value => ({
   z: value * Math.random() * (Math.random() * 2 > 1 ? 1 : -1)
 });
 
-export const generateTranslate3d = (position: iPosition): string => {
+export const generateTranslate3d = (position: IPosition): string => {
   const { x, y, z } = position;
 
   return `translate3d(${x}px, ${y}px, ${z}px)`;
