@@ -63,7 +63,7 @@ abstract class PlayerCamera extends GameObject {
       z: currentPosition.z + vectorToMove.z
     };
 
-    const resultPosition = CollisionDetector.checkCollision(
+    const resultPosition = CollisionDetector.handleCollision(
       this.convertPlayerPositionToRealPosition(targetPosition),
       this.convertPlayerPositionToRealPosition(currentPosition)
     );

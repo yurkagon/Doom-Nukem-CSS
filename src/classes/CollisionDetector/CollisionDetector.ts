@@ -8,7 +8,10 @@ import Angle from "../../helpers/angle";
 class CollisionDetector {
   private collisionMap: ICell[][] = require("./collisionMap").default;
 
-  public checkCollision(targetPosition: IPosition, currentPosition: IPosition) {
+  public handleCollision(
+    targetPosition: IPosition,
+    currentPosition: IPosition
+  ) {
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
@@ -27,34 +30,34 @@ class CollisionDetector {
         mapTargetPosition
       );
 
+      let newPosition;
       if (collisionType === ICollisionType.horizontal) {
         const angleToMove = -Math.PI / 2;
         const collisionDistance =
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
-        if (90 <= angle && angle <= 180) {
-          return {
+        if (90 <= angle && angle <= 180 && !newPosition) {
+          newPosition = {
             x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
-        if (0 <= angle && 90 >= angle) {
-          return {
+        if (0 <= angle && 90 > angle && !newPosition) {
+          newPosition = {
             x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
-        if (-90 >= angle && angle >= -180) {
-          return {
+        if (-90 <= angle && angle < 0 && !newPosition) {
+          newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+          };
+        }
+        if (-90 > angle && angle >= -180 && !newPosition) {
+          newPosition = {
             x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
-          };
-        }
-
-        if (-90 <= angle && angle <= 0) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-            z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
       } else if (collisionType === ICollisionType.vertical) {
@@ -63,33 +66,40 @@ class CollisionDetector {
           targetDistance -
           (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
-        if (-90 >= angle && angle >= -180) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
-          };
-        }
-        if (90 <= angle && angle <= 180) {
-          return {
+        if (90 <= angle && angle <= 180 && !newPosition) {
+          newPosition = {
             x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
           };
         }
-        if (90 >= angle && angle >= 0) {
-          return {
+
+        if (90 > angle && angle >= 0 && !newPosition) {
+          newPosition = {
             x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
-        if (-90 <= angle && angle <= 0) {
-          return {
+
+        if (-90 <= angle && angle < 0 && !newPosition) {
+          newPosition = {
             x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
             z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+          };
+        }
+
+        if (-90 > angle && angle > -180 && !newPosition) {
+          newPosition = {
+            x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
+            z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
           };
         }
       }
 
-      return targetPosition;
+      if (this.getSymbol(this.getMapPosition(newPosition)) === "#") {
+        return this.handleCollision(newPosition, currentPosition);
+      } else {
+        return newPosition;
+      }
     }
 
     return targetPosition;
