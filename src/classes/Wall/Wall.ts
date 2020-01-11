@@ -1,7 +1,7 @@
 import $ from "jquery";
 import { iPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD";
-import { generetaTranslate3d } from "../../helpers";
+import { generateTranslate3d } from "../../helpers";
 
 import "./style.scss";
 
@@ -14,7 +14,7 @@ class Wall extends GameObjectLOD {
 
     this.element.css(
       "transform",
-      `rotateY(${rotation + "deg"}) ${generetaTranslate3d(
+      `rotateY(${rotation + "deg"}) ${generateTranslate3d(
         this.position
       )} scale3d(40, 1, 1)`
     );

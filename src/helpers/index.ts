@@ -9,7 +9,7 @@ export const generateCoordDiff = value => ({
   z: value * Math.random() * (Math.random() * 2 > 1 ? 1 : -1)
 });
 
-export const generetaTranslate3d = (position: iPosition): string => {
+export const generateTranslate3d = (position: iPosition): string => {
   const { x, y, z } = position;
 
   return `translate3d(${x}px, ${y}px, ${z}px)`;
