@@ -15,9 +15,6 @@
     "pretty": "prettier --write '**/*.{ts,scss,css,html,json}'"
   },
   "dependencies": {
-    "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.4",
-    "angles": "^0.2.4",
     "classnames": "^2.2.6",
     "jquery": "^3.4.1",
     "mobx": "^5.15.1",
@@ -29,6 +26,8 @@
     "@types/classnames": "^2.2.9",
     "@types/jquery": "^3.3.31",
     "@types/node": "^13.1.1",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.0",
@@ -49,5 +48,19 @@
     "hooks": {
       "pre-commit": "yarn pretty"
     }
-  }
+  },
+  "keywords": [
+    "3d",
+    "shooter",
+    "fps",
+    "first person shooter",
+    "css",
+    "html",
+    "jquery",
+    "javascript",
+    "doom",
+    "duke nukem",
+    "wolfenstein",
+    "react"
+  ]
 }

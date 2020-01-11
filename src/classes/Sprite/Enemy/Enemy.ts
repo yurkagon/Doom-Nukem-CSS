@@ -111,7 +111,7 @@ class Enemy extends Sprite {
             z: z + Math.sin(angle) * this.speed
           };
 
-          const result = CollisionDetector.checkCollision(
+          const result = CollisionDetector.handleCollision(
             targetPosition,
             this.position
           );

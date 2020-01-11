@@ -2,9 +2,9 @@ import GameObject from "../GameObject/index";
 
 import $ from "jquery";
 import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 
-import { isAngleBetween, normalize } from "../../helpers/angle";
+import Angle from "../../helpers/angle";
 import CollisionDetector from "../CollisionDetector";
 
 abstract class PlayerCamera extends GameObject {
@@ -23,7 +23,7 @@ abstract class PlayerCamera extends GameObject {
     // camera is a static DIV. All 3d operations are inside
     return this._camera;
   }
-  protected goForward(): iPosition {
+  protected goForward(): IPosition {
     const { rotation } = this;
 
     return {
@@ -31,7 +31,7 @@ abstract class PlayerCamera extends GameObject {
       z: Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goBack(): iPosition {
+  protected goBack(): IPosition {
     const { rotation } = this;
 
     return {
@@ -39,7 +39,7 @@ abstract class PlayerCamera extends GameObject {
       z: -Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goLeft(): iPosition {
+  protected goLeft(): IPosition {
     const { rotation } = this;
 
     return {
@@ -47,7 +47,7 @@ abstract class PlayerCamera extends GameObject {
       z: Math.cos(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goRight(): iPosition {
+  protected goRight(): IPosition {
     const { rotation } = this;
 
     return {
@@ -56,14 +56,14 @@ abstract class PlayerCamera extends GameObject {
     };
   }
 
-  public moveBy(vectorToMove: iPosition): void {
+  public moveBy(vectorToMove: IPosition): void {
     const currentPosition = this.position;
     const targetPosition = {
       x: currentPosition.x + vectorToMove.x,
       z: currentPosition.z + vectorToMove.z
     };
 
-    const resultPosition = CollisionDetector.checkCollision(
+    const resultPosition = CollisionDetector.handleCollision(
       this.convertPlayerPositionToRealPosition(targetPosition),
       this.convertPlayerPositionToRealPosition(currentPosition)
     );
@@ -81,13 +81,13 @@ abstract class PlayerCamera extends GameObject {
     const dx = playerPos.x - gameObjectPos.x;
     const dz = gameObjectPos.z - playerPos.z;
 
-    const angle = normalize((Math.atan2(dz, dx) * 180) / Math.PI);
-    const playerViewAngle = normalize(-this.rotation.y - 90);
+    const angle = Angle.normalize((Math.atan2(dz, dx) * 180) / Math.PI);
+    const playerViewAngle = Angle.normalize(-this.rotation.y - 90);
 
     const playerViewLeft = playerViewAngle - fov / 2;
     const playerViewRight = playerViewAngle + fov / 2;
 
-    return isAngleBetween(angle, playerViewLeft, playerViewRight);
+    return Angle.isAngleBetween(angle, playerViewLeft, playerViewRight);
   }
 
   rotate(degree) {
@@ -106,14 +106,14 @@ abstract class PlayerCamera extends GameObject {
     return this.convertPlayerPositionToRealPosition(this.position);
   }
 
-  private convertPlayerPositionToRealPosition(position: iPosition): iPosition {
+  private convertPlayerPositionToRealPosition(position: IPosition): IPosition {
     return {
       x: -position.x - 128,
       z: -position.z + 700
     };
   }
 
-  private convertRealPositionToPlayerPosition(position: iPosition): iPosition {
+  private convertRealPositionToPlayerPosition(position: IPosition): IPosition {
     return {
       x: -position.x - 128,
       z: -position.z + 700

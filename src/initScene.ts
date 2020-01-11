@@ -69,7 +69,7 @@ const setLevel = () => {
         z: -3000
       }
     });
-  for (let i = 0; i < 40; i++)
+  for (let i = 0; i < 20; i++)
     new Enemy({
       type: "guard",
       position: {

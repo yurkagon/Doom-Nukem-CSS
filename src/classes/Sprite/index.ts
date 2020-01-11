@@ -3,7 +3,7 @@ import $ from "jquery";
 import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 
-import { generetaTranslate3d } from "../../helpers";
+import { generateTranslate3d } from "../../helpers";
 import { iSpriteConfig } from "../../types";
 import GameObjectLOD from "../GameObjectLOD/index";
 
@@ -25,7 +25,7 @@ class Sprite extends GameObjectLOD {
     const { type, position, classType = "" } = this.config;
 
     this.spriteElement.addClass(`sprite ${classType} ${type}`);
-    this.spriteElement.css("transform", generetaTranslate3d(position));
+    this.spriteElement.css("transform", generateTranslate3d(position));
     this.self.append(this.spriteElement);
     Sprite.spriteElementList.append(this.self);
 
@@ -36,7 +36,7 @@ class Sprite extends GameObjectLOD {
     if (this.isActive) {
       const player = Player.getInstance();
 
-      const translate3d = generetaTranslate3d(this.getPosition());
+      const translate3d = generateTranslate3d(this.getPosition());
       const rotate3d = `rotate3d(0, 1, 0, ${-player.rotation.y}deg)`;
 
       this.self.css("transform", translate3d);

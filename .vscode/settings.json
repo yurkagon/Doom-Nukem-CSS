@@ -1,4 +1,11 @@
 {
-  "cSpell.words": ["medkit", "nukem", "skybox", "uglifyjs"],
+  "cSpell.words": [
+    "medkit",
+    "nukem",
+    "predeploy",
+    "skybox",
+    "uglifyjs",
+    "wolfenstein"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

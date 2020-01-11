@@ -2,7 +2,7 @@ import $ from "jquery";
 import GameObject from "../GameObject/index";
 import Player from "../Player/Player";
 import { iSceneConfig } from "../../types";
-import { generetaTranslate3d } from "../../helpers";
+import { generateTranslate3d } from "../../helpers";
 
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
@@ -72,7 +72,7 @@ abstract class SceneController {
     const { rotation, position, origin } = this.player;
 
     const rotate3d = `rotateY(${rotation.y}deg)`;
-    const translate3d = generetaTranslate3d({
+    const translate3d = generateTranslate3d({
       x: position.x + origin.x,
       y: position.y,
       z: position.z + origin.z

@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 import PlayerCamera from "./PlayerCamera";
-import { iPosition } from "../../types";
+import { IPosition } from "../../types";
 import Scene from "../Scene/Scene";
 import Enemy from "../Sprite/Enemy/Enemy";
 import { Distance } from "../../helpers";
@@ -21,7 +21,7 @@ abstract class PlayerController extends PlayerCamera {
     rotateRight: false
   };
 
-  private prevMousePostion: iPosition = {
+  private prevMousePostion: IPosition = {
     x: 0,
     y: 0
   };
@@ -45,7 +45,7 @@ abstract class PlayerController extends PlayerCamera {
     } = this.moveState;
 
     if (this.isMoving()) {
-      const moves: Array<iPosition> = [];
+      const moves: Array<IPosition> = [];
 
       if (toForward) moves.push(this.goForward());
       if (toBack) moves.push(this.goBack());
@@ -53,7 +53,7 @@ abstract class PlayerController extends PlayerCamera {
       if (toRight) moves.push(this.goRight());
 
       const vectorToMove = moves.reduce(
-        (value: iPosition, acc: iPosition): iPosition => ({
+        (value: IPosition, acc: IPosition): IPosition => ({
           x: value.x + acc.x,
           z: value.z + acc.z
         })
@@ -123,7 +123,7 @@ abstract class PlayerController extends PlayerCamera {
     $(document).bind("mousemove", event => {
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = PlayerController;
 
-      const mousePosition: iPosition = {
+      const mousePosition: IPosition = {
         x: event.pageX,
         y: event.pageY
       };

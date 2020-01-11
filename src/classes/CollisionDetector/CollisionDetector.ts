@@ -1,140 +1,133 @@
-import { iPosition } from "../../types";
 import { Distance } from "../../helpers";
 
-var angles = require("angles");
-angles.SCALE = 2 * Math.PI;
-console.log(angles);
+import { IPosition } from "../../types";
 
 import { ICell, ICollisionType } from "./types";
+import Angle from "../../helpers/angle";
 
 class CollisionDetector {
-  // prettier-ignore
-  private collisionMap:  ICell[][] = [
-    ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
-  ];
+  private collisionMap: ICell[][] = require("./collisionMap").default;
 
-  public checkCollision(targetPosition: iPosition, currentPosition: iPosition) {
+  public handleCollision(
+    targetPosition: IPosition,
+    currentPosition: IPosition
+  ) {
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
 
     if (space === "#") {
-      const vector = {
-        x: targetPosition.x - currentPosition.x,
-        z: targetPosition.z - currentPosition.z
-      };
-
-      const collisionType = this.getCollisionType(
-        mapCurrentPosition,
-        mapTargetPosition
+      return this.handleWall(
+        targetPosition,
+        currentPosition,
+        mapTargetPosition,
+        mapCurrentPosition
       );
-
-      const targetDistance = Distance(targetPosition, currentPosition);
-
-      const angle = toDeg(Math.atan2(vector.x, vector.z));
-
-      if (collisionType === ICollisionType.horizontal) {
-        const angleToMove = Math.PI;
-        const speed =
-          targetDistance -
-          (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
-
-        if (90 <= angle && angle <= 180) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-        if (-90 >= angle && angle >= -180) {
-          return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-
-        if (-90 <= angle && angle <= 0) {
-          return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-
-        if (0 <= angle && 90 >= angle) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
-          };
-        }
-      } else if (collisionType === ICollisionType.vertical) {
-        const angleToMove = Math.PI;
-        const speed =
-          targetDistance -
-          (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
-
-        if (-90 >= angle && angle >= -180) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-        if (90 <= angle && angle <= 180) {
-          return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
-          };
-        }
-        if (90 >= angle && angle >= 0) {
-          return {
-            x: currentPosition.x - Math.cos(angleToMove) * speed,
-            z: currentPosition.z + Math.sin(angleToMove) * speed
-          };
-        }
-        if (-90 <= angle && angle <= 0) {
-          return {
-            x: currentPosition.x + Math.cos(angleToMove) * speed,
-            z: currentPosition.z - Math.sin(angleToMove) * speed
-          };
-        }
-      }
-
-      return targetPosition;
     }
 
     return targetPosition;
   }
 
+  private handleWall(
+    targetPosition: IPosition,
+    currentPosition: IPosition,
+    mapTargetPosition: IPosition,
+    mapCurrentPosition: IPosition
+  ) {
+    const vector = {
+      x: targetPosition.x - currentPosition.x,
+      z: targetPosition.z - currentPosition.z
+    };
+
+    const targetDistance = Distance(targetPosition, currentPosition);
+    const angle = Angle.toDeg(Math.atan2(vector.x, vector.z));
+
+    const collisionType = this.getCollisionType(
+      mapCurrentPosition,
+      mapTargetPosition
+    );
+
+    let delta;
+    if (collisionType === ICollisionType.horizontal) {
+      const angleToMove = -Math.PI / 2;
+      const collisionDistance =
+        (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
+
+      if (90 <= angle && angle <= 180 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
+        };
+      }
+      if (0 <= angle && 90 > angle && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
+        };
+      }
+      if (-90 <= angle && angle < 0 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
+        };
+      }
+      if (-90 > angle && angle >= -180 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
+        };
+      }
+    } else if (collisionType === ICollisionType.vertical) {
+      const angleToMove = Math.PI;
+      const collisionDistance =
+        targetDistance - (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
+
+      if (90 <= angle && angle <= 180 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
+        };
+      }
+
+      if (90 > angle && angle >= 0 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
+        };
+      }
+
+      if (-90 <= angle && angle < 0 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
+        };
+      }
+
+      if (-90 > angle && angle > -180 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
+        };
+      }
+    }
+
+    let newPosition = {
+      x: currentPosition.x + delta.x,
+      z: currentPosition.z + delta.z
+    };
+
+    if (this.getSymbol(this.getMapPosition(newPosition)) === "#") {
+      newPosition = {
+        x: currentPosition.x - delta.x * 2,
+        z: currentPosition.z - delta.z * 2
+      };
+    }
+    return newPosition;
+  }
+
   private getCollisionType(
-    position: iPosition,
-    targetPosition: iPosition
+    position: IPosition,
+    targetPosition: IPosition
   ): ICollisionType {
     if (position.z === targetPosition.z) {
       return ICollisionType.horizontal;
@@ -143,7 +136,7 @@ class CollisionDetector {
     }
   }
 
-  public setCollision(position: iPosition) {
+  public setCollision(position: IPosition) {
     const mapPosition = this.getMapPosition(position);
 
     try {
@@ -151,7 +144,7 @@ class CollisionDetector {
     } catch {}
   }
 
-  private getMapPosition(position: iPosition): iPosition {
+  private getMapPosition(position: IPosition): IPosition {
     const normalizedPosition = this.normalizePosition(position);
 
     return {
@@ -160,14 +153,14 @@ class CollisionDetector {
     };
   }
 
-  private normalizePosition(position: iPosition): iPosition {
+  private normalizePosition(position: IPosition): IPosition {
     return {
       x: (position.x + 15000) / 1000,
       z: (position.z + 15000) / 1000
     };
   }
 
-  private getSymbol(position: iPosition) {
+  private getSymbol(position: IPosition) {
     try {
       return this.collisionMap[position.z][position.x];
     } catch {
@@ -175,15 +168,5 @@ class CollisionDetector {
     }
   }
 }
-
-// Converts from degrees to radians.
-const toRad = function(degrees) {
-  return (degrees * Math.PI) / 180;
-};
-
-// Converts from radians to degrees.
-const toDeg = function(radians) {
-  return (radians * 180) / Math.PI;
-};
 
 export default new CollisionDetector();
