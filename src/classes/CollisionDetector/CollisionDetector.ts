@@ -1,9 +1,6 @@
-import { iPosition } from "../../types";
 import { Distance } from "../../helpers";
 
-var angles = require("angles");
-angles.SCALE = 2 * Math.PI;
-console.log(angles);
+import { iPosition } from "../../types";
 
 import { ICell, ICollisionType } from "./types";
 
@@ -176,14 +173,8 @@ class CollisionDetector {
   }
 }
 
-// Converts from degrees to radians.
-const toRad = function(degrees) {
-  return (degrees * Math.PI) / 180;
-};
+const toRad = (degrees: number) => (degrees * Math.PI) / 180;
 
-// Converts from radians to degrees.
-const toDeg = function(radians) {
-  return (radians * 180) / Math.PI;
-};
+const toDeg = (radians: number) => (radians * 180) / Math.PI;
 
 export default new CollisionDetector();
