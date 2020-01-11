@@ -47,34 +47,34 @@ class CollisionDetector {
       mapTargetPosition
     );
 
-    let newPosition;
+    let delta;
     if (collisionType === ICollisionType.horizontal) {
       const angleToMove = -Math.PI / 2;
       const collisionDistance =
         (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
-      if (90 <= angle && angle <= 180 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
+      if (90 <= angle && angle <= 180 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
         };
       }
-      if (0 <= angle && 90 > angle && !newPosition) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+      if (0 <= angle && 90 > angle && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
         };
       }
-      if (-90 <= angle && angle < 0 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+      if (-90 <= angle && angle < 0 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
         };
       }
-      if (-90 > angle && angle >= -180 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
+      if (-90 > angle && angle >= -180 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
         };
       }
     } else if (collisionType === ICollisionType.vertical) {
@@ -82,40 +82,47 @@ class CollisionDetector {
       const collisionDistance =
         targetDistance - (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
 
-      if (90 <= angle && angle <= 180 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+      if (90 <= angle && angle <= 180 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
         };
       }
 
-      if (90 > angle && angle >= 0 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x - Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
+      if (90 > angle && angle >= 0 && !delta) {
+        delta = {
+          x: -Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
         };
       }
 
-      if (-90 <= angle && angle < 0 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z - Math.sin(angleToMove) * collisionDistance
+      if (-90 <= angle && angle < 0 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: -Math.sin(angleToMove) * collisionDistance
         };
       }
 
-      if (-90 > angle && angle > -180 && !newPosition) {
-        newPosition = {
-          x: currentPosition.x + Math.cos(angleToMove) * collisionDistance,
-          z: currentPosition.z + Math.sin(angleToMove) * collisionDistance
+      if (-90 > angle && angle > -180 && !delta) {
+        delta = {
+          x: Math.cos(angleToMove) * collisionDistance,
+          z: Math.sin(angleToMove) * collisionDistance
         };
       }
     }
+
+    let newPosition = {
+      x: currentPosition.x + delta.x,
+      z: currentPosition.z + delta.z
+    };
 
     if (this.getSymbol(this.getMapPosition(newPosition)) === "#") {
-      return this.handleCollision(newPosition, currentPosition);
-    } else {
-      return newPosition;
+      newPosition = {
+        x: currentPosition.x - delta.x * 2,
+        z: currentPosition.z - delta.z * 2
+      };
     }
+    return newPosition;
   }
 
   private getCollisionType(
