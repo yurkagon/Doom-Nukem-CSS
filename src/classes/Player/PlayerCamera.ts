@@ -5,6 +5,7 @@ import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { iPosition } from "../../types";
 
 import { isAngleBetween, normalize } from "../../helpers/angle";
+import CollisionDetector from "../CollisionDetector";
 
 abstract class PlayerCamera extends GameObject {
   public rotation = {
@@ -56,8 +57,21 @@ abstract class PlayerCamera extends GameObject {
   }
 
   public moveBy(vectorToMove: iPosition): void {
-    this.position.x += vectorToMove.x;
-    this.position.z += vectorToMove.z;
+    const currentPosition = this.position;
+    const targetPosition = {
+      x: currentPosition.x + vectorToMove.x,
+      z: currentPosition.z + vectorToMove.z
+    };
+
+    const resultPosition = CollisionDetector.checkCollision(
+      this.convertPlayerPositionToRealPosition(targetPosition),
+      this.convertPlayerPositionToRealPosition(currentPosition)
+    );
+
+    const result = this.convertRealPositionToPlayerPosition(resultPosition);
+
+    this.position.x = result.x;
+    this.position.z = result.z;
   }
 
   public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {
@@ -89,9 +103,20 @@ abstract class PlayerCamera extends GameObject {
   }
 
   getPosition() {
+    return this.convertPlayerPositionToRealPosition(this.position);
+  }
+
+  private convertPlayerPositionToRealPosition(position: iPosition): iPosition {
     return {
-      x: -this.position.x - 128,
-      z: -this.position.z + 700
+      x: -position.x - 128,
+      z: -position.z + 700
+    };
+  }
+
+  private convertRealPositionToPlayerPosition(position: iPosition): iPosition {
+    return {
+      x: -position.x - 128,
+      z: -position.z + 700
     };
   }
 }

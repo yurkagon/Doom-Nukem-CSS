@@ -1,6 +1,7 @@
 import Sprite from "../index";
 import Player from "../../Player/Player";
 import { Distance, generateCoordDiff } from "../../../helpers";
+import CollisionDetector from "../../CollisionDetector";
 
 class Enemy extends Sprite {
   static readonly LOGIC_INTERVAL = 500;
@@ -105,8 +106,18 @@ class Enemy extends Sprite {
 
           const { x, z } = this.position;
 
-          this.position.x = x + Math.cos(angle) * this.speed;
-          this.position.z = z + Math.sin(angle) * this.speed;
+          const targetPosition = {
+            x: x + Math.cos(angle) * this.speed,
+            z: z + Math.sin(angle) * this.speed
+          };
+
+          const result = CollisionDetector.checkCollision(
+            targetPosition,
+            this.position
+          );
+
+          this.position.x = result.x;
+          this.position.z = result.z;
       }
     }
     super.update();

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import classnames from "classnames";
 
 import State from "../../State";
 
@@ -11,6 +12,7 @@ import "./style.scss";
 class Loading extends Component {
   render() {
     const { percent, currentLoadedItem, buttonFunction } = State.loadingState;
+    const active = percent >= 100;
 
     return (
       <Screen className="loading-screen">
@@ -20,7 +22,11 @@ class Loading extends Component {
           <div className="percent">${percent}%</div>
         </div>
         <div className="text">{currentLoadedItem}</div>
-        <button onClick={buttonFunction} className="start-button">
+        <button
+          onClick={buttonFunction}
+          disabled={!active}
+          className={classnames("start-button", { active })}
+        >
           Let's rock!
         </button>
       </Screen>

@@ -9,12 +9,15 @@ import Enemy from "./classes/Sprite/Enemy/Enemy";
 import { mainThemeMusic, startPhrase } from "./variables/sounds";
 import SkyBox from "./classes/SkyBox/SkyBox";
 import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
-import House from "./classes/Model/House";
+
+import House from "./prefabs/models/House";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
 
 const weapon = $(".testWeapon");
+
+import Wall from "./classes/Wall";
 
 export default async () => {
   setLevel();
@@ -61,12 +64,11 @@ const setLevel = () => {
   for (let i = 0; i < 5; i++)
     new House({
       position: {
-        x: 110 * i * 20 - 5000,
+        x: 1000 * i * 2,
         y: 493,
         z: -3000
       }
     });
-
   for (let i = 0; i < 30; i++)
     new Enemy({
       type: "guard",
