@@ -48,5 +48,19 @@
     "hooks": {
       "pre-commit": "yarn pretty"
     }
-  }
+  },
+  "keywords": [
+    "3d",
+    "shooter",
+    "fps",
+    "first person shooter",
+    "css",
+    "html",
+    "jquery",
+    "javascript",
+    "doom",
+    "duke nukem",
+    "wolfenstein",
+    "react"
+  ]
 }
