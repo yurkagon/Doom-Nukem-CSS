@@ -2,9 +2,12 @@ abstract class UpdateStrategy {
   protected callback: () => void;
   protected interval: number;
 
-  public abstract runUpdating(callback: () => void, interval: number);
+  public setUpdater(callback: () => void, interval: number): void {
+    this.callback = callback;
+    this.interval = interval;
+  }
 
-  // public abstract stop();
+  public abstract run();
 }
 
 export default UpdateStrategy;

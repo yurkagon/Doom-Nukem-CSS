@@ -22,15 +22,6 @@ abstract class SceneController {
     this.update = this.update.bind(this);
   }
 
-  public subscribeGameObject(gameObject: GameObject): void {
-    this.gameObjects.push(gameObject);
-  }
-  public unSubscribeGameObject(gameObject: GameObject): void {
-    const index = this.gameObjects.indexOf(gameObject);
-
-    this.gameObjects.splice(index, 1);
-  }
-
   public init(config: iSceneConfig): void {
     this.player = config.player;
     this.sceneStart = config.start;
@@ -43,15 +34,8 @@ abstract class SceneController {
   }
 
   private runUpdating() {
-    // const timerId = setTimeout(() => {
-    //   this.update();
-
-    //   clearTimeout(timerId);
-
-    //   this.runUpdating();
-    // }, SceneController.RENDER_SPEED);
-
-    this.updateStrategy.runUpdating(this.update, SceneController.RENDER_SPEED);
+    this.updateStrategy.setUpdater(this.update, SceneController.RENDER_SPEED);
+    this.updateStrategy.run();
   }
 
   private update() {
@@ -83,6 +67,15 @@ abstract class SceneController {
     });
 
     this.level.css("transform", rotate3d + translate3d);
+  }
+
+  public subscribeGameObject(gameObject: GameObject): void {
+    this.gameObjects.push(gameObject);
+  }
+  public unSubscribeGameObject(gameObject: GameObject): void {
+    const index = this.gameObjects.indexOf(gameObject);
+
+    this.gameObjects.splice(index, 1);
   }
 }
 
