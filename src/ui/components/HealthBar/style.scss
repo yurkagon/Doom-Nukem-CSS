@@ -1,7 +1,8 @@
 .health-bar {
   position: absolute;
+  display: flex;
 
-  $margin: 20px;
+  $margin: 40px;
   bottom: $margin;
   left: $margin;
 }

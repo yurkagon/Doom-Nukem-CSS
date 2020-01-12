@@ -1,6 +1,9 @@
 import PlayerController from "./PlayerController";
+import { observable } from "mobx";
 
 class Player extends PlayerController {
+  @observable public hp = 100;
+
   private constructor() {
     super();
     const data = JSON.parse(localStorage.getItem("player-position"));

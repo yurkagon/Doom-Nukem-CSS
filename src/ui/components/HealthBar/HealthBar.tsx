@@ -1,10 +1,25 @@
 import React, { Component } from "react";
+import { observer } from "mobx-react";
+
+import Player from "../../../classes/Player";
+
+import Face from "./Face";
 
 import "./style.scss";
 
+@observer
 class HealthBar extends Component {
   render() {
-    return <div className="health-bar">hp bar</div>;
+    const player = Player.getInstance();
+
+    const hp = player.hp;
+
+    return (
+      <div className="health-bar">
+        <Face hp={hp} />
+        <span>{hp}</span>
+      </div>
+    );
   }
 }
 
