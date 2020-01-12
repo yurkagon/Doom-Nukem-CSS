@@ -1,0 +1,13 @@
+.health-bar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  bottom: 40px;
+  left: 110px;
+
+  transform: scale(1.8);
+
+  width: 200px;
+}

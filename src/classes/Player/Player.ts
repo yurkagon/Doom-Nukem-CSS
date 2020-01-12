@@ -1,16 +1,8 @@
 import PlayerController from "./PlayerController";
+import { observable, action } from "mobx";
 
 class Player extends PlayerController {
-  private static instance: Player;
-  public static getInstance(): Player {
-    if (Player.instance) {
-      return Player.instance;
-    } else {
-      Player.instance = new Player();
-
-      return Player.instance;
-    }
-  }
+  @observable public hp = 40;
 
   private constructor() {
     super();
@@ -28,12 +20,23 @@ class Player extends PlayerController {
     (window as any).player = this;
   }
 
-  start() {
-    super.start();
+  @action
+  public addHP(value: number) {
+    let result = this.hp + value;
+
+    if (result > 100) {
+      result = 100;
+    } else if (result < 0) {
+      result = 0;
+    }
+
+    this.hp = result;
+
+    if (this.hp === 0) this.onDie();
   }
 
-  update() {
-    super.update();
+  private onDie() {
+    console.log("dead");
   }
 
   public savePosition = () => {
@@ -46,6 +49,17 @@ class Player extends PlayerController {
       })
     );
   };
+
+  private static instance: Player;
+  public static getInstance(): Player {
+    if (Player.instance) {
+      return Player.instance;
+    } else {
+      Player.instance = new Player();
+
+      return Player.instance;
+    }
+  }
 }
 
 export default Player;

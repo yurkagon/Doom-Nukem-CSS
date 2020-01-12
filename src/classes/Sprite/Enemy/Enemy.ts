@@ -96,7 +96,27 @@ class Enemy extends Sprite {
     switch (this.currenState) {
       case states.DEAD:
         return this.onDie();
+      case states.ATACK:
+        return this.onAttack();
     }
+  }
+
+  protected onAttack() {
+    const player = Player.getInstance();
+
+    chance(0.1).to(() => {
+      const damage = Math.random() * 10;
+
+      player.addHP(-damage);
+    });
+  }
+
+  protected onDie() {
+    chance(0.1).to(() => {
+      new ShotgunItem({
+        ...this.position
+      });
+    });
   }
 
   public update() {
@@ -131,14 +151,6 @@ class Enemy extends Sprite {
       }
     }
     super.update();
-  }
-
-  protected onDie() {
-    chance(0.1).to(() => {
-      new ShotgunItem({
-        ...this.position
-      });
-    });
   }
 }
 
