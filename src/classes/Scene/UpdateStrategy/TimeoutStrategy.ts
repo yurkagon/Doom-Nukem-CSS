@@ -12,6 +12,10 @@ class TimeoutStrategy extends UpdateStrategy {
       this.run();
     }, this.interval);
   }
+
+  public stop() {
+    clearTimeout(this.timerId);
+  }
 }
 
 export default TimeoutStrategy;

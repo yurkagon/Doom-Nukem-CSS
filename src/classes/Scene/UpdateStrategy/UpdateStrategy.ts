@@ -8,6 +8,7 @@ abstract class UpdateStrategy {
   }
 
   public abstract run();
+  public abstract stop();
 }
 
 export default UpdateStrategy;

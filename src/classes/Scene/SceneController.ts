@@ -4,7 +4,11 @@ import Player from "../Player/Player";
 import { iSceneConfig } from "../../types";
 import { generateTranslate3d } from "../../helpers";
 
-import { UpdateStrategy, IntervalStrategy } from "./UpdateStrategy";
+import {
+  UpdateStrategy,
+  IntervalStrategy,
+  TimeoutStrategy
+} from "./UpdateStrategy";
 
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
