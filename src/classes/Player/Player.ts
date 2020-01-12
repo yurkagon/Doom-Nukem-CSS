@@ -2,7 +2,7 @@ import PlayerController from "./PlayerController";
 import { observable, action } from "mobx";
 
 class Player extends PlayerController {
-  @observable public hp = 100;
+  @observable public hp = 40;
 
   private constructor() {
     super();
