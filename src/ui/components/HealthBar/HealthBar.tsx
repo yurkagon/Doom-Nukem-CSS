@@ -17,7 +17,7 @@ class HealthBar extends Component {
     return (
       <div className="health-bar">
         <Face hp={hp} />
-        <span>{hp}</span>
+        <span className="zorque-font">{hp}</span>
       </div>
     );
   }

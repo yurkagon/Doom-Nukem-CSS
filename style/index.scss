@@ -1,4 +1,5 @@
 @import "level";
+@import "fonts";
 
 $cameraW: 1300px;
 $cameraH: 700px;
@@ -145,4 +146,6 @@ body {
   overflow: hidden;
   background: url(img/background.jpg);
   background-size: cover;
+
+  user-select: none;
 }

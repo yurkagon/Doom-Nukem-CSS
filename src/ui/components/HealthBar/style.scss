@@ -1,8 +1,10 @@
 .health-bar {
   position: absolute;
   display: flex;
+  align-items: center;
 
-  $margin: 40px;
-  bottom: $margin;
-  left: $margin;
+  bottom: 30px;
+  left: 70px;
+
+  transform: scale(1.8);
 }
