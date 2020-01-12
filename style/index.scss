@@ -29,7 +29,8 @@ $size: 1;
   perspective: 800px;
 }
 
-#ui {
+#ui,
+.ui-wrapper {
   width: 100%;
   height: 100%;
   position: absolute;

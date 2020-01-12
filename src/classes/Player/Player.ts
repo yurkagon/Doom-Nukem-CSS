@@ -1,17 +1,6 @@
 import PlayerController from "./PlayerController";
 
 class Player extends PlayerController {
-  private static instance: Player;
-  public static getInstance(): Player {
-    if (Player.instance) {
-      return Player.instance;
-    } else {
-      Player.instance = new Player();
-
-      return Player.instance;
-    }
-  }
-
   private constructor() {
     super();
     const data = JSON.parse(localStorage.getItem("player-position"));
@@ -46,6 +35,17 @@ class Player extends PlayerController {
       })
     );
   };
+
+  private static instance: Player;
+  public static getInstance(): Player {
+    if (Player.instance) {
+      return Player.instance;
+    } else {
+      Player.instance = new Player();
+
+      return Player.instance;
+    }
+  }
 }
 
 export default Player;
