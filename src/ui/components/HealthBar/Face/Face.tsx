@@ -40,7 +40,7 @@ class Face extends Component<IProps> {
     const hpState = Math.ceil((100 - hp) / 20) || 1;
 
     const result = hpState + iteration * 5;
-    console.log(result);
+
     return result;
   }
 

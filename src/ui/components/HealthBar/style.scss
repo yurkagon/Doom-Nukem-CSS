@@ -2,9 +2,12 @@
   position: absolute;
   display: flex;
   align-items: center;
+  justify-content: start;
 
-  bottom: 30px;
-  left: 70px;
+  bottom: 40px;
+  left: 110px;
 
   transform: scale(1.8);
+
+  width: 200px;
 }
