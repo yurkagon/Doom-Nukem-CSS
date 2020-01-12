@@ -2,6 +2,7 @@ import Sprite from "../index";
 import Player from "../../Player/Player";
 import { Distance, generateCoordDiff } from "../../../helpers";
 import CollisionDetector from "../../CollisionDetector";
+import ShotgunItem from "../Item/ShotgunItem";
 
 class Enemy extends Sprite {
   static readonly LOGIC_INTERVAL = 500;
@@ -87,6 +88,13 @@ class Enemy extends Sprite {
     this.spriteElement.removeClass(this.currenState);
     this.spriteElement.addClass(state);
     this.currenState = state;
+
+    const { states } = Enemy;
+
+    switch (this.currenState) {
+      case states.DEAD:
+        return this.onDie();
+    }
   }
 
   public update() {
@@ -121,6 +129,12 @@ class Enemy extends Sprite {
       }
     }
     super.update();
+  }
+
+  protected onDie() {
+    new ShotgunItem({
+      ...this.position
+    });
   }
 }
 

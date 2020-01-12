@@ -23,31 +23,6 @@ const weapon = $(".testWeapon");
 export default async () => {
   setLevel();
 
-  new Wall({
-    position: {
-      x: 0,
-      z: 14150,
-      y: 100
-    }
-  });
-
-  new Wall({
-    position: {
-      x: 0,
-      z: -13950,
-      y: 100
-    }
-  });
-
-  new Wall({
-    position: {
-      x: 830,
-      z: -14004,
-      y: 100
-    },
-    rotation: 90
-  });
-
   scene.init({
     player,
     start() {
@@ -83,24 +58,56 @@ export default async () => {
 };
 
 const setLevel = () => {
-  // new ShotgunItem({
-  //   x: 1000,
-  //   z: 1000
-  // });
-  // for (let i = 0; i < 5; i++)
-  //   new House({
-  //     position: {
-  //       x: 1000 * i * 2,
-  //       y: 493,
-  //       z: -3000
-  //     }
-  //   });
-  // for (let i = 0; i < 20; i++)
-  //   new Enemy({
-  //     type: "guard",
-  //     position: {
-  //       x: 1000 + i * 100,
-  //       z: 1000 + i * 100
-  //     }
-  //   });
+  for (let i = 0; i < 5; i++)
+    new House({
+      position: {
+        x: 1000 * i * 2,
+        y: 493,
+        z: -3000
+      }
+    });
+  for (let i = 0; i < 20; i++)
+    new Enemy({
+      type: "guard",
+      position: {
+        x: 1000 + i * 100,
+        z: 1000 + i * 100
+      }
+    });
+};
+
+const initWalls = () => {
+  new Wall({
+    position: {
+      x: 0,
+      z: 14150,
+      y: 100
+    }
+  });
+
+  new Wall({
+    position: {
+      x: 0,
+      z: -13950,
+      y: 100
+    }
+  });
+
+  new Wall({
+    position: {
+      x: 830,
+      z: -14004,
+      y: 100
+    },
+    rotation: 90
+  });
+
+  new Wall({
+    position: {
+      x: 830,
+      z: 14100,
+      y: 100
+    },
+    rotation: 90
+  });
 };
