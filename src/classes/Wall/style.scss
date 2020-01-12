@@ -1,11 +1,9 @@
 .wall {
   position: absolute;
   height: 400px;
-  width: 100px;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
-    url(img/wall.jpg);
-  // transform: rotateY(90deg) translate3d(0, 100px, 0);
-  background-size: 15% 100%;
+    url(https://i.imgur.com/w7Q8WWL.png);
+  background-size: 4% 100%;
 
   transform-style: preserve-3d;
 }

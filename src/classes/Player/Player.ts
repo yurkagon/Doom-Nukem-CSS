@@ -15,7 +15,7 @@ class Player extends PlayerController {
   private constructor() {
     super();
     const data = JSON.parse(localStorage.getItem("player-position"));
-    console.log(data);
+
     if (data) {
       this.position = data.position;
       this.position.y = 0;
@@ -24,6 +24,8 @@ class Player extends PlayerController {
     }
 
     setInterval(this.savePosition, 5000);
+
+    (window as any).player = this;
   }
 
   start() {

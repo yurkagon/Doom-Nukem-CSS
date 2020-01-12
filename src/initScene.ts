@@ -11,6 +11,7 @@ import SkyBox from "./classes/SkyBox/SkyBox";
 import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
 
 import House from "./prefabs/models/House";
+import Wall from "./classes/Wall";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -21,6 +22,22 @@ const weapon = $(".testWeapon");
 
 export default async () => {
   setLevel();
+
+  new Wall({
+    position: {
+      x: 0,
+      z: 14150,
+      y: 100
+    }
+  });
+
+  new Wall({
+    position: {
+      x: 0,
+      z: -13950,
+      y: 100
+    }
+  });
 
   scene.init({
     player,
@@ -61,20 +78,20 @@ const setLevel = () => {
   //   x: 1000,
   //   z: 1000
   // });
-  for (let i = 0; i < 5; i++)
-    new House({
-      position: {
-        x: 1000 * i * 2,
-        y: 493,
-        z: -3000
-      }
-    });
-  for (let i = 0; i < 20; i++)
-    new Enemy({
-      type: "guard",
-      position: {
-        x: 1000 + i * 100,
-        z: 1000 + i * 100
-      }
-    });
+  // for (let i = 0; i < 5; i++)
+  //   new House({
+  //     position: {
+  //       x: 1000 * i * 2,
+  //       y: 493,
+  //       z: -3000
+  //     }
+  //   });
+  // for (let i = 0; i < 20; i++)
+  //   new Enemy({
+  //     type: "guard",
+  //     position: {
+  //       x: 1000 + i * 100,
+  //       z: 1000 + i * 100
+  //     }
+  //   });
 };
