@@ -4,6 +4,8 @@ import Player from "../Player/Player";
 import { iSceneConfig } from "../../types";
 import { generateTranslate3d } from "../../helpers";
 
+import { UpdateStrategy, IntervalStrategy } from "./UpdateStrategy";
+
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
@@ -13,6 +15,8 @@ abstract class SceneController {
 
   private sceneStart: () => void;
   private sceneUpdate: () => void;
+
+  private updateStrategy: UpdateStrategy = new IntervalStrategy();
 
   constructor() {
     this.update = this.update.bind(this);
@@ -47,10 +51,10 @@ abstract class SceneController {
     //   this.runUpdating();
     // }, SceneController.RENDER_SPEED);
 
-    setInterval(this.update, SceneController.RENDER_SPEED);
+    this.updateStrategy.runUpdating(this.update, SceneController.RENDER_SPEED);
   }
 
-  private update(): void {
+  private update() {
     for (let gameObject of this.gameObjects) {
       if (!gameObject.isStarted) {
         gameObject.start();
