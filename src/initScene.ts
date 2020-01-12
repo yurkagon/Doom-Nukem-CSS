@@ -8,9 +8,9 @@ import Enemy from "./classes/Sprite/Enemy/Enemy";
 
 import { mainThemeMusic, startPhrase } from "./variables/sounds";
 import SkyBox from "./classes/SkyBox/SkyBox";
-import ShotgunItem from "./classes/Sprite/Item/ShotgunItem";
 
 import House from "./prefabs/models/House";
+import Wall from "./classes/Wall";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -57,10 +57,7 @@ export default async () => {
 };
 
 const setLevel = () => {
-  // new ShotgunItem({
-  //   x: 1000,
-  //   z: 1000
-  // });
+  initWalls();
   for (let i = 0; i < 5; i++)
     new House({
       position: {
@@ -69,7 +66,7 @@ const setLevel = () => {
         z: -3000
       }
     });
-  for (let i = 0; i < 20; i++)
+  for (let i = 0; i < 40; i++)
     new Enemy({
       type: "guard",
       position: {
@@ -77,4 +74,40 @@ const setLevel = () => {
         z: 1000 + i * 100
       }
     });
+};
+
+const initWalls = () => {
+  new Wall({
+    position: {
+      x: 0,
+      z: 14150,
+      y: 100
+    }
+  });
+
+  new Wall({
+    position: {
+      x: 0,
+      z: -13950,
+      y: 100
+    }
+  });
+
+  new Wall({
+    position: {
+      x: 830,
+      z: -14004,
+      y: 100
+    },
+    rotation: 90
+  });
+
+  new Wall({
+    position: {
+      x: 830,
+      z: 14100,
+      y: 100
+    },
+    rotation: 90
+  });
 };

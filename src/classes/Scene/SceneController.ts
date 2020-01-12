@@ -4,6 +4,12 @@ import Player from "../Player/Player";
 import { iSceneConfig } from "../../types";
 import { generateTranslate3d } from "../../helpers";
 
+import {
+  UpdateStrategy,
+  IntervalStrategy,
+  TimeoutStrategy
+} from "./UpdateStrategy";
+
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
@@ -14,17 +20,10 @@ abstract class SceneController {
   private sceneStart: () => void;
   private sceneUpdate: () => void;
 
+  private updateStrategy: UpdateStrategy = new IntervalStrategy();
+
   constructor() {
     this.update = this.update.bind(this);
-  }
-
-  public subscribeGameObject(gameObject: GameObject): void {
-    this.gameObjects.push(gameObject);
-  }
-  public unSubscribeGameObject(gameObject: GameObject): void {
-    const index = this.gameObjects.indexOf(gameObject);
-
-    this.gameObjects.splice(index, 1);
   }
 
   public init(config: iSceneConfig): void {
@@ -39,18 +38,11 @@ abstract class SceneController {
   }
 
   private runUpdating() {
-    // const timerId = setTimeout(() => {
-    //   this.update();
-
-    //   clearTimeout(timerId);
-
-    //   this.runUpdating();
-    // }, SceneController.RENDER_SPEED);
-
-    setInterval(this.update, SceneController.RENDER_SPEED);
+    this.updateStrategy.setUpdater(this.update, SceneController.RENDER_SPEED);
+    this.updateStrategy.run();
   }
 
-  private update(): void {
+  private update() {
     for (let gameObject of this.gameObjects) {
       if (!gameObject.isStarted) {
         gameObject.start();
@@ -79,6 +71,15 @@ abstract class SceneController {
     });
 
     this.level.css("transform", rotate3d + translate3d);
+  }
+
+  public subscribeGameObject(gameObject: GameObject): void {
+    this.gameObjects.push(gameObject);
+  }
+  public unSubscribeGameObject(gameObject: GameObject): void {
+    const index = this.gameObjects.indexOf(gameObject);
+
+    this.gameObjects.splice(index, 1);
   }
 }
 

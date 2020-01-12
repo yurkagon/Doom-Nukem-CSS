@@ -1,9 +1,12 @@
 import Sprite from "../index";
 import Player from "../../Player/Player";
-import { Distance, generateCoordDiff } from "../../../helpers";
+import { Distance, generateCoordDiff, chance } from "../../../helpers";
 import CollisionDetector from "../../CollisionDetector";
+import ShotgunItem from "../Item/ShotgunItem";
 
 class Enemy extends Sprite {
+  protected VISIBILITY_DISTANCE = 4000;
+
   static readonly LOGIC_INTERVAL = 500;
   static readonly VISION_DISTANCE = 2500;
   static readonly MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
@@ -87,6 +90,13 @@ class Enemy extends Sprite {
     this.spriteElement.removeClass(this.currenState);
     this.spriteElement.addClass(state);
     this.currenState = state;
+
+    const { states } = Enemy;
+
+    switch (this.currenState) {
+      case states.DEAD:
+        return this.onDie();
+    }
   }
 
   public update() {
@@ -121,6 +131,14 @@ class Enemy extends Sprite {
       }
     }
     super.update();
+  }
+
+  protected onDie() {
+    chance(0.1).to(() => {
+      new ShotgunItem({
+        ...this.position
+      });
+    });
   }
 }
 

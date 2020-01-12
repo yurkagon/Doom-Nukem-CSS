@@ -129,8 +129,11 @@ abstract class PlayerController extends PlayerCamera {
       };
 
       const delta = this.prevMousePostion.x - mousePosition.x;
-      const toRotate = (delta * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
-      this.rotate(toRotate);
+
+      if (Math.abs(delta) < 50) {
+        const toRotate = (delta * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
+        this.rotate(toRotate);
+      }
 
       this.prevMousePostion = mousePosition;
     });

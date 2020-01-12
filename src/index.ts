@@ -2,8 +2,9 @@ import UI from "./ui";
 import State, { Screen } from "./ui/State";
 
 (async () => {
+  UI.init();
+
   if (process.env.NODE_ENV === "production") {
-    UI.init();
     State.setScreen(Screen.loading);
 
     await State.loadingState.loadResources({
@@ -32,6 +33,8 @@ import State, { Screen } from "./ui/State";
       ]
     });
   }
+
+  State.setScreen(Screen.game);
 
   require("./initScene").default();
 })();

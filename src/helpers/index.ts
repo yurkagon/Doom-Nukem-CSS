@@ -14,3 +14,9 @@ export const generateTranslate3d = (position: IPosition): string => {
 
   return `translate3d(${x}px, ${y}px, ${z}px)`;
 };
+
+export const chance = value => ({
+  to: callback => {
+    if (Math.random() < value) return callback();
+  }
+});
