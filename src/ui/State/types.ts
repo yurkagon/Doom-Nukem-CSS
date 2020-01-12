@@ -1,4 +1,5 @@
 export enum Screen {
   empty,
-  loading
+  loading,
+  game
 }

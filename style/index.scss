@@ -6,8 +6,13 @@ $size: 1;
 
 #root {
   width: $cameraW * $size;
+  min-width: $cameraW * $size;
   height: $cameraH * $size;
+  min-height: $cameraH * $size;
   position: relative;
+  display: block;
+
+  transform: scale(0.85);
 }
 
 #camera {
