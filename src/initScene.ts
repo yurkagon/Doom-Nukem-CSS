@@ -39,6 +39,15 @@ export default async () => {
     }
   });
 
+  new Wall({
+    position: {
+      x: 830,
+      z: -14004,
+      y: 100
+    },
+    rotation: 90
+  });
+
   scene.init({
     player,
     start() {
