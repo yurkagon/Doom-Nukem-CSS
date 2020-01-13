@@ -7,7 +7,7 @@
 
 `WASD (or arrows)` - to move
 
-`QR (or mouse)` - to rotate the camera
+`QE (or mouse)` - to rotate the camera
 
 `Mouse left button` - to shoot
 
