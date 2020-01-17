@@ -6,15 +6,15 @@ import data from "./data";
 import "./style.scss";
 import { IPosition } from "../../types";
 
-class House extends Model {
-  protected readonly VISIBILITY_DISTANCE = 4000;
+class Wall extends Model {
+  protected readonly VISIBILITY_DISTANCE = 40000;
 
   VISION_CHECKING = false;
 
   protected positionCorrector: IPosition = {
-    x: 250,
-    z: 170,
-    y: 0
+    x: 130,
+    z: 600,
+    y: 200
   };
 
   constructor(transform?: ITransform) {
@@ -22,13 +22,13 @@ class House extends Model {
       name: "wall",
       data,
       scale: {
-        x: 4,
-        y: 3,
-        z: 2.5
+        x: 10,
+        y: 2.5,
+        z: 8
       },
       ...(transform || {})
     });
   }
 }
 
-export default House;
+export default Wall;

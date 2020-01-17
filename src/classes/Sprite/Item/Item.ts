@@ -20,13 +20,13 @@ class Item extends Sprite {
   update() {
     super.update();
 
-    if (this.isActive) {
-      const player = Player.getInstance();
+    // if (this.isActive) {
+    //   const player = Player.getInstance();
 
-      const distance = Distance(player.getPosition(), this.getPosition());
+    //   const distance = Distance(player.getPosition(), this.getPosition());
 
-      if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
-    }
+    //   if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
+    // }
   }
 
   pickItem() {

@@ -5,6 +5,7 @@ import { IPosition } from "../../types";
 import testMap from "./testMap";
 import House from "../../prefabs/models/House";
 import Wall from "../Wall";
+import MedkitItem from "../Sprite/Item/MedkitItem";
 
 class Map {
   private collisionDetector: CollisionDetector;
@@ -33,10 +34,25 @@ class Map {
     let str = "";
     this.collisionDetector.forEach((symbol, position, i, k) => {
       if (symbol === "#") {
+        new MedkitItem(position);
+        new MedkitItem({
+          ...position,
+          x: position.x + 1000
+        });
+        new MedkitItem({
+          ...position,
+          z: position.z + 1000
+        });
+        new MedkitItem({
+          x: position.x + 1000,
+          z: position.z + 1000
+        });
+        // new MedkitItem(position);
+        // new MedkitItem(position);
         new Wall({
           position: {
             ...position,
-            y: 493
+            y: 0
           }
         });
       }

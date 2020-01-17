@@ -1,13 +1,6 @@
 export default `
-  <div class="shape back"></div>
-
-  <div class="shape front"></div>
-
-  <div class="shape right">
-    <div class="face lt"></div>
-  </div>
-
-  <div class="shape left">
-    <div class="face rt"></div>
-  </div>
+  <div class="face front"></div>
+  <div class="face back"></div>
+  <div class="face right"></div>
+  <div class="face left"></div>
 `;
