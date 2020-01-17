@@ -1,46 +1,48 @@
 .wall {
   transform-style: preserve-3d;
 
-  .face,
   .shape {
     position: absolute;
     transform-style: preserve-3d;
-  }
-
-  .shape {
     top: 50%;
     left: 50%;
     width: 0;
     height: 0;
     transform-origin: 50%;
   }
+
   .face {
+    position: absolute;
+    transform-style: preserve-3d;
+
     overflow: hidden;
     transform-origin: 0 0;
     backface-visibility: hidden;
-  }
-  .face {
     background-size: 100% 100% !important;
     background-position: center;
   }
 
-  [class*="cuboid"] .bk,
-  [class*="cuboid"] .ft {
-    width: 100%;
-    height: 100%;
+  .cuboid {
+    .bk,
+    .ft {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bk {
+      left: 100%;
+    }
+
+    .rt {
+      transform: rotateY(-90deg) translateX(-50%);
+    }
+
+    .lt {
+      transform: rotateY(90deg) translateX(-50%);
+      left: 100%;
+    }
   }
-  [class*="cuboid"] .bk {
-    left: 100%;
-  }
-  [class*="cuboid"] .rt {
-    transform: rotateY(-90deg) translateX(-50%);
-  }
-  [class*="cuboid"] .lt {
-    transform: rotateY(90deg) translateX(-50%);
-  }
-  [class*="cuboid"] .lt {
-    left: 100%;
-  }
+
   .back {
     transform: translate3D(6em, -4.25em, -0.1em) rotateX(0) rotateY(0)
       rotateZ(0);
@@ -48,27 +50,17 @@
     width: 12.4em;
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
+
+    .face {
+      background-color: #fff;
+    }
+
+    .bk {
+      background: url(img/models/house/Front.png);
+      transform: translateZ(0) rotateY(180deg);
+    }
   }
-  .back .ft {
-    transform: translateZ(0);
-  }
-  .back .bk {
-    transform: translateZ(0) rotateY(180deg);
-  }
-  .back .lt,
-  .back .rt {
-    width: 0;
-    height: 8.5em;
-  }
-  .back .face {
-    background-color: #fff;
-  }
-  .back .ft {
-    background: url(img/models/house/Front.png);
-  }
-  .back .bk {
-    background: url(img/models/house/Front.png);
-  }
+
   .front {
     transform: translate3D(6em, -4.25em, 20.1em) rotateX(0) rotateY(0)
       rotateZ(0);
@@ -76,67 +68,47 @@
     width: 12.4em;
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
+
+    .face {
+      background-color: #fff;
+    }
+    .ft {
+      transform: translateZ(0);
+      background: url(img/models/house/Front.png);
+    }
   }
-  .front .ft {
-    transform: translateZ(0);
-  }
-  .front .bk {
-    transform: translateZ(0) rotateY(180deg);
-  }
-  .front .lt,
-  .front .rt {
-    width: 0;
-    height: 8.5em;
-  }
-  .front .face {
-    background-color: #fff;
-  }
-  .front .ft {
-    background: url(img/models/house/Front.png);
-  }
-  .front .bk {
-    background: url(img/models/house/Front.png);
-  }
+
   .right {
     transform: translate3D(12.2em, -3em, 10em) rotateX(0) rotateY(0) rotateZ(0);
     opacity: 1;
     width: 0;
     height: 6em;
     margin: -3em 0 0 0;
+
+    .lt {
+      width: 20.21em;
+      height: 6em;
+    }
+
+    .face {
+      background: url(img/models/house/Side.png) #fff;
+    }
   }
-  .right .ft {
-    transform: translateZ(10.105em);
-  }
-  .right .bk {
-    transform: translateZ(-10.105em) rotateY(180deg);
-  }
-  .right .lt,
-  .right .rt {
-    width: 20.21em;
-    height: 6em;
-  }
-  .right .face {
-    background: url(img/models/house/Side.png) #fff;
-  }
+
   .left {
     transform: translate3D(-0.2em, -3em, 10em) rotateX(0) rotateY(0) rotateZ(0);
     opacity: 1;
     width: 0;
     height: 6em;
     margin: -3em 0 0 0;
-  }
-  .left .ft {
-    transform: translateZ(10.105em);
-  }
-  .left .bk {
-    transform: translateZ(-10.105em) rotateY(180deg);
-  }
-  .left .lt,
-  .left .rt {
-    width: 20.21em;
-    height: 6em;
-  }
-  .left .face {
-    background: url(img/models/house/Side.png) #fff;
+
+    .rt {
+      width: 20.21em;
+      height: 6em;
+    }
+
+    .face {
+      background: url(img/models/house/Side.png) #fff;
+    }
   }
 }
