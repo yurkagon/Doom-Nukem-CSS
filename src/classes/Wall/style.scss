@@ -16,10 +16,6 @@
       height: 100%;
     }
 
-    .bk {
-      left: 100%;
-    }
-
     .rt {
       transform: rotateY(-90deg) translateX(-50%);
     }
@@ -36,7 +32,7 @@
 
     overflow: hidden;
     transform-origin: 0 0;
-    backface-visibility: hidden;
+    // backface-visibility: hidden;
     background-size: 100% 100% !important;
     background-position: center;
   }
@@ -49,13 +45,8 @@
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
 
-    .face {
-      background-color: #fff;
-    }
-
     .bk {
       background: url(img/models/house/Front.png);
-      transform: translateZ(0) rotateY(180deg);
     }
   }
 
@@ -67,9 +58,6 @@
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
 
-    .face {
-      background-color: #fff;
-    }
     .ft {
       transform: translateZ(0);
       background: url(img/models/house/Front.png);
