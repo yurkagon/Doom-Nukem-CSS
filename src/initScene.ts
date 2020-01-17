@@ -27,10 +27,10 @@ export default async () => {
     start() {
       new SkyBox();
 
-      setTimeout(() => {
-        mainThemeMusic.play();
-        startPhrase.play();
-      }, 1000);
+      // setTimeout(() => {
+      //   mainThemeMusic.play();
+      //   startPhrase.play();
+      // }, 1000);
     },
     update() {
       if (player.isMoving()) {

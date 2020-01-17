@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 
-import { Loading, Game } from "./screens";
+import { Loading, Game, Menu } from "./screens";
 
 import State, { Screen } from "./State";
 
@@ -15,6 +15,8 @@ class UserInterface extends Component {
     switch (State.screen) {
       case Screen.game:
         return <Game />;
+      case Screen.menu:
+        return <Menu />;
       default:
         return null;
     }
