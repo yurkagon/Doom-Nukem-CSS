@@ -9,20 +9,7 @@
     width: 0;
     height: 0;
     transform-origin: 50%;
-  }
 
-  .face {
-    position: absolute;
-    transform-style: preserve-3d;
-
-    overflow: hidden;
-    transform-origin: 0 0;
-    backface-visibility: hidden;
-    background-size: 100% 100% !important;
-    background-position: center;
-  }
-
-  .cuboid {
     .bk,
     .ft {
       width: 100%;
@@ -41,6 +28,17 @@
       transform: rotateY(90deg) translateX(-50%);
       left: 100%;
     }
+  }
+
+  .face {
+    position: absolute;
+    transform-style: preserve-3d;
+
+    overflow: hidden;
+    transform-origin: 0 0;
+    backface-visibility: hidden;
+    background-size: 100% 100% !important;
+    background-position: center;
   }
 
   .back {

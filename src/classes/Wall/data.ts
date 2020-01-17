@@ -1,17 +1,17 @@
 export default `
-  <div class="shape cuboid back">
+  <div class="shape back">
     <div class="face bk"></div>
   </div>
 
-  <div class="shape cuboid front">
+  <div class="shape front">
     <div class="face ft"></div>
   </div>
 
-  <div class="shape cuboid right">
+  <div class="shape right">
     <div class="face lt"></div>
   </div>
 
-  <div class="shape cuboid left">
+  <div class="shape left">
     <div class="face rt"></div>
   </div>
 `;
