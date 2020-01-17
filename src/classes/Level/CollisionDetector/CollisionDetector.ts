@@ -1,12 +1,22 @@
-import { Distance } from "../../helpers";
+import { Distance } from "../../../helpers";
 
-import { IPosition } from "../../types";
+import { IPosition } from "../../../types";
 
-import { ICell, ICollisionType } from "./types";
-import Angle from "../../helpers/angle";
+import { ICollisionType, ICollisionMap } from "./types";
+import Angle from "../../../helpers/angle";
 
 class CollisionDetector {
-  private collisionMap: ICell[][] = require("./collisionMap").default;
+  public collisionMap: ICollisionMap;
+
+  constructor(map: ICollisionMap) {
+    if (map) {
+      this.setCollisionMap(map);
+    }
+  }
+
+  public setCollisionMap(map: ICollisionMap) {
+    this.collisionMap = map;
+  }
 
   public handleCollision(
     targetPosition: IPosition,
@@ -160,6 +170,15 @@ class CollisionDetector {
     };
   }
 
+  private getRealPositionFromNormalizedPosition(
+    position: IPosition
+  ): IPosition {
+    return {
+      x: position.x * 1000 - 15000,
+      z: position.z * 1000 - 15000
+    };
+  }
+
   private getSymbol(position: IPosition) {
     try {
       return this.collisionMap[position.z][position.x];
@@ -167,6 +186,30 @@ class CollisionDetector {
       return "#";
     }
   }
+
+  public forEach(
+    callback: (
+      symbol: string,
+      position: IPosition,
+      i: number,
+      k: number
+    ) => void
+  ) {
+    for (let i = 0; i < this.collisionMap.length; i++) {
+      for (let k = 0; k < this.collisionMap[i].length; k++) {
+        const space = this.collisionMap[i][k];
+        callback(
+          space,
+          this.getRealPositionFromNormalizedPosition({
+            x: k,
+            z: i
+          }),
+          i,
+          k
+        );
+      }
+    }
+  }
 }
 
-export default new CollisionDetector();
+export default CollisionDetector;

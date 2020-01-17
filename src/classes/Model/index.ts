@@ -2,7 +2,6 @@ import $ from "jquery";
 import { IModelConfig } from "./types";
 import { IPosition } from "../../types";
 import GameObjectLOD from "../GameObjectLOD/index";
-import CollisionDetector from "../CollisionDetector";
 
 abstract class Model extends GameObjectLOD {
   private static readonly DEFAULT_ROTATION: IPosition = { x: 0, y: 0, z: 0 };

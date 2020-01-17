@@ -15,15 +15,20 @@ interface IWallConfig {
 }
 
 class Wall extends GameObject {
-  public position: IPosition;
-
   private static readonly container = $(".level");
-  private readonly element: JQuery = $("<div/>").addClass("wall");
+  private readonly element: JQuery = $("<div/>").addClass("wall-old");
 
-  constructor(position: IPosition) {
+  constructor({ position, rotation = 0, scale = 150 }: IWallConfig = {}) {
     super(position);
 
-    this.position = position;
+    this.element.css(
+      "transform",
+      `rotateY(${rotation + "deg"}) ${generateTranslate3d(
+        this.position
+      )} scale3d(${scale}, 1, 1)`
+    );
+
+    this.element.css("width", `200px`);
   }
 
   start() {

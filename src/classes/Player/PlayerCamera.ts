@@ -5,7 +5,7 @@ import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { IPosition } from "../../types";
 
 import Angle from "../../helpers/angle";
-import CollisionDetector from "../CollisionDetector";
+import Level from "../Level";
 
 abstract class PlayerCamera extends GameObject {
   public rotation = {
@@ -63,7 +63,7 @@ abstract class PlayerCamera extends GameObject {
       z: currentPosition.z + vectorToMove.z
     };
 
-    const resultPosition = CollisionDetector.handleCollision(
+    const resultPosition = Level.handleCollision(
       this.convertPlayerPositionToRealPosition(targetPosition),
       this.convertPlayerPositionToRealPosition(currentPosition)
     );
