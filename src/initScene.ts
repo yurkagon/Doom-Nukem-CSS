@@ -58,22 +58,22 @@ export default async () => {
 
 const setLevel = () => {
   initWalls();
-  for (let i = 0; i < 5; i++)
-    new House({
-      position: {
-        x: 1000 * i * 2,
-        y: 493,
-        z: -3000
-      }
-    });
-  for (let i = 0; i < 40; i++)
-    new Enemy({
-      type: "guard",
-      position: {
-        x: 1000 + i * 100,
-        z: 1000 + i * 100
-      }
-    });
+  // for (let i = 0; i < 5; i++)
+  //   new House({
+  //     position: {
+  //       x: 1000 * i * 2,
+  //       y: 493,
+  //       z: -3000
+  //     }
+  //   });
+  // for (let i = 0; i < 40; i++)
+  //   new Enemy({
+  //     type: "guard",
+  //     position: {
+  //       x: 1000 + i * 100,
+  //       z: 1000 + i * 100
+  //     }
+  //   });
 };
 
 const initWalls = () => {

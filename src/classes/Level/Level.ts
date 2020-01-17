@@ -4,6 +4,7 @@ import { IPosition } from "../../types";
 
 import testMap from "./testMap";
 import House from "../../prefabs/models/House";
+import Wall from "../Wall";
 
 class Map {
   private collisionDetector: CollisionDetector;
@@ -32,8 +33,7 @@ class Map {
     let str = "";
     this.collisionDetector.forEach((symbol, position, i, k) => {
       if (symbol === "#") {
-        console.log(position);
-        new House({
+        new Wall({
           position: {
             ...position,
             y: 493

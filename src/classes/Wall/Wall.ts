@@ -1,36 +1,34 @@
-import $ from "jquery";
-import { IPosition } from "../../types";
-import GameObject from "../GameObject";
-import { generateTranslate3d } from "../../helpers";
+import Model from "../../classes/Model";
+import { ITransform } from "../../classes/Model/types";
+
+import data from "./data";
 
 import "./style.scss";
+import { IPosition } from "../../types";
 
-interface IWallConfig {
-  position?: IPosition;
-  rotation?: number;
-  scale?: number;
-  css?: {
-    [key: string]: string;
+class House extends Model {
+  protected readonly VISIBILITY_DISTANCE = 4000;
+
+  VISION_CHECKING = false;
+
+  protected positionCorrector: IPosition = {
+    x: 250,
+    z: 170,
+    y: 0
   };
+
+  constructor(transform?: ITransform) {
+    super({
+      name: "wall",
+      data,
+      scale: {
+        x: 4,
+        y: 3,
+        z: 2.5
+      },
+      ...(transform || {})
+    });
+  }
 }
 
-class Wall extends GameObject {
-  public position: IPosition;
-
-  private static readonly container = $(".level");
-  private readonly element: JQuery = $("<div/>").addClass("wall");
-
-  constructor(position: IPosition) {
-    super(position);
-
-    this.position = position;
-  }
-
-  start() {
-    Wall.container.append(this.element);
-  }
-
-  update() {}
-}
-
-export default Wall;
+export default House;
