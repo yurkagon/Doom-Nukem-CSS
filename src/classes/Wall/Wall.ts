@@ -12,7 +12,7 @@ class Wall extends Model {
   VISION_CHECKING = false;
 
   protected positionCorrector: IPosition = {
-    x: 130,
+    x: 127,
     z: 600,
     y: 200
   };
@@ -22,7 +22,7 @@ class Wall extends Model {
       name: "wall",
       data,
       scale: {
-        x: 10,
+        x: 10.02,
         y: 2.5,
         z: 8
       },

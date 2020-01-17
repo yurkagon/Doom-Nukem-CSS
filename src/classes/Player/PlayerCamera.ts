@@ -107,15 +107,12 @@ abstract class PlayerCamera extends GameObject {
   }
 
   private convertPlayerPositionToRealPosition(position: IPosition): IPosition {
-    return {
-      x: -position.x - 128,
-      z: -position.z + 700
-    };
+    return this.convertRealPositionToPlayerPosition(position);
   }
 
   private convertRealPositionToPlayerPosition(position: IPosition): IPosition {
     return {
-      x: -position.x - 128,
+      x: -position.x - 130,
       z: -position.z + 700
     };
   }
