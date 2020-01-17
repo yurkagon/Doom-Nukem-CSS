@@ -1,11 +1,7 @@
 export default `
-  <div class="shape back">
-    <div class="face bk"></div>
-  </div>
+  <div class="shape back"></div>
 
-  <div class="shape front">
-    <div class="face ft"></div>
-  </div>
+  <div class="shape front"></div>
 
   <div class="shape right">
     <div class="face lt"></div>

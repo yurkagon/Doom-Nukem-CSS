@@ -45,9 +45,9 @@
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
 
-    .bk {
-      background: url(img/models/house/Front.png);
-    }
+    background: url(img/models/house/Front.png);
+    background-size: 100% 100% !important;
+    background-position: center;
   }
 
   .front {
@@ -58,10 +58,9 @@
     height: 8.5em;
     margin: -4.25em 0 0 -6.2em;
 
-    .ft {
-      transform: translateZ(0);
-      background: url(img/models/house/Front.png);
-    }
+    background: url(img/models/house/Front.png);
+    background-size: 100% 100% !important;
+    background-position: center;
   }
 
   .right {
