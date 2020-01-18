@@ -1,7 +1,5 @@
 .wall {
   transform-style: preserve-3d;
-  // width: 100px;
-  // height: 100px;
 
   .face {
     position: absolute;
@@ -9,7 +7,10 @@
     height: 100px;
 
     background: url(img/floor.png);
-    background-size: 25px 44px;
+    $m: 5;
+    background-size: (11px * $m) (44px * $m);
+
+    // backface-visibility: hidden;
   }
 
   .front {

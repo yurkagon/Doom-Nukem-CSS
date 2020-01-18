@@ -34,21 +34,6 @@ class Map {
     let str = "";
     this.collisionDetector.forEach((symbol, position, i, k) => {
       if (symbol === "#") {
-        new MedkitItem(position);
-        new MedkitItem({
-          ...position,
-          x: position.x + 1000
-        });
-        new MedkitItem({
-          ...position,
-          z: position.z + 1000
-        });
-        new MedkitItem({
-          x: position.x + 1000,
-          z: position.z + 1000
-        });
-        // new MedkitItem(position);
-        // new MedkitItem(position);
         new Wall({
           position: {
             ...position,

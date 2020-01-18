@@ -22,6 +22,7 @@ class CollisionDetector {
     targetPosition: IPosition,
     currentPosition: IPosition
   ) {
+    return targetPosition;
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
@@ -49,8 +50,9 @@ class CollisionDetector {
       z: targetPosition.z - currentPosition.z
     };
 
-    const targetDistance = Distance(targetPosition, currentPosition);
     const angle = Angle.toDeg(Math.atan2(vector.x, vector.z));
+
+    const targetDistance = Distance(targetPosition, currentPosition);
 
     const collisionType = this.getCollisionType(
       mapCurrentPosition,

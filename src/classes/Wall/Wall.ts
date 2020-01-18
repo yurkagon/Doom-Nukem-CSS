@@ -7,14 +7,14 @@ import "./style.scss";
 import { IPosition } from "../../types";
 
 class Wall extends Model {
-  protected readonly VISIBILITY_DISTANCE = 40000;
+  protected readonly VISIBILITY_DISTANCE = 5000;
 
   VISION_CHECKING = false;
 
   protected positionCorrector: IPosition = {
     x: 127,
-    z: 600,
-    y: 200
+    z: 600.05,
+    y: 190
   };
 
   constructor(transform?: ITransform) {
@@ -22,9 +22,9 @@ class Wall extends Model {
       name: "wall",
       data,
       scale: {
-        x: 10.02,
-        y: 2.5,
-        z: 8
+        x: 10,
+        y: 3,
+        z: 10
       },
       ...(transform || {})
     });
