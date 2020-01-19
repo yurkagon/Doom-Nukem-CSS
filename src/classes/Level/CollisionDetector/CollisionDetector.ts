@@ -2,7 +2,7 @@ import { Distance } from "../../../helpers";
 
 import { IPosition } from "../../../types";
 
-import { ICollisionType, ICollisionMap, ICell } from "./types";
+import { ICollisionType, ICollisionMap, ICell, ICellInfo } from "./types";
 import Angle from "../../../helpers/angle";
 
 class CollisionDetector {
@@ -191,14 +191,8 @@ class CollisionDetector {
 
   public forEach(
     callback: (
-      symbol: string,
       position: IPosition,
-      sides: {
-        front: ICell;
-        left: ICell;
-        right: ICell;
-        back: ICell;
-      },
+      cellInfo: ICellInfo,
       i: number,
       k: number
     ) => void
@@ -207,12 +201,12 @@ class CollisionDetector {
       for (let k = 0; k < this.collisionMap[i].length; k++) {
         const space = this.collisionMap[i][k];
         callback(
-          space,
           this.getRealPositionFromNormalizedPosition({
             x: k,
             z: i
           }),
           {
+            current: space,
             front: this.getSymbol({
               x: k,
               z: i + 1

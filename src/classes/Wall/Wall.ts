@@ -4,7 +4,7 @@ import data from "./data";
 
 import "./style.scss";
 import { IPosition } from "../../types";
-import { ICell } from "../Level/CollisionDetector/types";
+import { ICell, ICellInfo } from "../Level/CollisionDetector/types";
 
 class Wall extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
@@ -17,12 +17,9 @@ class Wall extends Model {
     y: 190
   };
 
-  private sides: { front: ICell; right: ICell; left: ICell; back: ICell };
+  private sides: ICellInfo;
 
-  constructor(
-    position: IPosition,
-    sides: { front: ICell; right: ICell; left: ICell; back: ICell }
-  ) {
+  constructor(position: IPosition, sides: ICellInfo) {
     super({
       name: "wall",
       data,
@@ -45,7 +42,7 @@ class Wall extends Model {
 
     Object.keys(this.sides).forEach(key => {
       const space = this.sides[key];
-      if (space === " ") return;
+      if (space && space === " ") return;
       this.self.find(`.face.${key}`).remove();
     });
   }

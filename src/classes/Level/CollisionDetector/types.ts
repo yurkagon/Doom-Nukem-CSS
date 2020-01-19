@@ -6,3 +6,11 @@ export enum ICollisionType {
 }
 
 export type ICollisionMap = ICell[][];
+
+export type ICellInfo = {
+  current: ICell;
+  front: ICell;
+  right: ICell;
+  left: ICell;
+  back: ICell;
+};

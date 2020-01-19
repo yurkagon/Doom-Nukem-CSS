@@ -31,10 +31,9 @@ class Map {
   }
 
   private attachMap() {
-    let str = "";
-    this.collisionDetector.forEach((symbol, position, sides) => {
-      if (symbol === "#") {
-        new Wall(position, sides);
+    this.collisionDetector.forEach((position, cellInfo) => {
+      if (cellInfo.current === "#") {
+        new Wall(position, cellInfo);
       }
     });
   }
