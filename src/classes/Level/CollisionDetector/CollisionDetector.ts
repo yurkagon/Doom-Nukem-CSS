@@ -2,7 +2,7 @@ import { Distance } from "../../../helpers";
 
 import { IPosition } from "../../../types";
 
-import { ICollisionType, ICollisionMap } from "./types";
+import { ICollisionType, ICollisionMap, ICell } from "./types";
 import Angle from "../../../helpers/angle";
 
 class CollisionDetector {
@@ -22,7 +22,7 @@ class CollisionDetector {
     targetPosition: IPosition,
     currentPosition: IPosition
   ) {
-    return targetPosition;
+    // return targetPosition;
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
@@ -193,6 +193,12 @@ class CollisionDetector {
     callback: (
       symbol: string,
       position: IPosition,
+      sides: {
+        front: ICell;
+        left: ICell;
+        right: ICell;
+        back: ICell;
+      },
       i: number,
       k: number
     ) => void
@@ -206,6 +212,24 @@ class CollisionDetector {
             x: k,
             z: i
           }),
+          {
+            front: this.getSymbol({
+              x: k,
+              z: i + 1
+            }),
+            left: this.getSymbol({
+              x: k - 1,
+              z: i
+            }),
+            right: this.getSymbol({
+              x: k + 1,
+              z: i
+            }),
+            back: this.getSymbol({
+              x: k,
+              z: i - 1
+            })
+          },
           i,
           k
         );

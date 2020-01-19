@@ -14,7 +14,7 @@ abstract class GameObjectLOD extends GameObject {
   protected isActive: boolean = true;
   protected isVisible: boolean = true;
 
-  private static readonly SKIP_RENDER = 10;
+  private static readonly SKIP_RENDER = 100;
   private renderCount = GameObjectLOD.SKIP_RENDER;
 
   start() {

@@ -2,7 +2,7 @@ import UI from "./ui";
 import State, { Screen } from "./ui/State";
 
 (async () => {
-  // UI.init();
+  UI.init();
 
   if (process.env.NODE_ENV === "production") {
     State.setScreen(Screen.loading);

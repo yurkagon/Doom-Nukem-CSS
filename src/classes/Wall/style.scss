@@ -10,7 +10,7 @@
     $m: 5;
     background-size: (11px * $m) (44px * $m);
 
-    // backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .front {

@@ -32,14 +32,9 @@ class Map {
 
   private attachMap() {
     let str = "";
-    this.collisionDetector.forEach((symbol, position, i, k) => {
+    this.collisionDetector.forEach((symbol, position, sides) => {
       if (symbol === "#") {
-        new Wall({
-          position: {
-            ...position,
-            y: 0
-          }
-        });
+        new Wall(position, sides);
       }
     });
   }

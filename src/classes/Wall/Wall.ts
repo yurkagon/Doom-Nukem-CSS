@@ -1,23 +1,28 @@
 import Model from "../../classes/Model";
-import { ITransform } from "../../classes/Model/types";
 
 import data from "./data";
 
 import "./style.scss";
 import { IPosition } from "../../types";
+import { ICell } from "../Level/CollisionDetector/types";
 
 class Wall extends Model {
-  protected readonly VISIBILITY_DISTANCE = 5000;
+  protected readonly VISIBILITY_DISTANCE = 4000;
 
   VISION_CHECKING = false;
 
   protected positionCorrector: IPosition = {
-    x: 127,
+    x: 129,
     z: 600.05,
     y: 190
   };
 
-  constructor(transform?: ITransform) {
+  private sides: { front: ICell; right: ICell; left: ICell; back: ICell };
+
+  constructor(
+    position: IPosition,
+    sides: { front: ICell; right: ICell; left: ICell; back: ICell }
+  ) {
     super({
       name: "wall",
       data,
@@ -26,7 +31,22 @@ class Wall extends Model {
         y: 3,
         z: 10
       },
-      ...(transform || {})
+      position: {
+        ...position,
+        y: 0
+      }
+    });
+
+    this.sides = sides;
+  }
+
+  start() {
+    super.start();
+
+    Object.keys(this.sides).forEach(key => {
+      const space = this.sides[key];
+      if (space === " ") return;
+      this.self.find(`.face.${key}`).remove();
     });
   }
 }
