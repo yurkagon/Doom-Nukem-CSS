@@ -4,7 +4,7 @@ import data from "./data";
 
 import "./style.scss";
 import { IPosition } from "../../types";
-import { ICell, ICellInfo } from "../Level/CollisionDetector/types";
+import { ICellInfo } from "../Level/CollisionDetector/types";
 
 class Wall extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;

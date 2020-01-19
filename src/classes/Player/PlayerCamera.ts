@@ -17,12 +17,8 @@ abstract class PlayerCamera extends GameObject {
     z: 0
   };
 
-  private _camera = $("#camera");
+  public readonly camera = $("#camera");
 
-  get camera() {
-    // camera is a static DIV. All 3d operations are inside
-    return this._camera;
-  }
   protected goForward(): IPosition {
     const { rotation } = this;
 
