@@ -22,7 +22,6 @@ class CollisionDetector {
     targetPosition: IPosition,
     currentPosition: IPosition
   ) {
-    // return targetPosition;
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);

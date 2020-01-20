@@ -7,7 +7,7 @@ import { IPosition } from "../../types";
 import { ICellInfo } from "../Level/CollisionDetector/types";
 
 class Wall extends Model {
-  protected readonly VISIBILITY_DISTANCE = 4000;
+  protected readonly VISIBILITY_DISTANCE = 8000;
 
   VISION_CHECKING = false;
 

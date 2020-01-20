@@ -1,16 +1,32 @@
-import $ from "jquery";
-
-import PlayerCamera from "./PlayerCamera";
+import Camera from "./Camera";
 import { IPosition } from "../../types";
 import Scene from "../Scene/Scene";
 import Enemy from "../Sprite/Enemy/Enemy";
-import { Distance } from "../../helpers";
 import Control from "./Control";
+import Level from "../Level";
 
-abstract class PlayerController extends PlayerCamera {
+abstract class PlayerController extends Camera {
   private controller = new Control();
 
   private stepState = true;
+
+  protected allowMovement = true;
+
+  constructor() {
+    super();
+    const data = JSON.parse(localStorage.getItem("player-position"));
+
+    if (data) {
+      this.position = data.position;
+      this.position.y = 0;
+      this.origin = data.origin;
+      this.rotation = data.rotation;
+    }
+
+    setInterval(this.savePosition, 5000);
+
+    (window as any).player = this;
+  }
 
   start() {
     this.controller.setMouseCallback(this.onMouseMove);
@@ -18,6 +34,8 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   update() {
+    if (!this.allowMovement) return;
+
     const {
       toForward,
       toBack,
@@ -43,18 +61,46 @@ abstract class PlayerController extends PlayerCamera {
       );
 
       this.moveBy(vectorToMove);
-      this.stepsEffect();
     }
 
     if (rotateLeft) this.rotate(this.controller.ROTATION_SPEED);
     if (rotateRight) this.rotate(-this.controller.ROTATION_SPEED);
   }
 
+  public moveBy(vectorToMove: IPosition): void {
+    const noclip = false;
+    if (noclip) {
+      return super.moveBy(vectorToMove);
+    }
+
+    const currentPosition = this.position;
+    const targetPosition = {
+      x: currentPosition.x + vectorToMove.x,
+      z: currentPosition.z + vectorToMove.z
+    };
+
+    const resultPosition = Level.handleCollision(
+      this.convertCameraPositionToRealPosition(targetPosition),
+      this.convertCameraPositionToRealPosition(currentPosition)
+    );
+
+    const result = this.convertRealPositionToCameraPosition(resultPosition);
+
+    this.position.x = result.x;
+    this.position.z = result.z;
+
+    this.stepsEffect();
+  }
+
   private onMouseMove = (value: number) => {
-    this.rotate(value);
+    if (this.allowMovement) {
+      this.rotate(value);
+    }
   };
 
   private onShot = () => {
+    if (!this.allowMovement) return;
+
     for (let gameObject of Scene.getInstance().gameObjects) {
       if (gameObject instanceof Enemy) {
         if (gameObject.currentState !== Enemy.states.DEAD) {
@@ -75,8 +121,19 @@ abstract class PlayerController extends PlayerCamera {
   }
 
   public isMoving() {
-    return this.controller.isMoving();
+    return this.allowMovement && this.controller.isMoving();
   }
+
+  public savePosition = () => {
+    localStorage.setItem(
+      "player-position",
+      JSON.stringify({
+        position: this.position,
+        origin: this.origin,
+        rotation: this.rotation
+      })
+    );
+  };
 }
 
 export default PlayerController;

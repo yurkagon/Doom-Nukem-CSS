@@ -1,13 +1,12 @@
-import GameObject from "../GameObject/index";
+import GameObject from "../GameObject";
 
 import $ from "jquery";
 import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
 import { IPosition } from "../../types";
 
 import Angle from "../../helpers/angle";
-import Level from "../Level";
 
-abstract class PlayerCamera extends GameObject {
+abstract class Camera extends GameObject {
   public rotation = {
     x: 0,
     y: 0
@@ -53,21 +52,13 @@ abstract class PlayerCamera extends GameObject {
   }
 
   public moveBy(vectorToMove: IPosition): void {
-    const currentPosition = this.position;
     const targetPosition = {
-      x: currentPosition.x + vectorToMove.x,
-      z: currentPosition.z + vectorToMove.z
+      x: this.position.x + vectorToMove.x,
+      z: this.position.z + vectorToMove.z
     };
 
-    const resultPosition = Level.handleCollision(
-      this.convertPlayerPositionToRealPosition(targetPosition),
-      this.convertPlayerPositionToRealPosition(currentPosition)
-    );
-
-    const result = this.convertRealPositionToPlayerPosition(resultPosition);
-
-    this.position.x = result.x;
-    this.position.z = result.z;
+    this.position.x = targetPosition.x;
+    this.position.z = targetPosition.z;
   }
 
   public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {
@@ -86,7 +77,7 @@ abstract class PlayerCamera extends GameObject {
     return Angle.isAngleBetween(angle, playerViewLeft, playerViewRight);
   }
 
-  rotate(degree) {
+  protected rotate(degree) {
     const { rotation, origin } = this;
     rotation.y -= degree;
     if (rotation.y < 0) rotation.y = 360 + rotation.y;
@@ -98,15 +89,19 @@ abstract class PlayerCamera extends GameObject {
     origin.z = -(FOV - Math.cos(angle) * FOV);
   }
 
-  getPosition() {
-    return this.convertPlayerPositionToRealPosition(this.position);
+  public getPosition() {
+    return this.convertCameraPositionToRealPosition(this.position);
   }
 
-  private convertPlayerPositionToRealPosition(position: IPosition): IPosition {
-    return this.convertRealPositionToPlayerPosition(position);
+  protected convertCameraPositionToRealPosition(
+    position: IPosition
+  ): IPosition {
+    return this.convertRealPositionToCameraPosition(position);
   }
 
-  private convertRealPositionToPlayerPosition(position: IPosition): IPosition {
+  protected convertRealPositionToCameraPosition(
+    position: IPosition
+  ): IPosition {
     return {
       x: -position.x - 130,
       z: -position.z + 700
@@ -114,4 +109,4 @@ abstract class PlayerCamera extends GameObject {
   }
 }
 
-export default PlayerCamera;
+export default Camera;
