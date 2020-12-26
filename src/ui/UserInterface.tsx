@@ -8,7 +8,7 @@ import State, { Screen } from "./State";
 @observer
 class UserInterface extends Component {
   public render() {
-    if (State.loadingState.isLoading) {
+    if (State.loader.isLoading) {
       return <Loading />;
     }
 

@@ -1,12 +1,14 @@
 {
   "cSpell.words": [
+    "flac",
     "medkit",
     "noclip",
     "nukem",
     "predeploy",
     "skybox",
     "uglifyjs",
-    "wolfenstein"
+    "wolfenstein",
+    "yurkagon"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

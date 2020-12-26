@@ -1,8 +1,7 @@
 import { observable, action } from "mobx";
 import ResourceLoader from "../../utils/ResourceLoader";
-import { resolve } from "dns";
 
-class LoadingState {
+class Loader {
   @observable public isLoading = false;
 
   @observable public percent = 0;
@@ -20,11 +19,6 @@ class LoadingState {
     this.isLoading = status;
   }
 
-  @action
-  public setButtonFunction(callback: () => void) {
-    this.buttonFunction = callback;
-  }
-
   public async loadResources(
     data: { images: string[]; sounds: string[] },
     callback?: () => void
@@ -38,11 +32,9 @@ class LoadingState {
       }
     });
 
-    await new Promise(res => this.setButtonFunction(res));
-
     callback && callback();
     this.setLoadingStatus(false);
   }
 }
 
-export default LoadingState;
+export default Loader;

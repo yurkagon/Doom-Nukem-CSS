@@ -20,7 +20,7 @@ abstract class SceneController {
   private sceneStart: () => void;
   private sceneUpdate: () => void;
 
-  private updateStrategy: UpdateStrategy = new IntervalStrategy();
+  private updateStrategy: UpdateStrategy = new TimeoutStrategy();
 
   constructor() {
     this.update = this.update.bind(this);

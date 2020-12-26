@@ -1,5 +1,13 @@
 import React, { Component, Fragment } from "react";
-import Screen from "../../components/Screen";
+
+import State, { Screen } from "ui/State";
+
+import ScreenWrapper from "ui/components/Screen";
+import Text from "ui/components/Text";
+import ButtonGroup from "ui/components/ButtonGroup";
+import { ButtonData } from "ui/components/ButtonGroup/types";
+
+import { start_menu } from "sound";
 
 import "./style.scss";
 
@@ -8,20 +16,56 @@ class Game extends Component {
     clicked: false
   };
 
+  private buttonsData: ButtonData[] = [
+    {
+      text: "New game",
+      onClick: () => {
+        require("../../../initScene").default();
+        State.setScreen(Screen.game);
+      }
+    },
+    {
+      text: "Options",
+      onClick: () => {}
+    },
+    {
+      text: "About",
+      onClick: () => {}
+    },
+    {
+      text: "Quit",
+      onClick: () => {}
+    }
+  ];
+
   private startMenu = () => {
-    this.setState({ clicked: true }, () => {
-      new Audio("sounds/menu/start_menu.flac").play();
-    });
+    const { clicked } = this.state;
+
+    if (!clicked)
+      this.setState({ clicked: true }, () => {
+        start_menu.play();
+      });
   };
 
   public render() {
+    const { clicked } = this.state;
+
     return (
-      <Screen className="menu" onClick={this.startMenu}>
-        <Fragment>
-          <h1>menu</h1> <h1>menu</h1> <h1>menu</h1> <h1>menu</h1> <h1>menu</h1>
-          <h1>menu</h1> <h1>menu</h1>
-        </Fragment>
-      </Screen>
+      <ScreenWrapper className="menu" onClick={this.startMenu}>
+        <div className="navigation">
+          {clicked && <ButtonGroup data={this.buttonsData} />}
+          {!clicked && (
+            <Fragment>
+              <div>
+                <Text>Hmm...</Text>
+                <Text>Seems like you</Text>
+                <Text>have to click</Text>
+                <Text>On the screen</Text>
+              </div>
+            </Fragment>
+          )}
+        </div>
+      </ScreenWrapper>
     );
   }
 }

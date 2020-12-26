@@ -1,5 +1,4 @@
 import $ from "jquery";
-import "../style/index.scss";
 
 import Scene from "./classes/Scene/Scene";
 import Player from "./classes/Player/Player";

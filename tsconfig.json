@@ -9,7 +9,9 @@
     "moduleResolution": "node",
     "jsx": "react",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": "src"
   },
-  "exclude": ["node_modules", "build", "public"]
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "public", "webpack.config.js"]
 }

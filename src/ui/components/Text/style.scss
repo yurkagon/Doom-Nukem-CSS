@@ -1,0 +1,103 @@
+.text-block {
+  display: flex;
+
+  .char {
+    $default-size: 50px;
+
+    width: $default-size;
+    height: $default-size;
+
+    background-image: url(img/hud/font.png);
+    // background-color: white;
+
+    filter: brightness(0.9);
+
+    background-size: 750px;
+
+    margin-right: 5px;
+
+    image-rendering: pixelated;
+
+    &.a {
+      background-position: -58px 102px;
+    }
+    &.b {
+      background-position: -108px 102px;
+    }
+    &.c {
+      background-position: -159px 102px;
+    }
+    &.e {
+      background-position: -262px 102px;
+    }
+    &.g {
+      background-position: -365px 102px;
+    }
+    &.h {
+      background-position: -415px 102px;
+    }
+    &.i {
+      background-position: -464px 102px;
+
+      width: $default-size - 25;
+    }
+    &.k {
+      background-position: -541px 102px;
+    }
+    &.l {
+      background-position: -591px 102px;
+    }
+    &.m {
+      background-position: -644px 102px;
+
+      width: $default-size + 5;
+    }
+    &.n {
+      background-position: -52px 51px;
+    }
+    &.o {
+      background-position: -103px 51px;
+    }
+    &.p {
+      background-position: -153px 51px;
+    }
+    &.q {
+      background-position: -205px 51px;
+    }
+    &.r {
+      background-position: -255px 51px;
+    }
+    &.s {
+      background-position: -305px 51px;
+    }
+    &.t {
+      background-position: -353px 51px;
+      width: $default-size - 6;
+    }
+    &.v {
+      background-position: -449px 51px;
+      width: $default-size - 5;
+    }
+    &.u {
+      background-position: -398px 51px;
+    }
+    &.w {
+      background-position: -495px 51px;
+
+      width: $default-size + 5;
+    }
+    &.y {
+      background-position: -603px 51px;
+    }
+
+    &.space {
+      background-image: none;
+
+      width: $default-size - 30;
+    }
+    &.dot {
+      background-position: -576px 1534px;
+      width: $default-size - 30;
+    }
+  }
+}
