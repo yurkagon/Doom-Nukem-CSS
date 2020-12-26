@@ -1,4 +1,4 @@
-import { ICollisionMap } from "./CollisionDetector/types";
+import { ICollisionMap } from "classes/LevelMap";
 
 // prettier-ignore
 const map: ICollisionMap =  [

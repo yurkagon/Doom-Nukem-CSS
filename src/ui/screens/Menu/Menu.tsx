@@ -22,7 +22,8 @@ class Game extends Component {
     {
       text: "New game",
       onClick: () => {
-        Level.load("TEST");
+        Level.load("level_1");
+
         State.setScreen(Screen.game);
       }
     },

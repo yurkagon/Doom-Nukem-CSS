@@ -1,15 +1,17 @@
 import $ from "jquery";
-import GameObject from "../GameObject/index";
-import Player from "../Player/Player";
-import { iSceneConfig } from "../../types";
-import { generateTranslate3d } from "../../helpers";
+import GameObject from "classes/GameObject";
+import Player from "classes/Player";
+import LevelMap from "classes/LevelMap";
+
+import { generateTranslate3d } from "helpers";
 
 import {
   UpdateStrategy,
   IntervalStrategy,
   TimeoutStrategy
 } from "./UpdateStrategy";
-import LevelMap from "classes/LevelMap";
+
+import { SceneConfig } from "./types";
 
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
@@ -29,7 +31,7 @@ abstract class SceneController {
     this.update = this.update.bind(this);
   }
 
-  public init(config: iSceneConfig): void {
+  public init(config: SceneConfig): void {
     this.levelMap = config.levelMap;
     this.player = config.player;
     this.sceneStart = config.start;

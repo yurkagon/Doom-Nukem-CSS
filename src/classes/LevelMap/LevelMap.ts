@@ -2,10 +2,7 @@ import CollisionDetector from "./CollisionDetector";
 import { ICollisionMap } from "./CollisionDetector/types";
 import { IPosition } from "../../types";
 
-import testMap from "./testMap";
-import House from "../../prefabs/models/House";
 import Wall from "../Wall";
-import MedkitItem from "../Sprite/Item/MedkitItem";
 
 class LevelMap {
   private collisionDetector: CollisionDetector;

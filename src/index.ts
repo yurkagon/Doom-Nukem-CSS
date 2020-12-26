@@ -13,6 +13,7 @@ import "../style/index.scss";
     images: [
       "img/icon.png",
       "img/splash.png",
+      "img/background.jpg",
       "img/menu/background.png",
       "img/hud/font.png"
     ],
