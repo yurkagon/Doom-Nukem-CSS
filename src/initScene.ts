@@ -10,11 +10,10 @@ import SkyBox from "./classes/SkyBox/SkyBox";
 
 import House from "./prefabs/models/House";
 import Wall1 from "./classes/Wall1";
+import testWeaponUpdater from "./testWeaponUpdater";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
-
-const weapon = $(".testWeapon");
 
 // import Wall from "./classes/Wall";
 
@@ -32,25 +31,7 @@ export default async () => {
       // }, 1000);
     },
     update() {
-      if (player.isMoving()) {
-        weapon
-          .animate(
-            {
-              right: "150px",
-              bottom: "-80px"
-            },
-            500
-          )
-          .animate(
-            {
-              right: "200px",
-              bottom: 0
-            },
-            200
-          );
-      } else {
-        weapon.stop();
-      }
+      testWeaponUpdater();
     }
   });
 };
