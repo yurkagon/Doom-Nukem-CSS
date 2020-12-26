@@ -1,40 +1,41 @@
-import $ from "jquery";
-
-import PlayerCamera from "./PlayerCamera";
+import Camera from "./Camera";
 import { IPosition } from "../../types";
 import Scene from "../Scene/Scene";
 import Enemy from "../Sprite/Enemy/Enemy";
-import { Distance } from "../../helpers";
+import Control from "./Control";
+import Level from "../Level";
 
-abstract class PlayerController extends PlayerCamera {
-  static readonly MOUSE_SENSITIVITY = 1.5;
-  static readonly ROTATION_SPEED = 2;
+abstract class PlayerController extends Camera {
+  private controller = new Control();
 
-  private _stepState = true;
+  private stepState = true;
 
-  private moveState = {
-    toForward: false,
-    toBack: false,
-    toLeft: false,
-    toRight: false,
-    rotateLeft: false,
-    rotateRight: false
-  };
+  protected allowMovement = true;
 
-  private prevMousePostion: IPosition = {
-    x: 0,
-    y: 0
-  };
+  constructor() {
+    super();
+    const data = JSON.parse(localStorage.getItem("player-position"));
+
+    if (data) {
+      this.position = data.position;
+      this.position.y = 0;
+      this.origin = data.origin;
+      this.rotation = data.rotation;
+    }
+
+    setInterval(this.savePosition, 5000);
+
+    (window as any).player = this;
+  }
 
   start() {
-    this.attachMouseMove();
-    this.attachKeyDown();
-    this.attachKeyUp();
-
-    this.attachShot();
+    this.controller.setMouseCallback(this.onMouseMove);
+    this.controller.setShotCallback(this.onShot);
   }
 
   update() {
+    if (!this.allowMovement) return;
+
     const {
       toForward,
       toBack,
@@ -42,9 +43,9 @@ abstract class PlayerController extends PlayerCamera {
       toRight,
       rotateLeft,
       rotateRight
-    } = this.moveState;
+    } = this.controller.moveState;
 
-    if (this.isMoving()) {
+    if (this.controller.isMoving()) {
       const moves: Array<IPosition> = [];
 
       if (toForward) moves.push(this.goForward());
@@ -60,97 +61,79 @@ abstract class PlayerController extends PlayerCamera {
       );
 
       this.moveBy(vectorToMove);
-      this.stepsEffect();
     }
 
-    if (rotateLeft) this.rotate(PlayerController.ROTATION_SPEED);
-    if (rotateRight) this.rotate(-PlayerController.ROTATION_SPEED);
+    if (rotateLeft) this.rotate(this.controller.ROTATION_SPEED);
+    if (rotateRight) this.rotate(-this.controller.ROTATION_SPEED);
   }
 
-  private stepsEffect() {
-    const { position, _stepState } = this;
-    const value = 0.8;
-    position.y += _stepState ? value : -value;
-    if (Math.abs(position.y) > 12) this._stepState = !_stepState;
+  public moveBy(vectorToMove: IPosition): void {
+    const noclip = false;
+    if (noclip) {
+      return super.moveBy(vectorToMove);
+    }
+
+    const currentPosition = this.position;
+    const targetPosition = {
+      x: currentPosition.x + vectorToMove.x,
+      z: currentPosition.z + vectorToMove.z
+    };
+
+    const resultPosition = Level.handleCollision(
+      this.convertCameraPositionToRealPosition(targetPosition),
+      this.convertCameraPositionToRealPosition(currentPosition)
+    );
+
+    const result = this.convertRealPositionToCameraPosition(resultPosition);
+
+    this.position.x = result.x;
+    this.position.z = result.z;
+
+    this.stepsEffect();
   }
 
-  private attachKeyDown(): void {
-    $("body").keydown((e: JQuery.KeyDownEvent) => {
-      const { keyCode } = e;
+  private onMouseMove = (value: number) => {
+    if (this.allowMovement) {
+      this.rotate(value);
+    }
+  };
 
-      if (keyCode == 37 || keyCode == 65) this.moveState.toLeft = true;
-      if (keyCode == 39 || keyCode == 68) this.moveState.toRight = true;
-      if (keyCode == 38 || keyCode == 87) this.moveState.toForward = true;
-      if (keyCode == 40 || keyCode == 83) this.moveState.toBack = true;
+  private onShot = () => {
+    if (!this.allowMovement) return;
 
-      if (keyCode == 81) this.moveState.rotateLeft = true;
-      if (keyCode == 69) this.moveState.rotateRight = true;
-    });
-  }
-
-  private attachShot(): void {
-    $("body").click(() => {
-      for (let gameObject of Scene.getInstance().gameObjects) {
-        if (gameObject instanceof Enemy) {
-          if (gameObject.currenState !== Enemy.states.DEAD) {
-            // const distance = Distance(this.getPosition(), gameObject.getPosition());
-            // console.log((10000 - distance)/10000)
-            if (this.isObjectVisibleFromFov(gameObject, 5)) {
-              gameObject.setState(Enemy.states.DEAD);
-              break;
-            }
+    for (let gameObject of Scene.getInstance().gameObjects) {
+      if (gameObject instanceof Enemy) {
+        if (gameObject.currentState !== Enemy.states.DEAD) {
+          if (this.isObjectVisibleFromFov(gameObject, 5)) {
+            gameObject.setState(Enemy.states.DEAD);
+            break;
           }
         }
       }
-    });
-  }
-
-  private attachKeyUp(): void {
-    $("body").keyup((e: JQuery.KeyUpEvent) => {
-      const { keyCode } = e;
-
-      if (keyCode == 37 || keyCode == 65) this.moveState.toLeft = false;
-      if (keyCode == 39 || keyCode == 68) this.moveState.toRight = false;
-      if (keyCode == 38 || keyCode == 87) this.moveState.toForward = false;
-      if (keyCode == 40 || keyCode == 83) this.moveState.toBack = false;
-
-      if (keyCode == 81) this.moveState.rotateLeft = false;
-      if (keyCode == 69) this.moveState.rotateRight = false;
-    });
-  }
-
-  private attachMouseMove(): void {
-    $(document).bind("mousemove", event => {
-      const { MOUSE_SENSITIVITY, ROTATION_SPEED } = PlayerController;
-
-      const mousePosition: IPosition = {
-        x: event.pageX,
-        y: event.pageY
-      };
-
-      const delta = this.prevMousePostion.x - mousePosition.x;
-
-      if (Math.abs(delta) < 50) {
-        const toRotate = (delta * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
-        this.rotate(toRotate);
-      }
-
-      this.prevMousePostion = mousePosition;
-    });
-  }
-
-  public isMoving(): boolean {
-    const { toForward, toBack, toLeft, toRight } = this.moveState;
-
-    const forwardAndBackTogether = toForward && toBack;
-    const leftAndRightTogether = toLeft && toRight;
-
-    if (forwardAndBackTogether || leftAndRightTogether) {
-      return false;
     }
+  };
 
-    return toForward || toBack || toLeft || toRight;
+  private stepsEffect() {
+    const { position, stepState } = this;
+    const value = 0.8;
+    position.y += stepState ? value : -value;
+    if (Math.abs(position.y) > 12) this.stepState = !stepState;
   }
+
+  public isMoving() {
+    return this.allowMovement && this.controller.isMoving();
+  }
+
+  public savePosition = () => {
+    localStorage.setItem(
+      "player-position",
+      JSON.stringify({
+        position: this.position,
+        origin: this.origin,
+        rotation: this.rotation
+      })
+    );
+  };
 }
 
 export default PlayerController;

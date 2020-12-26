@@ -1,41 +1,51 @@
-import $ from "jquery";
-import { IPosition } from "../../types";
-import GameObject from "../GameObject";
-import { generateTranslate3d } from "../../helpers";
+import Model from "../../classes/Model";
+
+import data from "./data";
 
 import "./style.scss";
+import { IPosition } from "../../types";
+import { ICellInfo } from "../Level/CollisionDetector/types";
 
-interface IWallConfig {
-  position?: IPosition;
-  rotation?: number;
-  scale?: number;
-  css?: {
-    [key: string]: string;
+class Wall extends Model {
+  protected readonly VISIBILITY_DISTANCE = 8000;
+
+  VISION_CHECKING = false;
+
+  protected positionCorrector: IPosition = {
+    x: 129,
+    z: 600.05,
+    y: 190
   };
-}
 
-class Wall extends GameObject {
-  private static readonly container = $(".level");
-  private readonly element: JQuery = $("<div/>").addClass("wall");
+  private sides: ICellInfo;
 
-  constructor({ position, rotation = 0, scale = 150 }: IWallConfig = {}) {
-    super(position);
+  constructor(position: IPosition, sides: ICellInfo) {
+    super({
+      name: "wall",
+      data,
+      scale: {
+        x: 10,
+        y: 3,
+        z: 10
+      },
+      position: {
+        ...position,
+        y: 0
+      }
+    });
 
-    this.element.css(
-      "transform",
-      `rotateY(${rotation + "deg"}) ${generateTranslate3d(
-        this.position
-      )} scale3d(${scale}, 1, 1)`
-    );
-
-    this.element.css("width", `200px`);
+    this.sides = sides;
   }
 
   start() {
-    Wall.container.append(this.element);
-  }
+    super.start();
 
-  update() {}
+    Object.keys(this.sides).forEach(key => {
+      const space = this.sides[key];
+      if (space && space === " ") return;
+      this.self.find(`.face.${key}`).remove();
+    });
+  }
 }
 
 export default Wall;

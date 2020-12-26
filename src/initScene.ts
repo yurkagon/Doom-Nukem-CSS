@@ -1,5 +1,4 @@
 import $ from "jquery";
-import "../style/index.scss";
 
 import Scene from "./classes/Scene/Scene";
 import Player from "./classes/Player/Player";
@@ -10,7 +9,7 @@ import { mainThemeMusic, startPhrase } from "./variables/sounds";
 import SkyBox from "./classes/SkyBox/SkyBox";
 
 import House from "./prefabs/models/House";
-import Wall from "./classes/Wall";
+import Wall1 from "./classes/Wall1";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -27,10 +26,10 @@ export default async () => {
     start() {
       new SkyBox();
 
-      setTimeout(() => {
-        mainThemeMusic.play();
-        startPhrase.play();
-      }, 1000);
+      // setTimeout(() => {
+      //   mainThemeMusic.play();
+      //   startPhrase.play();
+      // }, 1000);
     },
     update() {
       if (player.isMoving()) {
@@ -58,14 +57,14 @@ export default async () => {
 
 const setLevel = () => {
   initWalls();
-  for (let i = 0; i < 5; i++)
-    new House({
-      position: {
-        x: 1000 * i * 2,
-        y: 493,
-        z: -3000
-      }
-    });
+  new House({
+    position: {
+      x: 0,
+      y: 493,
+      z: -3000
+    }
+  });
+
   for (let i = 0; i < 40; i++)
     new Enemy({
       type: "guard",
@@ -77,7 +76,7 @@ const setLevel = () => {
 };
 
 const initWalls = () => {
-  new Wall({
+  new Wall1({
     position: {
       x: 0,
       z: 14150,
@@ -85,7 +84,7 @@ const initWalls = () => {
     }
   });
 
-  new Wall({
+  new Wall1({
     position: {
       x: 0,
       z: -13950,
@@ -93,7 +92,7 @@ const initWalls = () => {
     }
   });
 
-  new Wall({
+  new Wall1({
     position: {
       x: 830,
       z: -14004,
@@ -102,7 +101,7 @@ const initWalls = () => {
     rotation: 90
   });
 
-  new Wall({
+  new Wall1({
     position: {
       x: 830,
       z: 14100,

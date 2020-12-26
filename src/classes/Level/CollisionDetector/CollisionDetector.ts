@@ -1,12 +1,22 @@
-import { Distance } from "../../helpers";
+import { Distance } from "../../../helpers";
 
-import { IPosition } from "../../types";
+import { IPosition } from "../../../types";
 
-import { ICell, ICollisionType } from "./types";
-import Angle from "../../helpers/angle";
+import { ICollisionType, ICollisionMap, ICell, ICellInfo } from "./types";
+import Angle from "../../../helpers/angle";
 
 class CollisionDetector {
-  private collisionMap: ICell[][] = require("./collisionMap").default;
+  public collisionMap: ICollisionMap;
+
+  constructor(map: ICollisionMap) {
+    if (map) {
+      this.setCollisionMap(map);
+    }
+  }
+
+  public setCollisionMap(map: ICollisionMap) {
+    this.collisionMap = map;
+  }
 
   public handleCollision(
     targetPosition: IPosition,
@@ -39,8 +49,9 @@ class CollisionDetector {
       z: targetPosition.z - currentPosition.z
     };
 
-    const targetDistance = Distance(targetPosition, currentPosition);
     const angle = Angle.toDeg(Math.atan2(vector.x, vector.z));
+
+    const targetDistance = Distance(targetPosition, currentPosition);
 
     const collisionType = this.getCollisionType(
       mapCurrentPosition,
@@ -160,6 +171,15 @@ class CollisionDetector {
     };
   }
 
+  private getRealPositionFromNormalizedPosition(
+    position: IPosition
+  ): IPosition {
+    return {
+      x: position.x * 1000 - 15000,
+      z: position.z * 1000 - 15000
+    };
+  }
+
   private getSymbol(position: IPosition) {
     try {
       return this.collisionMap[position.z][position.x];
@@ -167,6 +187,48 @@ class CollisionDetector {
       return "#";
     }
   }
+
+  public forEach(
+    callback: (
+      position: IPosition,
+      cellInfo: ICellInfo,
+      i: number,
+      k: number
+    ) => void
+  ) {
+    for (let i = 0; i < this.collisionMap.length; i++) {
+      for (let k = 0; k < this.collisionMap[i].length; k++) {
+        const space = this.collisionMap[i][k];
+        callback(
+          this.getRealPositionFromNormalizedPosition({
+            x: k,
+            z: i
+          }),
+          {
+            current: space,
+            front: this.getSymbol({
+              x: k,
+              z: i + 1
+            }),
+            left: this.getSymbol({
+              x: k - 1,
+              z: i
+            }),
+            right: this.getSymbol({
+              x: k + 1,
+              z: i
+            }),
+            back: this.getSymbol({
+              x: k,
+              z: i - 1
+            })
+          },
+          i,
+          k
+        );
+      }
+    }
+  }
 }
 
-export default new CollisionDetector();
+export default CollisionDetector;

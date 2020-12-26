@@ -1,8 +1,8 @@
 import Sprite from "../index";
 import Player from "../../Player/Player";
 import { Distance, generateCoordDiff, chance } from "../../../helpers";
-import CollisionDetector from "../../CollisionDetector";
 import ShotgunItem from "../Item/ShotgunItem";
+import Level from "../../Level";
 
 class Enemy extends Sprite {
   protected VISIBILITY_DISTANCE = 4000;
@@ -19,7 +19,7 @@ class Enemy extends Sprite {
     ATACK: "atack"
   };
 
-  currenState = null;
+  currentState = null;
   timer = null;
   distance = null;
   speed = 8;
@@ -61,7 +61,7 @@ class Enemy extends Sprite {
     this.distance = Distance(this.getPosition(), player.getPosition());
     const { distance } = this;
 
-    switch (this.currenState) {
+    switch (this.currentState) {
       case states.DEFAULT:
         if (distance <= ATACK_DISTANCE) {
           this.setState(states.ATACK);
@@ -87,13 +87,13 @@ class Enemy extends Sprite {
   }
 
   public setState(state) {
-    this.spriteElement.removeClass(this.currenState);
+    this.spriteElement.removeClass(this.currentState);
     this.spriteElement.addClass(state);
-    this.currenState = state;
+    this.currentState = state;
 
     const { states } = Enemy;
 
-    switch (this.currenState) {
+    switch (this.currentState) {
       case states.DEAD:
         return this.onDie();
       case states.ATACK:
@@ -125,7 +125,7 @@ class Enemy extends Sprite {
 
       const player = Player.getInstance();
 
-      switch (this.currenState) {
+      switch (this.currentState) {
         case states.WALK:
           const playerPos = player.getPosition();
           const enemyPos = this.getPosition();
@@ -141,10 +141,7 @@ class Enemy extends Sprite {
             z: z + Math.sin(angle) * this.speed
           };
 
-          const result = CollisionDetector.handleCollision(
-            targetPosition,
-            this.position
-          );
+          const result = Level.handleCollision(targetPosition, this.position);
 
           this.position.x = result.x;
           this.position.z = result.z;

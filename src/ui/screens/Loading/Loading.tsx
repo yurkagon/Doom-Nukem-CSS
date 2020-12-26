@@ -11,7 +11,7 @@ import "./style.scss";
 @observer
 class Loading extends Component {
   render() {
-    const { percent, currentLoadedItem, buttonFunction } = State.loadingState;
+    const { percent, currentLoadedItem, buttonFunction } = State.loader;
     const active = percent >= 100;
 
     return (
@@ -22,13 +22,6 @@ class Loading extends Component {
           <div className="percent">${percent}%</div>
         </div>
         <div className="text">{currentLoadedItem}</div>
-        <button
-          onClick={buttonFunction}
-          disabled={!active}
-          className={classnames("start-button", { active })}
-        >
-          Let's rock!
-        </button>
       </Screen>
     );
   }

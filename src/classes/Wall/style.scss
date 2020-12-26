@@ -1,9 +1,28 @@
 .wall {
-  position: absolute;
-  height: 400px;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
-    url(https://i.imgur.com/w7Q8WWL.png);
-  background-size: 4% 100%;
-
   transform-style: preserve-3d;
+
+  .face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+
+    background: url(img/floor.png);
+    $m: 5;
+    background-size: (11px * $m) (44px * $m);
+
+    backface-visibility: hidden;
+  }
+
+  .front {
+    transform: rotateY(0deg) translateZ(50px);
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(50px);
+  }
+  .back {
+    transform: rotateY(180deg) translateZ(50px);
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(50px);
+  }
 }
