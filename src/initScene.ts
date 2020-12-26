@@ -11,6 +11,8 @@ import SkyBox from "./classes/SkyBox/SkyBox";
 import House from "./prefabs/models/House";
 import Wall1 from "./classes/Wall1";
 import testWeaponUpdater from "./testWeaponUpdater";
+import LevelMap from "classes/LevelMap";
+import testMap from "classes/LevelMap/testMap";
 
 const player = Player.getInstance();
 const scene = Scene.getInstance();
@@ -22,6 +24,7 @@ export default async () => {
 
   scene.init({
     player,
+    levelMap: new LevelMap(testMap),
     start() {
       new SkyBox();
 

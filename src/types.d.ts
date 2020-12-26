@@ -1,4 +1,5 @@
 import Player from "./classes/Player/Player";
+import LevelMap from "classes/LevelMap";
 
 interface IPosition {
   x: number;
@@ -10,6 +11,7 @@ interface iSceneConfig {
   player: Player;
   start?(): void;
   update?(): void;
+  levelMap: LevelMap;
 }
 
 interface iSpriteConfig {

@@ -79,7 +79,7 @@ abstract class PlayerController extends Camera {
       z: currentPosition.z + vectorToMove.z
     };
 
-    const resultPosition = LevelMap.handleCollision(
+    const resultPosition = Scene.getInstance().levelMap.handleCollision(
       this.convertCameraPositionToRealPosition(targetPosition),
       this.convertCameraPositionToRealPosition(currentPosition)
     );

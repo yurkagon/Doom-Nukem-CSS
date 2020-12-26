@@ -7,7 +7,7 @@ import House from "../../prefabs/models/House";
 import Wall from "../Wall";
 import MedkitItem from "../Sprite/Item/MedkitItem";
 
-class Map {
+class LevelMap {
   private collisionDetector: CollisionDetector;
 
   constructor(map: ICollisionMap) {
@@ -39,4 +39,4 @@ class Map {
   }
 }
 
-export default new Map(testMap);
+export default LevelMap;

@@ -9,13 +9,16 @@ import {
   IntervalStrategy,
   TimeoutStrategy
 } from "./UpdateStrategy";
+import LevelMap from "classes/LevelMap";
 
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
   private player: Player;
   public gameObjects: Array<GameObject> = [];
-  private readonly level: JQuery = $(".level");
+
+  public levelMap: LevelMap;
+  private readonly levelWrapper: JQuery = $(".level");
 
   private sceneStart: () => void;
   private sceneUpdate: () => void;
@@ -27,6 +30,7 @@ abstract class SceneController {
   }
 
   public init(config: iSceneConfig): void {
+    this.levelMap = config.levelMap;
     this.player = config.player;
     this.sceneStart = config.start;
     this.sceneUpdate = config.update;
@@ -70,7 +74,7 @@ abstract class SceneController {
       z: position.z + origin.z
     });
 
-    this.level.css("transform", rotate3d + translate3d);
+    this.levelWrapper.css("transform", rotate3d + translate3d);
   }
 
   public subscribeGameObject(gameObject: GameObject): void {
