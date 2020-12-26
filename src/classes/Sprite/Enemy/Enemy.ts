@@ -2,7 +2,7 @@ import Sprite from "../index";
 import Player from "../../Player/Player";
 import { Distance, generateCoordDiff, chance } from "../../../helpers";
 import ShotgunItem from "../Item/ShotgunItem";
-import Level from "../../Level";
+import LevelMap from "../../LevelMap";
 
 class Enemy extends Sprite {
   protected VISIBILITY_DISTANCE = 4000;
@@ -141,7 +141,10 @@ class Enemy extends Sprite {
             z: z + Math.sin(angle) * this.speed
           };
 
-          const result = Level.handleCollision(targetPosition, this.position);
+          const result = LevelMap.handleCollision(
+            targetPosition,
+            this.position
+          );
 
           this.position.x = result.x;
           this.position.z = result.z;
