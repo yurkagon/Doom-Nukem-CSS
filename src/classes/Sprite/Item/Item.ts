@@ -1,6 +1,9 @@
-import Sprite from "../index";
-import Player from "../../Player/Player";
-import { Distance } from "../../../helpers";
+import Player from "classes/Player";
+import { Distance } from "helpers";
+
+import Sprite from "../Sprite";
+
+import "./style.scss";
 
 class Item extends Sprite {
   VISIBILITY_DISTANCE = 6000;

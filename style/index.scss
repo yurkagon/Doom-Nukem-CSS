@@ -37,102 +37,6 @@ $size: 1;
   left: 0;
 }
 
-/////////////////
-
-.sprite-cont {
-  transform-style: preserve-3d;
-}
-.sprite {
-  position: absolute;
-  &.item {
-    height: 150px;
-    width: 250px;
-    &.shotgun {
-      background: url(img/items/shotgun.png);
-      background-size: cover;
-    }
-    &.medkit {
-      background: url(img/items/medkit.png);
-      background-size: cover;
-    }
-  }
-  &.enemy {
-    &.guard {
-      height: 300px;
-      width: 256px;
-      background: url(img/enemy/guard.png) left center;
-      background-size: 4000px;
-      background-position-x: -26px;
-      &.default {
-        background-position-x: -26px;
-      }
-      &.walk {
-        animation: walk 1.1s steps(1) infinite;
-        @keyframes walk {
-          0% {
-            background-position: -330px;
-          }
-          25% {
-            background-position: -635px;
-          }
-          50% {
-            background-position: -940px;
-          }
-          75% {
-            background-position: -1245px;
-          }
-        }
-      }
-      &.dead {
-        background-position: -3132px;
-        animation: dead 1s steps(1);
-        @keyframes dead {
-          0% {
-            background-position: -1558px;
-          }
-          20% {
-            background-position: -1880px;
-          }
-          40% {
-            background-position: -2210px;
-          }
-          60% {
-            background-position: -2522px;
-          }
-          80% {
-            background-position: -3132px;
-          }
-        }
-      }
-      &.atack {
-        animation: atack 1.1s steps(1) infinite;
-        @keyframes atack {
-          0% {
-            background-position: -3412px;
-          }
-          50% {
-            background-position: -3720px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.testWeapon {
-  backface-visibility: hidden;
-  position: absolute;
-  bottom: 0;
-  right: 200px;
-  height: 2 * 128px;
-  width: 2 * 320px;
-  z-index: 5;
-
-  background-size: cover;
-  background-image: url(img/weapon.png);
-}
-///////
-
 body {
   position: relative;
   display: flex;
@@ -146,4 +50,18 @@ body {
   background-size: cover;
 
   user-select: none;
+}
+
+// TODO: remove after implementation weapons
+.testWeapon {
+  backface-visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+  height: 2 * 128px;
+  width: 2 * 320px;
+  z-index: 5;
+
+  background-size: cover;
+  background-image: url(img/weapon.png);
 }

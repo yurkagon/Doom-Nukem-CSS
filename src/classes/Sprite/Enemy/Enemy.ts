@@ -1,9 +1,12 @@
-import Sprite from "../index";
-import Player from "../../Player/Player";
-import { Distance, generateCoordDiff, chance } from "../../../helpers";
+import Player from "classes/Player";
+import { Distance, generateCoordDiff, chance } from "helpers";
+
+import Sprite from "../Sprite";
 import ShotgunItem from "../Item/ShotgunItem";
 
-import Scene from "classes/Scene/Scene";
+import Scene from "classes/Scene";
+
+import "./style.scss";
 
 class Enemy extends Sprite {
   protected VISIBILITY_DISTANCE = 4000;

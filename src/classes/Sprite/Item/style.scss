@@ -1,0 +1,16 @@
+.sprites {
+  .sprite {
+    &.item {
+      height: 150px;
+      width: 250px;
+      &.shotgun {
+        background: url(img/items/shotgun.png);
+        background-size: cover;
+      }
+      &.medkit {
+        background: url(img/items/medkit.png);
+        background-size: cover;
+      }
+    }
+  }
+}

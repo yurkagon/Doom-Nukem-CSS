@@ -1,6 +1,7 @@
 import Item from "./Item";
+import { takeWeapon } from "variables/sounds";
+
 import { IPosition } from "../../../types";
-import { takeWeapon } from "../../../variables/sounds";
 
 class ShotgunItem extends Item {
   constructor(position: IPosition) {
