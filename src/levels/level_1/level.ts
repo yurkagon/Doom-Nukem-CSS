@@ -4,17 +4,20 @@ import House from "prefabs/models/House";
 import Wall1 from "classes/Wall1";
 import Enemy from "classes/Sprite/Enemy";
 
-import SkyBox from "classes/SkyBox";
-
 import map from "./map";
 
 const data: LevelConfig = {
   start() {
-    new SkyBox();
     setLevel();
   },
   map: {
     data: map
+  },
+  skybox: {
+    url: "img/skybox.jpg",
+    rotatingMultiplier: -15,
+    positionY: -5,
+    size: "60%"
   }
 };
 

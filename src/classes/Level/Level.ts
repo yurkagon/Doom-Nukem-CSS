@@ -1,6 +1,7 @@
 import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
+import SkyBox from "classes/SkyBox";
 
 // import testWeaponUpdater from "testWeaponUpdater";
 
@@ -20,6 +21,10 @@ class Level {
   private static initLevel(config: LevelConfig) {
     const scene = Scene.getInstance();
     const player = Player.getInstance();
+
+    if (config.skybox) {
+      new SkyBox(config.skybox);
+    }
 
     scene.init({
       player,
