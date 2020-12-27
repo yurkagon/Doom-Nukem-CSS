@@ -1,6 +1,8 @@
 import { observable, action } from "mobx";
 import ResourceLoader from "../utils/ResourceLoader";
 
+import { ResourcesData } from "./types";
+
 class Loader {
   @observable public isLoading = false;
 
@@ -16,10 +18,7 @@ class Loader {
     this.isLoading = status;
   }
 
-  public async loadResources(
-    data: { images: string[]; sounds: string[] },
-    callback?: () => void
-  ) {
+  public async loadResources(data: ResourcesData, callback?: () => void) {
     this.setLoadingStatus(true);
 
     await ResourceLoader.load({

@@ -1,5 +1,6 @@
 import { ICollisionMap } from "classes/LevelMap";
 import { SkyboxConfig } from "classes/SkyBox";
+import { ResourcesData } from "State";
 
 export type LevelName = "level_1";
 
@@ -12,4 +13,5 @@ export interface LevelConfig {
   update?: () => void;
   map: MapConfig;
   skybox?: SkyboxConfig;
+  preloadData: ResourcesData;
 }

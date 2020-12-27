@@ -4,3 +4,8 @@ export enum Screen {
   game,
   menu
 }
+
+export interface ResourcesData {
+  images: string[];
+  sounds: string[];
+}

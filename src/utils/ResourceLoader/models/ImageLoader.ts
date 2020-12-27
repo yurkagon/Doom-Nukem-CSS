@@ -7,7 +7,6 @@ class ImageLoader extends UrlLoader {
   ): Promise<void> {
     return new Promise(resolve => {
       const image = new Image();
-      image.src = this.getExactPath(url);
 
       const onEnd = () => {
         callback && callback(url);
@@ -17,6 +16,8 @@ class ImageLoader extends UrlLoader {
       image.onload = onEnd;
       image.onabort = onEnd;
       image.onerror = onEnd;
+
+      image.src = this.getExactPath(url);
     });
   }
 }

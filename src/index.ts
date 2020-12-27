@@ -14,6 +14,7 @@ import "../style/index.scss";
       "img/icon.png",
       "img/splash.png",
       "img/menu/background.png",
+      "img/background.jpg",
       "img/hud/font.png"
     ],
     sounds: [

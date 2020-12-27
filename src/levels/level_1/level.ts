@@ -5,6 +5,7 @@ import Wall1 from "classes/Wall1";
 import Enemy from "classes/Sprite/Enemy";
 
 import map from "./map";
+import preloadData from "./preloadData";
 
 const data: LevelConfig = {
   start() {
@@ -18,7 +19,8 @@ const data: LevelConfig = {
     rotatingMultiplier: -15,
     positionY: -5,
     size: "60%"
-  }
+  },
+  preloadData
 };
 
 const setLevel = () => {

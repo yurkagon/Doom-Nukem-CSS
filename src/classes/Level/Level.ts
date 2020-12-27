@@ -1,9 +1,8 @@
+import State, { Screen } from "State";
 import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
-
-// import testWeaponUpdater from "testWeaponUpdater";
 
 import { LevelName, LevelConfig } from "./types";
 
@@ -18,9 +17,15 @@ class Level {
     this.initLevel(levelData);
   }
 
-  private static initLevel(config: LevelConfig) {
+  private static async initLevel(config: LevelConfig) {
+    State.setScreen(Screen.loading);
+
     const scene = Scene.getInstance();
     const player = Player.getInstance();
+
+    State.loader.addLoadedItem("Initialization resources");
+
+    await State.loader.loadResources(config.preloadData);
 
     if (config.skybox) {
       new SkyBox(config.skybox);
@@ -36,6 +41,8 @@ class Level {
       },
       levelMap: new LevelMap(config.map.data)
     });
+
+    State.setScreen(Screen.game);
   }
 }
 
