@@ -1,5 +1,5 @@
 import { observable, action } from "mobx";
-import ResourceLoader from "../../utils/ResourceLoader";
+import ResourceLoader from "../utils/ResourceLoader";
 
 class Loader {
   @observable public isLoading = false;

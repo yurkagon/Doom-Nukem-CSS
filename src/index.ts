@@ -1,5 +1,5 @@
 import UI from "./ui";
-import State, { Screen } from "./ui/State";
+import State, { Screen } from "./State";
 
 import "../style/index.scss";
 
@@ -13,7 +13,6 @@ import "../style/index.scss";
     images: [
       "img/icon.png",
       "img/splash.png",
-      "img/background.jpg",
       "img/menu/background.png",
       "img/hud/font.png"
     ],

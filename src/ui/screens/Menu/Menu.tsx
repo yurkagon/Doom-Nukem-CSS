@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 
 import Level from "classes/Level";
 
-import State, { Screen } from "ui/State";
+import State, { Screen } from "State";
 
 import ScreenWrapper from "ui/components/Screen";
 import Text from "ui/components/Text";

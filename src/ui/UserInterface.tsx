@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 
-import { Loading, Game, Menu } from "./screens";
+import State, { Screen } from "State";
 
-import State, { Screen } from "./State";
+import { Loading, Game, Menu } from "./screens";
 
 @observer
 class UserInterface extends Component {

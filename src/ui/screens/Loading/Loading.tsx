@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import classnames from "classnames";
 
-import State from "../../State";
+import State from "State";
 
-import Screen from "../../components/Screen";
+import Screen from "ui/components/Screen";
 
 import "./style.scss";
 
