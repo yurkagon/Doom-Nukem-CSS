@@ -3,9 +3,3 @@ export interface IPosition {
   y?: number;
   z?: number;
 }
-
-export interface iSpriteConfig {
-  type: string;
-  classType: string;
-  position?: IPosition;
-}

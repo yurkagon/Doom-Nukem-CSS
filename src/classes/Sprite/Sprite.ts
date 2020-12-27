@@ -4,7 +4,8 @@ import Player from "classes/Player";
 import GameObjectLOD from "classes/GameObjectLOD";
 
 import { generateTranslate3d } from "helpers";
-import { iSpriteConfig } from "../../types";
+
+import { SpriteConfig } from "./types";
 
 import "./style.scss";
 
@@ -14,9 +15,9 @@ class Sprite extends GameObjectLOD {
   protected readonly spriteElement: JQuery = $("<div/>");
   readonly self: JQuery = $("<div/>").addClass("sprite-cont");
 
-  private config: iSpriteConfig;
+  private config: SpriteConfig;
 
-  constructor(config: iSpriteConfig) {
+  constructor(config: SpriteConfig) {
     super(config.position);
 
     this.config = config;
