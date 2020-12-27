@@ -16,7 +16,11 @@ import "../style/index.scss";
       "img/menu/background.png",
       "img/hud/font.png"
     ],
-    sounds: ["sounds/menu/start_menu.flac"]
+    sounds: [
+      "sounds/menu/start_menu.flac",
+      "sounds/menu/menu_click.wav",
+      "sounds/music/main_theme.mp3"
+    ]
   });
   // }
 

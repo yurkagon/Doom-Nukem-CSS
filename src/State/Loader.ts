@@ -4,14 +4,11 @@ import ResourceLoader from "../utils/ResourceLoader";
 class Loader {
   @observable public isLoading = false;
 
-  @observable public percent = 0;
-  @observable public currentLoadedItem = "";
-  @observable public buttonFunction: () => void;
+  @observable public loadedItems: string[] = [];
 
   @action
-  public setState(percent: number, currentLoadedItem: string = "") {
-    this.percent = percent;
-    this.currentLoadedItem = currentLoadedItem;
+  public addLoadedItem(loadedItem: string) {
+    this.loadedItems.unshift(loadedItem);
   }
 
   @action
@@ -27,8 +24,8 @@ class Loader {
 
     await ResourceLoader.load({
       ...data,
-      onUpdate: (name, progress) => {
-        this.setState(Number(progress), name);
+      onUpdate: name => {
+        this.addLoadedItem(name);
       }
     });
 

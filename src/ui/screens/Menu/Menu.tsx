@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 
+import sleep from "utils/sleep";
+
 import Level from "classes/Level";
+import BackgroundMusic from "classes/BackgroundMusic";
 
 import State, { Screen } from "State";
 
@@ -9,11 +12,11 @@ import Text from "ui/components/Text";
 import ButtonGroup from "ui/components/ButtonGroup";
 import { ButtonData } from "ui/components/ButtonGroup/types";
 
-import { start_menu } from "sound";
+import { start_menu, menu_music } from "sound";
 
 import "./style.scss";
 
-class Game extends Component {
+class Menu extends Component {
   public state = {
     clicked: false
   };
@@ -22,6 +25,8 @@ class Game extends Component {
     {
       text: "New game",
       onClick: () => {
+        BackgroundMusic.stop();
+
         Level.load("level_1");
 
         State.setScreen(Screen.game);
@@ -44,11 +49,16 @@ class Game extends Component {
   private startMenu = () => {
     const { clicked } = this.state;
 
-    if (!clicked)
-      this.setState({ clicked: true }, () => {
-        start_menu.play();
-      });
+    if (!clicked) this.setState({ clicked: true }, () => this.onMenuInit());
   };
+
+  private async onMenuInit() {
+    start_menu.play();
+
+    await sleep(600);
+
+    BackgroundMusic.play(menu_music);
+  }
 
   public render() {
     const { clicked } = this.state;
@@ -73,4 +83,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default Menu;

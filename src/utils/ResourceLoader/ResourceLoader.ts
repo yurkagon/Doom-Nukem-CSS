@@ -24,6 +24,7 @@ class ResourceLoader {
         onUpdate(name, percentage.toFixed(2));
       }
     };
+
     await this.audioLoader.load(sounds, handler);
     await this.imageLoader.load(images, handler);
   }

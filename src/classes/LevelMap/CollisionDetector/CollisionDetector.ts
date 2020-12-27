@@ -1,15 +1,13 @@
-import { Distance } from "../../../helpers";
+import { Distance } from "helpers";
+import Angle from "helpers/angle";
 
-import { ICollisionType, ICollisionMap, ICell, ICellInfo } from "./types";
-import Angle from "../../../helpers/angle";
+import { ICollisionType, ICollisionMap, ICellInfo } from "./types";
 
 class CollisionDetector {
   public collisionMap: ICollisionMap;
 
   constructor(map: ICollisionMap) {
-    if (map) {
-      this.setCollisionMap(map);
-    }
+    this.setCollisionMap(map);
   }
 
   public setCollisionMap(map: ICollisionMap) {

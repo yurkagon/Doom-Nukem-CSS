@@ -10,17 +10,15 @@ import "./style.scss";
 @observer
 class Loading extends Component {
   render() {
-    const { percent, currentLoadedItem, buttonFunction } = State.loader;
-    const active = percent >= 100;
+    const { loadedItems } = State.loader;
 
     return (
       <Screen className="loading-screen">
-        <span className="loading-title">Loading...</span>
-        <div className="line-container">
-          <div className="line" style={{ width: `${percent}%` }} />
-          <div className="percent">${percent}%</div>
+        <div className="wrapper">
+          {loadedItems.map((el, index) => (
+            <div key={index}>{el}</div>
+          ))}
         </div>
-        <div className="text">{currentLoadedItem}</div>
       </Screen>
     );
   }

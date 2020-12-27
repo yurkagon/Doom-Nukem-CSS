@@ -8,6 +8,7 @@ abstract class UrlLoader {
     if (typeof url === "string") {
       return this.handleUrl(url, callback);
     }
+
     if (Array.isArray(url)) {
       return Promise.all(url.map(el => this.load(el, callback)));
     }
