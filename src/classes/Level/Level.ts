@@ -25,21 +25,40 @@ class Level {
 
     State.loader.addLoadedItem("Initialization resources");
 
-    await State.loader.loadResources(config.preloadData);
+    await State.loader.loadResources({
+      ...config.preloadData,
+      operations: [
+        {
+          name: "Camera enabled",
+          method: () => {
+            player.camera.css("display", "block");
+          }
+        },
+        {
+          name: "Load skybox",
+          method: () => {
+            if (config.skybox) {
+              new SkyBox(config.skybox);
+            }
+          }
+        },
+        {
+          name: "Initialization scene",
+          method: () => {
+            scene.init({
+              player,
+              ...config,
+              update() {
+                testWeaponUpdater();
 
-    if (config.skybox) {
-      new SkyBox(config.skybox);
-    }
-
-    scene.init({
-      player,
-      ...config,
-      update() {
-        testWeaponUpdater();
-
-        config.update && config.update();
-      },
-      levelMap: new LevelMap(config.map.data)
+                config.update && config.update();
+              },
+              levelMap: new LevelMap(config.map.data)
+            });
+          }
+        },
+        ...(config.preloadData.operations || [])
+      ]
     });
 
     State.setScreen(Screen.game);

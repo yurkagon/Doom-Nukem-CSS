@@ -1,3 +1,5 @@
+import { Operation } from "utils/ResourceLoader";
+
 export enum Screen {
   empty,
   loading,
@@ -8,4 +10,5 @@ export enum Screen {
 export interface ResourcesData {
   images: string[];
   sounds: string[];
+  operations?: Operation[];
 }
