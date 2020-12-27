@@ -1,7 +1,5 @@
 import { Distance } from "../../../helpers";
 
-import { IPosition } from "../../../types";
-
 import { ICollisionType, ICollisionMap, ICell, ICellInfo } from "./types";
 import Angle from "../../../helpers/angle";
 
@@ -18,10 +16,7 @@ class CollisionDetector {
     this.collisionMap = map;
   }
 
-  public handleCollision(
-    targetPosition: IPosition,
-    currentPosition: IPosition
-  ) {
+  public handleCollision(targetPosition: Position, currentPosition: Position) {
     const mapTargetPosition = this.getMapPosition(targetPosition);
     const mapCurrentPosition = this.getMapPosition(currentPosition);
     const space = this.getSymbol(mapTargetPosition);
@@ -39,10 +34,10 @@ class CollisionDetector {
   }
 
   private handleWall(
-    targetPosition: IPosition,
-    currentPosition: IPosition,
-    mapTargetPosition: IPosition,
-    mapCurrentPosition: IPosition
+    targetPosition: Position,
+    currentPosition: Position,
+    mapTargetPosition: Position,
+    mapCurrentPosition: Position
   ) {
     const vector = {
       x: targetPosition.x - currentPosition.x,
@@ -137,8 +132,8 @@ class CollisionDetector {
   }
 
   private getCollisionType(
-    position: IPosition,
-    targetPosition: IPosition
+    position: Position,
+    targetPosition: Position
   ): ICollisionType {
     if (position.z === targetPosition.z) {
       return ICollisionType.horizontal;
@@ -147,7 +142,7 @@ class CollisionDetector {
     }
   }
 
-  public setCollision(position: IPosition) {
+  public setCollision(position: Position) {
     const mapPosition = this.getMapPosition(position);
 
     try {
@@ -155,7 +150,7 @@ class CollisionDetector {
     } catch {}
   }
 
-  private getMapPosition(position: IPosition): IPosition {
+  private getMapPosition(position: Position): Position {
     const normalizedPosition = this.normalizePosition(position);
 
     return {
@@ -164,23 +159,21 @@ class CollisionDetector {
     };
   }
 
-  private normalizePosition(position: IPosition): IPosition {
+  private normalizePosition(position: Position): Position {
     return {
       x: (position.x + 15000) / 1000,
       z: (position.z + 15000) / 1000
     };
   }
 
-  private getRealPositionFromNormalizedPosition(
-    position: IPosition
-  ): IPosition {
+  private getRealPositionFromNormalizedPosition(position: Position): Position {
     return {
       x: position.x * 1000 - 15000,
       z: position.z * 1000 - 15000
     };
   }
 
-  private getSymbol(position: IPosition) {
+  private getSymbol(position: Position) {
     try {
       return this.collisionMap[position.z][position.x];
     } catch {
@@ -190,7 +183,7 @@ class CollisionDetector {
 
   public forEach(
     callback: (
-      position: IPosition,
+      position: Position,
       cellInfo: ICellInfo,
       i: number,
       k: number

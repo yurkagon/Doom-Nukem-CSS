@@ -1,18 +1,17 @@
-import Scene from "../Scene/Scene";
-import { IPosition } from "../../types";
+import Scene from "../Scene";
 
 abstract class GameObject {
-  static readonly defaultPosition: IPosition = {
+  static readonly defaultPosition: Position = {
     x: 0,
     y: 0,
     z: 0
   };
 
-  public position: IPosition;
+  public position: Position;
 
   public isStarted = false;
 
-  constructor(position: IPosition = { ...GameObject.defaultPosition }) {
+  constructor(position: Position = { ...GameObject.defaultPosition }) {
     this.position = position;
 
     const scene = Scene.getInstance();

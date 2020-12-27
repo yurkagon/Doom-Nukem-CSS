@@ -1,17 +1,17 @@
-import Model from "../../classes/Model";
+import Model from "classes/Model";
+
+import { ICellInfo } from "../LevelMap";
 
 import data from "./data";
 
 import "./style.scss";
-import { IPosition } from "../../types";
-import { ICellInfo } from "../LevelMap/CollisionDetector/types";
 
 class Wall extends Model {
   protected readonly VISIBILITY_DISTANCE = 8000;
 
   VISION_CHECKING = false;
 
-  protected positionCorrector: IPosition = {
+  protected positionCorrector: Position = {
     x: 129,
     z: 600.05,
     y: 190
@@ -19,7 +19,7 @@ class Wall extends Model {
 
   private sides: ICellInfo;
 
-  constructor(position: IPosition, sides: ICellInfo) {
+  constructor(position: Position, sides: ICellInfo) {
     super({
       name: "wall",
       data,

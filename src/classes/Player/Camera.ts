@@ -1,10 +1,9 @@
+import $ from "jquery";
+
 import GameObject from "../GameObject";
 
-import $ from "jquery";
-import { FOV, PLAYER_MOVE_SPEED } from "../../variables/constants";
-import { IPosition } from "../../types";
-
-import Angle from "../../helpers/angle";
+import { FOV, PLAYER_MOVE_SPEED } from "variables/constants";
+import Angle from "helpers/angle";
 
 abstract class Camera extends GameObject {
   public rotation = {
@@ -18,7 +17,7 @@ abstract class Camera extends GameObject {
 
   public readonly camera = $("#camera");
 
-  protected goForward(): IPosition {
+  protected goForward(): Position {
     const { rotation } = this;
 
     return {
@@ -26,7 +25,7 @@ abstract class Camera extends GameObject {
       z: Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goBack(): IPosition {
+  protected goBack(): Position {
     const { rotation } = this;
 
     return {
@@ -34,7 +33,7 @@ abstract class Camera extends GameObject {
       z: -Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goLeft(): IPosition {
+  protected goLeft(): Position {
     const { rotation } = this;
 
     return {
@@ -42,7 +41,7 @@ abstract class Camera extends GameObject {
       z: Math.cos(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
     };
   }
-  protected goRight(): IPosition {
+  protected goRight(): Position {
     const { rotation } = this;
 
     return {
@@ -51,7 +50,7 @@ abstract class Camera extends GameObject {
     };
   }
 
-  public moveBy(vectorToMove: IPosition): void {
+  public moveBy(vectorToMove: Position): void {
     const targetPosition = {
       x: this.position.x + vectorToMove.x,
       z: this.position.z + vectorToMove.z
@@ -93,15 +92,11 @@ abstract class Camera extends GameObject {
     return this.convertCameraPositionToRealPosition(this.position);
   }
 
-  protected convertCameraPositionToRealPosition(
-    position: IPosition
-  ): IPosition {
+  protected convertCameraPositionToRealPosition(position: Position): Position {
     return this.convertRealPositionToCameraPosition(position);
   }
 
-  protected convertRealPositionToCameraPosition(
-    position: IPosition
-  ): IPosition {
+  protected convertRealPositionToCameraPosition(position: Position): Position {
     return {
       x: -position.x - 130,
       z: -position.z + 700

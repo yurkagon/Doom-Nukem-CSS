@@ -1,12 +1,13 @@
 import $ from "jquery";
-import { IPosition } from "../../types";
+
+import { generateTranslate3d } from "helpers";
+
 import GameObject from "../GameObject";
-import { generateTranslate3d } from "../../helpers";
 
 import "./style.scss";
 
 interface IWallConfig {
-  position?: IPosition;
+  position?: Position;
   rotation?: number;
   scale?: number;
   css?: {
