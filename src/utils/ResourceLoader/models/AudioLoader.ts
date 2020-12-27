@@ -1,7 +1,10 @@
 import UrlLoader from "./UrlLoader";
 
 class AudioLoader extends UrlLoader {
-  public handleUrl(url: string, callback?: (name: string) => void) {
+  public handleUrl(
+    url: string,
+    callback?: (name: string) => void
+  ): Promise<void> {
     return new Promise(resolve => {
       const audio = new Audio();
 
