@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 
+import Level from "classes/Level";
+
 import State, { Screen } from "ui/State";
 
 import ScreenWrapper from "ui/components/Screen";
@@ -20,7 +22,8 @@ class Game extends Component {
     {
       text: "New game",
       onClick: () => {
-        require("../../../initScene").default();
+        Level.load("level_1");
+
         State.setScreen(Screen.game);
       }
     },

@@ -15,18 +15,6 @@ h2 {
   transform-style: preserve-3d;
 }
 
-.glass {
-  position: absolute;
-
-  height: 400px;
-  width: 1200px;
-  transform: rotateY(180deg);
-  background: url(img/glass.png);
-  background-size: cover;
-
-  transform-style: preserve-3d;
-}
-
 .floor {
   $floorSize: 100;
 
@@ -42,4 +30,3 @@ h2 {
 
   transform-style: preserve-3d;
 }
-//////////

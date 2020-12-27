@@ -3,7 +3,7 @@ import { IPosition } from "../../types";
 import Scene from "../Scene/Scene";
 import Enemy from "../Sprite/Enemy/Enemy";
 import Control from "./Control";
-import Level from "../Level";
+import LevelMap from "../LevelMap";
 
 abstract class PlayerController extends Camera {
   private controller = new Control();
@@ -79,7 +79,7 @@ abstract class PlayerController extends Camera {
       z: currentPosition.z + vectorToMove.z
     };
 
-    const resultPosition = Level.handleCollision(
+    const resultPosition = Scene.getInstance().levelMap.handleCollision(
       this.convertCameraPositionToRealPosition(targetPosition),
       this.convertCameraPositionToRealPosition(currentPosition)
     );

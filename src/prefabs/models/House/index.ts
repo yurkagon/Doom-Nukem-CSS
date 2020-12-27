@@ -5,7 +5,8 @@ import data from "./data";
 
 import "./style.scss";
 import { IPosition } from "../../../types";
-import Level from "../../../classes/Level";
+
+import Scene from "classes/Scene/Scene";
 
 class House extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
@@ -32,7 +33,7 @@ class House extends Model {
   }
 
   start() {
-    Level.setCollision({
+    Scene.getInstance().levelMap.setCollision({
       x: this.position.x + 1000,
       z: this.position.z + 1000
     });

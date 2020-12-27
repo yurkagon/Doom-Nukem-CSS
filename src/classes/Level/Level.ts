@@ -1,42 +1,42 @@
-import CollisionDetector from "./CollisionDetector";
-import { ICollisionMap } from "./CollisionDetector/types";
-import { IPosition } from "../../types";
+import Scene from "classes/Scene";
+import Player from "classes/Player";
+import LevelMap from "classes/LevelMap";
+import SkyBox from "classes/SkyBox";
 
-import testMap from "./testMap";
-import House from "../../prefabs/models/House";
-import Wall from "../Wall";
-import MedkitItem from "../Sprite/Item/MedkitItem";
+// import testWeaponUpdater from "testWeaponUpdater";
 
-class Map {
-  private collisionDetector: CollisionDetector;
+import { LevelName, LevelConfig } from "./types";
 
-  constructor(map: ICollisionMap) {
-    this.collisionDetector = new CollisionDetector(map);
+import testWeaponUpdater from "testWeaponUpdater";
 
-    this.attachMap();
+class Level {
+  private constructor() {}
+
+  public static load(levelName: LevelName) {
+    const levelData = require(`../../levels/${levelName}`).default;
+
+    this.initLevel(levelData);
   }
 
-  public handleCollision(
-    targetPosition: IPosition,
-    currentPosition: IPosition
-  ) {
-    return this.collisionDetector.handleCollision(
-      targetPosition,
-      currentPosition
-    );
-  }
+  private static initLevel(config: LevelConfig) {
+    const scene = Scene.getInstance();
+    const player = Player.getInstance();
 
-  public setCollision(position: IPosition) {
-    return this.collisionDetector.setCollision(position);
-  }
+    if (config.skybox) {
+      new SkyBox(config.skybox);
+    }
 
-  private attachMap() {
-    this.collisionDetector.forEach((position, cellInfo) => {
-      if (cellInfo.current === "#") {
-        new Wall(position, cellInfo);
-      }
+    scene.init({
+      player,
+      ...config,
+      update() {
+        testWeaponUpdater();
+
+        config.update && config.update();
+      },
+      levelMap: new LevelMap(config.map.data)
     });
   }
 }
 
-export default new Map(testMap);
+export default Level;

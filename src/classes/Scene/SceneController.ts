@@ -1,8 +1,9 @@
 import $ from "jquery";
-import GameObject from "../GameObject/index";
-import Player from "../Player/Player";
-import { iSceneConfig } from "../../types";
-import { generateTranslate3d } from "../../helpers";
+import GameObject from "classes/GameObject";
+import Player from "classes/Player";
+import LevelMap from "classes/LevelMap";
+
+import { generateTranslate3d } from "helpers";
 
 import {
   UpdateStrategy,
@@ -10,12 +11,16 @@ import {
   TimeoutStrategy
 } from "./UpdateStrategy";
 
+import { SceneConfig } from "./types";
+
 abstract class SceneController {
   static readonly RENDER_SPEED = 8;
 
   private player: Player;
   public gameObjects: Array<GameObject> = [];
-  private readonly level: JQuery = $(".level");
+
+  public levelMap: LevelMap;
+  private readonly levelWrapper: JQuery = $(".level");
 
   private sceneStart: () => void;
   private sceneUpdate: () => void;
@@ -26,7 +31,8 @@ abstract class SceneController {
     this.update = this.update.bind(this);
   }
 
-  public init(config: iSceneConfig): void {
+  public init(config: SceneConfig): void {
+    this.levelMap = config.levelMap;
     this.player = config.player;
     this.sceneStart = config.start;
     this.sceneUpdate = config.update;
@@ -70,7 +76,7 @@ abstract class SceneController {
       z: position.z + origin.z
     });
 
-    this.level.css("transform", rotate3d + translate3d);
+    this.levelWrapper.css("transform", rotate3d + translate3d);
   }
 
   public subscribeGameObject(gameObject: GameObject): void {
