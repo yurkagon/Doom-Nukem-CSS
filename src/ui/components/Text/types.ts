@@ -1,6 +1,7 @@
 export interface TextProps {
-  children: string;
+  children: string | number;
   onClick?: () => void;
+  className?: string;
 }
 
 export interface CharProps {
