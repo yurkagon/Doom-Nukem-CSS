@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import State, { Screen } from "State";
 
 import sleep from "utils/sleep";
 
@@ -23,9 +24,7 @@ class Menu extends Component {
     {
       text: "New game",
       onClick: () => {
-        BackgroundMusic.stop();
-
-        Level.load("level_1");
+        State.setScreen(Screen.level_select);
       }
     },
     {

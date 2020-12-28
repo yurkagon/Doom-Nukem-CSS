@@ -90,6 +90,49 @@
       background-position: -603px 51px;
     }
 
+    &.one {
+      background-position: -160px 2306px;
+      width: $default-size - 18;
+    }
+    &.two {
+      background-position: -194px 2301px;
+      width: $default-size + 4;
+      height: $default-size - 5;
+      margin-top: 5px;
+    }
+    &.three {
+      background-position: -252px 2306px;
+      width: $default-size + 3;
+    }
+    &.four {
+      background-position: -308px 2306px;
+      width: $default-size + 3;
+    }
+    &.five {
+      background-position: -364px 2306px;
+      width: $default-size + 5;
+    }
+    &.six {
+      background-position: -422px 2306px;
+      width: $default-size + 4;
+    }
+    &.seven {
+      background-position: -479px 2306px;
+      width: $default-size + 4;
+    }
+    &.eight {
+      background-position: -535px 2306px;
+      width: $default-size + 4;
+    }
+    &.nine {
+      background-position: -593px 2306px;
+      width: $default-size + 4;
+    }
+    &.zero {
+      background-position: -104px 2306px;
+      width: $default-size + 4;
+    }
+
     &.space {
       background-image: none;
 
