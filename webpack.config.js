@@ -57,5 +57,6 @@ module.exports = {
     contentBase: path.join(__dirname, buildFolder),
     compress: true,
     port: 9000
-  }
+  },
+  devtool: "inline-source-map"
 };
