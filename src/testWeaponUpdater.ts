@@ -4,9 +4,9 @@ import Player from "./classes/Player/Player";
 
 const player = Player.getInstance();
 
-const weapon = $(".testWeapon");
-
 export default async () => {
+  const weapon = $(".weapon-container");
+
   if (player.isMoving()) {
     weapon
       .animate(

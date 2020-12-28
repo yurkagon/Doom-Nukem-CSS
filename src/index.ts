@@ -1,4 +1,5 @@
 import UI from "./ui";
+// import Level from "classes/Level";
 import State, { Screen } from "./State";
 
 import "../style/index.scss";
@@ -6,7 +7,6 @@ import "../style/index.scss";
 (async () => {
   UI.init();
 
-  // if (process.env.NODE_ENV === "production") {
   State.setScreen(Screen.loading);
 
   await State.loader.loadResources({
@@ -23,7 +23,8 @@ import "../style/index.scss";
       "sounds/music/main_theme.mp3"
     ]
   });
-  // }
 
   State.setScreen(Screen.menu);
+
+  // Level.load("level_1");
 })();

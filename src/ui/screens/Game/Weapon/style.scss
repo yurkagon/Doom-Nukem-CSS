@@ -1,0 +1,10 @@
+.weapon-container {
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+  height: 2 * 128px;
+  width: 2 * 320px;
+
+  background-size: cover;
+  background-image: url(img/weapon.png);
+}
