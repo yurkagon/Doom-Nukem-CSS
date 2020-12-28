@@ -1,5 +1,5 @@
 import UI from "./ui";
-// import Level from "classes/Level";
+import Level from "classes/Level";
 import State, { Screen } from "./State";
 
 import "../style/index.scss";

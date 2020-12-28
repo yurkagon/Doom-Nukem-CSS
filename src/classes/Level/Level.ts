@@ -11,7 +11,7 @@ import BackgroundMusic from "classes/BackgroundMusic";
 
 import { LevelName, LevelConfig } from "./types";
 
-import testWeaponUpdater from "testWeaponUpdater";
+import UiWeapon from "ui/screens/Game/Weapon";
 
 class Level {
   private constructor() {}
@@ -70,7 +70,7 @@ class Level {
               player,
               ...config,
               update() {
-                testWeaponUpdater();
+                UiWeapon.weaponBouncingUpdater();
 
                 config.update && config.update();
               },
