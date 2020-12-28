@@ -1,4 +1,7 @@
 import State, { Screen } from "State";
+
+import sleep from "utils/sleep";
+
 import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
@@ -48,6 +51,16 @@ class Level {
           name: "Disabled background music",
           method: () => {
             BackgroundMusic.stop();
+          }
+        },
+        {
+          name: "Background music executing",
+          method: () => {
+            if (!config.music) return;
+
+            sleep(1000).then(() => {
+              BackgroundMusic.play(config.music);
+            });
           }
         },
         {

@@ -1,4 +1,5 @@
 import { LevelConfig } from "classes/Level";
+import { doom_e1m1 } from "sound";
 
 import House from "prefabs/models/House";
 import Wall1 from "classes/Wall1";
@@ -20,7 +21,8 @@ const data: LevelConfig = {
     positionY: -5,
     size: "60%"
   },
-  preloadData
+  preloadData,
+  music: doom_e1m1
 };
 
 const setLevel = () => {

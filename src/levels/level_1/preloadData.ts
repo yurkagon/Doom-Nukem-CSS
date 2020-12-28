@@ -17,7 +17,8 @@ const preloadData: ResourcesData = {
     "sounds/start.wav",
     "sounds/voice/medkit.wav",
     "sounds/items/itemPickUp.wav",
-    "sounds/items/pickWeapon.wav"
+    "sounds/items/pickWeapon.wav",
+    "sounds/music/doom_e1m1.mp3"
   ]
 };
 
