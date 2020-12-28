@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HUD from "../../components/HUD";
+import HUD from "./HUD";
 
 import "./style.scss";
 
