@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import sleep from "utils/sleep";
 
 import Level from "classes/Level";
-import BackgroundMusic from "classes/BackgroundMusic";
 
 import ScreenWrapper from "ui/components/Screen";
-import Text from "ui/components/Text";
+
 import ButtonGroup from "ui/components/ButtonGroup";
 import { ButtonData } from "ui/components/ButtonGroup/types";
 
@@ -17,8 +16,6 @@ class LevelSelect extends Component {
     {
       text: "level_1",
       onClick: () => {
-        BackgroundMusic.stop();
-
         Level.load("level_1");
       }
     }

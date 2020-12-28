@@ -4,6 +4,8 @@ import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
 
+import BackgroundMusic from "classes/BackgroundMusic";
+
 import { LevelName, LevelConfig } from "./types";
 
 import testWeaponUpdater from "testWeaponUpdater";
@@ -40,6 +42,12 @@ class Level {
             if (config.skybox) {
               new SkyBox(config.skybox);
             }
+          }
+        },
+        {
+          name: "Disabled background music",
+          method: () => {
+            BackgroundMusic.stop();
           }
         },
         {
