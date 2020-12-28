@@ -1,10 +1,9 @@
-import Item from "./Item";
 import { itemPickUp, medkitVoice } from "variables/sounds";
 
-import { IPosition } from "../../../types";
+import Item from "./Item";
 
 class MedkitItem extends Item {
-  constructor(position: IPosition) {
+  constructor(position: Position) {
     super({
       type: "medkit",
       position: {

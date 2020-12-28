@@ -1,25 +1,22 @@
-import Model from "../../../classes/Model";
-import { ITransform } from "../../../classes/Model/types";
+import Scene from "classes/Scene";
+import Model, { Transform } from "classes/Model";
 
 import data from "./data";
 
 import "./style.scss";
-import { IPosition } from "../../../types";
-
-import Scene from "classes/Scene/Scene";
 
 class House extends Model {
   protected readonly VISIBILITY_DISTANCE = 4000;
 
   VISION_CHECKING = false;
 
-  protected positionCorrector: IPosition = {
+  protected positionCorrector: Position = {
     x: 250,
     z: 170,
     y: 0
   };
 
-  constructor(transform?: ITransform) {
+  constructor(transform?: Transform) {
     super({
       name: "house",
       data,

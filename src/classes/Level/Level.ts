@@ -1,9 +1,8 @@
+import State, { Screen } from "State";
 import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
-
-// import testWeaponUpdater from "testWeaponUpdater";
 
 import { LevelName, LevelConfig } from "./types";
 
@@ -18,24 +17,51 @@ class Level {
     this.initLevel(levelData);
   }
 
-  private static initLevel(config: LevelConfig) {
+  private static async initLevel(config: LevelConfig) {
+    State.setScreen(Screen.loading);
+
     const scene = Scene.getInstance();
     const player = Player.getInstance();
 
-    if (config.skybox) {
-      new SkyBox(config.skybox);
-    }
+    State.loader.addLoadedItem("Initialization resources");
 
-    scene.init({
-      player,
-      ...config,
-      update() {
-        testWeaponUpdater();
+    await State.loader.loadResources({
+      ...config.preloadData,
+      operations: [
+        {
+          name: "Camera enabled",
+          method: () => {
+            player.camera.css("display", "block");
+          }
+        },
+        {
+          name: "Load skybox",
+          method: () => {
+            if (config.skybox) {
+              new SkyBox(config.skybox);
+            }
+          }
+        },
+        {
+          name: "Initialization scene",
+          method: () => {
+            scene.init({
+              player,
+              ...config,
+              update() {
+                testWeaponUpdater();
 
-        config.update && config.update();
-      },
-      levelMap: new LevelMap(config.map.data)
+                config.update && config.update();
+              },
+              levelMap: new LevelMap(config.map.data)
+            });
+          }
+        },
+        ...(config.preloadData.operations || [])
+      ]
     });
+
+    State.setScreen(Screen.game);
   }
 }
 

@@ -1,6 +1,5 @@
 import CollisionDetector from "./CollisionDetector";
 import { ICollisionMap } from "./CollisionDetector/types";
-import { IPosition } from "../../types";
 
 import Wall from "../Wall";
 
@@ -13,17 +12,14 @@ class LevelMap {
     this.attachMap();
   }
 
-  public handleCollision(
-    targetPosition: IPosition,
-    currentPosition: IPosition
-  ) {
+  public handleCollision(targetPosition: Position, currentPosition: Position) {
     return this.collisionDetector.handleCollision(
       targetPosition,
       currentPosition
     );
   }
 
-  public setCollision(position: IPosition) {
+  public setCollision(position: Position) {
     return this.collisionDetector.setCollision(position);
   }
 

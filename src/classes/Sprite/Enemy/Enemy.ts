@@ -1,5 +1,5 @@
 import Player from "classes/Player";
-import { Distance, generateCoordDiff, chance } from "helpers";
+import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
 import Sprite from "../Sprite";
 import ShotgunItem from "../Item/ShotgunItem";
@@ -43,7 +43,7 @@ class Enemy extends Sprite {
   }
 
   public start() {
-    this.moveDiff = generateCoordDiff(500);
+    this.moveDiff = generateCoordinateNoiseValue(500);
     this.setState(Enemy.states.DEFAULT);
     this.timer = setInterval(this.logicUpdate, Enemy.LOGIC_INTERVAL);
 
@@ -87,7 +87,7 @@ class Enemy extends Sprite {
         this.setState(states.WALK);
     }
 
-    this.moveDiff = generateCoordDiff(500);
+    this.moveDiff = generateCoordinateNoiseValue(500);
   }
 
   public setState(state) {

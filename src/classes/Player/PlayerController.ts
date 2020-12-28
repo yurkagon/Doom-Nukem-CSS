@@ -1,9 +1,7 @@
 import Camera from "./Camera";
-import { IPosition } from "../../types";
-import Scene from "../Scene/Scene";
-import Enemy from "../Sprite/Enemy/Enemy";
+import Scene from "../Scene";
 import Control from "./Control";
-import LevelMap from "../LevelMap";
+import Enemy from "../Sprite/Enemy";
 
 abstract class PlayerController extends Camera {
   private controller = new Control();
@@ -46,7 +44,7 @@ abstract class PlayerController extends Camera {
     } = this.controller.moveState;
 
     if (this.controller.isMoving()) {
-      const moves: Array<IPosition> = [];
+      const moves: Array<Position> = [];
 
       if (toForward) moves.push(this.goForward());
       if (toBack) moves.push(this.goBack());
@@ -54,7 +52,7 @@ abstract class PlayerController extends Camera {
       if (toRight) moves.push(this.goRight());
 
       const vectorToMove = moves.reduce(
-        (value: IPosition, acc: IPosition): IPosition => ({
+        (value: Position, acc: Position): Position => ({
           x: value.x + acc.x,
           z: value.z + acc.z
         })
@@ -67,7 +65,7 @@ abstract class PlayerController extends Camera {
     if (rotateRight) this.rotate(-this.controller.ROTATION_SPEED);
   }
 
-  public moveBy(vectorToMove: IPosition): void {
+  public moveBy(vectorToMove: Position): void {
     const noclip = false;
     if (noclip) {
       return super.moveBy(vectorToMove);

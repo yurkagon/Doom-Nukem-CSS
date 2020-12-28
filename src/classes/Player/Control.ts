@@ -1,7 +1,5 @@
 import $ from "jquery";
 
-import { IPosition } from "../../types";
-
 class Control {
   public readonly MOUSE_SENSITIVITY = 1.5;
   public readonly ROTATION_SPEED = 2;
@@ -16,7 +14,7 @@ class Control {
   };
 
   public mouseRotateDelta: number = 0;
-  private prevMousePosition: IPosition = {
+  private prevMousePosition: Position = {
     x: 0,
     y: 0
   };
@@ -72,7 +70,7 @@ class Control {
 
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = this;
 
-      const mousePosition: IPosition = {
+      const mousePosition: Position = {
         x: event.pageX,
         y: event.pageY
       };

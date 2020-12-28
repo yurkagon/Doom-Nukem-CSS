@@ -1,5 +1,5 @@
 import UI from "./ui";
-import State, { Screen } from "./ui/State";
+import State, { Screen } from "./State";
 
 import "../style/index.scss";
 
@@ -13,11 +13,15 @@ import "../style/index.scss";
     images: [
       "img/icon.png",
       "img/splash.png",
-      "img/background.jpg",
       "img/menu/background.png",
+      "img/background.jpg",
       "img/hud/font.png"
     ],
-    sounds: ["sounds/menu/start_menu.flac"]
+    sounds: [
+      "sounds/menu/start_menu.flac",
+      "sounds/menu/menu_click.wav",
+      "sounds/music/main_theme.mp3"
+    ]
   });
   // }
 
