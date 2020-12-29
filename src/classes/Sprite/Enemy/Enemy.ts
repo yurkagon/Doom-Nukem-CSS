@@ -29,6 +29,8 @@ class Enemy extends Sprite {
   speed = 8;
   moveDiff = null;
 
+  isStatic = false;
+
   constructor(config) {
     super({
       ...config,
@@ -124,7 +126,7 @@ class Enemy extends Sprite {
   }
 
   public update() {
-    if (this.isActive) {
+    if (this.isActive && !this.isStatic) {
       const { states } = Enemy;
 
       const player = Player.getInstance();

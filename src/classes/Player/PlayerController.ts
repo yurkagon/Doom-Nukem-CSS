@@ -1,7 +1,6 @@
 import Camera from "./Camera";
 import Scene from "../Scene";
 import Control from "./Control";
-import Enemy from "../Sprite/Enemy";
 
 abstract class PlayerController extends Camera {
   private controller = new Control();
@@ -26,9 +25,11 @@ abstract class PlayerController extends Camera {
     (window as any).player = this;
   }
 
+  protected abstract onShot(): void;
+
   start() {
-    this.controller.setMouseCallback(this.onMouseMove);
-    this.controller.setShotCallback(this.onShot);
+    this.controller.setMouseCallback(this.onMouseMove.bind(this));
+    this.controller.setShotCallback(this.onShot.bind(this));
   }
 
   update() {
@@ -90,26 +91,11 @@ abstract class PlayerController extends Camera {
     this.stepsEffect();
   }
 
-  private onMouseMove = (value: number) => {
+  private onMouseMove(value: number) {
     if (this.allowMovement) {
       this.rotate(value);
     }
-  };
-
-  private onShot = () => {
-    if (!this.allowMovement) return;
-
-    for (let gameObject of Scene.getInstance().gameObjects) {
-      if (gameObject instanceof Enemy) {
-        if (gameObject.currentState !== Enemy.states.DEAD) {
-          if (this.isObjectVisibleFromFov(gameObject, 5)) {
-            gameObject.setState(Enemy.states.DEAD);
-            break;
-          }
-        }
-      }
-    }
-  };
+  }
 
   private stepsEffect() {
     const { position, stepState } = this;

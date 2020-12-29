@@ -5,6 +5,12 @@ class Angle {
     return ((angle % range) + range) % range;
   }
 
+  public static normalize180(angle: number): number {
+    const range = 180;
+
+    return ((angle % range) + range) % range;
+  }
+
   public static isAngleBetween(
     mid: number,
     start: number,
@@ -18,6 +24,15 @@ class Angle {
   public static toRad = (degrees: number) => (degrees * Math.PI) / 180;
 
   public static toDeg = (radians: number) => (radians * 180) / Math.PI;
+
+  public static getAngleBetween(pos1: Position, pos2: Position) {
+    const dx = pos1.x - pos2.x;
+    const dz = pos2.z - pos1.z;
+
+    const angle = this.normalize((Math.atan2(dz, dx) * 180) / Math.PI);
+
+    return angle;
+  }
 }
 
 export default Angle;
