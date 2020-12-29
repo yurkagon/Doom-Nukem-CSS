@@ -1,14 +1,16 @@
 import { observable, action } from "mobx";
-import Angle from "helpers/angle";
+import { Distance } from "helpers";
 
 import Scene from "../Scene";
 import Enemy from "../Sprite/Enemy";
 
 import PlayerController from "./PlayerController";
-import { Distance } from "helpers";
+import Inventory from "./Inventory";
 
 class Player extends PlayerController {
   @observable public hp = 40;
+
+  public readonly inventory: Inventory = new Inventory();
 
   private constructor() {
     super();
