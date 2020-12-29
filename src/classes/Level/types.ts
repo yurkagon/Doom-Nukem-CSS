@@ -1,3 +1,5 @@
+import Sound from "sound";
+
 import { ICollisionMap } from "classes/LevelMap";
 import { SkyboxConfig } from "classes/SkyBox";
 import { ResourcesData } from "State";
@@ -14,4 +16,5 @@ export interface LevelConfig {
   map: MapConfig;
   skybox?: SkyboxConfig;
   preloadData: ResourcesData;
+  music?: Sound;
 }

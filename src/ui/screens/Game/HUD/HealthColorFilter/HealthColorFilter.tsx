@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 
-import Player from "../../../classes/Player";
+import Player from "classes/Player";
 
 import "./style.scss";
 

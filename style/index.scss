@@ -36,6 +36,7 @@ $size: 1;
   position: absolute;
   top: 0;
   left: 0;
+  overflow: hidden;
 }
 
 body {
@@ -51,18 +52,4 @@ body {
   background-size: cover;
 
   user-select: none;
-}
-
-// TODO: remove after implementation weapons
-.testWeapon {
-  backface-visibility: hidden;
-  position: absolute;
-  bottom: 0;
-  right: 200px;
-  height: 2 * 128px;
-  width: 2 * 320px;
-  z-index: 5;
-
-  background-size: cover;
-  background-image: url(img/weapon.png);
 }

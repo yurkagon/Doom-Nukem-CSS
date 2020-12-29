@@ -19,7 +19,7 @@ class OperationHandler {
   private async handleOperation(operation: Operation, index: number) {
     await sleep(100 * index);
 
-    operation.method();
+    await operation.method();
   }
 }
 

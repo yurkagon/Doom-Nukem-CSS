@@ -1,12 +1,17 @@
 import State, { Screen } from "State";
+
+import sleep from "utils/sleep";
+
 import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
 
+import BackgroundMusic from "classes/BackgroundMusic";
+
 import { LevelName, LevelConfig } from "./types";
 
-import testWeaponUpdater from "testWeaponUpdater";
+import UiWeapon from "ui/screens/Game/Weapon";
 
 class Level {
   private constructor() {}
@@ -43,13 +48,29 @@ class Level {
           }
         },
         {
+          name: "Disabled background music",
+          method: () => {
+            BackgroundMusic.stop();
+          }
+        },
+        {
+          name: "Background music executing",
+          method: () => {
+            if (!config.music) return;
+
+            sleep(1000).then(() => {
+              BackgroundMusic.play(config.music);
+            });
+          }
+        },
+        {
           name: "Initialization scene",
           method: () => {
             scene.init({
               player,
               ...config,
               update() {
-                testWeaponUpdater();
+                UiWeapon.weaponBouncingUpdater();
 
                 config.update && config.update();
               },

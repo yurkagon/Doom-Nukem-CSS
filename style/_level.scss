@@ -24,9 +24,11 @@ h2 {
   transform: rotateX(90deg) scale3d($floorSize, $floorSize, $floorSize)
     translateZ(-3.5px);
 
-  background-size: 10px;
+  background-size: 200px;
   background-repeat: repeat;
   background-image: url(img/grass.jpg);
 
   transform-style: preserve-3d;
+
+  image-rendering: auto;
 }

@@ -1,14 +1,22 @@
 import React, { Component } from "react";
-import HUD from "../../components/HUD";
+
+import Screen from "ui/components/Screen";
+
+import HUD from "./HUD";
+import Weapon from "./Weapon";
 
 import "./style.scss";
 
 class Game extends Component {
   public render() {
     return (
-      <div className="overlay-filter">
+      <Screen>
+        <Weapon />
+
+        <div className="overlay-filter" />
+
         <HUD />
-      </div>
+      </Screen>
     );
   }
 }

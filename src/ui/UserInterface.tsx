@@ -11,7 +11,7 @@ class UserInterface extends Component {
     if (State.loader.isLoading) {
       return <Loading />;
     }
-    console.log(State.screen, Screen.level_select);
+
     switch (State.screen) {
       case Screen.game:
         return <Game />;

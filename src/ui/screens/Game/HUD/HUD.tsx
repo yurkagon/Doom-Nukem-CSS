@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import HealthBar from "../HealthBar";
-import HealthColorFilter from "../HealthColorFilter";
+import HealthBar from "./HealthBar";
+import HealthColorFilter from "./HealthColorFilter";
 
 class HUD extends Component {
   render() {
