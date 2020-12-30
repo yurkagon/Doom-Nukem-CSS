@@ -1,6 +1,4 @@
-import Weapon from "./Weapon";
-
-export type WeaponType = "shotgun" | "pistol";
+import Weapon, { WeaponType } from "./Weapon";
 
 export type WeaponsData = {
   [K in WeaponType]: Weapon;

@@ -13,7 +13,7 @@ class Wall extends Model {
 
   protected positionCorrector: Position = {
     x: 129,
-    z: 600.05,
+    z: 500,
     y: 190
   };
 
