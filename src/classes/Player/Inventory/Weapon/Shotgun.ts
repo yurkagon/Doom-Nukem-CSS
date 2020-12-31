@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import Enemy from "classes/Enemy";
+import Enemy, { EnemyState } from "classes/Enemy";
 
 import Sound from "sound";
 import { shotgun_shot } from "sound/data/weapons/shotgun";
@@ -25,7 +25,7 @@ class Shotgun extends Weapon {
       .value()
       ?.forEach(enemy => {
         if (this.isEnemyInShootingAngle(enemy)) {
-          enemy.setState(Enemy.states.DEAD);
+          enemy.setState(EnemyState.dead);
         }
       });
   }

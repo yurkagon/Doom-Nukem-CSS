@@ -1,6 +1,8 @@
 .sprites {
   .sprite {
     &.enemy {
+      backface-visibility: hidden;
+
       &.guard {
         height: 300px;
         width: 256px;

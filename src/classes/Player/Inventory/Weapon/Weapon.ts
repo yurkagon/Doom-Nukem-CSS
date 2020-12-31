@@ -4,7 +4,7 @@ import { observable } from "mobx";
 import sleep from "utils/sleep";
 
 import Scene from "classes/Scene";
-import Enemy from "classes/Enemy";
+import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
 
 import Sound from "sound";
@@ -39,7 +39,7 @@ abstract class Weapon {
   protected shootingStrategy(enemies: Enemy[]): void {
     enemies.some(enemy => {
       if (this.isEnemyInShootingAngle(enemy)) {
-        enemy.setState(Enemy.states.DEAD);
+        enemy.setState(EnemyState.dead);
 
         return true;
       }
@@ -84,7 +84,7 @@ abstract class Weapon {
 
         const enemy = gameObject as Enemy;
 
-        const isDead = enemy.currentState === Enemy.states.DEAD;
+        const isDead = enemy.currentState === EnemyState.dead;
         if (isDead) return;
 
         if (!enemy.active()) return;
