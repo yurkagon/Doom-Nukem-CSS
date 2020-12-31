@@ -1,6 +1,9 @@
 import _ from "lodash";
 
-import Enemy from "classes/Sprite/Enemy";
+import Enemy, { EnemyState } from "classes/Enemy";
+
+import Sound from "sound";
+import { shotgun_shot } from "sound/data/weapons/shotgun";
 
 import Weapon from "./Weapon";
 
@@ -11,7 +14,9 @@ class Shotgun extends Weapon {
 
   private readonly maxEnemiesPerShot: number = 1000;
 
-  protected readonly timePerShot: number = 1500;
+  protected readonly timePerShot: number = 1000;
+
+  protected readonly sound: Sound = shotgun_shot;
 
   protected shootingStrategy(enemies: Enemy[]): void {
     _.chain(enemies)
@@ -20,7 +25,7 @@ class Shotgun extends Weapon {
       .value()
       ?.forEach(enemy => {
         if (this.isEnemyInShootingAngle(enemy)) {
-          enemy.setState(Enemy.states.DEAD);
+          enemy.setState(EnemyState.dead);
         }
       });
   }

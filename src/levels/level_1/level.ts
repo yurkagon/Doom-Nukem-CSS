@@ -3,7 +3,7 @@ import { doom_e1m1 } from "sound";
 
 import House from "prefabs/models/House";
 
-import Enemy from "classes/Sprite/Enemy";
+import Enemy from "enemies/Guard";
 
 import map from "./map";
 import preloadData from "./preloadData";
@@ -36,7 +36,6 @@ const setLevel = () => {
 
   for (let i = 0; i < 50; i++)
     new Enemy({
-      type: "guard",
       position: {
         x: 1000 + i * 100,
         z: 1000 + i * 100

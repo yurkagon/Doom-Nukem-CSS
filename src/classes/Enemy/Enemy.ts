@@ -1,44 +1,38 @@
+import Scene from "classes/Scene";
 import Player from "classes/Player";
+import State from "State";
+
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
 import Sprite from "../Sprite";
 import ShotgunItem from "../Item/ShotgunItem";
 
-import Scene from "classes/Scene";
+import { EnemyState, EnemyConfig } from "./types";
 
 import "./style.scss";
 
-class Enemy extends Sprite {
+abstract class Enemy extends Sprite {
+  public currentState: EnemyState = EnemyState.default;
+
+  protected readonly speed: number = 8;
+  protected readonly logicChangeInterval: number = 500;
+  protected readonly visionDistance: number = 2500;
+  protected readonly maxWalkingToPlayerDistance: number = 3100;
+  protected readonly attackDistance: number = 1000;
+
   protected VISIBILITY_DISTANCE = 4000;
 
-  static readonly LOGIC_INTERVAL = 500;
-  static readonly VISION_DISTANCE = 2500;
-  static readonly MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
-  static readonly ATACK_DISTANCE = 1000;
+  private timer: NodeJS.Timeout = null;
+  private moveDiff: Position = null;
 
-  static states = {
-    DEFAULT: "default",
-    DEAD: "dead",
-    WALK: "walk",
-    ATACK: "atack"
-  };
-
-  currentState = null;
-  timer = null;
-  distance = null;
-  speed = 8;
-  moveDiff = null;
-
-  isStatic = false;
-
-  constructor(config) {
+  constructor(config: EnemyConfig) {
     super({
-      ...config,
+      classType: "enemy",
+      type: config.type,
       position: {
         ...config.position,
         y: 200
-      },
-      classType: "enemy"
+      }
     });
 
     this.logicUpdate = this.logicUpdate.bind(this);
@@ -46,63 +40,51 @@ class Enemy extends Sprite {
 
   public start() {
     this.moveDiff = generateCoordinateNoiseValue(500);
-    this.setState(Enemy.states.DEFAULT);
-    this.timer = setInterval(this.logicUpdate, Enemy.LOGIC_INTERVAL);
+
+    this.timer = setInterval(this.logicUpdate, this.logicChangeInterval);
 
     super.start();
   }
 
   private logicUpdate() {
-    if (!this.isActive) return;
-
-    const {
-      VISION_DISTANCE,
-      MAX_WALKING_TO_PLAYER_DISTANCE,
-      ATACK_DISTANCE,
-      states
-    } = Enemy;
+    if (!(this.isActive && State.settings.enemy_ai)) return;
 
     const player = Player.getInstance();
 
-    this.distance = Distance(this.getPosition(), player.getPosition());
-    const { distance } = this;
+    const distance = Distance(this.getPosition(), player.getPosition());
 
     switch (this.currentState) {
-      case states.DEFAULT:
-        if (distance <= ATACK_DISTANCE) {
-          this.setState(states.ATACK);
-        } else if (distance <= VISION_DISTANCE) {
-          this.setState(states.WALK);
+      case EnemyState.default:
+        if (distance <= this.attackDistance) {
+          this.setState(EnemyState.attack);
+        } else if (distance <= this.visionDistance) {
+          this.setState(EnemyState.walk);
         }
         break;
-      case states.WALK:
-        if (distance <= ATACK_DISTANCE) {
-          this.setState(states.ATACK);
-        } else if (distance >= MAX_WALKING_TO_PLAYER_DISTANCE) {
-          this.setState(states.DEFAULT);
+      case EnemyState.walk:
+        if (distance <= this.attackDistance) {
+          this.setState(EnemyState.attack);
+        } else if (distance >= this.maxWalkingToPlayerDistance) {
+          this.setState(EnemyState.default);
         }
         break;
-      case states.ATACK:
-        // if(distance >= ATACK_DISTANCE) {
-        //   this.setState(states.WALK);
-        // }
-        this.setState(states.WALK);
+      case EnemyState.attack:
+        this.setState(EnemyState.walk);
     }
 
     this.moveDiff = generateCoordinateNoiseValue(500);
   }
 
-  public setState(state) {
+  public setState(state: EnemyState) {
     this.spriteElement.removeClass(this.currentState);
     this.spriteElement.addClass(state);
     this.currentState = state;
 
-    const { states } = Enemy;
-
     switch (this.currentState) {
-      case states.DEAD:
+      case EnemyState.dead:
+        clearInterval(this.timer);
         return this.onDie();
-      case states.ATACK:
+      case EnemyState.attack:
         return this.onAttack();
     }
   }
@@ -126,13 +108,11 @@ class Enemy extends Sprite {
   }
 
   public update() {
-    if (this.isActive && !this.isStatic) {
-      const { states } = Enemy;
-
+    if (this.isActive && State.settings.enemy_ai) {
       const player = Player.getInstance();
 
       switch (this.currentState) {
-        case states.WALK:
+        case EnemyState.walk:
           const playerPos = player.getPosition();
           const enemyPos = this.getPosition();
 

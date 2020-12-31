@@ -1,3 +1,5 @@
+import State from "State";
+
 import Camera from "./Camera";
 import Scene from "../Scene";
 import Control from "./Control";
@@ -67,8 +69,7 @@ abstract class PlayerController extends Camera {
   }
 
   public moveBy(vectorToMove: Position): void {
-    const noclip = false;
-    if (noclip) {
+    if (State.settings.noclip) {
       return super.moveBy(vectorToMove);
     }
 

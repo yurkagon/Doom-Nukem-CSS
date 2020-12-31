@@ -4,6 +4,8 @@
 
     .sprite {
       position: absolute;
+
+      backface-visibility: hidden;
     }
   }
 }

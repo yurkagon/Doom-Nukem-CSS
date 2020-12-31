@@ -4,8 +4,10 @@ import { observable } from "mobx";
 import sleep from "utils/sleep";
 
 import Scene from "classes/Scene";
-import Enemy from "classes/Sprite/Enemy";
+import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
+
+import Sound from "sound";
 
 import { WeaponType } from "./types";
 
@@ -17,22 +19,27 @@ abstract class Weapon {
 
   private readonly maxShootableFov: number = 30;
 
+  protected abstract readonly sound: Sound;
+
   public async shot(): Promise<void> {
     if (this.isShooting) return;
 
     const enemies = this.getPotentiallyShootableEnemies();
 
     this.isShooting = true;
+
     this.shootingStrategy(enemies);
+    this.playSound();
 
     await sleep(this.timePerShot);
+
     this.isShooting = false;
   }
 
   protected shootingStrategy(enemies: Enemy[]): void {
     enemies.some(enemy => {
       if (this.isEnemyInShootingAngle(enemy)) {
-        enemy.setState(Enemy.states.DEAD);
+        enemy.setState(EnemyState.dead);
 
         return true;
       }
@@ -62,6 +69,10 @@ abstract class Weapon {
     return isEnemyInShootingAngle;
   }
 
+  protected playSound(): void {
+    this.sound.play();
+  }
+
   private getPotentiallyShootableEnemies(): Enemy[] {
     const player = Player.getInstance();
     const scene = Scene.getInstance();
@@ -73,7 +84,7 @@ abstract class Weapon {
 
         const enemy = gameObject as Enemy;
 
-        const isDead = enemy.currentState === Enemy.states.DEAD;
+        const isDead = enemy.currentState === EnemyState.dead;
         if (isDead) return;
 
         if (!enemy.active()) return;

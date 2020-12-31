@@ -1,7 +1,7 @@
 import Player from "classes/Player";
 import { Distance } from "helpers";
 
-import Sprite from "../Sprite";
+import Sprite from "../Sprite/Sprite";
 
 import "./style.scss";
 

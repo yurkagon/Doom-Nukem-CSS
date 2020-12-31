@@ -1,11 +1,13 @@
 import UI from "./ui";
 import Level from "classes/Level";
-import State, { Screen } from "./State";
+import State, { Screen } from "State";
 
 import "../style/index.scss";
 
 (async () => {
   UI.init();
+
+  if (State.settings.skipMenuOnLoad) return Level.load("level_1");
 
   State.setScreen(Screen.loading);
 
@@ -19,12 +21,10 @@ import "../style/index.scss";
     ],
     sounds: [
       "sounds/menu/start_menu.flac",
-      "sounds/menu/menu_click.wav",
+      "sounds/weapons/pistol.wav",
       "sounds/music/main_theme.mp3"
     ]
   });
 
   State.setScreen(Screen.menu);
-
-  // Level.load("level_1");
 })();
