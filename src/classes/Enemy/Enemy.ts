@@ -1,4 +1,5 @@
 import Player from "classes/Player";
+import Settings from "classes/Settings";
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
 import Sprite from "../Sprite";
@@ -10,8 +11,6 @@ import "./style.scss";
 
 class Enemy extends Sprite {
   public currentState = null;
-
-  isStatic = false;
 
   protected readonly speed: number = 8;
 
@@ -57,7 +56,7 @@ class Enemy extends Sprite {
   }
 
   private logicUpdate() {
-    if (!this.isActive) return;
+    if (!(this.isActive && Settings.getInstance().enemy_ai)) return;
 
     const { states } = Enemy;
 
@@ -122,7 +121,7 @@ class Enemy extends Sprite {
   }
 
   public update() {
-    if (this.isActive && !this.isStatic) {
+    if (this.isActive && Settings.getInstance().enemy_ai) {
       const { states } = Enemy;
 
       const player = Player.getInstance();
