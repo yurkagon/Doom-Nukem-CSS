@@ -1,5 +1,7 @@
 import { Distance } from "helpers";
 import _ from "lodash";
+import { observable, action } from "mobx";
+import sleep from "utils/sleep";
 
 import Scene from "classes/Scene";
 import Enemy from "classes/Sprite/Enemy";
@@ -9,13 +11,22 @@ import { WeaponType } from "./types";
 
 abstract class Weapon {
   public abstract readonly name: WeaponType;
+  @observable public isShooting: boolean = false;
+
+  protected abstract readonly timePerShot: number = 0;
 
   private readonly maxShootableFov: number = 30;
 
-  public shot(): void {
+  public async shot(): Promise<void> {
+    if (this.isShooting) return;
+
     const enemies = this.getPotentiallyShootableEnemies();
 
+    this.isShooting = true;
     this.shootingStrategy(enemies);
+
+    await sleep(this.timePerShot);
+    this.isShooting = false;
   }
 
   protected shootingStrategy(enemies: Enemy[]): void {
