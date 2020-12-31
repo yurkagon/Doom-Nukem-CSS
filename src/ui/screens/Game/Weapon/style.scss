@@ -2,16 +2,24 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  // background: rgba(white, 0.1);
 
-  .shotgun {
+  .weapon {
+    position: absolute;
+    background-position-x: left;
+    background-position-y: center;
+    background-size: initial;
+  }
+
+  .shotgun-old {
     position: absolute;
     bottom: 0;
     right: 200px;
-    height: 2 * 128px;
-    width: 2 * 320px;
+    height: 256px;
+    width: 640px;
 
     background-size: cover;
     background-image: url(img/weapon.png);
   }
 }
+
+@import "shotgun";

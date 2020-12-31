@@ -6,12 +6,13 @@ import Scene from "classes/Scene";
 import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
-
 import BackgroundMusic from "classes/BackgroundMusic";
 
-import { LevelName, LevelConfig } from "./types";
-
 import UiWeapon from "ui/screens/Game/Weapon";
+
+import defaultAssets from "./defaultAssets";
+
+import { LevelName, LevelConfig } from "./types";
 
 class Level {
   private constructor() {}
@@ -32,6 +33,8 @@ class Level {
 
     await State.loader.loadResources({
       ...config.preloadData,
+      images: [...defaultAssets.images, ...config.preloadData.images],
+      sounds: [...defaultAssets.images, ...config.preloadData.sounds],
       operations: [
         {
           name: "Camera enabled",

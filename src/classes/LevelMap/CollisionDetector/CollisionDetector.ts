@@ -51,7 +51,7 @@ class CollisionDetector {
       mapTargetPosition
     );
 
-    let delta;
+    let delta: Position;
     if (collisionType === ICollisionType.horizontal) {
       const angleToMove = -Math.PI / 2;
       const collisionDistance =

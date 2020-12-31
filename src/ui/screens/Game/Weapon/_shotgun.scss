@@ -1,0 +1,90 @@
+.weapon-container {
+  .shotgun {
+    right: 200px;
+    height: 180px;
+    width: 162px;
+
+    background: url(img/weapons/shotgun.png);
+    background-repeat: no-repeat;
+
+    bottom: 170px;
+    transform: scale(4);
+
+    &.shooting {
+      @mixin default {
+        background-position-x: 0;
+      }
+
+      @mixin shot-1 {
+        background-position-x: -327px;
+      }
+
+      @mixin shot-2 {
+        background-position-x: -164px;
+      }
+
+      @mixin shot-3 {
+        @include default;
+        bottom: 100px;
+      }
+
+      @mixin reload-1 {
+        background-position-x: -497px;
+      }
+
+      @mixin reload-2 {
+        background-position-x: -657px;
+      }
+
+      @mixin reload-3 {
+        background-position-x: -817px;
+      }
+
+      @mixin reload-4 {
+        background-position-x: -977px;
+      }
+
+      animation: shot 1.5s steps(1);
+      @keyframes shot {
+        0% {
+          @include shot-1;
+        }
+        8% {
+          @include shot-2;
+        }
+        16% {
+          @include shot-1;
+        }
+        20% {
+          @include default;
+        }
+
+        30% {
+          @include reload-1();
+        }
+        40% {
+          @include reload-2();
+        }
+        50% {
+          @include reload-3();
+        }
+        60% {
+          @include reload-4();
+        }
+        70% {
+          @include reload-3();
+        }
+        80% {
+          @include reload-2();
+        }
+        90% {
+          @include reload-1();
+          bottom: 100px;
+        }
+        100% {
+          @include default();
+        }
+      }
+    }
+  }
+}
