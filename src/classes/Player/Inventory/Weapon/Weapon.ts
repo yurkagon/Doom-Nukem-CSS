@@ -1,6 +1,6 @@
 import { Distance } from "helpers";
 import _ from "lodash";
-import { observable, action } from "mobx";
+import { observable } from "mobx";
 import sleep from "utils/sleep";
 
 import Scene from "classes/Scene";
