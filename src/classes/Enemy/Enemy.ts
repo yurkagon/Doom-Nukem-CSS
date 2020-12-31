@@ -11,7 +11,7 @@ import { EnemyState, EnemyConfig } from "./types";
 
 import "./style.scss";
 
-class Enemy extends Sprite {
+abstract class Enemy extends Sprite {
   public currentState: EnemyState = EnemyState.default;
 
   protected readonly speed: number = 8;
@@ -27,12 +27,12 @@ class Enemy extends Sprite {
 
   constructor(config: EnemyConfig) {
     super({
-      ...config,
+      classType: "enemy",
+      type: config.type,
       position: {
         ...config.position,
         y: 200
-      },
-      classType: "enemy"
+      }
     });
 
     this.logicUpdate = this.logicUpdate.bind(this);
