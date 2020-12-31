@@ -44,7 +44,7 @@
         background-position-x: -977px;
       }
 
-      animation: shot 1.5s steps(1);
+      animation: shot 1s steps(1);
       @keyframes shot {
         0% {
           @include shot-1;

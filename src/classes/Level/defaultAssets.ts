@@ -11,7 +11,9 @@ const data: ResourcesData = {
   sounds: [
     "sounds/voice/medkit.wav",
     "sounds/items/itemPickUp.wav",
-    "sounds/items/pickWeapon.wav"
+    "sounds/items/pickWeapon.wav",
+    "sounds/weapons/shotgun.wav",
+    "sounds/weapons/pistol.wav"
   ]
 };
 

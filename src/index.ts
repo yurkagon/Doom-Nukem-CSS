@@ -19,7 +19,7 @@ import "../style/index.scss";
     ],
     sounds: [
       "sounds/menu/start_menu.flac",
-      "sounds/menu/menu_click.wav",
+      "sounds/weapons/pistol.wav",
       "sounds/music/main_theme.mp3"
     ]
   });

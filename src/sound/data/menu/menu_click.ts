@@ -1,3 +1,3 @@
 import Sound from "../../Sound";
 
-export default new Sound("sounds/menu/menu_click.wav", 0.4);
+export default new Sound("sounds/weapons/pistol.wav", 0.4);
