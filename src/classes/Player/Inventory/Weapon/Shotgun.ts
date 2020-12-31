@@ -11,7 +11,7 @@ class Shotgun extends Weapon {
 
   private readonly maxEnemiesPerShot: number = 1000;
 
-  protected readonly timePerShot: number = 2000;
+  protected readonly timePerShot: number = 1500;
 
   protected shootingStrategy(enemies: Enemy[]): void {
     _.chain(enemies)

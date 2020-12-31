@@ -44,48 +44,45 @@
         background-position-x: -977px;
       }
 
-      @include default;
-
-      animation: shot 2s steps(1) infinite;
+      animation: shot 1.5s steps(1);
       @keyframes shot {
         0% {
           @include shot-1;
         }
-        5% {
+        8% {
           @include shot-2;
         }
-        10% {
+        16% {
           @include shot-1;
         }
-        15% {
-          @include shot-3;
-        }
-        15% {
+        20% {
           @include default;
         }
-        25% {
+
+        30% {
           @include reload-1();
         }
-        35% {
+        40% {
           @include reload-2();
         }
         50% {
           @include reload-3();
         }
-        70% {
+        60% {
           @include reload-4();
         }
-        80% {
+        70% {
           @include reload-3();
         }
-        90% {
+        80% {
           @include reload-2();
         }
-        95% {
+        90% {
           @include reload-1();
+          bottom: 100px;
         }
         100% {
-          @include shot-3;
+          @include default();
         }
       }
     }
