@@ -1,3 +1,4 @@
+import State from "State";
 import Sound from "sound";
 
 class BackgroundMusic {
@@ -6,6 +7,8 @@ class BackgroundMusic {
   private constructor() {}
 
   public static play(music: Sound) {
+    if (!State.settings.backgroundMusic) return;
+
     const audio = music.play({ loop: true });
 
     this.currentMusic = audio;
