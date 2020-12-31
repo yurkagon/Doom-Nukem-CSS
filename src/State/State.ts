@@ -1,12 +1,14 @@
 import { observable, action } from "mobx";
+import Settings from "classes/Settings";
 
 import Loader from "./Loader";
 
 import { Screen } from "./types";
 
 class State {
-  @observable
-  public screen = Screen.loading;
+  public readonly settings: Settings = new Settings();
+
+  @observable public screen = Screen.loading;
 
   public loader = new Loader();
 

@@ -1,6 +1,6 @@
 import Scene from "classes/Scene";
 import Player from "classes/Player";
-import Settings from "classes/Settings";
+import State from "State";
 
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
@@ -47,7 +47,7 @@ class Enemy extends Sprite {
   }
 
   private logicUpdate() {
-    if (!(this.isActive && Settings.getInstance().enemy_ai)) return;
+    if (!(this.isActive && State.settings.enemy_ai)) return;
 
     const player = Player.getInstance();
 
@@ -108,7 +108,7 @@ class Enemy extends Sprite {
   }
 
   public update() {
-    if (this.isActive && Settings.getInstance().enemy_ai) {
+    if (this.isActive && State.settings.enemy_ai) {
       const player = Player.getInstance();
 
       switch (this.currentState) {

@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-import Settings from "classes/Settings";
+import State from "State";
 
 import PlayerController from "./PlayerController";
 import Inventory from "./Inventory";
@@ -16,7 +16,7 @@ class Player extends PlayerController {
 
   @action
   public addHP(value: number) {
-    if (Settings.getInstance().godmode) return;
+    if (State.settings.godmode) return;
 
     let result = this.hp + value;
 
