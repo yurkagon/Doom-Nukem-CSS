@@ -1,7 +1,8 @@
 import _ from "lodash";
 
-import Enemy from "classes/Sprite/Enemy";
+import Enemy from "classes/Enemy";
 
+import Sound from "sound";
 import { shotgun_shot } from "sound/data/weapons/shotgun";
 
 import Weapon from "./Weapon";
@@ -15,7 +16,7 @@ class Shotgun extends Weapon {
 
   protected readonly timePerShot: number = 1000;
 
-  protected sound = shotgun_shot;
+  protected readonly sound: Sound = shotgun_shot;
 
   protected shootingStrategy(enemies: Enemy[]): void {
     _.chain(enemies)

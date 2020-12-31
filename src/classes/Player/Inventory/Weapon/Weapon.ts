@@ -4,7 +4,7 @@ import { observable } from "mobx";
 import sleep from "utils/sleep";
 
 import Scene from "classes/Scene";
-import Enemy from "classes/Sprite/Enemy";
+import Enemy from "classes/Enemy";
 import Player from "classes/Player";
 
 import Sound from "sound";
@@ -27,11 +27,12 @@ abstract class Weapon {
     const enemies = this.getPotentiallyShootableEnemies();
 
     this.isShooting = true;
-    this.shootingStrategy(enemies);
 
+    this.shootingStrategy(enemies);
     this.playSound();
 
     await sleep(this.timePerShot);
+
     this.isShooting = false;
   }
 
@@ -68,7 +69,7 @@ abstract class Weapon {
     return isEnemyInShootingAngle;
   }
 
-  private playSound(): void {
+  protected playSound(): void {
     this.sound.play();
   }
 

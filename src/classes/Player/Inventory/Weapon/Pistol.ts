@@ -1,9 +1,10 @@
+import Sound from "sound";
 import { pistol_shot } from "sound/data/weapons/pistol";
 
 import Weapon from "./Weapon";
 
 class Pistol extends Weapon {
-  protected sound = pistol_shot;
+  protected readonly sound: Sound = pistol_shot;
 
   public readonly name = "pistol";
 

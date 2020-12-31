@@ -1,8 +1,8 @@
 import Player from "classes/Player";
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
-import Sprite from "../Sprite";
-import ShotgunItem from "../Item/ShotgunItem";
+import Sprite from "../Sprite/Sprite";
+import ShotgunItem from "../Sprite/Item/ShotgunItem";
 
 import Scene from "classes/Scene";
 
