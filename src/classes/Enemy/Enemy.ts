@@ -14,13 +14,13 @@ class Enemy extends Sprite {
   static readonly LOGIC_INTERVAL = 500;
   static readonly VISION_DISTANCE = 2500;
   static readonly MAX_WALKING_TO_PLAYER_DISTANCE = 3100;
-  static readonly ATACK_DISTANCE = 1000;
+  static readonly ATTACK_DISTANCE = 1000;
 
   static states = {
     DEFAULT: "default",
     DEAD: "dead",
     WALK: "walk",
-    ATACK: "atack"
+    ATTACK: "attack"
   };
 
   currentState = null;
@@ -58,7 +58,7 @@ class Enemy extends Sprite {
     const {
       VISION_DISTANCE,
       MAX_WALKING_TO_PLAYER_DISTANCE,
-      ATACK_DISTANCE,
+      ATTACK_DISTANCE,
       states
     } = Enemy;
 
@@ -69,23 +69,20 @@ class Enemy extends Sprite {
 
     switch (this.currentState) {
       case states.DEFAULT:
-        if (distance <= ATACK_DISTANCE) {
-          this.setState(states.ATACK);
+        if (distance <= ATTACK_DISTANCE) {
+          this.setState(states.ATTACK);
         } else if (distance <= VISION_DISTANCE) {
           this.setState(states.WALK);
         }
         break;
       case states.WALK:
-        if (distance <= ATACK_DISTANCE) {
-          this.setState(states.ATACK);
+        if (distance <= ATTACK_DISTANCE) {
+          this.setState(states.ATTACK);
         } else if (distance >= MAX_WALKING_TO_PLAYER_DISTANCE) {
           this.setState(states.DEFAULT);
         }
         break;
-      case states.ATACK:
-        // if(distance >= ATACK_DISTANCE) {
-        //   this.setState(states.WALK);
-        // }
+      case states.ATTACK:
         this.setState(states.WALK);
     }
 
@@ -102,7 +99,7 @@ class Enemy extends Sprite {
     switch (this.currentState) {
       case states.DEAD:
         return this.onDie();
-      case states.ATACK:
+      case states.ATTACK:
         return this.onAttack();
     }
   }

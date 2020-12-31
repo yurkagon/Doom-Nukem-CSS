@@ -48,9 +48,9 @@
             }
           }
         }
-        &.atack {
-          animation: atack 1.1s steps(1) infinite;
-          @keyframes atack {
+        &.attack {
+          animation: attack 1.1s steps(1) infinite;
+          @keyframes attack {
             0% {
               background-position: -3412px;
             }
