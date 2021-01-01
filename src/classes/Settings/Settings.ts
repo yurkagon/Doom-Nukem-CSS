@@ -18,6 +18,7 @@ class Settings {
       this.godmode = false;
       this.noclip = false;
       this.enemy_ai = true;
+      this.backgroundMusic = true;
     }
   }
 }

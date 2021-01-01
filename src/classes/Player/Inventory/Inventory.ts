@@ -9,7 +9,7 @@ class Inventory {
     shotgun: new Shotgun()
   };
 
-  @observable private selectedWeaponKey: WeaponType = "shotgun";
+  @observable private selectedWeaponKey: WeaponType = "pistol";
 
   constructor() {
     document.addEventListener("keydown", this.clickHandler.bind(this));

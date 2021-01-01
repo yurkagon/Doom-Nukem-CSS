@@ -1,0 +1,68 @@
+.weapon-container {
+  .pistol {
+    height: 108px;
+    width: 90px;
+
+    background: url(img/weapons/pistol.png);
+    background-repeat: no-repeat;
+
+    transform: scale(4);
+
+    right: 540px;
+    bottom: 90px;
+
+    @mixin default {
+      background-position-x: 0;
+    }
+
+    @mixin shot-1 {
+      background-position-x: -90px;
+    }
+    @mixin shot-2 {
+      background-position-x: -180px;
+    }
+    @mixin shot-3 {
+      background-position-x: -270px;
+    }
+    @mixin shot-4 {
+      background-position-x: -360px;
+    }
+    @mixin shot-5 {
+      background-position-x: -452px;
+      background-position-y: 23px;
+    }
+
+    @include default;
+
+    &.shooting {
+      animation: pistol-shot steps(1) infinite;
+      @keyframes pistol-shot {
+        12% {
+          @include shot-1;
+        }
+        24% {
+          @include shot-2;
+        }
+        36% {
+          @include shot-3;
+        }
+
+        48% {
+          @include shot-4;
+        }
+        60% {
+          @include shot-5;
+        }
+        72% {
+          @include shot-4;
+        }
+        84% {
+          @include shot-1;
+        }
+        100% {
+          @include default;
+        }
+      }
+    }
+  }
+}
