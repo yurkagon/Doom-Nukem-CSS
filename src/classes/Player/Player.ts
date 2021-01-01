@@ -37,6 +37,10 @@ class Player extends PlayerController {
     super.update();
   }
 
+  public isHpFull(): boolean {
+    return this.hp === 100;
+  }
+
   protected onShot() {
     if (!this.allowMovement) return;
 

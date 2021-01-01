@@ -13,18 +13,19 @@ abstract class PlayerController extends Camera {
 
   constructor() {
     super();
-    const data = JSON.parse(localStorage.getItem("player-position"));
 
-    if (data) {
-      this.position = data.position;
-      this.position.y = 0;
-      this.origin = data.origin;
-      this.rotation = data.rotation;
+    if (State.settings.savePosition) {
+      const data = JSON.parse(localStorage.getItem("player-position"));
+
+      if (data) {
+        this.position = data.position;
+        this.position.y = 0;
+        this.origin = data.origin;
+        this.rotation = data.rotation;
+      }
+
+      setInterval(this.savePosition, 5000);
     }
-
-    setInterval(this.savePosition, 5000);
-
-    (window as any).player = this;
   }
 
   protected abstract onShot(): void;

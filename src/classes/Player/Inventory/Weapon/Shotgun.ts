@@ -11,12 +11,11 @@ import { WeaponType } from "./types";
 
 class Shotgun extends Weapon {
   public readonly name: WeaponType = "shotgun";
-
-  private readonly maxEnemiesPerShot: number = 1000;
-
-  protected readonly timePerShot: number = 1000;
+  public readonly timePerShot: number = 1000;
 
   protected readonly sound: Sound = shotgun_shot;
+
+  private readonly maxEnemiesPerShot: number = 1000;
 
   protected shootingStrategy(enemies: Enemy[]): void {
     _.chain(enemies)

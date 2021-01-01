@@ -45,6 +45,7 @@ class Weapon extends Component {
     return (
       <div className="weapon-container" ref={Weapon.weaponElementRef}>
         <div
+          style={{ animationDuration: `${weapon.timePerShot}ms` }}
           className={cn("weapon", weapon.name, weapon.isShooting && "shooting")}
         />
       </div>

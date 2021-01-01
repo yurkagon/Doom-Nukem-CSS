@@ -2,7 +2,7 @@ import $ from "jquery";
 
 import GameObject from "../GameObject";
 
-import { FOV, PLAYER_MOVE_SPEED } from "variables/constants";
+import { FOV } from "variables/constants";
 import Angle from "helpers/angle";
 
 abstract class Camera extends GameObject {
@@ -14,6 +14,8 @@ abstract class Camera extends GameObject {
     x: 0,
     z: 0
   };
+
+  protected speed: number = 8;
 
   public readonly camera = $("#camera");
 
@@ -31,6 +33,15 @@ abstract class Camera extends GameObject {
     return this.convertCameraPositionToRealPosition(this.position);
   }
 
+  public setPosition(position: Position, degree: number = 0) {
+    const cameraPosition = this.convertRealPositionToCameraPosition(position);
+
+    this.position = cameraPosition;
+    this.position.y = 0;
+
+    this.rotate(degree);
+  }
+
   public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {
     const angle = Angle.getAngleBetween(
       this.getPosition(),
@@ -38,14 +49,6 @@ abstract class Camera extends GameObject {
     );
 
     const playerViewAngle = this.getPlayerViewAngle();
-
-    // console.log(
-    //   {
-    //     angle: angle.toFixed(2),
-    //     playerViewAngle: playerViewAngle.toFixed(2)
-    //   },
-    //   Math.abs(angle - playerViewAngle)
-    // );
 
     const playerViewLeft = playerViewAngle - fov / 2;
     const playerViewRight = playerViewAngle + fov / 2;
@@ -61,32 +64,32 @@ abstract class Camera extends GameObject {
     const { rotation } = this;
 
     return {
-      x: -Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED,
-      z: Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
+      x: -Math.sin((rotation.y * Math.PI) / 180) * this.speed,
+      z: Math.cos((rotation.y * Math.PI) / 180) * this.speed
     };
   }
   protected goBack(): Position {
     const { rotation } = this;
 
     return {
-      x: Math.sin((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED,
-      z: -Math.cos((rotation.y * Math.PI) / 180) * PLAYER_MOVE_SPEED
+      x: Math.sin((rotation.y * Math.PI) / 180) * this.speed,
+      z: -Math.cos((rotation.y * Math.PI) / 180) * this.speed
     };
   }
   protected goLeft(): Position {
     const { rotation } = this;
 
     return {
-      x: -Math.sin(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED,
-      z: Math.cos(((rotation.y - 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
+      x: -Math.sin(((rotation.y - 90) * Math.PI) / 180) * this.speed,
+      z: Math.cos(((rotation.y - 90) * Math.PI) / 180) * this.speed
     };
   }
   protected goRight(): Position {
     const { rotation } = this;
 
     return {
-      x: -Math.sin(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED,
-      z: Math.cos(((rotation.y + 90) * Math.PI) / 180) * PLAYER_MOVE_SPEED
+      x: -Math.sin(((rotation.y + 90) * Math.PI) / 180) * this.speed,
+      z: Math.cos(((rotation.y + 90) * Math.PI) / 180) * this.speed
     };
   }
 
@@ -107,10 +110,6 @@ abstract class Camera extends GameObject {
   }
 
   protected convertRealPositionToCameraPosition(position: Position): Position {
-    // return {
-    //   x: -position.x - 130,
-    //   z: -position.z + 1000
-    // };
     return {
       x: -position.x - 130,
       z: -position.z + 800

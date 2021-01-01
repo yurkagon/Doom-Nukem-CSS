@@ -13,9 +13,9 @@ import { WeaponType } from "./types";
 
 abstract class Weapon {
   public abstract readonly name: WeaponType;
-  @observable public isShooting: boolean = false;
+  public abstract readonly timePerShot: number = 0;
 
-  protected abstract readonly timePerShot: number = 0;
+  @observable public isShooting: boolean = false;
 
   private readonly maxShootableFov: number = 30;
 

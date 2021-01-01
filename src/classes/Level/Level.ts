@@ -17,17 +17,15 @@ import { LevelName, LevelConfig } from "./types";
 class Level {
   private constructor() {}
 
-  public static load(levelName: LevelName) {
-    const levelData = require(`../../levels/${levelName}`).default;
-
-    this.initLevel(levelData);
-  }
-
-  private static async initLevel(config: LevelConfig) {
-    State.setScreen(Screen.loading);
-
+  public static async load(levelName: LevelName) {
     const scene = Scene.getInstance();
     const player = Player.getInstance();
+
+    State.setScreen(Screen.loading);
+
+    State.loader.addLoadedItem(`Load chunks for ${levelName}`);
+    const config = await this.loadLevelData(levelName);
+    State.loader.addLoadedItem(`Chunks loaded`);
 
     State.loader.addLoadedItem("Initialization resources");
 
@@ -72,8 +70,22 @@ class Level {
             scene.init({
               player,
               ...config,
+              start() {
+                if (!State.settings.savePosition) {
+                  player.setPosition(
+                    config.playerStartPosition.data,
+                    config.playerStartPosition.rotation
+                  );
+                }
+
+                config.start && config.start();
+              },
               update() {
                 UiWeapon.weaponBouncingUpdater();
+
+                if (State.settings.positionDebugger) {
+                  console.log(player.getPosition());
+                }
 
                 config.update && config.update();
               },
@@ -86,6 +98,14 @@ class Level {
     });
 
     State.setScreen(Screen.game);
+  }
+
+  private static async loadLevelData(
+    levelName: LevelName
+  ): Promise<LevelConfig> {
+    const module = await import(`../../levels/${levelName}`);
+
+    return module.default;
   }
 }
 

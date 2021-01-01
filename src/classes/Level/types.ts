@@ -17,4 +17,8 @@ export interface LevelConfig {
   skybox?: SkyboxConfig;
   preloadData: ResourcesData;
   music?: Sound;
+  playerStartPosition: {
+    data: Position;
+    rotation?: number;
+  };
 }
