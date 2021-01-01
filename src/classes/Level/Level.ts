@@ -72,6 +72,16 @@ class Level {
             scene.init({
               player,
               ...config,
+              start() {
+                const player = Player.getInstance();
+
+                player.setPosition(
+                  config.playerStartPosition.data,
+                  config.playerStartPosition.rotation
+                );
+
+                config.start && config.start();
+              },
               update() {
                 UiWeapon.weaponBouncingUpdater();
 

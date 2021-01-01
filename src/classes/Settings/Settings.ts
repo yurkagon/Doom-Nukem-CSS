@@ -9,7 +9,9 @@ class Settings {
   @observable public backgroundMusic = false;
 
   public skipMenuOnLoad: boolean = true;
-  public positionDebugger: boolean = true;
+  public positionDebugger: boolean = false;
+
+  public savePosition: boolean = false;
 
   constructor() {
     const isProduction = process.env.NODE_ENV === "production";
@@ -21,6 +23,7 @@ class Settings {
       this.enemy_ai = true;
       this.backgroundMusic = true;
       this.backgroundMusic = false;
+      this.savePosition = false;
     }
   }
 }

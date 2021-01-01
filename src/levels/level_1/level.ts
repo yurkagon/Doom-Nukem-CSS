@@ -22,7 +22,11 @@ const data: LevelConfig = {
     size: "60%"
   },
   preloadData,
-  music: doom_e1m1
+  music: doom_e1m1,
+  playerStartPosition: {
+    data: { x: 427.26237372717844, z: 1879.027509262054 },
+    rotation: 30
+  }
 };
 
 const setLevel = () => {

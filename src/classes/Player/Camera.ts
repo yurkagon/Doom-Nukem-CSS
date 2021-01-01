@@ -31,6 +31,15 @@ abstract class Camera extends GameObject {
     return this.convertCameraPositionToRealPosition(this.position);
   }
 
+  public setPosition(position: Position, degree: number = 0) {
+    const cameraPosition = this.convertRealPositionToCameraPosition(position);
+
+    this.position = cameraPosition;
+    this.position.y = 0;
+
+    this.rotate(degree);
+  }
+
   public isObjectVisibleFromFov(gameObject: GameObject, fov: number): boolean {
     const angle = Angle.getAngleBetween(
       this.getPosition(),
@@ -38,14 +47,6 @@ abstract class Camera extends GameObject {
     );
 
     const playerViewAngle = this.getPlayerViewAngle();
-
-    // console.log(
-    //   {
-    //     angle: angle.toFixed(2),
-    //     playerViewAngle: playerViewAngle.toFixed(2)
-    //   },
-    //   Math.abs(angle - playerViewAngle)
-    // );
 
     const playerViewLeft = playerViewAngle - fov / 2;
     const playerViewRight = playerViewAngle + fov / 2;
@@ -107,10 +108,6 @@ abstract class Camera extends GameObject {
   }
 
   protected convertRealPositionToCameraPosition(position: Position): Position {
-    // return {
-    //   x: -position.x - 130,
-    //   z: -position.z + 1000
-    // };
     return {
       x: -position.x - 130,
       z: -position.z + 800
