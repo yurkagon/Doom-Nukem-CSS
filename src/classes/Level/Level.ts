@@ -71,10 +71,12 @@ class Level {
               player,
               ...config,
               start() {
-                player.setPosition(
-                  config.playerStartPosition.data,
-                  config.playerStartPosition.rotation
-                );
+                if (!State.settings.savePosition) {
+                  player.setPosition(
+                    config.playerStartPosition.data,
+                    config.playerStartPosition.rotation
+                  );
+                }
 
                 config.start && config.start();
               },

@@ -9,12 +9,15 @@ class Settings {
   @observable public backgroundMusic = false;
 
   public skipMenuOnLoad: boolean = true;
-  public positionDebugger: boolean = false;
+  public positionDebugger: boolean = true;
 
-  public savePosition: boolean = false;
+  public savePosition: boolean = true;
+
+  public productionMode = true;
 
   constructor() {
-    const isProduction = process.env.NODE_ENV === "production";
+    const isProduction =
+      process.env.NODE_ENV === "production" || this.productionMode;
 
     if (isProduction) {
       this.skipMenuOnLoad = false;
@@ -22,8 +25,9 @@ class Settings {
       this.noclip = false;
       this.enemy_ai = true;
       this.backgroundMusic = true;
-      this.backgroundMusic = false;
       this.savePosition = false;
+      this.productionMode = true;
+      this.positionDebugger = false;
     }
   }
 }

@@ -1,3 +1,4 @@
+import Player from "classes/Player";
 import Item from "classes/Item";
 
 import { takeWeapon } from "variables/sounds";
@@ -16,7 +17,10 @@ class ShotgunItem extends Item {
   }
 
   public onPick() {
-    console.log("Pick shotgun");
+    const player = Player.getInstance();
+
+    player.inventory.setWeapon("shotgun");
+
     takeWeapon.play();
 
     super.onPick();

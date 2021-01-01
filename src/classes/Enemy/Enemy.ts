@@ -93,8 +93,8 @@ abstract class Enemy extends Sprite {
   protected onAttack() {
     const player = Player.getInstance();
 
-    chance(0.1).to(() => {
-      const damage = Math.random() * 10;
+    chance(0.3).to(() => {
+      const damage = Math.random() * 20;
 
       player.addHP(-damage);
     });
