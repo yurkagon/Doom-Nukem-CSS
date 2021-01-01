@@ -13,7 +13,7 @@ class Game extends Component {
       <Screen>
         <Weapon />
 
-        {/* <div className="overlay-filter" /> */}
+        <div className="overlay-filter" />
 
         <HUD />
       </Screen>

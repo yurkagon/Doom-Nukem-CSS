@@ -4,8 +4,9 @@ import State from "State";
 
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
 
+import ShotgunItem from "items/ShotgunItem";
+
 import Sprite from "../Sprite";
-import ShotgunItem from "../Item/ShotgunItem";
 
 import { EnemyState, EnemyConfig } from "./types";
 

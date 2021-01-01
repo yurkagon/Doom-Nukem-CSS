@@ -75,6 +75,12 @@ class Level {
               update() {
                 UiWeapon.weaponBouncingUpdater();
 
+                if (State.settings.positionDebugger) {
+                  const player = Player.getInstance();
+
+                  console.log(player.getPosition());
+                }
+
                 config.update && config.update();
               },
               levelMap: new LevelMap(config.map.data)

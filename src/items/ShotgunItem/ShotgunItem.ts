@@ -1,6 +1,8 @@
+import Item from "classes/Item";
+
 import { takeWeapon } from "variables/sounds";
 
-import Item from "./Item";
+import "./style.scss";
 
 class ShotgunItem extends Item {
   constructor(position: Position) {
@@ -13,11 +15,11 @@ class ShotgunItem extends Item {
     });
   }
 
-  pickItem() {
+  public onPick() {
     console.log("Pick shotgun");
     takeWeapon.play();
 
-    super.pickItem();
+    super.onPick();
   }
 }
 

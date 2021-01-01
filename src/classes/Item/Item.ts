@@ -1,15 +1,18 @@
 import Player from "classes/Player";
 import { Distance } from "helpers";
 
-import Sprite from "../Sprite/Sprite";
+import Sprite from "../Sprite";
+
+import { Props } from "./types";
 
 import "./style.scss";
 
 class Item extends Sprite {
-  VISIBILITY_DISTANCE = 6000;
   private static readonly DISTANCE_TO_PICK = 150;
 
-  constructor(config) {
+  protected VISIBILITY_DISTANCE = 6000;
+
+  constructor(config: Props) {
     super({
       type: config.type,
       position: {
@@ -20,7 +23,7 @@ class Item extends Sprite {
     });
   }
 
-  update() {
+  public update() {
     super.update();
 
     if (this.isActive) {
@@ -28,11 +31,11 @@ class Item extends Sprite {
 
       const distance = Distance(player.getPosition(), this.getPosition());
 
-      if (distance < Item.DISTANCE_TO_PICK) this.pickItem();
+      if (distance < Item.DISTANCE_TO_PICK) this.onPick();
     }
   }
 
-  pickItem() {
+  protected onPick() {
     this.destroy();
   }
 }

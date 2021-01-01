@@ -8,7 +8,7 @@
 
     transform: scale(4);
 
-    right: 540px;
+    right: 574px;
     bottom: 90px;
 
     @mixin default {
@@ -17,15 +17,19 @@
 
     @mixin shot-1 {
       background-position-x: -90px;
+      background-position-y: 0;
     }
     @mixin shot-2 {
       background-position-x: -180px;
+      background-position-y: 0;
     }
     @mixin shot-3 {
       background-position-x: -270px;
+      background-position-y: 0;
     }
     @mixin shot-4 {
       background-position-x: -360px;
+      background-position-y: 0;
     }
     @mixin shot-5 {
       background-position-x: -452px;
@@ -40,23 +44,22 @@
         12% {
           @include shot-1;
         }
-        24% {
+        26% {
           @include shot-2;
         }
-        36% {
+        40% {
           @include shot-3;
         }
-
-        48% {
+        55% {
           @include shot-4;
         }
-        60% {
+        75% {
           @include shot-5;
         }
-        72% {
+        80% {
           @include shot-4;
         }
-        84% {
+        85% {
           @include shot-1;
         }
         100% {

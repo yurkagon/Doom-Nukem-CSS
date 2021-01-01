@@ -9,6 +9,7 @@ class Settings {
   @observable public backgroundMusic = false;
 
   public skipMenuOnLoad: boolean = true;
+  public positionDebugger: boolean = true;
 
   constructor() {
     const isProduction = process.env.NODE_ENV === "production";
@@ -19,6 +20,7 @@ class Settings {
       this.noclip = false;
       this.enemy_ai = true;
       this.backgroundMusic = true;
+      this.backgroundMusic = false;
     }
   }
 }
