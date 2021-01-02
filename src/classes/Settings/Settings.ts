@@ -13,7 +13,7 @@ class Settings {
 
   public savePosition: boolean = true;
 
-  public productionMode = true;
+  public productionMode = false;
 
   constructor() {
     const isProduction =

@@ -1,14 +1,19 @@
 import Player from "classes/Player";
 import { Distance } from "helpers";
 
+import itemPickup from "sound/data/itemPickup";
+
 import Sprite from "../Sprite";
 
 import { Props } from "./types";
 
 import "./style.scss";
+import Sound from "sound";
 
 class Item extends Sprite {
   private static readonly DISTANCE_TO_PICK = 150;
+
+  protected readonly sound: Sound = itemPickup;
 
   protected VISIBILITY_DISTANCE = 6000;
 
@@ -37,6 +42,7 @@ class Item extends Sprite {
 
   protected onPick() {
     this.destroy();
+    this.sound.play();
   }
 }
 

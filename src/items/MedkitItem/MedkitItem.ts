@@ -1,15 +1,18 @@
 import Player from "classes/Player";
 import Item from "classes/Item";
+import Sound from "sound";
 
 import { chance } from "helpers";
 import sleep from "utils/sleep";
 
-import { itemPickUp, medkitVoice } from "variables/sounds";
+import medkitVoice from "sound/data/voice/medkitVoice";
 
 import "./style.scss";
 
 class MedkitItem extends Item {
   private hpAmount: number = 70;
+
+  private voiceEffect: Sound = medkitVoice;
 
   constructor(position: Position) {
     super({
@@ -27,11 +30,10 @@ class MedkitItem extends Item {
 
     player.addHP(this.hpAmount);
 
-    itemPickUp.play();
-
     chance(0.4).to(async () => {
-      await sleep(100);
-      medkitVoice.play();
+      await sleep(200);
+
+      this.voiceEffect.play();
     });
 
     super.onPick();
