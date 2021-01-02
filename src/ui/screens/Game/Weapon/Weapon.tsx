@@ -11,12 +11,12 @@ const player = Player.getInstance();
 
 @observer
 class Weapon extends Component {
-  private static weaponElementRef = createRef<HTMLDivElement>();
+  private static weaponBouncingContainerRef = createRef<HTMLDivElement>();
+  private static weaponChangingContainerRef = createRef<HTMLDivElement>();
 
   public static weaponBouncingUpdater() {
-    // return;
-    if (!this.weaponElementRef.current) return;
-    const weapon = $(this.weaponElementRef.current);
+    if (!this.weaponBouncingContainerRef.current) return;
+    const weapon = $(this.weaponBouncingContainerRef.current);
 
     if (player.isMoving()) {
       weapon
@@ -40,14 +40,24 @@ class Weapon extends Component {
   }
 
   render() {
-    const { weapon } = player.inventory;
+    const { weapon, isChangingWeapon, weaponChangingTime } = player.inventory;
 
     return (
-      <div className="weapon-container" ref={Weapon.weaponElementRef}>
+      <div className="weapon-container" ref={Weapon.weaponBouncingContainerRef}>
         <div
-          style={{ animationDuration: `${weapon.timePerShot}ms` }}
-          className={cn("weapon", weapon.name, weapon.isShooting && "shooting")}
-        />
+          className={cn("changing-weapon", isChangingWeapon && "active")}
+          style={{ animationDuration: `${weaponChangingTime}ms` }}
+          ref={Weapon.weaponChangingContainerRef}
+        >
+          <div
+            className={cn(
+              "weapon",
+              weapon.name,
+              weapon.isShooting && "shooting"
+            )}
+            style={{ animationDuration: `${weapon.timePerShot}ms` }}
+          />
+        </div>
       </div>
     );
   }

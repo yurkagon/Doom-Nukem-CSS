@@ -22,7 +22,7 @@ class ShotgunItem extends Item {
   public onPick() {
     const player = Player.getInstance();
 
-    player.inventory.setWeapon("shotgun");
+    player.inventory.changeWeapon("shotgun");
 
     super.onPick();
   }

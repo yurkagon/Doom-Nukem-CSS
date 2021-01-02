@@ -9,7 +9,7 @@ class Settings {
   @observable public backgroundMusic = false;
 
   public skipMenuOnLoad: boolean = true;
-  public positionDebugger: boolean = true;
+  public positionDebugger: boolean = false;
 
   public savePosition: boolean = true;
 
