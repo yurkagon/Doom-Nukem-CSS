@@ -5,6 +5,7 @@ import { generateCoordinateNoiseValue } from "helpers";
 import House from "prefabs/models/House";
 
 import Guard from "enemies/Guard";
+import Zombie from "enemies/Zombie";
 import MedkitItem from "items/MedkitItem";
 import ShotgunItem from "items/ShotgunItem";
 
@@ -58,6 +59,16 @@ const setLevel = () => {
   for (let i = 0; i < 4; i++) {
     const noisePosition = generateCoordinateNoiseValue(500);
     new Guard({
+      position: {
+        x: -3402.1376817627192 + noisePosition.x,
+        z: -3528.3517358205772 + noisePosition.z
+      }
+    });
+  }
+
+  for (let i = 0; i < 4; i++) {
+    const noisePosition = generateCoordinateNoiseValue(500);
+    new Zombie({
       position: {
         x: -3402.1376817627192 + noisePosition.x,
         z: -3528.3517358205772 + noisePosition.z

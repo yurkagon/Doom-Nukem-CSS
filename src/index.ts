@@ -1,6 +1,6 @@
-import UI from "./ui";
-import Level from "classes/Level";
 import State, { Screen } from "State";
+import Level from "classes/Level";
+import UI from "ui";
 
 import "../style/index.scss";
 

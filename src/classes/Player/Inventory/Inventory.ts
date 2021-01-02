@@ -1,6 +1,9 @@
 import { observable, computed, action } from "mobx";
 
+import sleep from "utils/sleep";
+
 import Weapon, { Pistol, Shotgun, WeaponType } from "./Weapon";
+
 import { WeaponsData } from "./types";
 
 class Inventory {
@@ -9,6 +12,9 @@ class Inventory {
     shotgun: new Shotgun()
   };
 
+  @observable public isChangingWeapon: boolean = false;
+  public readonly weaponChangingTime: number = 500;
+
   @observable private selectedWeaponKey: WeaponType = "pistol";
 
   constructor() {
@@ -16,8 +22,21 @@ class Inventory {
   }
 
   @action
-  public setWeapon(weaponName: WeaponType) {
+  public async changeWeapon(weaponName: WeaponType) {
+    const weaponToSet = this.getWeaponByType(weaponName);
+
+    if (weaponToSet === this.weapon) return;
+
+    this.isChangingWeapon = true;
+
+    const removingWeaponTime = this.weaponChangingTime / 2;
+    const gettingNewWeaponTime = this.weaponChangingTime / 2;
+
+    await sleep(removingWeaponTime);
     this.selectedWeaponKey = weaponName;
+    await sleep(gettingNewWeaponTime);
+
+    this.isChangingWeapon = false;
   }
 
   @computed
@@ -30,11 +49,13 @@ class Inventory {
   }
 
   private clickHandler(event: KeyboardEvent) {
+    if (this.weapon.isShooting) return;
+
     switch (event.key) {
       case "1":
-        return this.setWeapon("pistol");
+        return this.changeWeapon("pistol");
       case "2":
-        return this.setWeapon("shotgun");
+        return this.changeWeapon("shotgun");
     }
   }
 }

@@ -1,11 +1,14 @@
 import Player from "classes/Player";
 import Item from "classes/Item";
+import Sound from "sound";
 
-import { takeWeapon } from "variables/sounds";
+import weaponPickup from "sound/data/weaponPickup";
 
 import "./style.scss";
 
 class ShotgunItem extends Item {
+  protected readonly sound: Sound = weaponPickup;
+
   constructor(position: Position) {
     super({
       type: "shotgun",
@@ -19,9 +22,7 @@ class ShotgunItem extends Item {
   public onPick() {
     const player = Player.getInstance();
 
-    player.inventory.setWeapon("shotgun");
-
-    takeWeapon.play();
+    player.inventory.changeWeapon("shotgun");
 
     super.onPick();
   }
