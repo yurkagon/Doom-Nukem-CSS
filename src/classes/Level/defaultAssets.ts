@@ -5,6 +5,7 @@ const data: ResourcesData = {
     "img/weapons/shotgun.png",
     "img/weapons/pistol.png",
     "img/enemy/guard.png",
+    "img/enemy/zombie.png",
     "img/items/medkit.png",
     "img/items/shotgun.png",
     "img/hud/face.png"
