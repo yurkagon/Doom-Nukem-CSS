@@ -16,9 +16,10 @@ class Angle {
     start: number,
     end: number
   ): boolean {
-    end = end - start < 0 ? end - start + 360 : end - start;
-    mid = mid - start < 0 ? mid - start + 360 : mid - start;
-    return mid < end;
+    const formattedEnd = end - start < 0 ? end - start + 360 : end - start;
+    const formattedMid = mid - start < 0 ? mid - start + 360 : mid - start;
+
+    return formattedMid < formattedEnd;
   }
 
   public static toRad = (degrees: number) => (degrees * Math.PI) / 180;

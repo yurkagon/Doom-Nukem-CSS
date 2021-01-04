@@ -56,7 +56,7 @@ const setLevel = () => {
     });
   }
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 1; i++) {
     const noisePosition = generateCoordinateNoiseValue(500);
     new Guard({
       position: {
