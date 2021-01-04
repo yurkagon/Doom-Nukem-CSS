@@ -14,10 +14,6 @@ class Control {
   };
 
   public mouseRotateDelta: number = 0;
-  private prevMousePosition: Position = {
-    x: 0,
-    y: 0
-  };
 
   private mouseCallback: (value: number) => void;
   private shotCallback: () => void;
@@ -65,30 +61,20 @@ class Control {
   }
 
   private attachMouseMove(): void {
-    $(document).bind("mousemove", event => {
+    document.addEventListener("mousemove", event => {
       if (!this.mouseCallback) return;
 
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = this;
 
-      const mousePosition: Position = {
-        x: event.pageX,
-        y: event.pageY
-      };
-
-      const delta = this.prevMousePosition.x - mousePosition.x;
-
-      if (Math.abs(delta) < 50) {
-        const valueToRotate = (delta * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
-        this.mouseCallback(valueToRotate);
-      }
-
-      this.prevMousePosition = mousePosition;
+      const valueToRotate =
+        (-event.movementX * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
+      this.mouseCallback(valueToRotate);
     });
   }
 
   private attachShot(): void {
-    $("body").click(() => {
-      if (!this.shotCallback) return;
+    $("body").on("click", () => {
+      if (!this.shotCallback || !document.pointerLockElement) return;
 
       this.shotCallback();
     });

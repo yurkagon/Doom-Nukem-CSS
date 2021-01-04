@@ -12,7 +12,6 @@ const player = Player.getInstance();
 @observer
 class Weapon extends Component {
   private static weaponBouncingContainerRef = createRef<HTMLDivElement>();
-  private static weaponChangingContainerRef = createRef<HTMLDivElement>();
 
   public static weaponBouncingUpdater() {
     if (!this.weaponBouncingContainerRef.current) return;
@@ -47,7 +46,6 @@ class Weapon extends Component {
         <div
           className={cn("changing-weapon", isChangingWeapon && "active")}
           style={{ animationDuration: `${weaponChangingTime}ms` }}
-          ref={Weapon.weaponChangingContainerRef}
         >
           <div
             className={cn(

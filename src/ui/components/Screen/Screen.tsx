@@ -1,13 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 
 import { Props } from "./types";
 
 import "./style.scss";
 
-const Screen: FC<Props> = ({ children, className = "", ...props }) => (
-  <div className={`screen ${className}`} {...props}>
+const Screen: FC<Props> = ({ children, className = "", ...props }, ref) => (
+  <div className={`screen ${className}`} {...props} ref={ref}>
     {children}
   </div>
 );
 
-export default Screen;
+export default forwardRef(Screen);
