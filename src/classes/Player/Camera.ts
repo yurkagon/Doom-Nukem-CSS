@@ -50,8 +50,8 @@ abstract class Camera extends GameObject {
 
     const playerViewAngle = this.getPlayerViewAngle();
 
-    const playerViewLeft = playerViewAngle - fov / 2;
-    const playerViewRight = playerViewAngle + fov / 2;
+    const playerViewLeft = Angle.normalize(playerViewAngle - fov / 2);
+    const playerViewRight = Angle.normalize(playerViewAngle + fov / 2);
 
     return Angle.isAngleBetween(angle, playerViewLeft, playerViewRight);
   }

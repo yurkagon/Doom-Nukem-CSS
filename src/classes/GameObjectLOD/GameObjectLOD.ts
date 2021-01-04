@@ -1,7 +1,8 @@
 import $ from "jquery";
-import GameObject from "../GameObject/index";
-import Player from "../Player/Player";
-import { Distance } from "../../helpers";
+import Player from "classes/Player";
+import GameObject from "classes/GameObject";
+
+import { Distance } from "helpers";
 
 abstract class GameObjectLOD extends GameObject {
   protected self: JQuery = $("<div/>");
@@ -38,7 +39,7 @@ abstract class GameObjectLOD extends GameObject {
     const shouldBeActive = distance < this.VISIBILITY_DISTANCE;
 
     const shouldBeVisible =
-      (isClose || shouldBeActive) && this.isVisibleByPlayer();
+      isClose || (shouldBeActive && this.isVisibleByPlayer());
 
     this.setStatus(shouldBeActive, shouldBeVisible);
   }
@@ -59,7 +60,7 @@ abstract class GameObjectLOD extends GameObject {
     return player.isObjectVisibleFromFov(this, this.fov);
   }
 
-  private setStatus(shouldActive, shouldVisible): void {
+  private setStatus(shouldActive: boolean, shouldVisible: boolean): void {
     if (shouldActive && !this.isActive) {
       this.isActive = true;
     } else if (!shouldActive && this.isActive) {

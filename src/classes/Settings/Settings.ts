@@ -3,7 +3,7 @@ import { observable } from "mobx";
 class Settings {
   public productionMode = false;
 
-  @observable public enemy_ai: boolean = true;
+  @observable public enemy_ai: boolean = false;
 
   @observable public noclip: boolean = false;
   @observable public godmode: boolean = true;
