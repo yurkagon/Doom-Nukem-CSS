@@ -3,8 +3,8 @@ import { ResourcesData } from "State";
 const preloadData: ResourcesData = {
   images: [
     "img/skybox.jpg",
-    "img/grass.jpg",
-    "img/floor.png",
+    "img/floor/1.jpg",
+    "img/walls/gray.png",
     "img/models/house/sidingTexture.jpg",
     "img/models/house/Front.png",
     "img/models/house/Side.png"
