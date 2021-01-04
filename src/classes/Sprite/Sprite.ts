@@ -17,6 +17,8 @@ class Sprite extends GameObjectLOD {
 
   private config: SpriteConfig;
 
+  protected VISIBILITY_DISTANCE = 6000;
+
   constructor(config: SpriteConfig) {
     super(config.position);
 

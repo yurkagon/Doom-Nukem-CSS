@@ -15,8 +15,6 @@ class Item extends Sprite {
 
   protected readonly sound: Sound = itemPickup;
 
-  protected VISIBILITY_DISTANCE = 6000;
-
   constructor(config: Props) {
     super({
       type: config.type,

@@ -20,8 +20,6 @@ abstract class Enemy extends Sprite {
   protected readonly maxWalkingToPlayerDistance: number = 3100;
   protected readonly attackDistance: number = 1000;
 
-  protected VISIBILITY_DISTANCE = 4000;
-
   private timer: NodeJS.Timeout = null;
   private moveDiff: Position = null;
 
