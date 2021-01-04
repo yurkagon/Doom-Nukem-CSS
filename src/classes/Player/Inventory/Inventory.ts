@@ -25,6 +25,7 @@ class Inventory {
   public async changeWeapon(weaponName: WeaponType) {
     const weaponToSet = this.getWeaponByType(weaponName);
 
+    if (!weaponToSet.isAdded()) return;
     if (weaponToSet === this.weapon) return;
 
     this.isChangingWeapon = true;

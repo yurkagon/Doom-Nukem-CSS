@@ -10,12 +10,17 @@ abstract class WeaponItem extends Item {
   protected abstract name: WeaponType;
   protected abstract bulletCount: number;
 
-  public onPick() {
+  protected onPick() {
     const player = Player.getInstance();
 
     const weapon = player.inventory.getWeaponByType(this.name);
 
     const result = weapon.addBullets(this.bulletCount);
+
+    if (!weapon.isAdded()) {
+      weapon.setAsAdded();
+      player.inventory.changeWeapon(this.name);
+    }
 
     if (result) return super.onPick();
   }

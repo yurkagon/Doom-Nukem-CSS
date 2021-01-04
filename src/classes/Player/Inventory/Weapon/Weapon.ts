@@ -23,6 +23,7 @@ abstract class Weapon {
   @observable public isShooting: boolean = false;
 
   private readonly maxShootableFov: number = 30;
+  protected added: boolean = false;
 
   public async shot(): Promise<void> {
     if (this.isShooting) return;
@@ -53,6 +54,14 @@ abstract class Weapon {
       newCount < this.maxBulletCount ? newCount : this.maxBulletCount;
 
     return true;
+  }
+
+  public setAsAdded(): void {
+    this.added = true;
+  }
+
+  public isAdded(): boolean {
+    return State.settings.infinite_ammo || this.added;
   }
 
   protected shootingStrategy(enemies: Enemy[]): void {
