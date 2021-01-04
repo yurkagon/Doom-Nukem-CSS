@@ -5,7 +5,7 @@ class Settings {
 
   @observable public enemy_ai: boolean = true;
 
-  @observable public noclip: boolean = false;
+  @observable public noclip: boolean = true;
   @observable public godmode: boolean = true;
 
   @observable public backgroundMusic = false;

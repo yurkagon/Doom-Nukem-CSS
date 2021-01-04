@@ -3,7 +3,7 @@ import _ from "lodash";
 import { observable } from "mobx";
 import sleep from "utils/sleep";
 
-import State from "state";
+import State from "State";
 import Scene from "classes/Scene";
 import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
