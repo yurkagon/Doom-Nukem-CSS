@@ -15,7 +15,7 @@ class Inventory {
   @observable public isChangingWeapon: boolean = false;
   public readonly weaponChangingTime: number = 500;
 
-  @observable private selectedWeaponKey: WeaponType = "shotgun";
+  @observable private selectedWeaponKey: WeaponType = "pistol";
 
   constructor() {
     document.addEventListener("keydown", this.clickHandler.bind(this));

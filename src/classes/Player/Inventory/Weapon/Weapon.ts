@@ -40,6 +40,15 @@ abstract class Weapon {
     this.isShooting = false;
   }
 
+  public addBullets(count: number) {
+    if (this.bulletCount === this.maxBulletCount) return;
+
+    const newCount = this.bulletCount + count;
+
+    this.bulletCount =
+      newCount < this.maxBulletCount ? newCount : this.maxBulletCount;
+  }
+
   protected shootingStrategy(enemies: Enemy[]): void {
     enemies.some(enemy => {
       if (this.isEnemyInShootingAngle(enemy)) {

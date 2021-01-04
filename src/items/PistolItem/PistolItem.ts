@@ -3,13 +3,13 @@ import { WeaponType } from "classes/Player/Inventory/Weapon";
 
 import "./style.scss";
 
-class ShotgunItem extends WeaponItem {
-  protected name: WeaponType = "shotgun";
-  protected bulletCount: number = 5;
+class PistolItem extends WeaponItem {
+  protected name: WeaponType = "pistol";
+  protected bulletCount: number = 10;
 
   constructor(position: Position) {
     super({
-      type: "shotgun",
+      type: "pistol",
       position: {
         ...position,
         y: 350
@@ -18,4 +18,4 @@ class ShotgunItem extends WeaponItem {
   }
 }
 
-export default ShotgunItem;
+export default PistolItem;

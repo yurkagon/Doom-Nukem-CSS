@@ -6,8 +6,9 @@ import Weapon from "./Weapon";
 class Pistol extends Weapon {
   public readonly name = "pistol";
   public readonly timePerShot: number = 500;
+
   public maxBulletCount: number = 50;
-  bulletCount = 40;
+  public bulletCount = 49;
 
   protected readonly sound: Sound = pistol_shot;
 }

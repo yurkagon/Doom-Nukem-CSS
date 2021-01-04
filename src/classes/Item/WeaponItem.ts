@@ -1,0 +1,24 @@
+import Player from "classes/Player";
+import { WeaponType } from "classes/Player/Inventory/Weapon";
+import Item from "classes/Item";
+import Sound from "sound";
+
+import weaponPickup from "sound/data/weaponPickup";
+
+abstract class WeaponItem extends Item {
+  protected readonly sound: Sound = weaponPickup;
+  protected abstract name: WeaponType;
+  protected abstract bulletCount: number;
+
+  public onPick() {
+    const player = Player.getInstance();
+
+    const weapon = player.inventory.getWeaponByType(this.name);
+
+    weapon.addBullets(this.bulletCount);
+
+    super.onPick();
+  }
+}
+
+export default WeaponItem;

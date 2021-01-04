@@ -12,8 +12,9 @@ import { WeaponType } from "./types";
 class Shotgun extends Weapon {
   public readonly name: WeaponType = "shotgun";
   public readonly timePerShot: number = 1000;
+
   public maxBulletCount: number = 20;
-  public bulletCount: number = 3;
+  public bulletCount: number = 0;
 
   protected readonly sound: Sound = shotgun_shot;
 
