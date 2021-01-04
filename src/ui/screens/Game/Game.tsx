@@ -10,7 +10,7 @@ import "./style.scss";
 class Game extends Component {
   public render() {
     return (
-      <Screen>
+      <Screen className="game-ui-wrapper">
         <Weapon />
 
         <div className="overlay-filter" />
