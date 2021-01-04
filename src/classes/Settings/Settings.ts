@@ -8,6 +8,8 @@ class Settings {
 
   @observable public backgroundMusic = false;
 
+  public infinite_ammo = true;
+
   public skipMenuOnLoad: boolean = true;
   public positionDebugger: boolean = false;
 
@@ -28,6 +30,7 @@ class Settings {
       this.savePosition = false;
       this.productionMode = true;
       this.positionDebugger = false;
+      this.infinite_ammo = false;
     }
   }
 }

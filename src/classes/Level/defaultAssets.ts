@@ -8,6 +8,7 @@ const data: ResourcesData = {
     "img/enemy/zombie.png",
     "img/items/medkit.png",
     "img/items/shotgun.png",
+    "img/items/pistol.png",
     "img/hud/face.png"
   ],
   sounds: [

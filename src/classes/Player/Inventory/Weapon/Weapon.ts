@@ -3,6 +3,7 @@ import _ from "lodash";
 import { observable } from "mobx";
 import sleep from "utils/sleep";
 
+import State from "state";
 import Scene from "classes/Scene";
 import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
@@ -25,7 +26,7 @@ abstract class Weapon {
 
   public async shot(): Promise<void> {
     if (this.isShooting) return;
-    if (this.bulletCount <= 0) return;
+    if (this.bulletCount <= 0 && !State.settings.infinite_ammo) return;
 
     const enemies = this.getPotentiallyShootableEnemies();
 
@@ -33,20 +34,25 @@ abstract class Weapon {
 
     this.shootingStrategy(enemies);
     this.playSound();
-    this.bulletCount = this.bulletCount - 1;
+
+    if (!State.settings.infinite_ammo) {
+      this.bulletCount = this.bulletCount - 1;
+    }
 
     await sleep(this.timePerShot);
 
     this.isShooting = false;
   }
 
-  public addBullets(count: number) {
-    if (this.bulletCount === this.maxBulletCount) return;
+  public addBullets(count: number): boolean {
+    if (this.bulletCount === this.maxBulletCount) return false;
 
     const newCount = this.bulletCount + count;
 
     this.bulletCount =
       newCount < this.maxBulletCount ? newCount : this.maxBulletCount;
+
+    return true;
   }
 
   protected shootingStrategy(enemies: Enemy[]): void {

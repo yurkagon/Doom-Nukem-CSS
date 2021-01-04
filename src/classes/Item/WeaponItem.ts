@@ -15,9 +15,9 @@ abstract class WeaponItem extends Item {
 
     const weapon = player.inventory.getWeaponByType(this.name);
 
-    weapon.addBullets(this.bulletCount);
+    const result = weapon.addBullets(this.bulletCount);
 
-    super.onPick();
+    if (result) return super.onPick();
   }
 }
 
