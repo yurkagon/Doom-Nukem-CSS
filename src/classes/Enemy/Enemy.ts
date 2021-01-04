@@ -1,10 +1,9 @@
 import Scene from "classes/Scene";
 import Player from "classes/Player";
+import Item from "classes/Item";
 import State from "State";
 
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
-
-import ShotgunItem from "items/ShotgunItem";
 
 import Sprite from "../Sprite";
 
@@ -25,6 +24,9 @@ abstract class Enemy extends Sprite {
 
   private timer: NodeJS.Timeout = null;
   private moveDiff: Position = null;
+
+  protected readonly chanceToDrop: number = 0.1;
+  protected readonly itemToDrop: { new (position: Position): Item };
 
   constructor(config: EnemyConfig) {
     super({
@@ -101,11 +103,13 @@ abstract class Enemy extends Sprite {
   }
 
   protected onDie() {
-    chance(0.1).to(() => {
-      new ShotgunItem({
-        ...this.position
+    if (this.itemToDrop) {
+      chance(this.chanceToDrop).to(() => {
+        new this.itemToDrop({
+          ...this.position
+        });
       });
-    });
+    }
   }
 
   public update() {
