@@ -13,16 +13,19 @@ import { WeaponType } from "./types";
 
 abstract class Weapon {
   public abstract readonly name: WeaponType;
-  public abstract readonly timePerShot: number = 0;
+  public abstract readonly timePerShot: number;
+  public abstract readonly maxBulletCount: number;
 
+  protected abstract readonly sound: Sound;
+
+  @observable public bulletCount: number = 0;
   @observable public isShooting: boolean = false;
 
   private readonly maxShootableFov: number = 30;
 
-  protected abstract readonly sound: Sound;
-
   public async shot(): Promise<void> {
     if (this.isShooting) return;
+    if (this.bulletCount <= 0) return;
 
     const enemies = this.getPotentiallyShootableEnemies();
 
@@ -30,6 +33,7 @@ abstract class Weapon {
 
     this.shootingStrategy(enemies);
     this.playSound();
+    this.bulletCount = this.bulletCount - 1;
 
     await sleep(this.timePerShot);
 

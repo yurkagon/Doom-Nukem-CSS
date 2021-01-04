@@ -1,6 +1,7 @@
 .sprite.item {
   &.shotgun {
     background: url(img/items/shotgun.png);
-    background-size: cover;
+    background-size: 240px;
+    background-position-y: 50px;
   }
 }

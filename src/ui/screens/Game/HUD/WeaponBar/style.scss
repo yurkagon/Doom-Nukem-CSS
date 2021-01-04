@@ -1,0 +1,31 @@
+.weapon-bar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  top: 0;
+  left: 0;
+
+  .bullet-value {
+    position: relative;
+    transform: scale(0.7);
+    left: -24px;
+  }
+
+  .weapon {
+    width: 200px;
+    height: 80px;
+    background-size: cover;
+
+    margin-right: 10px;
+
+    &.shotgun {
+      background-image: url(img/items/shotgun.png);
+    }
+    &.pistol {
+      background-image: url(img/items/pistol.png);
+      position: relative;
+      left: -38px;
+    }
+  }
+}
