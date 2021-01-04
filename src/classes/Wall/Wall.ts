@@ -1,6 +1,5 @@
+import { CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
-
-import { CellInfo } from "../LevelMap";
 
 import data from "./data";
 

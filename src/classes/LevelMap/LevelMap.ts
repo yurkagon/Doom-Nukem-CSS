@@ -1,12 +1,13 @@
+import { CellMap } from "classes/MapHandler";
+
 import CollisionDetector from "./CollisionDetector";
-import { ICollisionMap } from "./CollisionDetector/types";
 
 import Wall from "../Wall";
 
 class LevelMap {
   private collisionDetector: CollisionDetector;
 
-  constructor(map: ICollisionMap) {
+  constructor(map: CellMap) {
     this.collisionDetector = new CollisionDetector(map);
 
     this.attachMap();

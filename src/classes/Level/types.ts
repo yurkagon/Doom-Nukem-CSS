@@ -1,13 +1,13 @@
 import Sound from "sound";
 
-import { ICollisionMap } from "classes/LevelMap";
+import { CellMap } from "classes/MapHandler";
 import { SkyboxConfig } from "classes/SkyBox";
 import { ResourcesData } from "State";
 
 export type LevelName = "level_1";
 
 export interface MapConfig {
-  data: ICollisionMap;
+  data: CellMap;
 }
 
 export interface LevelConfig {
