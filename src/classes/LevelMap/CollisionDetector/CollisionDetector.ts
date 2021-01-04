@@ -1,7 +1,7 @@
 import { Distance } from "helpers";
 import Angle from "helpers/angle";
 
-import { ICollisionType, ICollisionMap, ICellInfo } from "./types";
+import { CollisionType, ICollisionMap, CellInfo } from "./types";
 
 class CollisionDetector {
   public collisionMap: ICollisionMap;
@@ -15,16 +15,16 @@ class CollisionDetector {
   }
 
   public handleCollision(targetPosition: Position, currentPosition: Position) {
-    const mapTargetPosition = this.getMapPosition(targetPosition);
-    const mapCurrentPosition = this.getMapPosition(currentPosition);
-    const space = this.getSymbol(mapTargetPosition);
+    const localTargetPosition = this.getMapPosition(targetPosition);
+    const localCurrentPosition = this.getMapPosition(currentPosition);
+    const space = this.getSymbol(localTargetPosition);
 
     if (space === "#") {
       return this.handleWall(
         targetPosition,
         currentPosition,
-        mapTargetPosition,
-        mapCurrentPosition
+        localTargetPosition,
+        localCurrentPosition
       );
     }
 
@@ -34,8 +34,8 @@ class CollisionDetector {
   private handleWall(
     targetPosition: Position,
     currentPosition: Position,
-    mapTargetPosition: Position,
-    mapCurrentPosition: Position
+    localTargetPosition: Position,
+    localCurrentPosition: Position
   ) {
     const vector = {
       x: targetPosition.x - currentPosition.x,
@@ -47,12 +47,12 @@ class CollisionDetector {
     const targetDistance = Distance(targetPosition, currentPosition);
 
     const collisionType = this.getCollisionType(
-      mapCurrentPosition,
-      mapTargetPosition
+      localCurrentPosition,
+      localTargetPosition
     );
 
     let delta: Position;
-    if (collisionType === ICollisionType.horizontal) {
+    if (collisionType === CollisionType.horizontal) {
       const angleToMove = -Math.PI / 2;
       const collisionDistance =
         (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
@@ -81,7 +81,7 @@ class CollisionDetector {
           z: Math.sin(angleToMove) * collisionDistance
         };
       }
-    } else if (collisionType === ICollisionType.vertical) {
+    } else if (collisionType === CollisionType.vertical) {
       const angleToMove = Math.PI;
       const collisionDistance =
         targetDistance - (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
@@ -132,11 +132,11 @@ class CollisionDetector {
   private getCollisionType(
     position: Position,
     targetPosition: Position
-  ): ICollisionType {
+  ): CollisionType {
     if (position.z === targetPosition.z) {
-      return ICollisionType.horizontal;
+      return CollisionType.horizontal;
     } else {
-      return ICollisionType.vertical;
+      return CollisionType.vertical;
     }
   }
 
@@ -182,7 +182,7 @@ class CollisionDetector {
   public forEach(
     callback: (
       position: Position,
-      cellInfo: ICellInfo,
+      cellInfo: CellInfo,
       i: number,
       k: number
     ) => void

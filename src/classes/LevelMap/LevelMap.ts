@@ -25,7 +25,7 @@ class LevelMap {
 
   private attachMap() {
     this.collisionDetector.forEach((position, cellInfo) => {
-      if (cellInfo.current === "#") {
+      if (cellInfo.current !== " ") {
         new Wall(position, cellInfo);
       }
     });
