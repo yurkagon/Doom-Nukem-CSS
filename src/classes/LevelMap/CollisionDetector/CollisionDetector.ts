@@ -1,42 +1,41 @@
+import MapHandler from "classes/MapHandler";
+
 import { Distance } from "helpers";
 import Angle from "helpers/angle";
 
-import { ICollisionType, ICollisionMap, ICellInfo } from "./types";
+import { CollisionType } from "./types";
 
-class CollisionDetector {
-  public collisionMap: ICollisionMap;
-
-  constructor(map: ICollisionMap) {
-    this.setCollisionMap(map);
-  }
-
-  public setCollisionMap(map: ICollisionMap) {
-    this.collisionMap = map;
-  }
-
+class CollisionDetector extends MapHandler {
   public handleCollision(targetPosition: Position, currentPosition: Position) {
-    const mapTargetPosition = this.getMapPosition(targetPosition);
-    const mapCurrentPosition = this.getMapPosition(currentPosition);
-    const space = this.getSymbol(mapTargetPosition);
+    const localTargetPosition = this.getLocalPosition(targetPosition);
+    const localCurrentPosition = this.getLocalPosition(currentPosition);
 
-    if (space === "#") {
+    if (this.isCollidedByLocalPosition(localTargetPosition)) {
       return this.handleWall(
         targetPosition,
         currentPosition,
-        mapTargetPosition,
-        mapCurrentPosition
+        localTargetPosition,
+        localCurrentPosition
       );
     }
 
     return targetPosition;
   }
 
+  public setCollision(position: Position): void {
+    const mapPosition = this.getLocalPosition(position);
+
+    try {
+      this.cellMap[mapPosition.z][mapPosition.x] = "#";
+    } catch {}
+  }
+
   private handleWall(
     targetPosition: Position,
     currentPosition: Position,
-    mapTargetPosition: Position,
-    mapCurrentPosition: Position
-  ) {
+    localTargetPosition: Position,
+    localCurrentPosition: Position
+  ): Position {
     const vector = {
       x: targetPosition.x - currentPosition.x,
       z: targetPosition.z - currentPosition.z
@@ -47,12 +46,12 @@ class CollisionDetector {
     const targetDistance = Distance(targetPosition, currentPosition);
 
     const collisionType = this.getCollisionType(
-      mapCurrentPosition,
-      mapTargetPosition
+      localCurrentPosition,
+      localTargetPosition
     );
 
     let delta: Position;
-    if (collisionType === ICollisionType.horizontal) {
+    if (collisionType === CollisionType.horizontal) {
       const angleToMove = -Math.PI / 2;
       const collisionDistance =
         (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
@@ -81,7 +80,7 @@ class CollisionDetector {
           z: Math.sin(angleToMove) * collisionDistance
         };
       }
-    } else if (collisionType === ICollisionType.vertical) {
+    } else if (collisionType === CollisionType.vertical) {
       const angleToMove = Math.PI;
       const collisionDistance =
         targetDistance - (Math.abs(90 - Math.abs(angle)) / 90) * targetDistance;
@@ -120,7 +119,9 @@ class CollisionDetector {
       z: currentPosition.z + delta.z
     };
 
-    if (this.getSymbol(this.getMapPosition(newPosition)) === "#") {
+    if (
+      this.getSymbolByLocalPosition(this.getLocalPosition(newPosition)) === "#"
+    ) {
       newPosition = {
         x: currentPosition.x - delta.x * 2,
         z: currentPosition.z - delta.z * 2
@@ -132,93 +133,18 @@ class CollisionDetector {
   private getCollisionType(
     position: Position,
     targetPosition: Position
-  ): ICollisionType {
+  ): CollisionType {
     if (position.z === targetPosition.z) {
-      return ICollisionType.horizontal;
+      return CollisionType.horizontal;
     } else {
-      return ICollisionType.vertical;
+      return CollisionType.vertical;
     }
   }
 
-  public setCollision(position: Position) {
-    const mapPosition = this.getMapPosition(position);
+  private isCollidedByLocalPosition(position: Position): boolean {
+    const char = this.getSymbolByLocalPosition(position);
 
-    try {
-      this.collisionMap[mapPosition.z][mapPosition.x] = "#";
-    } catch {}
-  }
-
-  private getMapPosition(position: Position): Position {
-    const normalizedPosition = this.normalizePosition(position);
-
-    return {
-      x: Math.ceil(normalizedPosition.x - 1),
-      z: Math.ceil(normalizedPosition.z - 1)
-    };
-  }
-
-  private normalizePosition(position: Position): Position {
-    return {
-      x: (position.x + 15000) / 1000,
-      z: (position.z + 15000) / 1000
-    };
-  }
-
-  private getRealPositionFromNormalizedPosition(position: Position): Position {
-    return {
-      x: position.x * 1000 - 15000,
-      z: position.z * 1000 - 15000
-    };
-  }
-
-  private getSymbol(position: Position) {
-    try {
-      return this.collisionMap[position.z][position.x];
-    } catch {
-      return "#";
-    }
-  }
-
-  public forEach(
-    callback: (
-      position: Position,
-      cellInfo: ICellInfo,
-      i: number,
-      k: number
-    ) => void
-  ) {
-    for (let i = 0; i < this.collisionMap.length; i++) {
-      for (let k = 0; k < this.collisionMap[i].length; k++) {
-        const space = this.collisionMap[i][k];
-        callback(
-          this.getRealPositionFromNormalizedPosition({
-            x: k,
-            z: i
-          }),
-          {
-            current: space,
-            front: this.getSymbol({
-              x: k,
-              z: i + 1
-            }),
-            left: this.getSymbol({
-              x: k - 1,
-              z: i
-            }),
-            right: this.getSymbol({
-              x: k + 1,
-              z: i
-            }),
-            back: this.getSymbol({
-              x: k,
-              z: i - 1
-            })
-          },
-          i,
-          k
-        );
-      }
-    }
+    return char !== " ";
   }
 }
 

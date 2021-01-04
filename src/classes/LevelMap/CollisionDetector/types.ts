@@ -1,16 +1,4 @@
-export type ICell = " " | "#";
-
-export enum ICollisionType {
+export enum CollisionType {
   vertical = "vertical",
   horizontal = "horizontal"
 }
-
-export type ICollisionMap = ICell[][];
-
-export type ICellInfo = {
-  current: ICell;
-  front: ICell;
-  right: ICell;
-  left: ICell;
-  back: ICell;
-};

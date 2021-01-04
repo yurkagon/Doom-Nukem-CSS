@@ -1,6 +1,8 @@
 import { observable } from "mobx";
 
 class Settings {
+  public productionMode = false;
+
   @observable public enemy_ai: boolean = true;
 
   @observable public noclip: boolean = false;
@@ -8,12 +10,12 @@ class Settings {
 
   @observable public backgroundMusic = false;
 
+  public infinite_ammo = true;
+
   public skipMenuOnLoad: boolean = true;
   public positionDebugger: boolean = false;
 
   public savePosition: boolean = true;
-
-  public productionMode = false;
 
   constructor() {
     const isProduction =
@@ -28,6 +30,7 @@ class Settings {
       this.savePosition = false;
       this.productionMode = true;
       this.positionDebugger = false;
+      this.infinite_ammo = false;
     }
   }
 }

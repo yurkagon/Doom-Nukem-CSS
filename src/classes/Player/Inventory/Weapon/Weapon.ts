@@ -3,6 +3,7 @@ import _ from "lodash";
 import { observable } from "mobx";
 import sleep from "utils/sleep";
 
+import State from "State";
 import Scene from "classes/Scene";
 import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
@@ -13,16 +14,20 @@ import { WeaponType } from "./types";
 
 abstract class Weapon {
   public abstract readonly name: WeaponType;
-  public abstract readonly timePerShot: number = 0;
-
-  @observable public isShooting: boolean = false;
-
-  private readonly maxShootableFov: number = 30;
+  public abstract readonly timePerShot: number;
+  public abstract readonly maxBulletCount: number;
 
   protected abstract readonly sound: Sound;
 
+  @observable public bulletCount: number = 0;
+  @observable public isShooting: boolean = false;
+
+  private readonly maxShootableFov: number = 30;
+  protected added: boolean = false;
+
   public async shot(): Promise<void> {
     if (this.isShooting) return;
+    if (this.bulletCount <= 0 && !State.settings.infinite_ammo) return;
 
     const enemies = this.getPotentiallyShootableEnemies();
 
@@ -31,9 +36,32 @@ abstract class Weapon {
     this.shootingStrategy(enemies);
     this.playSound();
 
+    if (!State.settings.infinite_ammo) {
+      this.bulletCount = this.bulletCount - 1;
+    }
+
     await sleep(this.timePerShot);
 
     this.isShooting = false;
+  }
+
+  public addBullets(count: number): boolean {
+    if (this.bulletCount === this.maxBulletCount) return false;
+
+    const newCount = this.bulletCount + count;
+
+    this.bulletCount =
+      newCount < this.maxBulletCount ? newCount : this.maxBulletCount;
+
+    return true;
+  }
+
+  public setAsAdded(): void {
+    this.added = true;
+  }
+
+  public isAdded(): boolean {
+    return State.settings.infinite_ammo || this.added;
   }
 
   protected shootingStrategy(enemies: Enemy[]): void {

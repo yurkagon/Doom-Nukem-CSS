@@ -1,6 +1,5 @@
+import { CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
-
-import { ICellInfo } from "../LevelMap";
 
 import data from "./data";
 
@@ -17,9 +16,9 @@ class Wall extends Model {
     y: 190
   };
 
-  private sides: ICellInfo;
+  private sides: CellInfo;
 
-  constructor(position: Position, sides: ICellInfo) {
+  constructor(position: Position, sides: CellInfo) {
     super({
       name: "wall",
       data,
@@ -42,6 +41,7 @@ class Wall extends Model {
 
     Object.keys(this.sides).forEach(key => {
       const space = this.sides[key];
+
       if (space && space === " ") return;
       this.self.find(`.face.${key}`).remove();
     });
