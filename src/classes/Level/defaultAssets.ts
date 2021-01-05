@@ -1,5 +1,13 @@
 import { ResourcesData } from "State";
 
+import { step1Url, step2Url, step3Url } from "sound/data/player/steps";
+
+import { pistol_shot_url } from "sound/data/weapons/pistol_shot";
+import { shotgun_shot_url } from "sound/data/weapons/shotgun_shot";
+
+import { itemPickUpUrl } from "sound/data/items/itemPickup";
+import { weaponPickupUrl } from "sound/data/items/weaponPickup";
+
 const data: ResourcesData = {
   images: [
     "img/weapons/shotgun.png",
@@ -12,11 +20,13 @@ const data: ResourcesData = {
     "img/hud/face.png"
   ],
   sounds: [
-    "sounds/voice/medkit.wav",
-    "sounds/items/itemPickUp.wav",
-    "sounds/items/pickWeapon.wav",
-    "sounds/weapons/shotgun.wav",
-    "sounds/weapons/pistol.wav"
+    itemPickUpUrl,
+    weaponPickupUrl,
+    pistol_shot_url,
+    shotgun_shot_url,
+    step1Url,
+    step2Url,
+    step3Url
   ]
 };
 

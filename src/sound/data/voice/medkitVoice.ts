@@ -1,3 +1,7 @@
 import Sound from "../../Sound";
 
-export default new Sound("sounds/voice/medkit.wav");
+import medkitVoiceUrl from "./medkit.wav";
+
+const sound = new Sound(medkitVoiceUrl);
+
+export { sound as default, medkitVoiceUrl };

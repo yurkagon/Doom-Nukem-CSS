@@ -1,5 +1,8 @@
 import { ResourcesData } from "State";
 
+import { doom_e1m1Url } from "sound/data/music/doom_e1m1";
+import { medkitVoiceUrl } from "sound/data/voice/medkitVoice";
+
 const preloadData: ResourcesData = {
   images: [
     "img/skybox.jpg",
@@ -9,11 +12,7 @@ const preloadData: ResourcesData = {
     "img/models/house/Front.png",
     "img/models/house/Side.png"
   ],
-  sounds: [
-    "sounds/start.wav",
-    "sounds/voice/medkit.wav",
-    "sounds/music/doom_e1m1.mp3"
-  ]
+  sounds: ["sounds/start.wav", medkitVoiceUrl, doom_e1m1Url]
 };
 
 export default preloadData;

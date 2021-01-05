@@ -32,7 +32,7 @@ class Level {
     await State.loader.loadResources({
       ...config.preloadData,
       images: [...defaultAssets.images, ...config.preloadData.images],
-      sounds: [...defaultAssets.images, ...config.preloadData.sounds],
+      sounds: [...defaultAssets.sounds, ...config.preloadData.sounds],
       operations: [
         {
           name: "Camera enabled",

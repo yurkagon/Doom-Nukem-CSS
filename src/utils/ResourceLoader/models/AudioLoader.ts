@@ -10,17 +10,29 @@ class AudioLoader extends UrlLoader {
 
       audio.src = this.getExactPath(url);
 
+      let resolved: boolean;
+      let timerId: NodeJS.Timeout;
+
       const onEnd = () => {
+        if (resolved) return;
+
         audio.removeEventListener("canplaythrough", onEnd);
 
         callback && callback(url);
 
         resolve();
+
+        resolved = true;
+        clearTimeout(timerId);
       };
 
       audio.addEventListener("canplaythrough", onEnd);
-
       audio.onerror = onEnd;
+
+      timerId = setTimeout(() => {
+        onEnd();
+        console.error(`Cannot preload: ${url}`);
+      }, 1000);
     });
   }
 }
