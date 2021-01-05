@@ -35,6 +35,13 @@ module.exports = {
             loader: "sass-loader"
           }
         ]
+      },
+      {
+        test: /\.(wav|mp3|flac)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[path][name].[ext]"
+        }
       }
     ]
   },
@@ -58,5 +65,5 @@ module.exports = {
     compress: true,
     port: 9000
   },
-  devtool: "inline-source-map"
+  devtool: "source-map"
 };

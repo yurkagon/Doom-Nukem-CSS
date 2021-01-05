@@ -2,8 +2,8 @@ import _ from "lodash";
 
 import Enemy, { EnemyState } from "classes/Enemy";
 
-import Sound from "sound";
-import { shotgun_shot } from "sound/data/weapons/shotgun";
+import Sound from "classes/Sound";
+import shotgun_shot from "sounds/weapons/shotgun_shot";
 
 import Weapon from "./Weapon";
 

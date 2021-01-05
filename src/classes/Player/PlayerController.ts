@@ -1,4 +1,5 @@
 import State from "State";
+import { playRandomFootstep } from "sounds/player/steps";
 
 import Camera from "./Camera";
 import Scene from "../Scene";
@@ -103,7 +104,11 @@ abstract class PlayerController extends Camera {
     const { position, stepState } = this;
     const value = 0.8;
     position.y += stepState ? value : -value;
-    if (Math.abs(position.y) > 12) this.stepState = !stepState;
+    if (Math.abs(position.y) > 12) {
+      this.stepState = !stepState;
+
+      this.stepState && playRandomFootstep();
+    }
   }
 
   public isMoving() {

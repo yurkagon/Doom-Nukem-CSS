@@ -1,11 +1,11 @@
 import Player from "classes/Player";
 import Item from "classes/Item";
-import Sound from "sound";
+import Sound from "classes/Sound";
 
 import { chance } from "helpers";
 import sleep from "utils/sleep";
 
-import medkitVoice from "sound/data/voice/medkitVoice";
+import medkitVoice from "sounds/voice/medkitVoice";
 
 import "./style.scss";
 

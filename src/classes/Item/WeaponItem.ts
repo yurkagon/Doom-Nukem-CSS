@@ -1,9 +1,9 @@
 import Player from "classes/Player";
 import { WeaponType } from "classes/Player/Inventory/Weapon";
 import Item from "classes/Item";
-import Sound from "sound";
+import Sound from "classes/Sound";
 
-import weaponPickup from "sound/data/weaponPickup";
+import weaponPickup from "sounds/items/weaponPickup";
 
 abstract class WeaponItem extends Item {
   protected readonly sound: Sound = weaponPickup;

@@ -11,20 +11,7 @@ import "../style/index.scss";
 
   State.setScreen(Screen.loading);
 
-  await State.loader.loadResources({
-    images: [
-      "img/icon.png",
-      "img/splash.png",
-      "img/menu/background.png",
-      "img/background.jpg",
-      "img/hud/font.png"
-    ],
-    sounds: [
-      "sounds/menu/start_menu.flac",
-      "sounds/weapons/pistol.wav",
-      "sounds/music/main_theme.mp3"
-    ]
-  });
+  await State.loader.loadResources(UI.preloadData);
 
   State.setScreen(Screen.menu);
 })();

@@ -1,5 +1,5 @@
 import { LevelConfig } from "classes/Level";
-import { doom_e1m1 } from "sound";
+
 import { generateCoordinateNoiseValue } from "helpers";
 
 import House from "prefabs/models/House";
@@ -8,6 +8,8 @@ import Guard from "enemies/Guard";
 import Zombie from "enemies/Zombie";
 import MedkitItem from "items/MedkitItem";
 import ShotgunItem from "items/ShotgunItem";
+
+import doom_e1m1 from "sounds/music/doom_e1m1";
 
 import map from "./map";
 import preloadData from "./preloadData";

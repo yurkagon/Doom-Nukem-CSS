@@ -1,14 +1,14 @@
 import Player from "classes/Player";
 import { Distance } from "helpers";
+import Sound from "classes/Sound";
 
-import itemPickup from "sound/data/itemPickup";
+import itemPickup from "sounds/items/itemPickup";
 
 import Sprite from "../Sprite";
 
 import { Props } from "./types";
 
 import "./style.scss";
-import Sound from "sound";
 
 class Item extends Sprite {
   private static readonly DISTANCE_TO_PICK = 150;
