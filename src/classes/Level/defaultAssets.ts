@@ -1,23 +1,33 @@
 import { ResourcesData } from "State";
 
-import { step1Url, step2Url, step3Url } from "sounds/player/steps";
+import shotgun from "ui/screens/Game/Weapon/weapon_styles/shotgun.png";
+import pistol from "ui/screens/Game/Weapon/weapon_styles/pistol.png";
+import guard from "enemies/Guard/guard.png";
+import zombie from "enemies/Zombie/zombie.png";
+import medkitItem from "items/MedkitItem/medkit.png";
+import shotgunItem from "items/ShotgunItem/shotgun.png";
+import pistolItem from "items/PistolItem/pistol.png";
+import hudFace from "ui/screens/Game/HUD/HealthBar/Face/face.png";
 
+import grayWall from "classes/Wall/textures/gray.png";
+
+import { step1Url, step2Url, step3Url } from "sounds/player/steps";
 import { pistol_shot_url } from "sounds/weapons/pistol_shot";
 import { shotgun_shot_url } from "sounds/weapons/shotgun_shot";
-
 import { itemPickUpUrl } from "sounds/items/itemPickup";
 import { weaponPickupUrl } from "sounds/items/weaponPickup";
 
 const data: ResourcesData = {
   images: [
-    "img/weapons/shotgun.png",
-    "img/weapons/pistol.png",
-    "img/enemy/guard.png",
-    "img/enemy/zombie.png",
-    "img/items/medkit.png",
-    "img/items/shotgun.png",
-    "img/items/pistol.png",
-    "img/hud/face.png"
+    shotgun,
+    pistol,
+    guard,
+    zombie,
+    medkitItem,
+    shotgunItem,
+    pistolItem,
+    hudFace,
+    grayWall
   ],
   sounds: [
     itemPickUpUrl,

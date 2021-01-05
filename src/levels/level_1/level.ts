@@ -2,7 +2,7 @@ import { LevelConfig } from "classes/Level";
 
 import { generateCoordinateNoiseValue } from "helpers";
 
-import House from "prefabs/models/House";
+import House from "models/House";
 
 import Guard from "enemies/Guard";
 import Zombie from "enemies/Zombie";
@@ -10,6 +10,9 @@ import MedkitItem from "items/MedkitItem";
 import ShotgunItem from "items/ShotgunItem";
 
 import doom_e1m1 from "sounds/music/doom_e1m1";
+
+import skybox from "./skybox.jpg";
+import floor from "./floor.jpg";
 
 import map from "./map";
 import preloadData from "./preloadData";
@@ -22,10 +25,13 @@ const data: LevelConfig = {
     data: map
   },
   skybox: {
-    url: "img/skybox.jpg",
+    url: skybox,
     rotatingMultiplier: -15,
     positionY: -5,
     size: "60%"
+  },
+  floor: {
+    url: floor
   },
   preloadData,
   music: doom_e1m1,
