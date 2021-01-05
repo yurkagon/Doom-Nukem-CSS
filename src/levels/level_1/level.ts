@@ -2,7 +2,7 @@ import { LevelConfig } from "classes/Level";
 
 import { generateCoordinateNoiseValue } from "helpers";
 
-import House from "prefabs/models/House";
+import House from "models/House";
 
 import Guard from "enemies/Guard";
 import Zombie from "enemies/Zombie";
