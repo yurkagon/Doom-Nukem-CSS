@@ -29,7 +29,7 @@ module.exports = {
             loader: "style-loader"
           },
           {
-            loader: "css-loader?-url"
+            loader: "css-loader"
           },
           {
             loader: "sass-loader"
@@ -37,7 +37,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(wav|mp3|flac)$/i,
+        test: /\.(wav|mp3|flac|jpg|jpeg|png)$/i,
         loader: "file-loader",
         options: {
           name: "[path][name].[ext]"

@@ -1,7 +1,7 @@
 .sprite.enemy.zombie {
   height: 300px;
   width: 256px;
-  background: url(img/enemy/zombie.png) left center;
+  background: url(./zombie.png) left center;
   background-size: 4000px;
   background-position-x: -26px;
   &.default {
