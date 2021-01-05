@@ -1,8 +1,8 @@
 import { ResourcesData } from "State";
 
-import { menu_click_url } from "sound/data/menu/menu_click";
-import { duke_theme_url } from "sound/data/menu/menu_music";
-import { start_menu_url } from "sound/data/menu/start_menu";
+import { menu_click_url } from "sounds/menu/menu_click";
+import { duke_theme_url } from "sounds/menu/menu_music";
+import { start_menu_url } from "sounds/menu/start_menu";
 
 const preloadData: ResourcesData = {
   images: [

@@ -1,4 +1,4 @@
-import Sound from "sound";
+import Sound from "classes/Sound";
 
 import { CellMap } from "classes/MapHandler";
 import { SkyboxConfig } from "classes/SkyBox";

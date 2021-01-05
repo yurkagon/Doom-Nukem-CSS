@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import shotgun_shot_url from "./shotgun.wav";
 

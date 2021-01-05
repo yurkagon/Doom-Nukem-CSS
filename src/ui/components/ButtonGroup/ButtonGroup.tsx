@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { menu_click } from "sound";
+import menu_click from "sounds/menu/menu_click";
 
 import Text from "../Text";
 

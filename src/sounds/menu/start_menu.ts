@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import start_menu_url from "./start_menu.flac";
 

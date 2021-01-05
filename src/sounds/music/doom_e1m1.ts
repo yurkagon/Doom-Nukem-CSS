@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import doom_e1m1Url from "./doom_e1m1.mp3";
 

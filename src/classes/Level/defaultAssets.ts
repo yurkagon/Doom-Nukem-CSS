@@ -1,12 +1,12 @@
 import { ResourcesData } from "State";
 
-import { step1Url, step2Url, step3Url } from "sound/data/player/steps";
+import { step1Url, step2Url, step3Url } from "sounds/player/steps";
 
-import { pistol_shot_url } from "sound/data/weapons/pistol_shot";
-import { shotgun_shot_url } from "sound/data/weapons/shotgun_shot";
+import { pistol_shot_url } from "sounds/weapons/pistol_shot";
+import { shotgun_shot_url } from "sounds/weapons/shotgun_shot";
 
-import { itemPickUpUrl } from "sound/data/items/itemPickup";
-import { weaponPickupUrl } from "sound/data/items/weaponPickup";
+import { itemPickUpUrl } from "sounds/items/itemPickup";
+import { weaponPickupUrl } from "sounds/items/weaponPickup";
 
 const data: ResourcesData = {
   images: [

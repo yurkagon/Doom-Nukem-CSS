@@ -1,8 +1,8 @@
 import Player from "classes/Player";
 import { Distance } from "helpers";
-import Sound from "sound";
+import Sound from "classes/Sound";
 
-import itemPickup from "sound/data/items/itemPickup";
+import itemPickup from "sounds/items/itemPickup";
 
 import Sprite from "../Sprite";
 

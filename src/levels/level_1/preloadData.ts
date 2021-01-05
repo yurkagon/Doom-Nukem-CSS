@@ -1,7 +1,7 @@
 import { ResourcesData } from "State";
 
-import { doom_e1m1Url } from "sound/data/music/doom_e1m1";
-import { medkitVoiceUrl } from "sound/data/voice/medkitVoice";
+import { doom_e1m1Url } from "sounds/music/doom_e1m1";
+import { medkitVoiceUrl } from "sounds/voice/medkitVoice";
 
 const preloadData: ResourcesData = {
   images: [

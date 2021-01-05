@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import step1Url from "./step1.wav";
 import step2Url from "./step2.wav";

@@ -1,5 +1,5 @@
 import State from "State";
-import { playRandomFootstep } from "sound/data/player/steps";
+import { playRandomFootstep } from "sounds/player/steps";
 
 import Camera from "./Camera";
 import Scene from "../Scene";

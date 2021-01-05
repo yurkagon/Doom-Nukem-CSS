@@ -1,5 +1,5 @@
-import Sound from "sound";
-import pistol_shot from "sound/data/weapons/pistol_shot";
+import Sound from "classes/Sound";
+import pistol_shot from "sounds/weapons/pistol_shot";
 
 import Weapon from "./Weapon";
 

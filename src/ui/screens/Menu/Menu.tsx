@@ -3,7 +3,6 @@ import State, { Screen } from "State";
 
 import sleep from "utils/sleep";
 
-import Level from "classes/Level";
 import BackgroundMusic from "classes/BackgroundMusic";
 
 import ScreenWrapper from "ui/components/Screen";
@@ -11,7 +10,8 @@ import Text from "ui/components/Text";
 import ButtonGroup from "ui/components/ButtonGroup";
 import { ButtonData } from "ui/components/ButtonGroup/types";
 
-import { start_menu, menu_music } from "sound";
+import start_menu from "sounds/menu/start_menu";
+import menu_music from "sounds/menu/menu_music";
 
 import "./style.scss";
 

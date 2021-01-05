@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import pistol_shot_url from "./pistol.wav";
 

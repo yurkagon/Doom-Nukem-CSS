@@ -1,5 +1,5 @@
 import State from "State";
-import Sound from "sound";
+import Sound from "classes/Sound";
 
 class BackgroundMusic {
   private static currentMusic: HTMLAudioElement = null;

@@ -8,7 +8,7 @@ import Scene from "classes/Scene";
 import Enemy, { EnemyState } from "classes/Enemy";
 import Player from "classes/Player";
 
-import Sound from "sound";
+import Sound from "classes/Sound";
 
 import { WeaponType } from "./types";
 

@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import menu_click_url from "../weapons/pistol.wav";
 

@@ -1,4 +1,4 @@
-import Sound from "../../Sound";
+import Sound from "classes/Sound";
 
 import duke_theme_url from "./duke_theme.mp3";
 
