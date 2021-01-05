@@ -5,7 +5,6 @@ import { medkitVoiceUrl } from "sounds/voice/medkitVoice";
 
 const preloadData: ResourcesData = {
   images: [
-    "img/skybox.jpg",
     "img/floor/1.jpg",
     "img/walls/gray.png",
     "img/models/house/sidingTexture.jpg",

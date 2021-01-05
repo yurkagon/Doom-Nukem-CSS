@@ -1,4 +1,5 @@
 import State, { Screen } from "State";
+import _ from "lodash";
 
 import sleep from "utils/sleep";
 
@@ -31,8 +32,15 @@ class Level {
 
     await State.loader.loadResources({
       ...config.preloadData,
-      images: [...defaultAssets.images, ...config.preloadData.images],
-      sounds: [...defaultAssets.sounds, ...config.preloadData.sounds],
+      images: _.compact([
+        ...defaultAssets.images,
+        ...config.preloadData.images,
+        config?.skybox.url
+      ]),
+      sounds: _.compact([
+        ...defaultAssets.sounds,
+        ...config.preloadData.sounds
+      ]),
       operations: [
         {
           name: "Camera enabled",
