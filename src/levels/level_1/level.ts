@@ -11,6 +11,8 @@ import ShotgunItem from "items/ShotgunItem";
 
 import doom_e1m1 from "sounds/music/doom_e1m1";
 
+import skybox from "./skybox.jpg";
+
 import map from "./map";
 import preloadData from "./preloadData";
 
@@ -22,7 +24,7 @@ const data: LevelConfig = {
     data: map
   },
   skybox: {
-    url: "img/skybox.jpg",
+    url: skybox,
     rotatingMultiplier: -15,
     positionY: -5,
     size: "60%"
