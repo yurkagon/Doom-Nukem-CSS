@@ -9,7 +9,7 @@ import { medkitVoiceUrl } from "sounds/voice/medkitVoice";
 
 const preloadData: ResourcesData = {
   images: [houseSidingTexture, houseFrontTexture, houseSideTexture],
-  sounds: ["sounds/start.wav", medkitVoiceUrl, doom_e1m1Url]
+  sounds: [medkitVoiceUrl, doom_e1m1Url]
 };
 
 export default preloadData;
