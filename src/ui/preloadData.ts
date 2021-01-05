@@ -6,7 +6,7 @@ import { start_menu_url } from "sounds/menu/start_menu";
 
 const preloadData: ResourcesData = {
   images: [
-    "img/icon.png",
+    "icon.png",
     "img/splash.png",
     "img/menu/background.png",
     "img/background.jpg",

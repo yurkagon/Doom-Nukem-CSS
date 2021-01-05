@@ -12,6 +12,7 @@ import ShotgunItem from "items/ShotgunItem";
 import doom_e1m1 from "sounds/music/doom_e1m1";
 
 import skybox from "./skybox.jpg";
+import floor from "./floor.jpg";
 
 import map from "./map";
 import preloadData from "./preloadData";
@@ -28,6 +29,9 @@ const data: LevelConfig = {
     rotatingMultiplier: -15,
     positionY: -5,
     size: "60%"
+  },
+  floor: {
+    url: floor
   },
   preloadData,
   music: doom_e1m1,

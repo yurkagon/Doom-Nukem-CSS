@@ -9,6 +9,8 @@ import shotgunItem from "items/ShotgunItem/shotgun.png";
 import pistolItem from "items/PistolItem/pistol.png";
 import hudFace from "ui/screens/Game/HUD/HealthBar/Face/face.png";
 
+import grayWall from "classes/Wall/textures/gray.png";
+
 import { step1Url, step2Url, step3Url } from "sounds/player/steps";
 import { pistol_shot_url } from "sounds/weapons/pistol_shot";
 import { shotgun_shot_url } from "sounds/weapons/shotgun_shot";
@@ -24,7 +26,8 @@ const data: ResourcesData = {
     medkitItem,
     shotgunItem,
     pistolItem,
-    hudFace
+    hudFace,
+    grayWall
   ],
   sounds: [
     itemPickUpUrl,

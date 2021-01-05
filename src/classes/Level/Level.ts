@@ -8,6 +8,7 @@ import Player from "classes/Player";
 import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
 import BackgroundMusic from "classes/BackgroundMusic";
+import Surface from "classes/Surface";
 
 import UiWeapon from "ui/screens/Game/Weapon";
 
@@ -35,7 +36,8 @@ class Level {
       images: _.compact([
         ...defaultAssets.images,
         ...config.preloadData.images,
-        config?.skybox.url
+        config?.skybox.url,
+        config.floor.url
       ]),
       sounds: _.compact([
         ...defaultAssets.sounds,
@@ -54,6 +56,12 @@ class Level {
             if (config.skybox) {
               new SkyBox(config.skybox);
             }
+          }
+        },
+        {
+          name: "Load surfaces",
+          method: () => {
+            Surface.setFloor(config.floor.url);
           }
         },
         {
