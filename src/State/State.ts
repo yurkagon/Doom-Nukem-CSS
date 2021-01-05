@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { observable, action } from "mobx";
 import Settings from "classes/Settings";
 
@@ -12,9 +13,21 @@ class State {
 
   public loader = new Loader();
 
+  get isPointerLocked(): boolean {
+    return Boolean(document.pointerLockElement);
+  }
+
   @action
   public setScreen(screen: Screen) {
     this.screen = screen;
+  }
+
+  public lockCursor(): void {
+    if (this.isPointerLocked) return;
+
+    $(".game-ui-wrapper")
+      .get(0)
+      .requestPointerLock();
   }
 }
 

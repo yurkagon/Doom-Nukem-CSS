@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import State from "State";
 
 import Screen from "ui/components/Screen";
 
@@ -11,7 +12,7 @@ class Game extends Component {
   private ref = createRef<HTMLDivElement>();
 
   private onClick = () => {
-    this.ref.current.requestPointerLock();
+    State.lockCursor();
   };
 
   public render() {

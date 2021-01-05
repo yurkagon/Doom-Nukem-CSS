@@ -1,4 +1,5 @@
 import $ from "jquery";
+import State from "State";
 
 class Control {
   public readonly MOUSE_SENSITIVITY = 1.5;
@@ -68,13 +69,14 @@ class Control {
 
       const valueToRotate =
         (-event.movementX * MOUSE_SENSITIVITY * ROTATION_SPEED) / 20;
+
       this.mouseCallback(valueToRotate);
     });
   }
 
   private attachShot(): void {
     $("body").on("click", () => {
-      if (!this.shotCallback || !document.pointerLockElement) return;
+      if (!this.shotCallback || !State.isPointerLocked) return;
 
       this.shotCallback();
     });

@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 class Settings {
-  public productionMode = true;
+  public productionMode = false;
 
   @observable public enemy_ai: boolean = false;
 
@@ -12,7 +12,7 @@ class Settings {
 
   public infinite_ammo = true;
 
-  public skipMenuOnLoad: boolean = true;
+  public skipMenuOnLoad: boolean = false;
   public positionDebugger: boolean = false;
 
   public savePosition: boolean = true;
