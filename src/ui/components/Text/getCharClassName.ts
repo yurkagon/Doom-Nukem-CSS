@@ -26,6 +26,10 @@ const getCharClassName = (inputChar: string): string => {
       return "space";
     case ".":
       return "dot";
+    case ",":
+      return "semicolon";
+    case "!":
+      return "exclamation_mark";
 
     default:
       return char;

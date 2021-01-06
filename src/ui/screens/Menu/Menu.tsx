@@ -16,8 +16,10 @@ import menu_music from "sounds/menu/menu_music";
 import "./style.scss";
 
 class Menu extends Component {
+  private static isInitialized = false;
+
   public state = {
-    clicked: false
+    clicked: Menu.isInitialized
   };
 
   private buttonsData: ButtonData[] = [
@@ -27,24 +29,37 @@ class Menu extends Component {
         State.setScreen(Screen.level_select);
       }
     },
-    {
-      text: "Options",
-      onClick: () => {}
-    },
+
     {
       text: "About",
-      onClick: () => {}
+      onClick: () => {
+        State.setScreen(Screen.about);
+      }
+    },
+    {
+      text: "Github",
+      onClick: () => {
+        const url = "https://github.com/yurkagon/Doom-Nukem-CSS";
+
+        window.open(url, "_blank");
+      }
     },
     {
       text: "Quit",
-      onClick: () => {}
+      onClick: () => {
+        State.setScreen(Screen.fake_quit);
+      }
     }
   ];
 
   private startMenu = () => {
     const { clicked } = this.state;
 
-    if (!clicked) this.setState({ clicked: true }, () => this.onMenuInit());
+    if (!clicked)
+      this.setState({ clicked: true }, () => {
+        this.onMenuInit();
+        Menu.isInitialized = true;
+      });
   };
 
   private async onMenuInit() {

@@ -1,0 +1,13 @@
+.about {
+  background-image: url(./about.jpg);
+
+  display: flex;
+  justify-content: center;
+
+  .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    transform: scale(0.53);
+  }
+}

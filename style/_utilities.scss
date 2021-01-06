@@ -1,0 +1,13 @@
+@for $i from 1 through 20 {
+  .mb-#{$i} {
+    margin-bottom: $i * 10px;
+  }
+
+  .ml-#{$i} {
+    margin-left: $i * 10px;
+  }
+
+  .mr-#{$i} {
+    margin-right: $i * 10px;
+  }
+}

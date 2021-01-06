@@ -6,6 +6,8 @@ import Text from "../Text";
 
 import { Props } from "./types";
 
+import "./style.scss";
+
 class ButtonGroup extends Component<Props> {
   render() {
     const { data } = this.props;

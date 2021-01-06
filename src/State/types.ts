@@ -5,7 +5,9 @@ export enum Screen {
   loading,
   game,
   menu,
-  level_select
+  level_select,
+  about,
+  fake_quit
 }
 
 export interface ResourcesData {
