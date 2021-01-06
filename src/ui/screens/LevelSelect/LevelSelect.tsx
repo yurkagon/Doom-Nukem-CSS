@@ -4,6 +4,7 @@ import Level, { LevelName } from "classes/Level";
 
 import ScreenWrapper from "ui/components/Screen";
 import ButtonGroup from "ui/components/ButtonGroup";
+import BackButton from "ui/components/BackButton";
 
 import "./style.scss";
 
@@ -24,6 +25,8 @@ class LevelSelect extends Component {
               }))}
             />
           }
+
+          <BackButton />
         </div>
       </ScreenWrapper>
     );
