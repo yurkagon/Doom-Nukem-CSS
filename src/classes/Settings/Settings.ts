@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 class Settings {
-  public productionMode = false;
+  public productionMode = true;
 
   @observable public enemy_ai: boolean = false;
 

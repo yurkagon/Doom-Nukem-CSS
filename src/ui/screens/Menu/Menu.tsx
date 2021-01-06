@@ -39,7 +39,9 @@ class Menu extends Component {
     },
     {
       text: "Quit",
-      onClick: () => {}
+      onClick: () => {
+        State.setScreen(Screen.fake_quit);
+      }
     }
   ];
 
