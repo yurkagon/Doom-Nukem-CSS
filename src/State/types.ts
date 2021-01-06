@@ -6,6 +6,7 @@ export enum Screen {
   game,
   menu,
   level_select,
+  about,
   fake_quit
 }
 

@@ -29,13 +29,20 @@ class Menu extends Component {
         State.setScreen(Screen.level_select);
       }
     },
-    {
-      text: "Options",
-      onClick: () => {}
-    },
+
     {
       text: "About",
-      onClick: () => {}
+      onClick: () => {
+        State.setScreen(Screen.about);
+      }
+    },
+    {
+      text: "Github",
+      onClick: () => {
+        const url = "https://github.com/yurkagon/Doom-Nukem-CSS";
+
+        window.open(url, "_blank");
+      }
     },
     {
       text: "Quit",

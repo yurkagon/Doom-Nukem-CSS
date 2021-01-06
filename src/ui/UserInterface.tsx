@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import State, { Screen } from "State";
 
-import { Loading, Game, Menu, LevelSelect, FakeQuit } from "./screens";
+import { Loading, Game, Menu, LevelSelect, FakeQuit, About } from "./screens";
 
 @observer
 class UserInterface extends Component {
@@ -19,6 +19,8 @@ class UserInterface extends Component {
         return <Menu />;
       case Screen.level_select:
         return <LevelSelect />;
+      case Screen.about:
+        return <About />;
       case Screen.fake_quit:
         return <FakeQuit />;
       default:

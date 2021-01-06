@@ -33,6 +33,9 @@
     &.e {
       background-position: -262px 102px;
     }
+    &.f {
+      background-position: -313px 102px;
+    }
     &.g {
       background-position: -365px 102px;
     }
@@ -146,6 +149,10 @@
     }
     &.dot {
       background-position: -576px 1534px;
+      width: $default-size - 30;
+    }
+    &.semicolon {
+      background-position: -518px 1534px;
       width: $default-size - 30;
     }
     &.exclamation_mark {
