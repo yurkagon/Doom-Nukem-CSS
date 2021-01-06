@@ -14,7 +14,7 @@ class LevelSelect extends Component {
 
   public render() {
     return (
-      <ScreenWrapper className="menu">
+      <ScreenWrapper className="menu level-select">
         <div className="navigation">
           <Header>Select level</Header>
 
