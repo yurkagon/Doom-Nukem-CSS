@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
 
@@ -6,10 +8,6 @@ import data from "./data";
 import "./style.scss";
 
 class Wall extends Model {
-  protected readonly VISIBILITY_DISTANCE = 8000;
-
-  VISION_CHECKING = false;
-
   protected positionCorrector: Position = {
     x: 129,
     z: 500,
@@ -18,9 +16,13 @@ class Wall extends Model {
 
   private sides: CellInfo;
 
+  protected readonly VISIBILITY_DISTANCE = 8000;
+
+  protected VISION_CHECKING = false;
+
   constructor(position: Position, sides: CellInfo) {
     super({
-      name: "wall",
+      name: Wall.getName(sides),
       data,
       scale: {
         x: 10,
@@ -39,12 +41,82 @@ class Wall extends Model {
   start() {
     super.start();
 
-    Object.keys(this.sides).forEach(key => {
-      const space = this.sides[key];
+    _.forEach(this.sides, (space, key) => {
+      if (space === " ") return;
 
-      if (space && space === " ") return;
       this.self.find(`.face.${key}`).remove();
     });
+  }
+
+  // TODO: implement lighting
+  // update() {
+  //   super.update();
+  //   if (this.isActive) {
+  //     const distance = Distance(
+  //       Player.getInstance().getPosition(),
+  //       this.position
+  //     );
+
+  //     const brightness = +(
+  //       (this.VISIBILITY_DISTANCE - distance) /
+  //       this.VISIBILITY_DISTANCE
+  //     ).toFixed(2);
+
+  //     if (this.prevBrightness !== brightness) {
+  //       this.self.find(".face").css("filter", `brightness(${brightness})`);
+  //       this.prevBrightness = brightness;
+  //     }
+  //   }
+  // }
+
+  private static getName(cellInfo: CellInfo): string {
+    const char = cellInfo.current;
+
+    const name = ((): string => {
+      switch (char) {
+        case "#":
+          return "default";
+        case "s":
+          return "stone";
+        case "sf":
+          return "stone-face";
+        case "sn":
+          return "stone-nameplate";
+        case "se":
+          return "stone-eagle";
+        case "sl":
+          return "stone-logo";
+        case "so":
+          return "stone-old";
+        case "m1":
+          return "metal_1";
+        case "m2":
+          return "metal_2";
+        case "w":
+          return "wood";
+        case "we":
+          return "wood-eagle";
+        case "wf":
+          return "wood-face";
+        case "wl":
+          return "wood-logo";
+        case "b":
+          return "brick";
+        case "bl":
+          return "brick-logo";
+        case "p":
+          return "prison-wall";
+        case "pn":
+          return "prison-nameplate";
+        case "pb":
+          return "prison-bars";
+
+        default:
+          return "";
+      }
+    })();
+
+    return `wall ${name}`;
   }
 }
 

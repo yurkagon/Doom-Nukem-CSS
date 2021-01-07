@@ -15,7 +15,7 @@ abstract class Camera extends GameObject {
     z: 0
   };
 
-  protected speed: number = 8;
+  protected speed: number = 10;
 
   public readonly camera = $("#camera");
 

@@ -15,7 +15,7 @@ abstract class UrlLoader {
   }
 
   public getExactPath(url: string) {
-    return `${window.location.href}/${url}`;
+    return `${window.location.href}${url}`;
   }
 }
 

@@ -1,4 +1,23 @@
-export type Cell = " " | "#";
+export type Cell =
+  | " "
+  | "#"
+  | "s"
+  | "sf"
+  | "sn"
+  | "se"
+  | "sl"
+  | "so"
+  | "m1"
+  | "m2"
+  | "w"
+  | "we"
+  | "wf"
+  | "wl"
+  | "b"
+  | "bl"
+  | "p"
+  | "pn"
+  | "pb";
 
 export type CellMap = Cell[][];
 
