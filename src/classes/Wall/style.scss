@@ -6,8 +6,6 @@
     height: 100px;
 
     backface-visibility: hidden;
-
-    background: green;
   }
 
   .front {
@@ -22,22 +20,26 @@
   }
   .left {
     transform: rotateY(-90deg) translateZ(50px);
+    background-position-x: 51px;
   }
 
   &.default .face {
     background-image: url(./textures/gray.png);
-    $m: 5;
-    background-size: (11px * $m) (44px * $m);
+    background-size: 55px 220px;
   }
+
   &.stone .face {
     background-image: url(./textures/stone-1.png);
+    background-size: 50.3px 100px;
+  }
+  &.stone-old .face {
+    background-image: url(./textures/stone-6.jpg);
     background-size: 50.3px 100px;
   }
   &.stone-face .face {
     background-image: url(./textures/stone-2.jpg);
     background-size: 100.5px 100px;
   }
-
   &.stone-nameplate .face {
     background-image: url(./textures/stone-3.jpg);
     background-size: 100.5px 100px;
@@ -48,6 +50,15 @@
   }
   &.stone-logo .face {
     background-image: url(./textures/stone-5.jpg);
+    background-size: 100.5px 100px;
+  }
+
+  &.metal_1 .face {
+    background-image: url(./textures/metal-1.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.metal_2 .face {
+    background-image: url(./textures/metal-2.jpg);
     background-size: 100.5px 100px;
   }
 }

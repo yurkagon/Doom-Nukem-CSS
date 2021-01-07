@@ -9,6 +9,13 @@ import shotgunItem from "items/ShotgunItem/shotgun.png";
 import pistolItem from "items/PistolItem/pistol.png";
 import hudFace from "ui/screens/Game/HUD/HealthBar/Face/face.png";
 
+import stone1Texture from "classes/Wall/textures/stone-1.png";
+import stone2Texture from "classes/Wall/textures/stone-2.jpg";
+import stone3Texture from "classes/Wall/textures/stone-3.jpg";
+import stone4Texture from "classes/Wall/textures/stone-4.jpg";
+import stone5Texture from "classes/Wall/textures/stone-5.jpg";
+import stone6Texture from "classes/Wall/textures/stone-2.jpg";
+
 import grayWall from "classes/Wall/textures/gray.png";
 
 import { step1Url, step2Url, step3Url } from "sounds/player/steps";
@@ -27,7 +34,13 @@ const data: ResourcesData = {
     shotgunItem,
     pistolItem,
     hudFace,
-    grayWall
+    grayWall,
+    stone1Texture,
+    stone2Texture,
+    stone3Texture,
+    stone4Texture,
+    stone5Texture,
+    stone6Texture
   ],
   sounds: [
     itemPickUpUrl,

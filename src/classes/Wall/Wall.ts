@@ -65,6 +65,12 @@ class Wall extends Model {
           return "stone-eagle";
         case "sl":
           return "stone-logo";
+        case "so":
+          return "stone-old";
+        case "m1":
+          return "metal_1";
+        case "m2":
+          return "metal_2";
 
         default:
           return "";
