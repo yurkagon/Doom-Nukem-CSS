@@ -78,8 +78,22 @@
     background-image: url(./textures/wood-4.jpg);
     background-size: 100.5px 100px;
   }
+
   &.brick .face {
     background-image: url(./textures/brick.jpg);
     background-size: 50.3px 100px;
+  }
+
+  &.prison-wall .face {
+    background-image: url(./textures/prison-1.jpg);
+    background-size: 50.3px 100px;
+  }
+  &.prison-bars .face {
+    background-image: url(./textures/prison-2.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.prison-nameplate .face {
+    background-image: url(./textures/prison-3.jpg);
+    background-size: 100.5px 100px;
   }
 }

@@ -22,6 +22,9 @@ import wood2Texture from "classes/Wall/textures/wood-2.jpg";
 import wood3Texture from "classes/Wall/textures/wood-3.jpg";
 import wood4Texture from "classes/Wall/textures/wood-4.jpg";
 import brickTexture from "classes/Wall/textures/brick.jpg";
+import prison1Texture from "classes/Wall/textures/prison-1.jpg";
+import prison2Texture from "classes/Wall/textures/prison-2.jpg";
+import prison3Texture from "classes/Wall/textures/prison-3.jpg";
 
 import grayWall from "classes/Wall/textures/gray.png";
 
@@ -54,7 +57,10 @@ const data: ResourcesData = {
     wood2Texture,
     wood3Texture,
     wood4Texture,
-    brickTexture
+    brickTexture,
+    prison1Texture,
+    prison2Texture,
+    prison3Texture
   ],
   sounds: [
     itemPickUpUrl,

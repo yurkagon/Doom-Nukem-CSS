@@ -13,7 +13,10 @@ export type Cell =
   | "we"
   | "wf"
   | "wl"
-  | "b";
+  | "b"
+  | "p"
+  | "pn"
+  | "pb";
 
 export type CellMap = Cell[][];
 

@@ -81,6 +81,12 @@ class Wall extends Model {
           return "wood-logo";
         case "b":
           return "brick";
+        case "p":
+          return "prison-wall";
+        case "pn":
+          return "prison-nameplate";
+        case "pb":
+          return "prison-bars";
 
         default:
           return "";
