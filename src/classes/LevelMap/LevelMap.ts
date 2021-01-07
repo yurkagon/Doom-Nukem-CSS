@@ -26,9 +26,16 @@ class LevelMap {
 
   private attachMap() {
     this.collisionDetector.forEach((position, cellInfo) => {
-      if (cellInfo.current !== " ") {
-        new Wall(position, cellInfo);
-      }
+      if (cellInfo.current === " ") return;
+      const insideOtherWalls = ![
+        cellInfo.front,
+        cellInfo.back,
+        cellInfo.left,
+        cellInfo.right
+      ].includes(" ");
+      if (insideOtherWalls) return;
+
+      new Wall(position, cellInfo);
     });
   }
 }
