@@ -2,6 +2,9 @@ import _ from "lodash";
 
 import { CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
+import Player from "classes/Player";
+
+import { Distance } from "helpers";
 
 import data from "./data";
 
@@ -19,6 +22,9 @@ class Wall extends Model {
   protected readonly VISIBILITY_DISTANCE = 8000;
 
   protected VISION_CHECKING = false;
+
+  prevBrightness;
+  faces;
 
   constructor(position: Position, sides: CellInfo) {
     super({
@@ -46,28 +52,41 @@ class Wall extends Model {
 
       this.self.find(`.face.${key}`).remove();
     });
+
+    this.faces = this.self.find(".face");
+
+    this.updateBrightness();
   }
 
   // TODO: implement lighting
-  // update() {
-  //   super.update();
-  //   if (this.isActive) {
-  //     const distance = Distance(
-  //       Player.getInstance().getPosition(),
-  //       this.position
-  //     );
+  update() {
+    super.update();
+    if (this.isActive) {
+      this.updateBrightness();
+    }
+  }
 
-  //     const brightness = +(
-  //       (this.VISIBILITY_DISTANCE - distance) /
-  //       this.VISIBILITY_DISTANCE
-  //     ).toFixed(2);
+  updateBrightness() {
+    const distance = Distance(
+      Player.getInstance().getPosition(),
+      this.position
+    );
 
-  //     if (this.prevBrightness !== brightness) {
-  //       this.self.find(".face").css("filter", `brightness(${brightness})`);
-  //       this.prevBrightness = brightness;
-  //     }
-  //   }
-  // }
+    const brightDistance = this.VISIBILITY_DISTANCE / 2;
+
+    const brightness = (() => {
+      const value = +((brightDistance - distance) / brightDistance).toFixed(2);
+
+      return value >= 0 ? value : 0;
+    })();
+
+    console.log(brightness);
+
+    if (this.prevBrightness !== brightness) {
+      this.faces.css("filter", `brightness(${brightness})`);
+      this.prevBrightness = brightness;
+    }
+  }
 
   private static getName(cellInfo: CellInfo): string {
     const char = cellInfo.current;
