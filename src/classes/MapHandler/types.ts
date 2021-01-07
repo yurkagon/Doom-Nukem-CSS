@@ -8,7 +8,12 @@ export type Cell =
   | "sl"
   | "so"
   | "m1"
-  | "m2";
+  | "m2"
+  | "w"
+  | "we"
+  | "wf"
+  | "wl"
+  | "b";
 
 export type CellMap = Cell[][];
 

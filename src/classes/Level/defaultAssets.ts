@@ -14,7 +14,14 @@ import stone2Texture from "classes/Wall/textures/stone-2.jpg";
 import stone3Texture from "classes/Wall/textures/stone-3.jpg";
 import stone4Texture from "classes/Wall/textures/stone-4.jpg";
 import stone5Texture from "classes/Wall/textures/stone-5.jpg";
-import stone6Texture from "classes/Wall/textures/stone-2.jpg";
+import stone6Texture from "classes/Wall/textures/stone-6.jpg";
+import metal1Texture from "classes/Wall/textures/metal-1.jpg";
+import metal2Texture from "classes/Wall/textures/metal-2.jpg";
+import wood1Texture from "classes/Wall/textures/wood-1.jpg";
+import wood2Texture from "classes/Wall/textures/wood-2.jpg";
+import wood3Texture from "classes/Wall/textures/wood-3.jpg";
+import wood4Texture from "classes/Wall/textures/wood-4.jpg";
+import brickTexture from "classes/Wall/textures/brick.jpg";
 
 import grayWall from "classes/Wall/textures/gray.png";
 
@@ -40,7 +47,14 @@ const data: ResourcesData = {
     stone3Texture,
     stone4Texture,
     stone5Texture,
-    stone6Texture
+    stone6Texture,
+    metal1Texture,
+    metal2Texture,
+    wood1Texture,
+    wood2Texture,
+    wood3Texture,
+    wood4Texture,
+    brickTexture
   ],
   sounds: [
     itemPickUpUrl,

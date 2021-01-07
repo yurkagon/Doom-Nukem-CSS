@@ -71,6 +71,16 @@ class Wall extends Model {
           return "metal_1";
         case "m2":
           return "metal_2";
+        case "w":
+          return "wood";
+        case "we":
+          return "wood-eagle";
+        case "wf":
+          return "wood-face";
+        case "wl":
+          return "wood-logo";
+        case "b":
+          return "brick";
 
         default:
           return "";

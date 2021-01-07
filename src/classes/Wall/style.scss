@@ -61,4 +61,25 @@
     background-image: url(./textures/metal-2.jpg);
     background-size: 100.5px 100px;
   }
+
+  &.wood .face {
+    background-image: url(./textures/wood-1.jpg);
+    background-size: 50.3px 100px;
+  }
+  &.wood-eagle .face {
+    background-image: url(./textures/wood-2.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.wood-face .face {
+    background-image: url(./textures/wood-3.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.wood-logo .face {
+    background-image: url(./textures/wood-4.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.brick .face {
+    background-image: url(./textures/brick.jpg);
+    background-size: 50.3px 100px;
+  }
 }
