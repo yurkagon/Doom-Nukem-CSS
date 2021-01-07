@@ -102,6 +102,8 @@ class Wall extends Model {
           return "wood-logo";
         case "b":
           return "brick";
+        case "bl":
+          return "brick-logo";
         case "p":
           return "prison-wall";
         case "pn":

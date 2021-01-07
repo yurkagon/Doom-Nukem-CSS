@@ -21,7 +21,7 @@ import wood1Texture from "classes/Wall/textures/wood-1.jpg";
 import wood2Texture from "classes/Wall/textures/wood-2.jpg";
 import wood3Texture from "classes/Wall/textures/wood-3.jpg";
 import wood4Texture from "classes/Wall/textures/wood-4.jpg";
-import brickTexture from "classes/Wall/textures/brick.jpg";
+import brick1Texture from "classes/Wall/textures/brick-1.jpg";
 import prison1Texture from "classes/Wall/textures/prison-1.jpg";
 import prison2Texture from "classes/Wall/textures/prison-2.jpg";
 import prison3Texture from "classes/Wall/textures/prison-3.jpg";
@@ -57,7 +57,7 @@ const data: ResourcesData = {
     wood2Texture,
     wood3Texture,
     wood4Texture,
-    brickTexture,
+    brick1Texture,
     prison1Texture,
     prison2Texture,
     prison3Texture

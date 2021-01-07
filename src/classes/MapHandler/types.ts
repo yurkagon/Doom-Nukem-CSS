@@ -14,6 +14,7 @@ export type Cell =
   | "wf"
   | "wl"
   | "b"
+  | "bl"
   | "p"
   | "pn"
   | "pb";

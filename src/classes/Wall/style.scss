@@ -86,8 +86,12 @@
   }
 
   &.brick .face {
-    background-image: url(./textures/brick.jpg);
+    background-image: url(./textures/brick-1.jpg);
     background-size: 50.3px 100px;
+  }
+  &.brick-logo .face {
+    background-image: url(./textures/brick-2.jpg);
+    background-size: 100.5px 100px;
   }
 
   &.prison-wall .face {
