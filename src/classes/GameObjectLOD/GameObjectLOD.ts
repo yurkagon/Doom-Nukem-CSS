@@ -1,6 +1,7 @@
 import $ from "jquery";
 import Player from "classes/Player";
 import GameObject from "classes/GameObject";
+import State from "State";
 
 import { Distance } from "helpers";
 
@@ -20,16 +21,58 @@ abstract class GameObjectLOD extends GameObject {
 
   private distanceToPlayer: number;
 
-  start() {
+  private darknessLevel: number;
+
+  public start() {
     this.isActive = true;
     this.isVisible = true;
   }
 
-  update() {
+  public update() {
+    State.nightmode && this.darknessLevelUpdater();
+
     this.renderCount++;
     if (GameObjectLOD.SKIP_RENDER >= this.renderCount) return;
     this.renderCount = 0;
 
+    this.visionStatusUpdater();
+  }
+
+  public active(): boolean {
+    return this.isActive;
+  }
+
+  public getDistanceToPlayer(): number {
+    return this.distanceToPlayer;
+  }
+
+  private darknessLevelUpdater(): void {
+    if (!this.isActive) return;
+
+    const distance = Distance(
+      Player.getInstance().getPosition(),
+      this.position
+    );
+
+    const darknessDistance = this.VISIBILITY_DISTANCE / 2;
+
+    const darkness = (() => {
+      const value = +((darknessDistance - distance) / darknessDistance).toFixed(
+        2
+      );
+
+      return value >= 0 ? value : 0;
+    })();
+
+    if (this.darknessLevel !== darkness) {
+      this.onDarknessUpdate(darkness);
+      this.darknessLevel = darkness;
+    }
+  }
+
+  protected onDarknessUpdate(darkness: number) {}
+
+  private visionStatusUpdater(): void {
     const player = Player.getInstance();
     const distance = Distance(player.getPosition(), this.getPosition());
 
@@ -42,14 +85,6 @@ abstract class GameObjectLOD extends GameObject {
       isClose || (shouldBeActive && this.isVisibleByPlayer());
 
     this.setStatus(shouldBeActive, shouldBeVisible);
-  }
-
-  public active(): boolean {
-    return this.isActive;
-  }
-
-  public getDistanceToPlayer(): number {
-    return this.distanceToPlayer;
   }
 
   private isVisibleByPlayer(): boolean {

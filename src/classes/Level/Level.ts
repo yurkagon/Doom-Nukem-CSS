@@ -31,13 +31,15 @@ class Level {
 
     State.loader.addLoadedItem("Initialization resources");
 
+    State.nightmode = Boolean(config.nightmode);
+
     await State.loader.loadResources({
       ...config.preloadData,
       images: _.compact([
         ...defaultAssets.images,
         ...config.preloadData.images,
-        config?.skybox.url,
-        config.floor.url
+        config?.skybox?.url,
+        config?.floor?.url
       ]),
       sounds: _.compact([
         ...defaultAssets.sounds,
@@ -61,7 +63,9 @@ class Level {
         {
           name: "Load surfaces",
           method: () => {
-            Surface.setFloor(config.floor.url);
+            if (config.floor) {
+              Surface.setFloor(config.floor.url);
+            }
           }
         },
         {

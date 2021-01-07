@@ -3,6 +3,8 @@ import { observer } from "mobx-react";
 import $ from "jquery";
 import cn from "classnames";
 
+import State from "State";
+
 import Player from "classes/Player";
 
 import "./style.scss";
@@ -42,7 +44,12 @@ class Weapon extends Component {
     const { weapon, isChangingWeapon, weaponChangingTime } = player.inventory;
 
     return (
-      <div className="weapon-container" ref={Weapon.weaponBouncingContainerRef}>
+      <div
+        className={cn("weapon-container", State.nightmode && "nightmode", {
+          "shot-light": State.nightmode && weapon.isShooting
+        })}
+        ref={Weapon.weaponBouncingContainerRef}
+      >
         <div
           className={cn("changing-weapon", isChangingWeapon && "active")}
           style={{ animationDuration: `${weaponChangingTime}ms` }}

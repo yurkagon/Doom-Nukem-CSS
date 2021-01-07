@@ -7,11 +7,11 @@ import Loader from "./Loader";
 import { Screen } from "./types";
 
 class State {
-  public readonly settings: Settings = new Settings();
-
   @observable public screen = Screen.loading;
+  @observable public nightmode = true;
 
-  public loader = new Loader();
+  public readonly settings: Settings = new Settings();
+  public readonly loader: Loader = new Loader();
 
   get isPointerLocked(): boolean {
     return Boolean(document.pointerLockElement);

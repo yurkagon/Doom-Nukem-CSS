@@ -7,7 +7,7 @@ import "../style/index.scss";
 (async () => {
   UI.init();
 
-  if (State.settings.skipMenuOnLoad) return Level.load("level_1");
+  if (State.settings.skipMenuOnLoad) return Level.load("level_2");
 
   State.setScreen(Screen.loading);
 

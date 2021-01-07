@@ -4,7 +4,7 @@ import { CellMap } from "classes/MapHandler";
 import { SkyboxConfig } from "classes/SkyBox";
 import { ResourcesData } from "State";
 
-export type LevelName = "level_1";
+export type LevelName = "level_1" | "level_2";
 
 export interface MapConfig {
   data: CellMap;
@@ -17,11 +17,12 @@ export interface LevelConfig {
   skybox?: SkyboxConfig;
   preloadData: ResourcesData;
   music?: Sound;
-  floor: {
+  floor?: {
     url: string;
   };
   playerStartPosition: {
     data: Position;
     rotation?: number;
   };
+  nightmode?: boolean;
 }

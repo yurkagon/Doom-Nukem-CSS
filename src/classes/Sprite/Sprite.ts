@@ -17,7 +17,7 @@ class Sprite extends GameObjectLOD {
 
   private config: SpriteConfig;
 
-  protected VISIBILITY_DISTANCE = 6000;
+  protected VISIBILITY_DISTANCE = 8000;
 
   constructor(config: SpriteConfig) {
     super(config.position);
@@ -25,7 +25,7 @@ class Sprite extends GameObjectLOD {
     this.config = config;
   }
 
-  start() {
+  public start() {
     const { type, position, classType = "" } = this.config;
 
     this.spriteElement.addClass(`sprite ${classType} ${type}`);
@@ -36,7 +36,7 @@ class Sprite extends GameObjectLOD {
     super.start();
   }
 
-  update() {
+  public update() {
     if (this.isActive) {
       const player = Player.getInstance();
 
@@ -50,11 +50,15 @@ class Sprite extends GameObjectLOD {
     super.update();
   }
 
-  destroy() {
+  public destroy() {
     this.spriteElement.remove();
     this.self.remove();
 
     super.destroy();
+  }
+
+  protected onDarknessUpdate(darkness: number): void {
+    this.spriteElement.css("filter", `brightness(${darkness})`);
   }
 }
 

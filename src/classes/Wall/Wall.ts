@@ -15,6 +15,7 @@ class Wall extends Model {
   };
 
   private sides: CellInfo;
+  private faces: JQuery<HTMLElement>;
 
   protected readonly VISIBILITY_DISTANCE = 8000;
 
@@ -48,26 +49,13 @@ class Wall extends Model {
     });
   }
 
-  // TODO: implement lighting
-  // update() {
-  //   super.update();
-  //   if (this.isActive) {
-  //     const distance = Distance(
-  //       Player.getInstance().getPosition(),
-  //       this.position
-  //     );
+  private getFaces() {
+    if (!this.faces) {
+      this.faces = this.self.find(".face");
+    }
 
-  //     const brightness = +(
-  //       (this.VISIBILITY_DISTANCE - distance) /
-  //       this.VISIBILITY_DISTANCE
-  //     ).toFixed(2);
-
-  //     if (this.prevBrightness !== brightness) {
-  //       this.self.find(".face").css("filter", `brightness(${brightness})`);
-  //       this.prevBrightness = brightness;
-  //     }
-  //   }
-  // }
+    return this.faces;
+  }
 
   private static getName(cellInfo: CellInfo): string {
     const char = cellInfo.current;
@@ -117,6 +105,12 @@ class Wall extends Model {
     })();
 
     return `wall ${name}`;
+  }
+
+  protected onDarknessUpdate(darkness: number): void {
+    const faces = this.getFaces();
+
+    faces.css("filter", `brightness(${darkness})`);
   }
 }
 
