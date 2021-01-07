@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { Cell, CellInfo } from "classes/MapHandler";
+import { CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
 
 import data from "./data";
@@ -47,6 +47,27 @@ class Wall extends Model {
       this.self.find(`.face.${key}`).remove();
     });
   }
+
+  // TODO: implement lighting
+  // update() {
+  //   super.update();
+  //   if (this.isActive) {
+  //     const distance = Distance(
+  //       Player.getInstance().getPosition(),
+  //       this.position
+  //     );
+
+  //     const brightness = +(
+  //       (this.VISIBILITY_DISTANCE - distance) /
+  //       this.VISIBILITY_DISTANCE
+  //     ).toFixed(2);
+
+  //     if (this.prevBrightness !== brightness) {
+  //       this.self.find(".face").css("filter", `brightness(${brightness})`);
+  //       this.prevBrightness = brightness;
+  //     }
+  //   }
+  // }
 
   private static getName(cellInfo: CellInfo): string {
     const char = cellInfo.current;

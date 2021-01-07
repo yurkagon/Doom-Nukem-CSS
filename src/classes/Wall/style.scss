@@ -8,6 +8,10 @@
     backface-visibility: hidden;
   }
 
+  @mixin pseudo-shadow {
+    filter: brightness(0.5);
+  }
+
   .front {
     transform: rotateY(0deg) translateZ(50px);
   }
@@ -17,10 +21,12 @@
   .back {
     transform: rotateY(180deg) translateZ(50px);
     background-position-x: 51px;
+    @include pseudo-shadow;
   }
   .left {
     transform: rotateY(-90deg) translateZ(50px);
     background-position-x: 51px;
+    @include pseudo-shadow;
   }
 
   &.default .face {
