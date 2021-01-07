@@ -1,4 +1,6 @@
-import { CellInfo } from "classes/MapHandler";
+import _ from "lodash";
+
+import { Cell, CellInfo } from "classes/MapHandler";
 import Model from "classes/Model";
 
 import data from "./data";
@@ -6,10 +8,6 @@ import data from "./data";
 import "./style.scss";
 
 class Wall extends Model {
-  protected readonly VISIBILITY_DISTANCE = 8000;
-
-  VISION_CHECKING = false;
-
   protected positionCorrector: Position = {
     x: 129,
     z: 500,
@@ -18,9 +16,13 @@ class Wall extends Model {
 
   private sides: CellInfo;
 
+  protected readonly VISIBILITY_DISTANCE = 8000;
+
+  protected VISION_CHECKING = false;
+
   constructor(position: Position, sides: CellInfo) {
     super({
-      name: "wall",
+      name: Wall.getName(sides),
       data,
       scale: {
         x: 10,
@@ -39,12 +41,37 @@ class Wall extends Model {
   start() {
     super.start();
 
-    Object.keys(this.sides).forEach(key => {
-      const space = this.sides[key];
+    _.forEach(this.sides, (space, key) => {
+      if (space === " ") return;
 
-      if (space && space === " ") return;
       this.self.find(`.face.${key}`).remove();
     });
+  }
+
+  private static getName(cellInfo: CellInfo): string {
+    const char = cellInfo.current;
+
+    const name = ((): string => {
+      switch (char) {
+        case "#":
+          return "default";
+        case "s":
+          return "stone";
+        case "sf":
+          return "stone-face";
+        case "sn":
+          return "stone-nameplate";
+        case "se":
+          return "stone-eagle";
+        case "sl":
+          return "stone-logo";
+
+        default:
+          return "";
+      }
+    })();
+
+    return `wall ${name}`;
   }
 }
 

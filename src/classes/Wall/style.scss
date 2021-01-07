@@ -1,16 +1,13 @@
 .wall {
   transform-style: preserve-3d;
-
   .face {
     position: absolute;
     width: 100px;
     height: 100px;
 
-    background: url(./textures/gray.png);
-    $m: 5;
-    background-size: (11px * $m) (44px * $m);
-
     backface-visibility: hidden;
+
+    background: green;
   }
 
   .front {
@@ -21,8 +18,36 @@
   }
   .back {
     transform: rotateY(180deg) translateZ(50px);
+    background-position-x: 51px;
   }
   .left {
     transform: rotateY(-90deg) translateZ(50px);
+  }
+
+  &.default .face {
+    background-image: url(./textures/gray.png);
+    $m: 5;
+    background-size: (11px * $m) (44px * $m);
+  }
+  &.stone .face {
+    background-image: url(./textures/stone-1.png);
+    background-size: 50.3px 100px;
+  }
+  &.stone-face .face {
+    background-image: url(./textures/stone-2.jpg);
+    background-size: 100.5px 100px;
+  }
+
+  &.stone-nameplate .face {
+    background-image: url(./textures/stone-3.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.stone-eagle .face {
+    background-image: url(./textures/stone-4.jpg);
+    background-size: 100.5px 100px;
+  }
+  &.stone-logo .face {
+    background-image: url(./textures/stone-5.jpg);
+    background-size: 100.5px 100px;
   }
 }

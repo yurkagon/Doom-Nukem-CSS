@@ -119,9 +119,7 @@ class CollisionDetector extends MapHandler {
       z: currentPosition.z + delta.z
     };
 
-    if (
-      this.getSymbolByLocalPosition(this.getLocalPosition(newPosition)) === "#"
-    ) {
+    if (this.isCollidedByLocalPosition(this.getLocalPosition(newPosition))) {
       newPosition = {
         x: currentPosition.x - delta.x * 2,
         z: currentPosition.z - delta.z * 2
