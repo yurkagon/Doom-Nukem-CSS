@@ -8,7 +8,7 @@ import { Screen } from "./types";
 
 class State {
   @observable public screen = Screen.loading;
-  @observable public nightmode = false;
+  @observable public nightmode = true;
 
   public readonly settings: Settings = new Settings();
   public readonly loader: Loader = new Loader();

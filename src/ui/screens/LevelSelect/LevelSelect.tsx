@@ -10,7 +10,16 @@ import BackButton from "ui/components/BackButton";
 import "./style.scss";
 
 class LevelSelect extends Component {
-  private levelNames: LevelName[] = ["level_1"];
+  private levelNames: { name: LevelName; text: string }[] = [
+    {
+      name: "level_1",
+      text: "Wolfenstein castle"
+    },
+    {
+      name: "level_2",
+      text: "Long night"
+    }
+  ];
 
   public render() {
     return (
@@ -20,10 +29,10 @@ class LevelSelect extends Component {
 
           {
             <ButtonGroup
-              data={this.levelNames.map(levelName => ({
-                text: levelName,
+              data={this.levelNames.map(data => ({
+                text: data.text,
                 onClick: () => {
-                  Level.load(levelName);
+                  Level.load(data.name);
                 }
               }))}
             />

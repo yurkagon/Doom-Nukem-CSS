@@ -1,6 +1,7 @@
 import $ from "jquery";
 import Player from "classes/Player";
 import GameObject from "classes/GameObject";
+import State from "State";
 
 import { Distance } from "helpers";
 
@@ -28,7 +29,7 @@ abstract class GameObjectLOD extends GameObject {
   }
 
   public update() {
-    this.darknessLevelUpdater();
+    State.nightmode && this.darknessLevelUpdater();
 
     this.renderCount++;
     if (GameObjectLOD.SKIP_RENDER >= this.renderCount) return;

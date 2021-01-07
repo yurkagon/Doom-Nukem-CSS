@@ -31,6 +31,8 @@ class Level {
 
     State.loader.addLoadedItem("Initialization resources");
 
+    State.nightmode = Boolean(config.nightmode);
+
     await State.loader.loadResources({
       ...config.preloadData,
       images: _.compact([

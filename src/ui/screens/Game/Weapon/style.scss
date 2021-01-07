@@ -3,6 +3,26 @@
   width: 100%;
   height: 100%;
 
+  &.nightmode {
+    filter: brightness(0.3);
+
+    &.shot-light {
+      animation: shot-light 0.5s;
+
+      @keyframes shot-light {
+        0% {
+          filter: brightness(0.3);
+        }
+        50% {
+          filter: brightness(1);
+        }
+        100% {
+          filter: brightness(0.3);
+        }
+      }
+    }
+  }
+
   .weapon {
     position: absolute;
     background-position-x: left;

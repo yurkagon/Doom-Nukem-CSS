@@ -24,4 +24,5 @@ export interface LevelConfig {
     data: Position;
     rotation?: number;
   };
+  nightmode?: boolean;
 }

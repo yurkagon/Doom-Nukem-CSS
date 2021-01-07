@@ -29,7 +29,7 @@ const data: LevelConfig = {
     positionY: 0,
     size: "1500px 760px"
   },
-
+  nightmode: true,
   preloadData,
   music: doom_e1m1,
   playerStartPosition: {
