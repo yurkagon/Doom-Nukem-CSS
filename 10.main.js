@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{118:function(e,s,p){"use strict";p.r(s),s.default=p.p+"src/levels/level_1/skybox.jpg"}}]);
