@@ -2,14 +2,12 @@ import { LevelConfig } from "classes/Level";
 
 import { generateCoordinateNoiseValue } from "helpers";
 
-import House from "models/House";
-
 import Guard from "enemies/Guard";
 import Zombie from "enemies/Zombie";
 import MedkitItem from "items/MedkitItem";
 import ShotgunItem from "items/ShotgunItem";
 
-import doom_e1m1 from "sounds/music/doom_e1m1";
+import dark_theme from "sounds/music/dark_theme";
 
 import skybox from "./skybox.jpg";
 
@@ -31,7 +29,7 @@ const data: LevelConfig = {
   },
   nightmode: true,
   preloadData,
-  music: doom_e1m1,
+  music: dark_theme,
   playerStartPosition: {
     data: { x: 427.26237372717844, z: 1879.027509262054 },
     rotation: 30
