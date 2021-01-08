@@ -110,7 +110,7 @@ class Wall extends Model {
   protected onDarknessUpdate(darkness: number): void {
     const faces = this.getFaces();
 
-    faces.css("filter", `brightness(${darkness})`);
+    faces.css("background-color", `rgba(0, 0, 0, ${1 - darkness})`);
   }
 }
 

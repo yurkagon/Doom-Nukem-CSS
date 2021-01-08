@@ -6,10 +6,12 @@
     height: 100px;
 
     backface-visibility: hidden;
+
+    background-blend-mode: multiply;
   }
 
   @mixin pseudo-shadow {
-    filter: brightness(0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .front {

@@ -31,6 +31,7 @@ class Sprite extends GameObjectLOD {
     this.spriteElement.addClass(`sprite ${classType} ${type}`);
     this.spriteElement.css("transform", generateTranslate3d(position));
     this.self.append(this.spriteElement);
+    this.spriteElement.append(`<div class="texture"></div>`);
     Sprite.spriteElementList.append(this.self);
 
     super.start();
