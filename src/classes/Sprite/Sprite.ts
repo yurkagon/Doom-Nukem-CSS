@@ -10,14 +10,15 @@ import { SpriteConfig } from "./types";
 import "./style.scss";
 
 class Sprite extends GameObjectLOD {
-  private static readonly spriteElementList: JQuery = $(".sprites");
-
-  protected readonly spriteElement: JQuery = $("<div/>");
-  readonly self: JQuery = $("<div/>").addClass("sprite-cont");
+  protected readonly self: JQuery = $("<div/>").addClass("sprite-cont");
+  protected readonly rotationContainer: JQuery = $("<div/>");
+  protected readonly texture: JQuery = $("<div/>").addClass("texture");
 
   private config: SpriteConfig;
 
   protected VISIBILITY_DISTANCE = 8000;
+
+  private static readonly spriteListContainer: JQuery = $(".sprites");
 
   constructor(config: SpriteConfig) {
     super(config.position);
@@ -28,11 +29,14 @@ class Sprite extends GameObjectLOD {
   public start() {
     const { type, position, classType = "" } = this.config;
 
-    this.spriteElement.addClass(`sprite ${classType} ${type}`);
-    this.spriteElement.css("transform", generateTranslate3d(position));
-    this.self.append(this.spriteElement);
-    this.spriteElement.append(`<div class="texture"></div>`);
-    Sprite.spriteElementList.append(this.self);
+    this.self.css("transform", generateTranslate3d(position));
+
+    this.rotationContainer.addClass(`sprite ${classType} ${type}`);
+    this.rotationContainer.append(this.texture);
+
+    this.self.append(this.rotationContainer);
+
+    Sprite.spriteListContainer.append(this.self);
 
     super.start();
   }
@@ -45,21 +49,21 @@ class Sprite extends GameObjectLOD {
       const rotate3d = `rotate3d(0, 1, 0, ${-player.rotation.y}deg)`;
 
       this.self.css("transform", translate3d);
-      this.spriteElement.css("transform", rotate3d);
+      this.rotationContainer.css("transform", rotate3d);
     }
 
     super.update();
   }
 
   public destroy() {
-    this.spriteElement.remove();
+    this.rotationContainer.remove();
     this.self.remove();
 
     super.destroy();
   }
 
   protected onDarknessUpdate(darkness: number): void {
-    this.spriteElement.css("filter", `brightness(${darkness})`);
+    this.texture.css("filter", `brightness(${darkness})`);
   }
 }
 

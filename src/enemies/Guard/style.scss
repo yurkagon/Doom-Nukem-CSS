@@ -1,58 +1,62 @@
-.sprite.enemy.guard .texture {
+.sprite.enemy.guard {
   height: 300px;
   width: 256px;
-  background: url(./guard.png) left center;
-  background-size: 4000px;
-  background-position-x: -26px;
-  &.default {
+
+  .texture {
+    background: url(./guard.png) left center;
+    background-size: 4000px;
     background-position-x: -26px;
-  }
-  &.walk {
-    animation: walk 1.1s steps(1) infinite;
-    @keyframes walk {
-      0% {
-        background-position: -330px;
-      }
-      25% {
-        background-position: -635px;
-      }
-      50% {
-        background-position: -940px;
-      }
-      75% {
-        background-position: -1245px;
+
+    &.default {
+      background-position-x: -26px;
+    }
+    &.walk {
+      animation: walk 1.1s steps(1) infinite;
+      @keyframes walk {
+        0% {
+          background-position: -330px;
+        }
+        25% {
+          background-position: -635px;
+        }
+        50% {
+          background-position: -940px;
+        }
+        75% {
+          background-position: -1245px;
+        }
       }
     }
-  }
-  &.dead {
-    background-position: -3132px;
-    animation: dead 1s steps(1);
-    @keyframes dead {
-      0% {
-        background-position: -1558px;
-      }
-      20% {
-        background-position: -1880px;
-      }
-      40% {
-        background-position: -2210px;
-      }
-      60% {
-        background-position: -2522px;
-      }
-      80% {
-        background-position: -3132px;
+    &.dead {
+      background-position: -3132px;
+      animation: dead 1s steps(1);
+      @keyframes dead {
+        0% {
+          background-position: -1558px;
+        }
+        20% {
+          background-position: -1880px;
+        }
+        40% {
+          background-position: -2210px;
+        }
+        60% {
+          background-position: -2522px;
+        }
+        80% {
+          background-position: -3132px;
+        }
       }
     }
-  }
-  &.attack {
-    animation: attack 1.1s steps(1) infinite;
-    @keyframes attack {
-      0% {
-        background-position: -3412px;
-      }
-      50% {
-        background-position: -3720px;
+    &.attack {
+      animation: attack 1.1s steps(1) infinite;
+      @keyframes attack {
+        0% {
+          background-position: -3412px;
+        }
+        50% {
+          background-position: -3720px;
+        }
       }
     }
   }

@@ -64,6 +64,7 @@ class Control {
   private attachMouseMove(): void {
     document.addEventListener("mousemove", event => {
       if (!this.mouseCallback) return;
+      if (!State.isPointerLocked) return;
 
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = this;
 

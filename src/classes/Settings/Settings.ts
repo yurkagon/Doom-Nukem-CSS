@@ -1,9 +1,10 @@
+import { LevelName } from "classes/Level";
 import { observable } from "mobx";
 
 class Settings {
   public productionMode = false;
 
-  @observable public enemy_ai: boolean = false;
+  @observable public enemy_ai: boolean = true;
 
   @observable public noclip: boolean = false;
   @observable public godmode: boolean = true;
@@ -13,6 +14,7 @@ class Settings {
   public infinite_ammo = true;
 
   public skipMenuOnLoad: boolean = true;
+  public developmentAutoLoadLevel: LevelName = "level_1";
   public positionDebugger: boolean = false;
 
   public savePosition: boolean = true;

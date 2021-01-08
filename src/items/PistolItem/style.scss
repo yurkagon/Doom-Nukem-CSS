@@ -1,7 +1,5 @@
-.sprite.item {
-  &.pistol {
-    background: url(./pistol.png);
-    background-size: 240px;
-    background-position-y: 50px;
-  }
+.sprite.item.pistol .texture {
+  background: url(./pistol.png);
+  background-size: 240px;
+  background-position-y: 50px;
 }

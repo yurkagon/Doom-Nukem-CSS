@@ -4,10 +4,20 @@
 
     .sprite {
       position: absolute;
+      // background-color: white;
 
-      backface-visibility: hidden;
+      .texture {
+        position: absolute;
 
-      background-repeat: no-repeat !important;
+        backface-visibility: hidden;
+
+        background-repeat: no-repeat !important;
+
+        transform: translate(-1px, 0);
+
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }

@@ -22,7 +22,7 @@ abstract class Weapon {
   @observable public bulletCount: number = 0;
   @observable public isShooting: boolean = false;
 
-  private readonly maxShootableFov: number = 30;
+  private readonly maxShootableFov: number = 40;
   protected added: boolean = false;
 
   public async shot(): Promise<void> {

@@ -77,8 +77,8 @@ abstract class Enemy extends Sprite {
   }
 
   public setState(state: EnemyState) {
-    this.spriteElement.removeClass(this.currentState);
-    this.spriteElement.addClass(state);
+    this.texture.removeClass(this.currentState);
+    this.texture.addClass(state);
     this.currentState = state;
 
     switch (this.currentState) {
