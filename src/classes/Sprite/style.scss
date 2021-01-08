@@ -1,23 +1,21 @@
-.sprites {
-  .sprite-cont {
-    transform-style: preserve-3d;
+.sprite-cont {
+  transform-style: preserve-3d;
 
-    .sprite {
-      position: absolute;
-      // background-color: white;
-
-      .texture {
-        position: absolute;
-
-        backface-visibility: hidden;
-
-        background-repeat: no-repeat !important;
-
-        transform: translate(-1px, 0);
-
-        height: 100%;
-        width: 100%;
-      }
-    }
+  .sprite {
+    position: absolute;
+    backface-visibility: hidden;
   }
+}
+
+.sprite-texture {
+  position: absolute;
+
+  backface-visibility: hidden;
+
+  background-repeat: no-repeat !important;
+
+  transform: translate(-1px, 0);
+
+  height: 100%;
+  width: 100%;
 }

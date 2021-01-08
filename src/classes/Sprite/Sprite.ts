@@ -12,7 +12,7 @@ import "./style.scss";
 class Sprite extends GameObjectLOD {
   protected readonly self: JQuery = $("<div/>").addClass("sprite-cont");
   protected readonly rotationContainer: JQuery = $("<div/>");
-  protected readonly texture: JQuery = $("<div/>").addClass("texture");
+  protected readonly texture: JQuery = $("<div/>").addClass("sprite-texture");
 
   private config: SpriteConfig;
 

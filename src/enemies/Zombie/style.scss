@@ -1,8 +1,8 @@
-.sprite.enemy.zombie {
+.zombie {
   height: 300px;
   width: 256px;
 
-  .texture {
+  .sprite-texture {
     background: url(./zombie.png) left center;
     background-size: 4000px;
     background-position-x: -26px;

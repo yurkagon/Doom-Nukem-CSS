@@ -1,17 +1,8 @@
 .wall {
   transform-style: preserve-3d;
-  .face {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-
-    backface-visibility: hidden;
-
-    background-blend-mode: multiply;
-  }
 
   @mixin pseudo-shadow {
-    // background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .front {
@@ -31,81 +22,91 @@
     @include pseudo-shadow;
   }
 
-  &.default .face {
+  &.default .wall__face {
     background-image: url(./textures/gray.png);
     background-size: 55px 220px;
   }
 
-  &.stone .face {
+  &.stone .wall__face {
     background-image: url(./textures/stone-1.png);
     background-size: 50.3px 100px;
   }
-  &.stone-old .face {
+  &.stone-old .wall__face {
     background-image: url(./textures/stone-6.jpg);
     background-size: 50.3px 100px;
   }
-  &.stone-face .face {
+  &.stone-face .wall__face {
     background-image: url(./textures/stone-2.jpg);
     background-size: 100.5px 100px;
   }
-  &.stone-nameplate .face {
+  &.stone-nameplate .wall__face {
     background-image: url(./textures/stone-3.jpg);
     background-size: 100.5px 100px;
   }
-  &.stone-eagle .face {
+  &.stone-eagle .wall__face {
     background-image: url(./textures/stone-4.jpg);
     background-size: 100.5px 100px;
   }
-  &.stone-logo .face {
+  &.stone-logo .wall__face {
     background-image: url(./textures/stone-5.jpg);
     background-size: 100.5px 100px;
   }
 
-  &.metal_1 .face {
+  &.metal_1 .wall__face {
     background-image: url(./textures/metal-1.jpg);
     background-size: 100.5px 100px;
   }
-  &.metal_2 .face {
+  &.metal_2 .wall__face {
     background-image: url(./textures/metal-2.jpg);
     background-size: 100.5px 100px;
   }
 
-  &.wood .face {
+  &.wood .wall__face {
     background-image: url(./textures/wood-1.jpg);
     background-size: 50.3px 100px;
   }
-  &.wood-eagle .face {
+  &.wood-eagle .wall__face {
     background-image: url(./textures/wood-2.jpg);
     background-size: 100.5px 100px;
   }
-  &.wood-face .face {
+  &.wood-face .wall__face {
     background-image: url(./textures/wood-3.jpg);
     background-size: 100.5px 100px;
   }
-  &.wood-logo .face {
+  &.wood-logo .wall__face {
     background-image: url(./textures/wood-4.jpg);
     background-size: 100.5px 100px;
   }
 
-  &.brick .face {
+  &.brick .wall__face {
     background-image: url(./textures/brick-1.jpg);
     background-size: 50.3px 100px;
   }
-  &.brick-logo .face {
+  &.brick-logo .wall__face {
     background-image: url(./textures/brick-2.jpg);
     background-size: 100.5px 100px;
   }
 
-  &.prison-wall .face {
+  &.prison-wall .wall__face {
     background-image: url(./textures/prison-1.jpg);
     background-size: 50.3px 100px;
   }
-  &.prison-bars .face {
+  &.prison-bars .wall__face {
     background-image: url(./textures/prison-2.jpg);
     background-size: 100.5px 100px;
   }
-  &.prison-nameplate .face {
+  &.prison-nameplate .wall__face {
     background-image: url(./textures/prison-3.jpg);
     background-size: 100.5px 100px;
   }
+}
+
+.wall__face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+
+  backface-visibility: hidden;
+
+  background-blend-mode: multiply;
 }

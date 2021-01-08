@@ -49,37 +49,37 @@ const setLevel = () => {
   //     z: -3000
   //   }
   // });
-  // new ShotgunItem({ x: -1558.681641589877, z: -3363.771691838703 });
-  // new MedkitItem({ x: -709.4456751799761, z: -3231.267917978993 });
-  // for (let i = 0; i < 3; i++) {
-  //   const noisePosition = generateCoordinateNoiseValue(500);
-  //   new Guard({
-  //     position: {
-  //       x: -709.4456751799761 + noisePosition.x,
-  //       z: -3231.267917978993 + noisePosition.z
-  //     }
-  //   });
-  // }
-  // for (let i = 0; i < 1; i++) {
-  //   const noisePosition = generateCoordinateNoiseValue(500);
-  //   new Guard({
-  //     position: {
-  //       x: -3402.1376817627192 + noisePosition.x,
-  //       z: -3528.3517358205772 + noisePosition.z
-  //     }
-  //   });
-  // }
-  // for (let i = 0; i < 4; i++) {
-  //   const noisePosition = generateCoordinateNoiseValue(500);
-  //   new Zombie({
-  //     position: {
-  //       x: -3402.1376817627192 + noisePosition.x,
-  //       z: -3528.3517358205772 + noisePosition.z
-  //     }
-  //   });
-  // }
-  // new Guard({ position: { x: -3447.3057917891865, z: -1352.1616926411084 } });
-  // new Guard({ position: { x: -3778.7432811592416, z: -89.1741625587174 } });
+  new ShotgunItem({ x: -1558.681641589877, z: -3363.771691838703 });
+  new MedkitItem({ x: -709.4456751799761, z: -3231.267917978993 });
+  for (let i = 0; i < 3; i++) {
+    const noisePosition = generateCoordinateNoiseValue(500);
+    new Guard({
+      position: {
+        x: -709.4456751799761 + noisePosition.x,
+        z: -3231.267917978993 + noisePosition.z
+      }
+    });
+  }
+  for (let i = 0; i < 1; i++) {
+    const noisePosition = generateCoordinateNoiseValue(500);
+    new Guard({
+      position: {
+        x: -3402.1376817627192 + noisePosition.x,
+        z: -3528.3517358205772 + noisePosition.z
+      }
+    });
+  }
+  for (let i = 0; i < 4; i++) {
+    const noisePosition = generateCoordinateNoiseValue(500);
+    new Zombie({
+      position: {
+        x: -3402.1376817627192 + noisePosition.x,
+        z: -3528.3517358205772 + noisePosition.z
+      }
+    });
+  }
+  new Guard({ position: { x: -3447.3057917891865, z: -1352.1616926411084 } });
+  new Guard({ position: { x: -3778.7432811592416, z: -89.1741625587174 } });
 };
 
 export default data;

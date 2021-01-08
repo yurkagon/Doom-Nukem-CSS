@@ -16,32 +16,38 @@ class Weapon extends Component {
   private static weaponBouncingContainerRef = createRef<HTMLDivElement>();
 
   public static weaponBouncingUpdater() {
-    if (!this.weaponBouncingContainerRef.current) return;
-    const weapon = $(this.weaponBouncingContainerRef.current);
+    // return;
 
-    if (player.isMoving()) {
-      weapon
-        .animate(
-          {
-            right: 30,
-            bottom: -30
-          },
-          500
-        )
-        .animate(
-          {
-            right: 0,
-            bottom: 0
-          },
-          200
-        );
-    } else {
-      weapon.stop();
-    }
+    setTimeout(() => {
+      if (!this.weaponBouncingContainerRef.current) return;
+      const weapon = $(this.weaponBouncingContainerRef.current);
+
+      if (player.isMoving()) {
+        weapon
+          .animate(
+            {
+              right: 30,
+              bottom: -30
+            },
+            500
+          )
+          .animate(
+            {
+              right: 0,
+              bottom: 0
+            },
+            200
+          );
+      } else {
+        weapon.stop();
+      }
+    });
   }
 
   render() {
     const { weapon, isChangingWeapon, weaponChangingTime } = player.inventory;
+
+    console.log("weapon render");
 
     return (
       <div

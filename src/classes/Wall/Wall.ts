@@ -45,13 +45,13 @@ class Wall extends Model {
     _.forEach(this.sides, (space, key) => {
       if (space === " ") return;
 
-      this.self.find(`.face.${key}`).remove();
+      this.self.find(`.wall__face.${key}`).remove();
     });
   }
 
   private getFaces() {
     if (!this.faces) {
-      this.faces = this.self.find(".face");
+      this.faces = this.self.find(".wall_face");
     }
 
     return this.faces;
