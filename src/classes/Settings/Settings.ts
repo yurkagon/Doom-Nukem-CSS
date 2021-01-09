@@ -14,7 +14,7 @@ class Settings {
   public infinite_ammo = true;
 
   public skipMenuOnLoad: boolean = true;
-  public developmentAutoLoadLevel: LevelName = "level_1";
+  public developmentAutoLoadLevel: LevelName = "level_2";
 
   public positionDebugger: boolean = false;
   public savePosition: boolean = true;
