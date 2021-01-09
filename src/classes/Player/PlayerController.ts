@@ -102,7 +102,7 @@ abstract class PlayerController extends Camera {
 
   private stepsEffect() {
     const { position, stepState } = this;
-    const value = 0.8;
+    const value = 1;
     position.y += stepState ? value : -value;
     if (Math.abs(position.y) > 12) {
       this.stepState = !stepState;

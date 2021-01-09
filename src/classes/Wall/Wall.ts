@@ -23,7 +23,7 @@ class Wall extends Model {
 
   constructor(position: Position, sides: CellInfo) {
     super({
-      name: Wall.getName(sides),
+      name: "wall",
       data,
       scale: {
         x: 10,
@@ -45,19 +45,21 @@ class Wall extends Model {
     _.forEach(this.sides, (space, key) => {
       if (space === " ") return;
 
-      this.self.find(`.wall__face.${key}`).remove();
+      this.self.find(`.wall__face--${key}`).remove();
     });
+
+    this.self.find(".wall__face").addClass(this.getFaceClassName(this.sides));
   }
 
   private getFaces() {
     if (!this.faces) {
-      this.faces = this.self.find(".wall_face");
+      this.faces = this.self.find(".wall__face");
     }
 
     return this.faces;
   }
 
-  private static getName(cellInfo: CellInfo): string {
+  private getFaceClassName(cellInfo: CellInfo): string {
     const char = cellInfo.current;
 
     const name = ((): string => {
@@ -104,11 +106,13 @@ class Wall extends Model {
       }
     })();
 
-    return `wall ${name}`;
+    return `face-texture__${name}`;
   }
 
   protected onDarknessUpdate(darkness: number): void {
     const faces = this.getFaces();
+
+    console.log(faces);
 
     faces.css("background-color", `rgba(0, 0, 0, ${1 - darkness})`);
   }

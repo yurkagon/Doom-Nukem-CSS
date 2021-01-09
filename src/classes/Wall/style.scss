@@ -1,104 +1,5 @@
 .wall {
   transform-style: preserve-3d;
-
-  @mixin pseudo-shadow {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .front {
-    transform: rotateY(0deg) translateZ(50px);
-  }
-  .right {
-    transform: rotateY(90deg) translateZ(50px);
-  }
-  .back {
-    transform: rotateY(180deg) translateZ(50px);
-    background-position-x: 51px;
-    @include pseudo-shadow;
-  }
-  .left {
-    transform: rotateY(-90deg) translateZ(50px);
-    background-position-x: 51px;
-    @include pseudo-shadow;
-  }
-
-  &.default .wall__face {
-    background-image: url(./textures/gray.png);
-    background-size: 55px 220px;
-  }
-
-  &.stone .wall__face {
-    background-image: url(./textures/stone-1.png);
-    background-size: 50.3px 100px;
-  }
-  &.stone-old .wall__face {
-    background-image: url(./textures/stone-6.jpg);
-    background-size: 50.3px 100px;
-  }
-  &.stone-face .wall__face {
-    background-image: url(./textures/stone-2.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.stone-nameplate .wall__face {
-    background-image: url(./textures/stone-3.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.stone-eagle .wall__face {
-    background-image: url(./textures/stone-4.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.stone-logo .wall__face {
-    background-image: url(./textures/stone-5.jpg);
-    background-size: 100.5px 100px;
-  }
-
-  &.metal_1 .wall__face {
-    background-image: url(./textures/metal-1.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.metal_2 .wall__face {
-    background-image: url(./textures/metal-2.jpg);
-    background-size: 100.5px 100px;
-  }
-
-  &.wood .wall__face {
-    background-image: url(./textures/wood-1.jpg);
-    background-size: 50.3px 100px;
-  }
-  &.wood-eagle .wall__face {
-    background-image: url(./textures/wood-2.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.wood-face .wall__face {
-    background-image: url(./textures/wood-3.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.wood-logo .wall__face {
-    background-image: url(./textures/wood-4.jpg);
-    background-size: 100.5px 100px;
-  }
-
-  &.brick .wall__face {
-    background-image: url(./textures/brick-1.jpg);
-    background-size: 50.3px 100px;
-  }
-  &.brick-logo .wall__face {
-    background-image: url(./textures/brick-2.jpg);
-    background-size: 100.5px 100px;
-  }
-
-  &.prison-wall .wall__face {
-    background-image: url(./textures/prison-1.jpg);
-    background-size: 50.3px 100px;
-  }
-  &.prison-bars .wall__face {
-    background-image: url(./textures/prison-2.jpg);
-    background-size: 100.5px 100px;
-  }
-  &.prison-nameplate .wall__face {
-    background-image: url(./textures/prison-3.jpg);
-    background-size: 100.5px 100px;
-  }
 }
 
 .wall__face {
@@ -109,4 +10,105 @@
   backface-visibility: hidden;
 
   background-blend-mode: multiply;
+}
+
+@mixin pseudo-shadow {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wall__face--front {
+  transform: rotateY(0deg) translateZ(50px);
+}
+.wall__face--right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+.wall__face--back {
+  transform: rotateY(180deg) translateZ(50px);
+  background-position-x: 51px;
+  @include pseudo-shadow;
+}
+.wall__face--left {
+  transform: rotateY(-90deg) translateZ(50px);
+  background-position-x: 51px;
+  @include pseudo-shadow;
+}
+
+// textures
+
+.face-texture__default {
+  background-image: url(./textures/gray.png);
+  background-size: 55px 220px;
+}
+
+.face-texture__stone {
+  background-image: url(./textures/stone-1.png);
+  background-size: 50.3px 100px;
+}
+.face-texture__stone-old {
+  background-image: url(./textures/stone-6.jpg);
+  background-size: 50.3px 100px;
+}
+.face-texture__stone-face {
+  background-image: url(./textures/stone-2.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__stone-nameplate {
+  background-image: url(./textures/stone-3.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__stone-eagle {
+  background-image: url(./textures/stone-4.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__stone-logo {
+  background-image: url(./textures/stone-5.jpg);
+  background-size: 100.5px 100px;
+}
+
+.face-texture__metal_1 {
+  background-image: url(./textures/metal-1.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__metal_2 {
+  background-image: url(./textures/metal-2.jpg);
+  background-size: 100.5px 100px;
+}
+
+.face-texture__wood {
+  background-image: url(./textures/wood-1.jpg);
+  background-size: 50.3px 100px;
+}
+.face-texture__wood-eagle {
+  background-image: url(./textures/wood-2.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__wood-face {
+  background-image: url(./textures/wood-3.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__wood-logo {
+  background-image: url(./textures/wood-4.jpg);
+  background-size: 100.5px 100px;
+}
+
+.face-texture__brick {
+  background-image: url(./textures/brick-1.jpg);
+  background-size: 50.3px 100px;
+}
+.face-texture__brick-logo {
+  background-image: url(./textures/brick-2.jpg);
+  background-size: 100.5px 100px;
+}
+
+.face-texture__prison-wall {
+  background-image: url(./textures/prison-1.jpg);
+  background-size: 50.3px 100px;
+}
+.face-texture__prison-bars {
+  background-image: url(./textures/prison-2.jpg);
+  background-size: 100.5px 100px;
+}
+.face-texture__prison-nameplate {
+  background-image: url(./textures/prison-3.jpg);
+  background-size: 100.5px 100px;
 }
