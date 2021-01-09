@@ -9,7 +9,7 @@ abstract class GameObjectLOD extends GameObject {
   protected self: JQuery = $("<div/>");
 
   protected fov = 90;
-  protected VISIBILITY_DISTANCE = 4000;
+  protected VISIBILITY_DISTANCE = 7000;
   private MIN_VISIBILITY_DISTANCE = 1000;
   protected VISION_CHECKING = true;
 

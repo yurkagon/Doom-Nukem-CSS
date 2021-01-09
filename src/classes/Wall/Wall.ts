@@ -17,8 +17,6 @@ class Wall extends Model {
   private sides: CellInfo;
   private faces: JQuery<HTMLElement>;
 
-  protected readonly VISIBILITY_DISTANCE = 8000;
-
   protected VISION_CHECKING = false;
 
   constructor(position: Position, sides: CellInfo) {
