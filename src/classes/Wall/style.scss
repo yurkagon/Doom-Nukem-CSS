@@ -12,7 +12,7 @@
   @mixin pseudo-shadow {
     // filter: brightness(0.5);
     // background-color: rgba(0, 0, 0, 0.5);
-    // background-blend-mode: darken;
+    // background-blend-mode: multiply;
   }
 
   .front {
