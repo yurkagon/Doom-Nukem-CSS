@@ -42,8 +42,10 @@ abstract class GameObjectLOD extends GameObject {
     return this.isActive;
   }
 
-  public getDistanceToPlayer(): number {
-    return this.distanceToPlayer;
+  public getDistanceToPlayer(realtime?: boolean): number {
+    return realtime
+      ? Distance(Player.getInstance().getPosition(), this.position)
+      : this.distanceToPlayer;
   }
 
   private darknessLevelUpdater(): void {
