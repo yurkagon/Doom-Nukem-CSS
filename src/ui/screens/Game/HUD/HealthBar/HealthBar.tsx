@@ -14,7 +14,7 @@ class HealthBar extends Component {
     const player = Player.getInstance();
 
     const hp = Math.round(player.hp);
-
+    console.log("healthbar");
     return (
       <div className="health-bar">
         <Face hp={hp} />

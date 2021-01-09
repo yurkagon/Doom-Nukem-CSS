@@ -9,6 +9,7 @@ import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
 import BackgroundMusic from "classes/BackgroundMusic";
 import Surface from "classes/Surface";
+import Wall from "classes/Wall";
 
 import UiWeapon from "ui/screens/Game/Weapon";
 
@@ -46,6 +47,10 @@ class Level {
         ...config.preloadData.sounds
       ]),
       operations: [
+        {
+          name: "Generating textures",
+          method: () => Wall.generateTextures()
+        },
         {
           name: "Camera enabled",
           method: () => {

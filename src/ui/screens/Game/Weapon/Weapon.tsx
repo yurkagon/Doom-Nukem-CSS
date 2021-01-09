@@ -19,6 +19,8 @@ class Weapon extends Component {
     if (!this.weaponBouncingContainerRef.current) return;
     const weapon = $(this.weaponBouncingContainerRef.current);
 
+    return;
+
     if (player.isMoving()) {
       weapon
         .animate(
@@ -42,7 +44,7 @@ class Weapon extends Component {
 
   render() {
     const { weapon, isChangingWeapon, weaponChangingTime } = player.inventory;
-
+    console.log("Weapon");
     return (
       <div
         className={cn("weapon-container", State.nightmode && "nightmode", {

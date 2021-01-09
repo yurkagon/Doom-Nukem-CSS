@@ -13,6 +13,7 @@ class WeaponBar extends Component {
     const player = Player.getInstance();
     const { weapon } = player.inventory;
 
+    console.log("WeaponBar");
     return (
       <div className="weapon-bar">
         <div className={cn("weapon", weapon.name)} />

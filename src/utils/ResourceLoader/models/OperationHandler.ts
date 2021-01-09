@@ -9,7 +9,14 @@ class OperationHandler {
   ): Promise<void> {
     await Promise.all(
       operations.map(async (operation, index) => {
-        await this.handleOperation(operation, index);
+        try {
+          await this.handleOperation(operation, index);
+        } catch (error) {
+          console.error(
+            `Cannot complete operation: "${operation.name}"`,
+            error
+          );
+        }
 
         handler(operation.name);
       })

@@ -5,7 +5,7 @@ import Model from "classes/Model";
 
 import data from "./data";
 
-import { WallTexturesData } from "./types";
+import { WallTexturesData, TextureData } from "./types";
 
 import "./style.scss";
 
@@ -26,95 +26,97 @@ class Wall extends Model {
   private static textureMap: WallTexturesData = {
     "#": {
       name: "default",
-      original: require("./textures/gray.png"),
+      original: require("./textures/gray.png").default,
       darker: null
     },
     s: {
       name: "stone",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-1.png").default,
       darker: null
     },
     sf: {
       name: "stone-face",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-2.jpg").default,
       darker: null
     },
     sn: {
       name: "stone-nameplate",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-3.jpg").default,
       darker: null
     },
     se: {
       name: "stone-eagle",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-4.jpg").default,
       darker: null
     },
     sl: {
       name: "stone-logo",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-5.jpg").default,
       darker: null
     },
     so: {
       name: "stone-old",
-      original: require("./textures/gray.png"),
+      original: require("./textures/stone-6.jpg").default,
       darker: null
     },
     m1: {
       name: "metal_1",
-      original: require("./textures/gray.png"),
+      original: require("./textures/metal-1.jpg").default,
       darker: null
     },
     m2: {
       name: "metal_2",
-      original: require("./textures/gray.png"),
+      original: require("./textures/metal-2.jpg").default,
       darker: null
     },
     w: {
       name: "wood",
-      original: require("./textures/gray.png"),
+      original: require("./textures/wood-1.jpg").default,
       darker: null
     },
     we: {
       name: "wood-eagle",
-      original: require("./textures/gray.png"),
+      original: require("./textures/wood-2.jpg").default,
       darker: null
     },
     wf: {
       name: "wood-face",
-      original: require("./textures/gray.png"),
+      original: require("./textures/wood-3.jpg").default,
       darker: null
     },
     wl: {
       name: "wood-logo",
-      original: require("./textures/gray.png"),
+      original: require("./textures/wood-4.jpg").default,
       darker: null
     },
     b: {
       name: "brick",
-      original: require("./textures/gray.png"),
+      original: require("./textures/brick-1.jpg").default,
       darker: null
     },
     bl: {
       name: "brick-logo",
-      original: require("./textures/gray.png"),
+      original: require("./textures/brick-2.jpg").default,
       darker: null
     },
     p: {
       name: "prison-wall",
-      original: require("./textures/gray.png"),
+      original: require("./textures/prison-1.jpg").default,
       darker: null
     },
     pn: {
       name: "prison-nameplate",
-      original: require("./textures/gray.png"),
+      original: require("./textures/prison-3.jpg").default,
       darker: null
     },
     pb: {
       name: "prison-bars",
-      original: require("./textures/gray.png"),
+      original: require("./textures/prison-2.jpg").default,
       darker: null
     }
   };
+
+  private static brightnessValue: number = -50;
 
   constructor(position: Position, sides: CellInfo) {
     super({
@@ -143,7 +145,17 @@ class Wall extends Model {
       this.self.find(`.wall__face--${key}`).remove();
     });
 
-    this.self.find(".wall__face").addClass(this.getFaceClassName(this.sides));
+    const textureData = this.getTextureData(this.sides);
+    this.self.find(".wall__face").addClass(`face-texture__${textureData.name}`);
+
+    if (textureData.darker) {
+      this.self
+        .find(".wall__face--left")
+        .css("background-image", `url(${textureData.darker})`);
+      this.self
+        .find(".wall__face--back")
+        .css("background-image", `url(${textureData.darker})`);
+    }
   }
 
   private getFaces() {
@@ -154,12 +166,10 @@ class Wall extends Model {
     return this.faces;
   }
 
-  private getFaceClassName(cellInfo: CellInfo): string {
+  private getTextureData(cellInfo: CellInfo): TextureData {
     const char = cellInfo.current;
 
-    const name = Wall.textureMap[char].name;
-
-    return `face-texture__${name}`;
+    return Wall.textureMap[char];
   }
 
   protected onDarknessUpdate(darkness: number): void {
@@ -168,6 +178,22 @@ class Wall extends Model {
     console.log(faces);
 
     faces.css("background-color", `rgba(0, 0, 0, ${1 - darkness})`);
+  }
+
+  public static async generateTextures(): Promise<void> {
+    const module = await import("utils/ImageProcessor");
+    const ImageProcessor = module.default;
+
+    await Promise.all(
+      _.map(this.textureMap, async (el, cell: Cell) => {
+        const url = await ImageProcessor.applyBrightness(
+          el.original,
+          this.brightnessValue
+        );
+
+        this.textureMap[cell].darker = url;
+      })
+    );
   }
 }
 

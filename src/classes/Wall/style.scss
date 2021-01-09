@@ -9,11 +9,7 @@
 
   backface-visibility: hidden;
 
-  // background-blend-mode: multiply;
-}
-
-@mixin pseudo-shadow {
-  // background-color: rgba(0, 0, 0, 0.5);
+  image-rendering: initial;
 }
 
 .wall__face--front {
@@ -25,12 +21,10 @@
 .wall__face--back {
   transform: rotateY(180deg) translateZ(50px);
   background-position-x: 51px;
-  @include pseudo-shadow;
 }
 .wall__face--left {
   transform: rotateY(-90deg) translateZ(50px);
   background-position-x: 51px;
-  @include pseudo-shadow;
 }
 
 // textures

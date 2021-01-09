@@ -1,6 +1,6 @@
 import { Cell } from "classes/MapHandler";
 
-type TextureData = {
+export type TextureData = {
   original: string;
   name: string;
   darker: null | string;

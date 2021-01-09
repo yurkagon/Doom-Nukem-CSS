@@ -19,6 +19,8 @@ class HealthColorFilter extends Component {
     if (player.hp < 5) opacity = 0.3;
     if (player.hp === 0) opacity = 0.5;
 
+    console.log("HealthColorFilter");
+
     return (
       <div className="ui-wrapper health-color-filter" style={{ opacity }} />
     );
