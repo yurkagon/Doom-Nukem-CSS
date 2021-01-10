@@ -19,8 +19,6 @@ class Weapon extends Component {
     if (!this.weaponBouncingContainerRef.current) return;
     const weapon = $(this.weaponBouncingContainerRef.current);
 
-    return;
-
     if (player.isMoving()) {
       weapon
         .animate(

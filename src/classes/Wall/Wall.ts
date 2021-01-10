@@ -150,7 +150,7 @@ class Wall extends Model {
 
     if (textureData.darker) {
       this.self
-        .find(".wall__face--left")
+        .find(".wall__face--right")
         .css("background-image", `url(${textureData.darker})`);
       this.self
         .find(".wall__face--back")
