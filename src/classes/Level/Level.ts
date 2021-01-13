@@ -11,8 +11,6 @@ import BackgroundMusic from "classes/BackgroundMusic";
 import Surface from "classes/Surface";
 import Wall from "classes/Wall";
 
-import UiWeapon from "ui/screens/Game/Weapon";
-
 import defaultAssets from "./defaultAssets";
 
 import { LevelName, LevelConfig } from "./types";
@@ -46,8 +44,8 @@ class Level {
         ...defaultAssets.sounds,
         ...config.preloadData.sounds
       ]),
-      operations: [
-        {
+      operations: _.compact([
+        State.settings.wall_shadow && {
           name: "Generating textures",
           method: () => Wall.generateTextures()
         },
@@ -57,20 +55,16 @@ class Level {
             player.camera.css("display", "block");
           }
         },
-        {
+        config.skybox && {
           name: "Load skybox",
           method: () => {
-            if (config.skybox) {
-              new SkyBox(config.skybox);
-            }
+            new SkyBox(config.skybox);
           }
         },
-        {
+        config.floor && {
           name: "Load surfaces",
           method: () => {
-            if (config.floor) {
-              Surface.setFloor(config.floor.url);
-            }
+            Surface.setFloor(config.floor.url);
           }
         },
         {
@@ -79,11 +73,9 @@ class Level {
             BackgroundMusic.stop();
           }
         },
-        {
+        config.music && {
           name: "Background music executing",
           method: () => {
-            if (!config.music) return;
-
             sleep(1000).then(() => {
               BackgroundMusic.play(config.music);
             });
@@ -106,8 +98,6 @@ class Level {
                 config.start && config.start();
               },
               update() {
-                UiWeapon.weaponBouncingUpdater();
-
                 if (State.settings.positionDebugger) {
                   console.log(player.getPosition());
                 }
@@ -119,7 +109,7 @@ class Level {
           }
         },
         ...(config.preloadData.operations || [])
-      ]
+      ])
     });
 
     State.setScreen(Screen.game);

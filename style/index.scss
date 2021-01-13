@@ -3,13 +3,12 @@
 
 $cameraW: 1300px;
 $cameraH: 700px;
-$size: 1;
 
 #root {
-  width: $cameraW * $size;
-  min-width: $cameraW * $size;
-  height: $cameraH * $size;
-  min-height: $cameraH * $size;
+  width: $cameraW;
+  min-width: $cameraW;
+  height: $cameraH;
+  min-height: $cameraH;
   position: relative;
   display: block;
 

@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import State from "State";
+
 import { CellInfo, Cell } from "classes/MapHandler";
 import Model from "classes/Model";
 
@@ -8,6 +10,7 @@ import data from "./data";
 import { WallTexturesData, TextureData } from "./types";
 
 import "./style.scss";
+import Settings from "classes/Settings";
 
 class Wall extends Model {
   protected positionCorrector: Position = {
@@ -148,7 +151,7 @@ class Wall extends Model {
     const textureData = this.getTextureData(this.sides);
     this.self.find(".wall__face").addClass(`face-texture__${textureData.name}`);
 
-    if (textureData.darker) {
+    if (textureData.darker && State.settings.wall_shadow) {
       this.self
         .find(".wall__face--right")
         .css("background-image", `url(${textureData.darker})`);

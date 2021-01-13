@@ -53,4 +53,43 @@
   }
 }
 
+.weapon-bouncer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  animation: bounce 1.4s infinite;
+  animation-play-state: paused;
+
+  @keyframes bounce {
+    0% {
+      left: 0;
+      top: 0;
+    }
+    25% {
+      left: -30px;
+      top: 40px;
+    }
+    50% {
+      left: 0px;
+      top: 0px;
+    }
+    75% {
+      left: 15px;
+      top: 40px;
+    }
+
+    100% {
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &.bouncing {
+    animation-play-state: running;
+  }
+}
+
 @import "weapon_styles/index";
