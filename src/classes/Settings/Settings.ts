@@ -2,7 +2,7 @@ import { observable } from "mobx";
 import { LevelName } from "classes/Level";
 
 class Settings {
-  public productionMode = true;
+  public productionMode = false;
 
   @observable public wall_shadow = true;
   @observable public backgroundMusic = true;
@@ -10,7 +10,7 @@ class Settings {
   @observable public noclip: boolean = false;
   @observable public godmode: boolean = true;
   @observable public infinite_ammo = true;
-  @observable public enemy_ai: boolean = true;
+  @observable public enemy_ai: boolean = false;
 
   public skipMenuOnLoad: boolean = true;
   public developmentAutoLoadLevel: LevelName = "level_1";
