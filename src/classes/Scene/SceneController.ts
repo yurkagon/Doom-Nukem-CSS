@@ -27,6 +27,8 @@ abstract class SceneController {
 
   private updateStrategy: UpdateStrategy = new IntervalStrategy();
 
+  private prevTransform: string;
+
   constructor() {
     this.update = this.update.bind(this);
   }
@@ -76,7 +78,13 @@ abstract class SceneController {
       z: position.z + origin.z
     });
 
-    this.levelWrapper.css("transform", rotate3d + translate3d);
+    const transform = rotate3d + translate3d;
+
+    if (this.prevTransform !== transform) {
+      this.levelWrapper.css("transform", transform);
+
+      this.prevTransform = transform;
+    }
   }
 
   public subscribeGameObject(gameObject: GameObject): void {

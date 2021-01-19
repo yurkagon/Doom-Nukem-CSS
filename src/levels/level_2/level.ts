@@ -49,7 +49,7 @@ const setLevel = () => {
 
   new MedkitItem({ x: -709.4456751799761, z: -3231.267917978993 });
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 10; i++) {
     const noisePosition = generateCoordinateNoiseValue(500);
     new Guard({
       position: {
@@ -59,7 +59,7 @@ const setLevel = () => {
     });
   }
 
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 10; i++) {
     const noisePosition = generateCoordinateNoiseValue(500);
     new Guard({
       position: {

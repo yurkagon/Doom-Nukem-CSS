@@ -4,6 +4,7 @@ import Item from "classes/Item";
 import State from "State";
 
 import { Distance, generateCoordinateNoiseValue, chance } from "helpers";
+import sleep from "utils/sleep";
 
 import Sprite from "../Sprite";
 
@@ -42,7 +43,9 @@ abstract class Enemy extends Sprite {
   public start() {
     this.moveDiff = generateCoordinateNoiseValue(500);
 
-    this.timer = setInterval(this.logicUpdate, this.logicChangeInterval);
+    sleep(this.logicChangeInterval * Math.random()).then(() => {
+      this.timer = setInterval(this.logicUpdate, this.logicChangeInterval);
+    });
 
     super.start();
   }

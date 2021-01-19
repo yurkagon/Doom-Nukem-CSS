@@ -1,4 +1,5 @@
 import State from "State";
+import { computed } from "mobx";
 import { playRandomFootstep } from "sounds/player/steps";
 
 import Camera from "./Camera";
@@ -48,7 +49,7 @@ abstract class PlayerController extends Camera {
       rotateRight
     } = this.controller.moveState;
 
-    if (this.controller.isMoving()) {
+    if (this.controller.isMoving) {
       const moves: Array<Position> = [];
 
       if (toForward) moves.push(this.goForward());
@@ -104,15 +105,15 @@ abstract class PlayerController extends Camera {
     const { position, stepState } = this;
     const value = 0.8;
     position.y += stepState ? value : -value;
-    if (Math.abs(position.y) > 12) {
+    if (Math.abs(position.y) > 14) {
       this.stepState = !stepState;
 
       this.stepState && playRandomFootstep();
     }
   }
 
-  public isMoving() {
-    return this.allowMovement && this.controller.isMoving();
+  @computed public get isMoving() {
+    return this.allowMovement && this.controller.isMoving;
   }
 
   public savePosition = () => {

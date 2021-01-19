@@ -9,8 +9,7 @@ import LevelMap from "classes/LevelMap";
 import SkyBox from "classes/SkyBox";
 import BackgroundMusic from "classes/BackgroundMusic";
 import Surface from "classes/Surface";
-
-import UiWeapon from "ui/screens/Game/Weapon";
+import Wall from "classes/Wall";
 
 import defaultAssets from "./defaultAssets";
 
@@ -45,27 +44,27 @@ class Level {
         ...defaultAssets.sounds,
         ...config.preloadData.sounds
       ]),
-      operations: [
+      operations: _.compact([
+        State.settings.wall_shadow && {
+          name: "Generating textures",
+          method: () => Wall.generateTextures()
+        },
         {
           name: "Camera enabled",
           method: () => {
             player.camera.css("display", "block");
           }
         },
-        {
+        config.skybox && {
           name: "Load skybox",
           method: () => {
-            if (config.skybox) {
-              new SkyBox(config.skybox);
-            }
+            new SkyBox(config.skybox);
           }
         },
-        {
+        config.floor && {
           name: "Load surfaces",
           method: () => {
-            if (config.floor) {
-              Surface.setFloor(config.floor.url);
-            }
+            Surface.setFloor(config.floor.url);
           }
         },
         {
@@ -74,11 +73,9 @@ class Level {
             BackgroundMusic.stop();
           }
         },
-        {
+        config.music && {
           name: "Background music executing",
           method: () => {
-            if (!config.music) return;
-
             sleep(1000).then(() => {
               BackgroundMusic.play(config.music);
             });
@@ -101,8 +98,6 @@ class Level {
                 config.start && config.start();
               },
               update() {
-                UiWeapon.weaponBouncingUpdater();
-
                 if (State.settings.positionDebugger) {
                   console.log(player.getPosition());
                 }
@@ -114,7 +109,7 @@ class Level {
           }
         },
         ...(config.preloadData.operations || [])
-      ]
+      ])
     });
 
     State.setScreen(Screen.game);

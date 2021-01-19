@@ -1,20 +1,20 @@
 import { observable } from "mobx";
+import { LevelName } from "classes/Level";
 
 class Settings {
-  public productionMode = true;
+  public productionMode = false;
 
-  @observable public enemy_ai: boolean = false;
+  @observable public wall_shadow = true;
+  @observable public backgroundMusic = true;
 
-  @observable public noclip: boolean = false;
+  @observable public noclip: boolean = true;
   @observable public godmode: boolean = true;
-
-  @observable public backgroundMusic = false;
-
-  public infinite_ammo = true;
+  @observable public infinite_ammo = true;
+  @observable public enemy_ai: boolean = true;
 
   public skipMenuOnLoad: boolean = true;
+  public developmentAutoLoadLevel: LevelName = "level_2";
   public positionDebugger: boolean = false;
-
   public savePosition: boolean = true;
 
   constructor() {

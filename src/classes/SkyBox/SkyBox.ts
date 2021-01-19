@@ -11,6 +11,8 @@ class SkyBox extends GameObject {
   private positionY: number;
   private size: string;
 
+  private prevPlayerRotation: number;
+
   constructor(props: SkyboxConfig) {
     super();
 
@@ -35,9 +37,13 @@ class SkyBox extends GameObject {
   update() {
     const { camera, rotation } = this.player;
 
-    const positionX = this.rotatingMultiplier * rotation.y;
+    if (this.prevPlayerRotation !== rotation.y) {
+      const positionX = this.rotatingMultiplier * rotation.y;
 
-    camera.css("background-position", `${positionX}px ${this.positionY}px`);
+      camera.css("background-position", `${positionX}px ${this.positionY}px`);
+
+      this.prevPlayerRotation = rotation.y;
+    }
   }
 }
 

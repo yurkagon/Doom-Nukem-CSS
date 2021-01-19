@@ -1,29 +1,37 @@
 import _ from "lodash";
 
-import { CellInfo } from "classes/MapHandler";
+import State from "State";
+
+import { CellInfo, Cell } from "classes/MapHandler";
+
 import Model from "classes/Model";
 
 import data from "./data";
 
+import { WallTexturesData, TextureData } from "./types";
+
+import textureData from "./textureData";
+
 import "./style.scss";
 
 class Wall extends Model {
+  private sides: CellInfo;
+  private faces: JQuery<HTMLElement>;
+
+  protected readonly VISIBILITY_DISTANCE = 8000;
+  protected VISION_CHECKING = false;
   protected positionCorrector: Position = {
     x: 129,
     z: 500,
     y: 190
   };
 
-  private sides: CellInfo;
-  private faces: JQuery<HTMLElement>;
-
-  protected readonly VISIBILITY_DISTANCE = 8000;
-
-  protected VISION_CHECKING = false;
+  private static textureMap: WallTexturesData = textureData;
+  private static brightnessValue: number = -50;
 
   constructor(position: Position, sides: CellInfo) {
     super({
-      name: Wall.getName(sides),
+      name: "wall",
       data,
       scale: {
         x: 10,
@@ -45,72 +53,60 @@ class Wall extends Model {
     _.forEach(this.sides, (space, key) => {
       if (space === " ") return;
 
-      this.self.find(`.face.${key}`).remove();
+      this.self.find(`.wall__face--${key}`).remove();
     });
+
+    const textureData = this.getTextureData(this.sides);
+    this.self.find(".wall__face").addClass(`face-texture__${textureData.name}`);
+
+    if (textureData.darker && State.settings.wall_shadow) {
+      this.self
+        .find(".wall__face--right")
+        .css("background-image", `url(${textureData.darker})`);
+      this.self
+        .find(".wall__face--back")
+        .css("background-image", `url(${textureData.darker})`);
+    }
+
+    if (State.nightmode) {
+      this.getFaces().css("background-blend-mode", "darken");
+    }
   }
 
   private getFaces() {
     if (!this.faces) {
-      this.faces = this.self.find(".face");
+      this.faces = this.self.find(".wall__face");
     }
 
     return this.faces;
   }
 
-  private static getName(cellInfo: CellInfo): string {
+  private getTextureData(cellInfo: CellInfo): TextureData {
     const char = cellInfo.current;
 
-    const name = ((): string => {
-      switch (char) {
-        case "#":
-          return "default";
-        case "s":
-          return "stone";
-        case "sf":
-          return "stone-face";
-        case "sn":
-          return "stone-nameplate";
-        case "se":
-          return "stone-eagle";
-        case "sl":
-          return "stone-logo";
-        case "so":
-          return "stone-old";
-        case "m1":
-          return "metal_1";
-        case "m2":
-          return "metal_2";
-        case "w":
-          return "wood";
-        case "we":
-          return "wood-eagle";
-        case "wf":
-          return "wood-face";
-        case "wl":
-          return "wood-logo";
-        case "b":
-          return "brick";
-        case "bl":
-          return "brick-logo";
-        case "p":
-          return "prison-wall";
-        case "pn":
-          return "prison-nameplate";
-        case "pb":
-          return "prison-bars";
-
-        default:
-          return "";
-      }
-    })();
-
-    return `wall ${name}`;
+    return Wall.textureMap[char];
   }
 
   protected onDarknessUpdate(darkness: number): void {
     const faces = this.getFaces();
 
-    faces.css("filter", `brightness(${darkness})`);
+    faces.css("background-color", `rgba(0, 0, 0, ${1 - darkness})`);
+  }
+
+  public static async generateTextures(): Promise<void> {
+    const module = await import("utils/ImageProcessor");
+    const ImageProcessor = module.default;
+
+    await Promise.all(
+      _.map(this.textureMap, async (el, cell: Cell) => {
+        const url = await ImageProcessor.applyBrightness(
+          el.original,
+          el.brightnessValue || this.brightnessValue
+        );
+
+        this.textureMap[cell].darker = url;
+      })
+    );
   }
 }
 

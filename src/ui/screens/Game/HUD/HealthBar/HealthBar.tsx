@@ -13,7 +13,7 @@ class HealthBar extends Component {
   render() {
     const player = Player.getInstance();
 
-    const hp = Math.round(player.hp);
+    const hp = Math.ceil(player.hp);
 
     return (
       <div className="health-bar">

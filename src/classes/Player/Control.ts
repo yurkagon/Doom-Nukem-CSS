@@ -1,11 +1,12 @@
 import $ from "jquery";
+import { observable, computed } from "mobx";
 import State from "State";
 
 class Control {
   public readonly MOUSE_SENSITIVITY = 1.5;
   public readonly ROTATION_SPEED = 2;
 
-  public moveState = {
+  @observable public moveState = {
     toForward: false,
     toBack: false,
     toLeft: false,
@@ -64,6 +65,7 @@ class Control {
   private attachMouseMove(): void {
     document.addEventListener("mousemove", event => {
       if (!this.mouseCallback) return;
+      if (!State.isPointerLocked) return;
 
       const { MOUSE_SENSITIVITY, ROTATION_SPEED } = this;
 
@@ -82,7 +84,7 @@ class Control {
     });
   }
 
-  public isMoving(): boolean {
+  @computed public get isMoving(): boolean {
     const { toForward, toBack, toLeft, toRight } = this.moveState;
 
     const forwardAndBackTogether = toForward && toBack;

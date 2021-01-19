@@ -6,8 +6,6 @@ import data from "./data";
 import "./style.scss";
 
 class House extends Model {
-  protected readonly VISIBILITY_DISTANCE = 4000;
-
   VISION_CHECKING = false;
 
   protected positionCorrector: Position = {
