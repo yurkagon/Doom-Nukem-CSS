@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{117:function(e,o,p){"use strict";p.r(o),o.default=p.p+"src/levels/level_1/floor.jpg"}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{136:function(e,s,p){"use strict";p.r(s),s.default=p.p+"src/levels/level_1/skybox.jpg"}}]);
