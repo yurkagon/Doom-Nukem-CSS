@@ -3,6 +3,7 @@ import _ from "lodash";
 import State from "State";
 
 import { CellInfo, Cell } from "classes/MapHandler";
+
 import Model from "classes/Model";
 
 import data from "./data";
@@ -65,6 +66,10 @@ class Wall extends Model {
       this.self
         .find(".wall__face--back")
         .css("background-image", `url(${textureData.darker})`);
+    }
+
+    if (State.nightmode) {
+      this.getFaces().css("background-blend-mode", "darken");
     }
   }
 
