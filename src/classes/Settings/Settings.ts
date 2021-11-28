@@ -2,13 +2,12 @@ import { observable } from "mobx";
 import { LevelName } from "classes/Level";
 
 class Settings {
-  public productionMode = false;
+  public productionMode = true;
 
   /*
     disabled because of low speed
   */
   @observable public wall_shadow = false;
-
 
   @observable public backgroundMusic = true;
 
