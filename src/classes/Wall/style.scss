@@ -1,3 +1,7 @@
+@mixin pseudo-shadow {
+  filter: brightness(0.5);
+}
+
 .wall {
   transform-style: preserve-3d;
 }
@@ -9,7 +13,7 @@
 
   backface-visibility: hidden;
 
-  image-rendering: initial;
+  image-rendering: pixelated;
 }
 
 .wall__face--front {
@@ -17,6 +21,7 @@
 }
 .wall__face--right {
   transform: rotateY(90deg) translateZ(50px);
+  @include pseudo-shadow;
 }
 .wall__face--back {
   transform: rotateY(180deg) translateZ(50px);
@@ -25,6 +30,8 @@
 .wall__face--left {
   transform: rotateY(-90deg) translateZ(50px);
   background-position-x: 51px;
+
+  @include pseudo-shadow;
 }
 
 // textures

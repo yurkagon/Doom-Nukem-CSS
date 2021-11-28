@@ -2,9 +2,13 @@ import { observable } from "mobx";
 import { LevelName } from "classes/Level";
 
 class Settings {
-  public productionMode = false;
+  public productionMode = true;
 
-  @observable public wall_shadow = true;
+  /*
+    disabled because of low speed
+  */
+  @observable public wall_shadow = false;
+
   @observable public backgroundMusic = true;
 
   @observable public noclip: boolean = true;
@@ -13,7 +17,7 @@ class Settings {
   @observable public enemy_ai: boolean = true;
 
   public skipMenuOnLoad: boolean = true;
-  public developmentAutoLoadLevel: LevelName = "level_2";
+  public developmentAutoLoadLevel: LevelName = "level_1";
   public positionDebugger: boolean = false;
   public savePosition: boolean = true;
 
